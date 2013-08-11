@@ -7,15 +7,42 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<!-- Google fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Alegreya:700' rel='stylesheet' type='text/css'>
 		<!-- JavaScript plugins (requires jQuery) -->
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
 		<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 		<script src="js/respond.min.js"></script>
+		<style type="text/css">
+			body {
+			}
+			.logo {
+				font-family: 'Sonsie One', cursive;
+			}
+			.menu {
+				font-family: 'Alegreya', serif;
+			}
+			.signup {
+				font-family: 'Alegreya', serif;
+				background-color: #99D6FB;
+				margin: 2% 0px;
+			}
+			h1 {
+				font-family: 'Alegreya', serif;
+			}
+			.navigation {
+				background-color: #99D6EB;
+			}
+			.textfont {
+				font-family: 'Alegreya', serif;
+			}
+		</style>
 	</head>
 	<body>
-		<div class="navbar navbar-fixed-top">
+		<div class="navbar navbar-fixed-top navigation">
 			<div class="container">
 
 				<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
@@ -27,22 +54,22 @@
 				</button>
 
 				<!-- Be sure to leave the brand out there if you want it shown -->
-				<a class="navbar-brand" href="#">Swapy</a>
+				<a class="navbar-brand logo" href="#">Swapy</a>
 
 				<!-- Place everything within .nav-collapse to hide it until above 768px -->
 				<div class="nav-collapse collapse navbar-responsive-collapse">
 					<form class="navbar-form col-lg-6 col-sm-6" action="">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search book to swap">
+							<input type="text" class="form-control textfont" placeholder="I want to read ...">
 							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
+								<button class="btn btn-default textfont" type="button">Go!</button>
 							</span>
 						</div>
 					</form>
 
 					<!--
 					-->
-					<ul class="nav navbar-nav pull-right">
+					<ul class="nav navbar-nav pull-right menu">
 						<li><a href="#about">About</a></li>
 						<li><a href="#signup">Sign up</a></li>
 						<li><a href="#login">Log in</a></li>
@@ -50,9 +77,41 @@
 				</div><!-- /.nav-collapse -->
 			</div><!-- /.container -->
 		</div><!-- /.navbar -->
-		<div class="container" style="margin-top:40px">
-			<!-- Contents -->
-			<h1>Hello, world!</h1>
+		<div class="container"><!-- style="margin-top:40px">-->
+			<div class="row" style="height:50px">
+			</div>
+			<div class="row">
+				<!-- Contents -->
+				<div class="col-lg-6">
+					<h1>Hello, world!</h1>
+				</div>
+				<div class="col-lg-6 signup">
+					<div class="row">
+						<div class="col-lg-12">
+						<h1>Get a free account!</h1>
+					</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+						<form>
+							<fieldset>
+								<!-- <legend>Legend</legend> -->
+								<div class="form-group">
+									<label for="exampleInputEmail">Email address</label>
+									<input type="text" class="form-control" id="exampleInputEmail" placeholder="Enter email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword">Password</label>
+									<input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+								</div>
+								<button type="submit" class="btn btn-default pull-right">Sign up!</button>
+							</fieldset>
+						</form>
+					</div>
+					</div>
+
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
