@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
 	<head>
 		<title>Swapy</title>
 		<meta charset="utf-8">
@@ -12,6 +12,9 @@
 		<link href='http://fonts.googleapis.com/css?family=Alegreya:700' rel='stylesheet' type='text/css'>
 		<!-- JavaScript plugins (requires jQuery) -->
 		<script src="js/jquery.min.js"></script>
+		<!-- Angular -->
+		<script src="js/angular/angular.min.js"></script>
+		<script src="js/angular/angular-translate.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
 		<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
@@ -23,6 +26,9 @@
 			.logo {
 				font-family: 'Sonsie One', cursive;
 				font-size: 22px;
+				color:		#FFFFFF;
+			}
+			.logo:hover {
 				color:		#FFFFFF;
 			}
 			.navigation {
@@ -50,6 +56,18 @@
 			}
 			.content {
 				margin: 2% 0px;
+			}
+			.navbar-nav > li > a {
+				color: #FFFFFF;
+			}
+			.navbar-nav > li > a:hover {
+				color: #FFFFFF;
+				position: relative;
+				top: 1px;
+				left: 1px;
+			}
+			.navbar-nav > li > a:focus {
+				color: #FFFFFF;
 			}
 		</style>
 	</head>
