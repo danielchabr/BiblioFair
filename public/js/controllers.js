@@ -1,8 +1,12 @@
+//angular.module('main.service' []);
 
-function MainControl($scope, $http) {
-	$scope.login = function() {
-		$http.post('/login', {email: $scope.email, password: $scope.password}).success( function(data) {
-			$scope.email = data;
+//angular.module('main', ['main.service']);
+
+
+function mainControl($scope, $http) {
+	$scope.signup = function() {
+		$http.post('/signup', {email: $scope.email, password: $scope.password}).success( function(data) {
+			$scope.message = data;
 		});
 	}
 

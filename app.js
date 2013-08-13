@@ -8,13 +8,14 @@ var app = express();
 app.use(express.compress());
 app.use(express.bodyParser());
 app.use(express.static(__dirname + '/public'));
-app.get('/', function(request, response) {
-	response.send(homepage);
-});
-app.post('/login', function(request, response) {
+app.post('/signup', function(request, response) {
 	console.log(request.body.email);
-	response.send("Welcome");
+
+	response.send("Welcome "+request.body.email);
 });
+//app.use(function (req, res) {
+//	res.redirect('/');
+//});
 
 /*
 mongoose.connect('mongodb://localhost/users');

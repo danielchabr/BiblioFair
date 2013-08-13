@@ -1,6 +1,9 @@
 body {
 	background-color:	#D0D0D0;
 }
+p {
+	font-size: 16px
+}
 .logo {
 	font-family: 'Sonsie One', cursive;
 	font-size: 22px;
