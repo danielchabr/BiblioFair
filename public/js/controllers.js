@@ -14,13 +14,13 @@ function mainControl($scope, $http) {
 	$scope.signup = function() {
 		hash = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
 		$http.post('/signup', {'email': $scope.signup_email, 'password': hash.toString()}).success( function(data) {
-			$scope.message = data + " " + hash;
+			$scope.message = data;
 		});
 	}
 	$scope.login = function() {
 		hash = CryptoJS.SHA3($scope.login_password + $scope.login_email, {outputLength: 256 });
 		$http.post('/login', {'email': $scope.login_email, 'password': hash.toString()}).success( function(data) {
-			$scope.message = data + " " + hash;
+			$scope.message = data;
 		});
 	}
 
