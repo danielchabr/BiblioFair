@@ -10,7 +10,7 @@
 		</script>
 		*/
 
-function mainControl($scope, $http) {
+function welcomeControl($scope, $http) {
 	$scope.signup = function() {
 		hash = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
 		$http.post('/signup', {'email': $scope.signup_email, 'password': hash.toString()}).success( function(data) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="mainapp">
 	<head>
 		<title>Swapify</title>
 		<meta charset="utf-8">
@@ -11,127 +11,21 @@
 		<link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Alegreya:700' rel='stylesheet' type='text/css'>
 		<!-- JavaScript plugins (requires jQuery) -->
-		<script src="js/jquery.min.js"></script>
-		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+		<script src="js/jquery/jquery.min.js"></script>
+		<!-- CryptoJS -->
+		<script src="js/sha3.js"></script>
 		<!-- Angular -->
 		<script src="js/angular/angular.min.js"></script>
-		<script src="js/angular/angular-translate.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
 		<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 		<script src="js/respond.min.js"></script>
+		<!-- AngularJS router -->
+		<script src="js/app.js"></script>
 		<script src="js/controllers.js"></script>
 		<link href="css/local.css" rel="stylesheet" media="screen">
 	</head>
-	<body ng-controller="mainControl">
-		<div class="navbar navbar-fixed-top navigation">
-			<div class="container">
-
-				<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-
-				<!-- Be sure to leave the brand out there if you want it shown -->
-				<a class="navbar-brand logo" href="#">Swapify</a>
-
-				<!-- Place everything within .nav-collapse to hide it until above 768px -->
-				<div class="nav-collapse collapse navbar-responsive-collapse">
-					<form class="navbar-form col-lg-5 col-sm-5" action="">
-						<div class="input-group">
-							<input type="text" class="form-control textfont" placeholder="I want to read ...">
-							<span class="input-group-btn">
-								<button class="btn btn-default textfont" type="button">Go!</button>
-							</span>
-						</div>
-					</form>
-
-					<!--
-					-->
-					<ul class="nav navbar-nav pull-right menu">
-						<li><a href="login">Sign in</a></li>
-					</ul>
-				</div><!-- /.nav-collapse -->
-			</div><!-- /.container -->
-		</div><!-- /.navbar -->
-		<div class="container"><!-- style="margin-top:40px">-->
-			<div class="row" style="height:100px">
-			</div>
-			<div class="row content">
-				<!-- Contents -->
-				<div class="col-lg-5 col-lg-offset-1">
-					<div class="row">
-						<div class="col-lg-12">
-							<h1>Share your home bookshelf and access everyone elses</h1>
-							<p>
-							We want to create an alternative to libraries. A place where you can exchange books you have and which you will probably never read again for interesting books that others have laying on their bookshelves. You would use this service with people you do not know, but also just with your friends to know, what is interesting in their home library.
-							</p>
-							<p>
-							{{email}}
-							</p>
-							<!-- Open your library to the world -->
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 signup round col-lg-offset-1">
-					<div class="row">
-						<div class="col-lg-12">
-							<h1>Register for free!</h1>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-							<form ng-submit="signup()">
-								<fieldset>
-									<!-- <legend>Legend</legend> -->
-									<div class="form-group">
-										<!--<label for="exampleInputEmail">Email address</label>-->
-										<input type="text" ng-model="signup_email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
-									</div>
-									<div class="form-group">
-										<!--<label for="exampleInputPassword">Password</label>-->
-										<input type="password" ng-model="signup_password" class="form-control" id="exampleInputPassword" placeholder="Password">
-									</div>
-									<button type="submit" class="btn btn-default pull-right">Join!</button>
-								</fieldset>
-							</form>
-						</div>
-					</div>
-
-				</div>
-			</div>
-			<div class="row content">
-				<div class="col-lg-5 col-lg-offset-1">
-					<h1>{{message}}</h1>
-				</div>
-				<div class="col-lg-4 signup round col-lg-offset-1">
-					<div class="row">
-						<div class="col-lg-12">
-							<h1>Sign in!</h1>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-12">
-							<form ng-submit="login()">
-								<fieldset>
-									<!-- <legend>Legend</legend> -->
-									<div class="form-group">
-										<!--<label for="exampleInputEmail">Email address</label>-->
-										<input type="text" ng-model="login_email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
-									</div>
-									<div class="form-group">
-										<!--<label for="exampleInputPassword">Password</label>-->
-										<input type="password" ng-model="login_password" class="form-control" id="exampleInputPassword" placeholder="Password">
-									</div>
-									<button type="submit" class="btn btn-default pull-right">Join!</button>
-								</fieldset>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<body>
+		<div ng-view></div>
 	</body>
 </html>
