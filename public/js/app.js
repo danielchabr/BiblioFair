@@ -3,6 +3,6 @@ angular.module('mainapp', []).
 		$routeProvider
 		.when('/', {templateUrl: '/partials/home.html',   controller: homeControl})
 		.when('/login', {templateUrl: '/partials/welcome.html',   controller: welcomeControl})
-		.otherwise({redirectTo: '/login'});
+		.otherwise({redirectTo: '/'});
 	$locationProvider.html5Mode(true);
 }]);
