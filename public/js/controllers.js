@@ -19,10 +19,18 @@ function welcomeControl($scope, $http, $location) {
 	}
 	$scope.login = function() {
 		hash = CryptoJS.SHA3($scope.login_password + $scope.login_email, {outputLength: 256 });
-		$http.post('/login', {'email': $scope.login_email, 'password': hash.toString()}).success( function(data) {
-			$scope.message = data;
-			$location.path('/');
-		}).failure( function(data) {
+		$http.post('/login', {'email': $scope.login_email, 'password': hash.toString()})
+		.success( function(data) {
+			if(data == 'loginSuccess') {
+				$scope.message = data;
+				$location.path('/');
+			}
+			else {
+				$scope.message = "Pleasy try again";
+			}
+		})
+		.error( function(data) {
+			$location.path('/login');
 		});
 	}
 
