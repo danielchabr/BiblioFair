@@ -7,7 +7,10 @@ usersdb.connect();
 
 router(app, usersdb);
 
-app.listen(process.env.PORT || 8080);
+var port = process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || 8080;  
+var ipaddr = process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP;  
+
+app.listen(port, ipaddr);
 
 /*
    */
