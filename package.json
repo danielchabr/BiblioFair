@@ -25,5 +25,5 @@
 		"npm": ">= 1.0.0"
 	},
 	"private": true,
-	"main": "app.js"
+	"main": "server.js"
 }
