@@ -4,7 +4,7 @@
 	"description": "Swapify application",
 	"author": {
 		"name": "Daniel Chabr",
-		"email": "danielchabr@gmail.com",
+		"email": "danielchabr@gmail.com"
 	},
 	"keywords": [
 		"OpenShift",
