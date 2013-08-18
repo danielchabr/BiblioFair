@@ -12,13 +12,13 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 				return response || $q.when(response);
 			},
 			'responseError': function(rejection) {
-				var status = response.status;
+				var status = rejection.status;
 				if (status == 401) {
 					$rootScope.redirect = $location.url(); // save the current url so we can redirect the user back
 					$rootScope.user = {}
 					$location.path('/login');
 				}
-				return $q.reject(response);
+				return $q.reject(rejection);
 			}
 		};
 	});
