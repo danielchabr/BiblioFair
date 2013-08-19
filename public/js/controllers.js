@@ -13,7 +13,8 @@
 function loginControl($scope, $http, $location) {
 	$scope.signup = function() {
 		hash = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
-		$http.post('/signup', {'email': $scope.signup_email, 'password': hash.toString()}).success( function(data) {
+		$http.post('/signup', {'email': $scope.signup_email, 'password': hash.toString()})
+		.success( function(data) {
 			$scope.message = data;
 		});
 	}
