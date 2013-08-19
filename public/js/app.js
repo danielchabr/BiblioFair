@@ -3,7 +3,9 @@ angular.module('mainapp', []).
 config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', function($routeProvider, $locationProvider, $httpProvider, $provide) {
 	$routeProvider
 	.when('/', {templateUrl: '/partials/home.html',   controller: homeControl})
-	.when('/login', {templateUrl: '/partials/welcome.html',   controller: welcomeControl})
+	.when('/login', {templateUrl: '/partials/welcome.html',   controller: loginControl})
+	.when('/library', {templateUrl: '/partials/library.html',   controller: libraryControl})
+	.when('/account', {templateUrl: '/partials/account.html',   controller: accountControl})
 	.otherwise({redirectTo: '/partials/404.html'});
 	$locationProvider.html5Mode(false);
 	$provide.factory('myHttpInterceptor', function($q, $location, $rootScope) {
@@ -31,5 +33,10 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 	})
 	.error(function (data) {
 	});
-	*/
+	 */ 
+	$rootScope.logout = function () {
+		$rootScope.user = {}
+		$http.post('/logout', {});
+		$location.path('/login');
+	}
 });
