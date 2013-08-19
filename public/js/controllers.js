@@ -30,7 +30,8 @@ function loginControl($scope, $http, $location) {
 			}
 		})
 		.error( function(data) {
-			$location.path('/login');
+			$scope.message = "Pleasy try again";
+			//$location.path('/login');
 		});
 	}
 
