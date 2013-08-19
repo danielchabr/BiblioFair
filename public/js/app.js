@@ -7,7 +7,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 	.when('/library', {templateUrl: '/partials/library.html',   controller: libraryControl})
 	.when('/account', {templateUrl: '/partials/account.html',   controller: accountControl})
 	.otherwise({redirectTo: '/partials/404.html'});
-	$locationProvider.html5Mode(false);
+	$locationProvider.html5Mode(false).hashPrefix('!');
 	$provide.factory('myHttpInterceptor', function($q, $location, $rootScope) {
 		return {
 			'response': function(response) {
