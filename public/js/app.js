@@ -5,7 +5,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 	.when('/', {templateUrl: '/partials/home.html',   controller: homeControl})
 	.when('/login', {templateUrl: '/partials/welcome.html',   controller: welcomeControl})
 	.otherwise({redirectTo: '/partials/404.html'});
-	$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode(false);
 	$provide.factory('myHttpInterceptor', function($q, $location, $rootScope) {
 		return {
 			'response': function(response) {
