@@ -39,6 +39,7 @@ function loginControl($rootScope, $scope, $http, $location) {
 
 }
 function homeControl($rootScope, $scope, $http, $location) {
+	$scope.bookOrder = 'name';
 	$http.get('/api/' + $scope.user + '/books/query')
 		.success( function(data) {
 			$rootScope.books = [];

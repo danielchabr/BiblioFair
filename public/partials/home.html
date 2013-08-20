@@ -17,7 +17,7 @@
 		<div class="nav-collapse collapse navbar-responsive-collapse">
 			<form class="navbar-form col-lg-5 col-sm-5" action="">
 				<div class="input-group">
-					<input type="text" class="form-control textfont" placeholder="I want to read ...">
+					<input type="text" ng-model="search" class="form-control textfont" placeholder="I want to read ...">
 					<span class="input-group-btn">
 						<button class="btn btn-default textfont" type="button">Go!</button>
 					</span>
@@ -35,23 +35,41 @@
 <div class="container"><!-- style="margin-top:40px">-->
 	<div class="row" style="height:80px">
 	</div>
-	<div class="col-lg-9">
-		<div class="col-lg-4 round book-item" ng-repeat="book in books">
-			<div class="thumbnail">
-				<div class="row">
-					<div class="col-lg-12">
-						<h4><b>{{book.name}}</b></h4>
+	<div class="row">
+		<div class="col-lg-9">
+			<div class="col-lg-4 round book-item" ng-repeat="book in books | filter:search | orderBy:bookOrder">
+				<div class="thumbnail">
+					<div class="row">
+						<div class="col-lg-12">
+							<h4><b>{{book.name}}</b></h4>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<b><i>{{book.author}}</i></b>
+					<div class="row">
+						<div class="col-lg-12">
+							<b><i>{{book.author}}</i></b>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
-	<div class="col-lg-3">
+		<div class="col-lg-3 signup round">
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>Order by:</h4>
+					<div class="radio">
+						<label>
+							<input type="radio" ng-model="bookOrder" name="order" id="optionsRadios1" value="name" checked>
+							Title
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" ng-model="bookOrder" name="order" id="optionsRadios2" value="author">
+							Author
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
