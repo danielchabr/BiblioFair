@@ -65,7 +65,12 @@ function libraryControl($rootScope, $scope, $http, $location) {
 	$scope.addbook = function() {
 		$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
 			.success( function(data) {
-				$rootScope.mybooks.push($scope.newbook);
+				var book = {};
+				book.name = $scope.newbook.name;
+				book.author = $scope.newbook.author;
+				$rootScope.mybooks.push(book);
+				$scope.newbook.name = "";
+				$scope.newbook.author = "";
 			})
 		.error( function(data) {
 		});
