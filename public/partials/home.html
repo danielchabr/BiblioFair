@@ -11,7 +11,7 @@
 		</button>
 
 		<!-- Be sure to leave the brand out there if you want it shown -->
-		<a class="navbar-brand logo" href="#">Swapify</a>
+		<a class="navbar-brand logo" href="/#!/">Swapify</a>
 
 		<!-- Place everything within .nav-collapse to hide it until above 768px -->
 		<div class="nav-collapse collapse navbar-responsive-collapse">
@@ -37,5 +37,17 @@
 </div><!-- /.navbar -->
 <div class="container"><!-- style="margin-top:40px">-->
 	<div class="row" style="height:80px">
+	</div>
+	<div class="col-lg-7 col-lg-offset-1">
+		<div class="row" ng-repeat="book in books">
+			<div class="row">
+				{{book.name}}
+			</div>
+			<div class="row">
+				{{book.author}}
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3">
 	</div>
 </div>

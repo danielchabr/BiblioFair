@@ -17,7 +17,6 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 				var status = rejection.status;
 				if (status == 401) {
 					$rootScope.redirect = $location.url(); // save the current url so we can redirect the user back
-					$rootScope.user = {}
 					$location.path('/login');
 				}
 				return $q.reject(rejection);
@@ -27,13 +26,15 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 	$httpProvider.interceptors.push('myHttpInterceptor');
 }])
 .run(function ($rootScope, $http, $location) {
-	/*
 	$http.get('/user')
 	.success(function (data) {
+		$rootScope.user = data;
+		console.log(data);
 	})
 	.error(function (data) {
+		$location.path('/login');
 	});
-	 */ 
+
 	$rootScope.logout = function () {
 		$rootScope.user = {}
 		$http.post('/logout', {});
