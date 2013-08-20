@@ -48,17 +48,24 @@ function homeControl($scope, $http, $location) {
 				book.author = data[i].author;
 				$scope.books.push(book);
 			}
-			console.log($scope.books);
 		});
 
 }
 function libraryControl($scope, $http, $location) {
 	$scope.books = [];
+	$http.get('/api/' + $scope.user + '/books/querymy')
+		.success( function(data) {
+			for (var i = 0; i < data.length; i++) {
+				var book = {};
+				book.name = data[i].name;
+				book.author = data[i].author;
+				$scope.books.push(book);
+			}
+		});
 	$scope.addbook = function() {
 		$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
 		.success( function(data) {
 			$scope.books.push($scope.newbook);
-			console.log($scope.books);
 		})
 		.error( function(data) {
 		});

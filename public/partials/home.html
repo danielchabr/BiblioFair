@@ -27,10 +27,7 @@
 			<!--
 			-->
 			<ul class="nav navbar-nav pull-right menu">
-				<li><a ng-href="/#!/">Browse</a></li>
-				<li><a ng-href="/#!/library" href="">My library</a></li>
-				<li><a ng-href="/#!/account">Account</a></li>
-				<li><a ng-click="logout()">Sign out</a></li>
+				<li><a ng-href="/#!/">Browse</a></li> <li><a ng-href="/#!/library" href="">My library</a></li> <li><a ng-href="/#!/account">Account</a></li> <li><a ng-click="logout()">Sign out</a></li>
 			</ul>
 		</div><!-- /.nav-collapse -->
 	</div><!-- /.container -->
@@ -38,15 +35,22 @@
 <div class="container"><!-- style="margin-top:40px">-->
 	<div class="row" style="height:80px">
 	</div>
-	<div class="col-lg-7 col-lg-offset-1">
-		<div class="row" ng-repeat="book in books">
-			<div class="row">
-				{{book.name}}
-			</div>
-			<div class="row">
-				{{book.author}}
+	<div class="col-lg-9">
+		<div class="col-lg-4 round book-item" ng-repeat="book in books">
+			<div class="thumbnail">
+				<div class="row">
+					<div class="col-lg-12">
+						<h4><b>{{book.name}}</b></h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<b><i>{{book.author}}</i></b>
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<div class="col-lg-3">
 	</div>

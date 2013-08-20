@@ -55,3 +55,10 @@ h1 {
 .navbar-nav > li > a:focus {
 	color: #FFFFFF;
 }
+.book-item {
+	padding-top:15px;
+	padding-bottom:15px;
+}
+.book-item > .thumbnail {
+	border-color: black;
+}

@@ -29,7 +29,6 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 	$http.get('/user')
 	.success(function (data) {
 		$rootScope.user = data;
-		console.log(data);
 	})
 	.error(function (data) {
 		$location.path('/login');

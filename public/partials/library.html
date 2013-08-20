@@ -39,18 +39,26 @@
 	<div class="row" style="height:80px">
 	</div>
 	<div class="row">
-		<div class="col-lg-7 col-lg-offset-1">
-			<div class="row" ng-repeat="book in books">
-				<div class="row">
-					{{book.name}}
-				</div>
-				<div class="row">
-					{{book.author}}
+		<div class="col-lg-9">
+			<div class="col-lg-4 round book-item" ng-repeat="book in books">
+				<div class="thumbnail">
+					<div class="row">
+						<div class="col-lg-12">
+							<h4><b>{{book.name}}</b></h4>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<b><i>{{book.author}}</i></b>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-3">
+		<div class="col-lg-3 signup round">
 			<div class="row">
+				<div class="col-lg-12">
+					<h3>Add books to your library</h3>
 				<form>
 					<fieldset>
 						<!-- <legend>Legend</legend> -->
@@ -65,6 +73,7 @@
 						<button ng-click="addbook()" class="btn btn-default btn-success pull-center" style="margin-bottom:15px; width:100px">Add book</button>
 					</fieldset>
 				</form>
+			</div>
 			</div>
 		</div>
 	</div>
