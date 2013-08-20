@@ -38,35 +38,35 @@ function loginControl($rootScope, $scope, $http, $location) {
 	}
 
 }
-function homeControl($scope, $http, $location) {
-	$scope.books = [];
+function homeControl($rootScope, $scope, $http, $location) {
 	$http.get('/api/' + $scope.user + '/books/query')
 		.success( function(data) {
+			$rootScope.books = [];
 			for (var i = 0; i < data.length; i++) {
 				var book = {};
 				book.name = data[i].name;
 				book.author = data[i].author;
-				$scope.books.push(book);
+				$rootScope.books.push(book);
 			}
 		});
 
 }
-function libraryControl($scope, $http, $location) {
-	$scope.books = [];
+function libraryControl($rootScope, $scope, $http, $location) {
 	$http.get('/api/' + $scope.user + '/books/querymy')
 		.success( function(data) {
+			$rootScope.mybooks = [];
 			for (var i = 0; i < data.length; i++) {
 				var book = {};
 				book.name = data[i].name;
 				book.author = data[i].author;
-				$scope.books.push(book);
+				$rootScope.mybooks.push(book);
 			}
 		});
 	$scope.addbook = function() {
 		$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
-		.success( function(data) {
-			$scope.books.push($scope.newbook);
-		})
+			.success( function(data) {
+				$rootScope.mybooks.push($scope.newbook);
+			})
 		.error( function(data) {
 		});
 	};
