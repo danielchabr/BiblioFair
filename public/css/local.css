@@ -14,6 +14,10 @@ h1 {
 .textfont {
 	font-family: 'Alegreya', serif;
 }
+.formlegend {
+	font-family: 'Alegreya', serif;
+	font-size:22px;
+}
 .round {
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;

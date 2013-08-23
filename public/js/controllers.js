@@ -1,34 +1,48 @@
 function loginControl($rootScope, $scope, $http, $location) {
+	$('#div_signup_email').tooltip({placement: 'right', trigger: 'manual'});
+	$('#div_signup_password').tooltip({placement: 'right', trigger: 'manual'});
 	$scope.signup = function() {
-		if(/.*@.*\..*/.test($scope.signup_email) && /\s/.test($scope.signup_email)) {
+		if($scope.signup_email && $scope.signup_password.length > 5) {
 			hash = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
 			$http.post('/signup', {'email': $scope.signup_email, 'password': hash.toString()})
-			.success( function(data) {
-				$scope.message = data;
-			});
-			$("div_signup_email").addClass("has-success");
+				.success( function(data) {
+					$scope.message = data;
+				});
+			console.log($scope.signup_email);
 		}
 		else {
-			$("div_signup_email").addClass("has-warning");
+			if(!$scope.signup_email) $('#div_signup_email').tooltip('show');
+			else $('#div_signup_email').tooltip('hide');
+			if($scope.signup_password.length < 6) $('#div_signup_password').tooltip('show');
+			else $('#div_signup_password').tooltip('hide');
 		}
 	}
+	$('#div_login_email').tooltip({placement: 'right', trigger: 'manual'});
+	$('#div_login_password').tooltip({placement: 'right', trigger: 'manual'});
 	$scope.login = function() {
+		if($scope.login_email && $scope.login_password.length > 5) {
 		hash = CryptoJS.SHA3($scope.login_password + $scope.login_email, {outputLength: 256 });
 		$http.post('/login', {'email': $scope.login_email, 'password': hash.toString()})
-		.success( function(data) {
-			if(data == 'loginSuccess') {
-				$scope.message = data;
-				$rootScope.user = $scope.login_email;
-				$location.path('/');
-			}
-			else {
-				$scope.message = "Pleasy try again";
-			}
-		})
+			.success( function(data) {
+				if(data == 'loginSuccess') {
+					$scope.message = data;
+					$rootScope.user = $scope.login_email;
+					$location.path('/');
+				}
+				else {
+					$scope.message = "Pleasy try again";
+				}
+			})
 		.error( function(data) {
 			$scope.message = "Pleasy try again";
-			//$location.path('/login');
 		});
+		}
+		else {
+			if(!$scope.login_email) $('#div_login_email').tooltip('show');
+			else $('#div_login_email').tooltip('hide');
+			if($scope.login_password.length < 6) $('#div_login_password').tooltip('show');
+			else $('#div_login_password').tooltip('hide');
+		}
 	}
 
 }
