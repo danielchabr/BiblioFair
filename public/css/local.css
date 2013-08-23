@@ -3,30 +3,9 @@
 @-ms-viewport       { width: device-width; }
 @-o-viewport        { width: device-width; }
 @viewport           { width: device-width; }
-body {
-	background-color:	#D0D0D0;
-}
-p {
-	font-size: 16px
-}
 .logo {
 	font-family: 'Sonsie One', cursive;
 	font-size: 22px;
-	color:		#FFFFFF;
-}
-.logo:hover {
-	color:		#FFFFFF;
-}
-.navigation {
-	background-color: #700000;
-}
-.menu {
-	font-family: 'Alegreya', serif;
-	font-size: 18px;
-}
-.signup {
-	font-family: 'Alegreya', serif;
-	background-color: #700000;
 	color:		#FFFFFF;
 }
 h1 {
@@ -39,26 +18,4 @@ h1 {
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
-}
-.content {
-	margin: 2% 0px;
-}
-.navbar-nav > li > a {
-	color: #FFFFFF;
-}
-.navbar-nav > li > a:hover {
-	color: #FFFFFF;
-	position: relative;
-	top: 1px;
-	left: 1px;
-}
-.navbar-nav > li > a:focus {
-	color: #FFFFFF;
-}
-.book-item {
-	padding-top:15px;
-	padding-bottom:15px;
-}
-.book-item > .thumbnail {
-	border-color: black;
 }
