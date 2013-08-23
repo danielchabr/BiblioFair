@@ -1,10 +1,16 @@
 function loginControl($rootScope, $scope, $http, $location) {
 	$scope.signup = function() {
-		hash = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
-		$http.post('/signup', {'email': $scope.signup_email, 'password': hash.toString()})
-		.success( function(data) {
-			$scope.message = data;
-		});
+		if(/.*@.*\..*/.test($scope.signup_email) && /\s/.test($scope.signup_email)) {
+			hash = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
+			$http.post('/signup', {'email': $scope.signup_email, 'password': hash.toString()})
+			.success( function(data) {
+				$scope.message = data;
+			});
+			$("div_signup_email").addClass("has-success");
+		}
+		else {
+			$("div_signup_email").addClass("has-warning");
+		}
 	}
 	$scope.login = function() {
 		hash = CryptoJS.SHA3($scope.login_password + $scope.login_email, {outputLength: 256 });
