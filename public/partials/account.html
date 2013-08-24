@@ -29,11 +29,11 @@
 				<fieldset>
 					<div class="form-group">
 						<label for="latitude">Latitude</label>
-						<input type="text" class="form-control" ng-model="centerLat" ng-change="updateCenter(centerLat, centerLng)" disabled> 
+						<input type="text" class="form-control" ng-model="centerLat" disabled> 
 					</div>
 					<div class="form-group">
 						<label for="longitude">Longitude</label>
-						<input type="text" class="form-control" ng-model="centerLng" ng-change="updateCenter(centerLat, centerLng)" disabled>
+						<input type="text" class="form-control" ng-model="centerLng" disabled>
 					</div>
 				</fieldset>
 			</form>
@@ -46,7 +46,9 @@
 			</form>
 		</div>
 		<div class="col-sm-6">
-			<gm-map gm-map-id="'myMap'" gm-center="center" gm-zoom="zoom" gm-bounds="bounds" gm-map-type-id="mapTypeId" gm-map-options="options.map" class="map" class="map"></gm-map>
+			<!--	<gm-map gm-map-id="'myMap'" gm-center="center" gm-zoom="zoom" gm-bounds="bounds" gm-map-type-id="mapTypeId" gm-map-options="options.map" class="map" class="map"></gm-map>-->
+
+		<div id="map" ng-model="map" class="map"></div>
 		</div>
 	</div>
 </div>

@@ -86,22 +86,41 @@ function libraryControl($rootScope, $scope, $http, $location) {
 	};
 }
 function accountControl($scope, $http, $location) {
-	$scope.options = {
-		map: {
-			center: new google.maps.LatLng(0, 0),
-			zoom: 2,
-			mapTypeId: google.maps.MapTypeId.TERRAIN
-		},
+	$scope.draw_map = function()
+	{
+		var options={
+			elt:document.getElementById('map'),       /*ID of element on the page where you want the map added*/ 
+			zoom:2,                                  /*initial zoom level of the map*/ 
+			latLng:{lat:30, lng:-30},   /*center of map in latitude/longitude */ 
+			mtype:'map',                              /*map type (osm)*/ 
+			bestFitMargin:0,                          /*margin offset from the map viewport when applying a bestfit on shapes*/ 
+			zoomOnDoubleClick:true                    /*zoom in when double-clicking on map*/ 
+		};
+		$scope.map = new MQA.TileMap(options);
 	};
-
-	$scope.$watch('center', function(center) {
-		if (center) {
-			$scope.centerLat = center.lat();
-			$scope.centerLng = center.lng();
-		}
+	MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
+		$scope.map.addControl(
+			new MQA.LargeZoom(),
+			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
+			);
+		$scope.map.addControl(new MQA.ViewOptions());
+		$scope.map.addControl(
+			new MQA.GeolocationControl(),
+			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_RIGHT, new MQA.Size(10,50))
+			);
+		/*Inset Map Control options*/ 
+		$scope.map.enableMouseWheelZoom();
 	});
-
-	$scope.updateCenter = function(lat, lng) {
-		$scope.center = new google.maps.LatLng(lat, lng);
+	$scope.draw_map();
+	$scope.centerLat = 30;
+	$scope.centerLng = -30;
+	function update_loc (){
+		$scope.centerLat = $scope.map.getCenter().lat;
+		$scope.centerLng = $scope.map.getCenter().lng;
+		$scope.$digest();
+	};
+	MQA.EventManager.addListener($scope.map, 'move', update_loc);
+	MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
+	$scope.save = function () {
 	};
 }
