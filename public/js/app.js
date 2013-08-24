@@ -1,4 +1,4 @@
-angular.module('mainapp', ['AngularGM']).
+angular.module('mainapp', []).
 
 config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', function($routeProvider, $locationProvider, $httpProvider, $provide) {
 	$routeProvider

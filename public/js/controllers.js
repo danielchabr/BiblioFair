@@ -98,6 +98,7 @@ function accountControl($scope, $http, $location) {
 		};
 		$scope.map = new MQA.TileMap(options);
 	};
+	$scope.draw_map();
 	MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
 		$scope.map.addControl(
 			new MQA.LargeZoom(),
@@ -111,7 +112,6 @@ function accountControl($scope, $http, $location) {
 		/*Inset Map Control options*/ 
 		$scope.map.enableMouseWheelZoom();
 	});
-	$scope.draw_map();
 	$scope.centerLat = 30;
 	$scope.centerLng = -30;
 	function update_loc (){
