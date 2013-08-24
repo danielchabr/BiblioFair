@@ -36,7 +36,7 @@
 			<div class="col-lg-4 col-md-6 thumbnail" ng-repeat="book in books | filter:search | orderBy:bookOrder">
 				<div class="row">
 					<div class="col-lg-12">
-						<h4><b>{{book.name}}</b></h4>
+						<h4><b>{{book.title}}</b></h4>
 					</div>
 				</div>
 				<div class="row">
@@ -52,7 +52,7 @@
 					<h4>Order by:</h4>
 					<div class="radio">
 						<label>
-							<input type="radio" ng-model="bookOrder" name="order" id="optionsRadios1" value="name" checked>
+							<input type="radio" ng-model="bookOrder" name="order" id="optionsRadios1" value="title" checked>
 							Title
 						</label>
 					</div>

@@ -23,5 +23,30 @@
 <div class="container"><!-- style="margin-top:40px">-->
 	<div class="row" style="height:80px">
 	</div>
-		<h1>Account</h1>
+	<div class="row">
+		<div class="col-sm-6">
+			<form class="form-inline">
+				<fieldset>
+					<div class="form-group">
+						<label for="latitude">Latitude</label>
+						<input type="text" class="form-control" ng-model="centerLat" ng-change="updateCenter(centerLat, centerLng)" disabled> 
+					</div>
+					<div class="form-group">
+						<label for="longitude">Longitude</label>
+						<input type="text" class="form-control" ng-model="centerLng" ng-change="updateCenter(centerLat, centerLng)" disabled>
+					</div>
+				</fieldset>
+			</form>
+			<form>
+				<fieldset>
+					<div class="form-group">
+						<button ng-click="save()" class="btn btn-warning" style="margin-top:15px;margin-bottom:15px; width:100px">Save</button>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		<div class="col-sm-6">
+			<gm-map gm-map-id="'myMap'" gm-center="center" gm-zoom="zoom" gm-bounds="bounds" gm-map-type-id="mapTypeId" gm-map-options="options.map" class="map" class="map"></gm-map>
+		</div>
+	</div>
 </div>

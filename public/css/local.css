@@ -23,3 +23,9 @@ h1 {
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 }
+.map {
+	height:400px;
+}
+.map img {
+	max-width: none;
+}

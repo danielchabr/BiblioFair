@@ -1,4 +1,4 @@
-angular.module('mainapp', []).
+angular.module('mainapp', ['AngularGM']).
 
 config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', function($routeProvider, $locationProvider, $httpProvider, $provide) {
 	$routeProvider
@@ -41,6 +41,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 	$rootScope.logout = function () {
 		$rootScope.user = {}
 		$http.post('/logout', {});
+		clearListCookies();
 		$location.path('/login');
 	}
 });
