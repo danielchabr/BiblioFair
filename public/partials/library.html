@@ -84,12 +84,12 @@
 						<fieldset>
 							<!-- <legend>Legend</legend> -->
 							<div class="form-group">
-								<!--<label for="exampleInputEmail">Email address</label>-->
-								<input type="text" ng-model="newbook.title" id="title_input" class="form-control twitter-typeahead" placeholder="Title">
+								<label class="sr-only" for="new_title">Book title:</label>
+								<input type="text" id="new_title" ng-model="newbook.title" id="title_input" class="form-control twitter-typeahead" placeholder="Title">
 							</div>
 							<div class="form-group">
-								<!--<label for="exampleInputPassword">Password</label>-->
-								<input type="text" ng-model="newbook.author" class="form-control" placeholder="Author">
+								<label class="sr-only" for="new_author">Author:</label>
+								<input type="text" id="new_author" ng-model="newbook.author" class="form-control" placeholder="Author">
 							</div>
 							<button ng-click="addbook()" class="btn btn-default btn-success pull-center" style="margin-bottom:15px; width:100px">Add book</button>
 						</fieldset>

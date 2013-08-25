@@ -41,7 +41,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 	$rootScope.logout = function () {
 		$rootScope.user = {}
 		$http.post('/logout', {});
-		clearListCookies();
+		//clearListCookies();
 		$location.path('/login');
 	}
 });

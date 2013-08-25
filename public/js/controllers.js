@@ -8,7 +8,6 @@ function loginControl($rootScope, $scope, $http, $location) {
 				.success( function(data) {
 					$scope.message = data;
 				});
-			console.log($scope.signup_email);
 		}
 		else {
 			if(!$scope.signup_email) $('#div_signup_email').tooltip('show');
