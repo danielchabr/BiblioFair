@@ -33,18 +33,48 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-9">
-			<div class="col-lg-4 col-md-6 thumbnail" ng-repeat="book in books | filter:search | orderBy:bookOrder">
-				<div class="row">
-					<div class="col-lg-12">
-						<h4><b>{{book.title}}</b></h4>
+			<div class="col-lg-4 col-sm-6" style="padding:0px;left:0px" ng-repeat="book in books | filter:search | orderBy:bookOrder">
+				<a data-toggle="modal" ng-click="details(book)" ng-href="#browse_details">
+					<div class="well" style="margin:8px; padding:10px">
+						<div class="row">
+							<div class="col-xs-10">
+								<h4>{{book.title}}</h4>
+								<p>
+								<b><i>{{book.author}}</i></b>
+								</p>
+							</div>
+							<div class="col-xs-2">
+								<div class="row" style="text-align:right">
+									<i class="icon-info-sign icon-large" style="margin-right:15px"></i>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<b><i>{{book.author}}</i></b>
-					</div>
-				</div>
+				</a>
 			</div>
+			<div class="modal fade" id="browse_details" ng-model="details_view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h2><b>{{details_view.title}}</b></h4>
+							<p>
+							<b><i>by {{details_view.author}}</i></b>
+							</p>
+						</div>
+						<div class="modal-body">
+							Publisher: {{details_view.publisher}}
+							Published on: {{details_view.published}}
+							Edition: {{details_view.edition}}
+							ISBN-10: {{details_view.isbn10}}
+							ISBN-13: {{details_view.isbn13}}
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
 		</div>
 		<div class="col-xs-3">
 			<div class="row">

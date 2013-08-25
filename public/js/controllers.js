@@ -46,7 +46,7 @@ function loginControl($rootScope, $scope, $http, $location) {
 	}
 
 }
-function homeControl($rootScope, $scope, $http, $location) {
+function homeControl($timeout, $rootScope, $scope, $http, $location) {
 	$scope.bookOrder = 'title';
 	$http.get('/api/' + $scope.user + '/books/query')
 		.success( function(data) {
@@ -58,7 +58,9 @@ function homeControl($rootScope, $scope, $http, $location) {
 				$rootScope.books.push(book);
 			}
 		});
-
+	$scope.details = function (book) {
+		$rootScope.details_view = book;
+	};
 }
 function libraryControl($rootScope, $scope, $http, $location) {
 	$http.get('/api/' + $scope.user + '/books/querymy')
@@ -84,8 +86,20 @@ function libraryControl($rootScope, $scope, $http, $location) {
 		.error( function(data) {
 		});
 	};
+	$scope.details = function (book) {
+		$rootScope.details_view = book;
+	};
 }
 function accountControl($scope, $http, $location) {
+	$scope.centerLat = 30;
+	$scope.centerLng = -30;
+	$http.post('/api/' + $scope.user + '/users/query', {loc: {lat: '', lng: ''}})
+		.success( function(data) {
+			if(data.loc) {
+				$scope.centerLat = data.loc.lat;
+				$scope.centerLng = data.loc.lng;
+			}
+		});
 	$scope.draw_map = function()
 	{
 		var options={
@@ -112,15 +126,19 @@ function accountControl($scope, $http, $location) {
 		/*Inset Map Control options*/ 
 		$scope.map.enableMouseWheelZoom();
 	});
-	$scope.centerLat = 30;
-	$scope.centerLng = -30;
 	function update_loc (){
 		$scope.centerLat = $scope.map.getCenter().lat;
 		$scope.centerLng = $scope.map.getCenter().lng;
-		$scope.$digest();
+		$scope.$apply();
 	};
 	MQA.EventManager.addListener($scope.map, 'move', update_loc);
 	MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
+	$scope.save_text = "Save";
 	$scope.save = function () {
+		$scope.save_text = "Saving ...";
+		$http.post('/api/' + $scope.user + '/users/update', {loc:{lat:$scope.centerLat, lng:$scope.centerLng}})
+			.success( function(data) {
+				$scope.save_text = "Saved";
+			});
 	};
 }
