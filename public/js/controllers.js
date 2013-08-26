@@ -35,11 +35,14 @@ function homeControl($rootScope, $scope, $http, $modal, $location) {
 	};
 	queryBooks($rootScope, $scope, $http, $location);
 
-	$scope.open = function () {
+	$scope.open = function (book) {
 		var modalInstance = $modal.open({
 			templateUrl: '/partials/book_detail.html',
 			controller: ModalInstanceCtrl,
 			resolve: {
+				book: function () {
+					return book;
+				}
 			}
 		});
 
@@ -48,18 +51,17 @@ function homeControl($rootScope, $scope, $http, $modal, $location) {
 		});
 	};
 }
-var ModalInstanceCtrl = function ($scope, $modalInstance) {
-		console.log('aa');
-
+var ModalInstanceCtrl = function ($scope, $modalInstance, book) {
+	$scope.details_view = book;
 	$scope.ok = function () {
-		$modalInstance.close($scope.selected.item);
+		$modalInstance.close();
 	};
 
 	$scope.cancel = function () {
 		$modalInstance.dismiss('cancel');
 	};
 };
-function libraryControl($rootScope, $scope, $http, $location, $filter) {
+function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 	queryMyBooks($rootScope, $scope, $http, $location);
 	queryBooks($rootScope, $scope, $http, $location);
 
@@ -89,6 +91,22 @@ function libraryControl($rootScope, $scope, $http, $location, $filter) {
 			$scope.newbook.author = $scope.selected_books[0].author;
 		}
 	};
+	$scope.open = function (book) {
+		var modalInstance = $modal.open({
+			templateUrl: '/partials/book_detail.html',
+			controller: ModalInstanceCtrl,
+			resolve: {
+				book: function () {
+					return book;
+				}
+			}
+		});
+
+		modalInstance.result.then(function () {
+		}, function () {
+		});
+	};
+
 }
 function accountControl($scope, $http, $location) {
 	$scope.centerLat = 30;
