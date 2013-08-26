@@ -45,48 +45,43 @@ function loginControl($rootScope, $scope, $http, $location) {
 	}
 
 }
-function homeControl($timeout, $rootScope, $scope, $http, $location) {
+function homeControl($rootScope, $scope, $http, $location) {
 	$scope.bookOrder = 'title';
-	$http.get('/api/' + $scope.user + '/books/query')
-		.success( function(data) {
-			$rootScope.books = [];
-			for (var i = 0; i < data.length; i++) {
-				var book = {};
-				book.title = data[i].title;
-				book.author = data[i].author;
-				$rootScope.books.push(book);
-			}
-		});
 	$scope.details = function (book) {
 		$rootScope.details_view = book;
 	};
+	queryBooks($rootScope, $scope, $http, $location);
+
 }
-function libraryControl($rootScope, $scope, $http, $location) {
-	$http.get('/api/' + $scope.user + '/books/querymy')
-		.success( function(data) {
-			$rootScope.mybooks = [];
-			for (var i = 0; i < data.length; i++) {
-				var book = {};
-				book.title = data[i].title;
-				book.author = data[i].author;
-				$rootScope.mybooks.push(book);
-			}
-		});
+function libraryControl($rootScope, $scope, $http, $location, $filter) {
+	queryMyBooks($rootScope, $scope, $http, $location);
+	queryBooks($rootScope, $scope, $http, $location);
+
 	$scope.addbook = function() {
+		if($scope.newbook.title && $scope.newbook.author) {
 		$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
 			.success( function(data) {
 				var book = {};
 				book.title = $scope.newbook.title;
 				book.author = $scope.newbook.author;
 				$rootScope.mybooks.push(book);
+				$rootScope.books.push(book);
 				$scope.newbook.title = "";
 				$scope.newbook.author = "";
 			})
 		.error( function(data) {
 		});
+		}
 	};
 	$scope.details = function (book) {
 		$rootScope.details_view = book;
+	};
+	$scope.selectBook = function () {
+		$scope.selected_books = $filter('filter')($scope.books, $scope.newbook, true);
+		if($scope.selected_books.length == 1) {
+			$scope.newbook.title = $scope.selected_books[0].title;
+			$scope.newbook.author = $scope.selected_books[0].author;
+		}
 	};
 }
 function accountControl($scope, $http, $location) {
@@ -141,3 +136,28 @@ function accountControl($scope, $http, $location) {
 			});
 	};
 }
+
+function queryMyBooks ($rootScope, $scope, $http, $location) {
+	$http.get('/api/' + $scope.user + '/books/querymy')
+		.success( function(data) {
+			$rootScope.mybooks = [];
+			for (var i = 0; i < data.length; i++) {
+				var book = {};
+				book.title = data[i].title;
+				book.author = data[i].author;
+				$rootScope.mybooks.push(book);
+			}
+		});
+};
+function queryBooks ($rootScope, $scope, $http, $location) {
+	$http.get('/api/' + $scope.user + '/books/query')
+		.success( function(data) {
+			$rootScope.books = [];
+			for (var i = 0; i < data.length; i++) {
+				var book = {};
+				book.title = data[i].title;
+				book.author = data[i].author;
+				$rootScope.books.push(book);
+			}
+		});
+};
