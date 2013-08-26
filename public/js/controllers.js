@@ -28,27 +28,50 @@ function loginControl($rootScope, $scope, $http, $location) {
 		}
 	}
 }
-function homeControl($rootScope, $scope, $http, $location) {
+function homeControl($rootScope, $scope, $http, $modal, $location) {
 	$scope.bookOrder = 'title';
 	$scope.details = function (book) {
 		$rootScope.details_view = book;
 	};
 	queryBooks($rootScope, $scope, $http, $location);
 
+	$scope.open = function () {
+		var modalInstance = $modal.open({
+			templateUrl: '/partials/book_detail.html',
+			controller: ModalInstanceCtrl,
+			resolve: {
+			}
+		});
+
+		modalInstance.result.then(function () {
+		}, function () {
+		});
+	};
 }
+var ModalInstanceCtrl = function ($scope, $modalInstance) {
+		console.log('aa');
+
+	$scope.ok = function () {
+		$modalInstance.close($scope.selected.item);
+	};
+
+	$scope.cancel = function () {
+		$modalInstance.dismiss('cancel');
+	};
+};
 function libraryControl($rootScope, $scope, $http, $location, $filter) {
 	queryMyBooks($rootScope, $scope, $http, $location);
 	queryBooks($rootScope, $scope, $http, $location);
 
 	$scope.addbook = function() {
 		if($scope.newbook.title && $scope.newbook.author) {
-		$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
-			.success( function(data) {
-				var book = {};
-				book.title = $scope.newbook.title;
-				book.author = $scope.newbook.author;
-				$rootScope.mybooks.push(book);
-				$rootScope.books.push(book);
+			$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
+				.success( function(data) {
+					var book = {};
+					book.title = $scope.newbook.title;
+					book.author = $scope.newbook.author;
+					$rootScope.mybooks.push(book);
+					$rootScope.books.push(book);
 				$scope.newbook.title = "";
 				$scope.newbook.author = "";
 			})
