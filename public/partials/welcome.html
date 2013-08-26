@@ -47,13 +47,13 @@
 				<form>
 					<fieldset>
 						<legend>Register</legend> 
-						<div class="form-group" id="div_signup_email" data-toggle="tooltip" data-title="Incorrect email">
+						<div class="form-group" id="div_signup_email">
 							<label class="sr-only" for="signup_email">Sign up email:</label>
-							<input type="email" ng-model="signup_email" class="form-control" placeholder="Email">
+							<input type="email" ng-model="signup_email" class="form-control" placeholder="Email" tooltip-placement="right" tooltip="Invalid email" required>
 						</div>
-						<div class="form-group" id="div_signup_password" data-toggle="tooltip" data-title="Password too short. Must be at least 6 characters long">
+						<div class="form-group" id="div_signup_password">
 							<label class="sr-only" for="signup_password">Sign up password:</label>
-							<input type="password" ng-model="signup_password" class="form-control" placeholder="Password">
+							<input type="password" ng-model="signup_password" class="form-control" placeholder="Password" tooltip-placement="right" tooltip="Password too short. Must be at least 6 characters long" required>
 						</div>
 						<button ng-click="signup()" class="btn btn-success" style="margin-bottom:15px; width:100px">Join!</button>
 					</fieldset>
@@ -63,13 +63,13 @@
 				<form>
 					<fieldset>
 						<legend>Sign in</legend> 
-						<div class="form-group" id="div_login_email" data-toggle="tooltip" data-title="Incorrect email">
+						<div class="form-group" id="div_login_email">
 							<label class="sr-only" for="login_email">Login email:</label>
-							<input type="email" ng-model="login_email" class="form-control" placeholder="Email">
+							<input type="email" ng-model="login_email"  class="form-control" placeholder="Email" tooltip-placement="right" tooltip="Invalid email" required>
 						</div>
-						<div class="form-group" id="div_login_password" data-toggle="tooltip" data-title="Password too short. Must be at least 6 characters long">
+						<div class="form-group" id="div_login_password">
 							<label class="sr-only" for="login_password">Login password:</label>
-							<input type="password" ng-model="login_password" class="form-control" placeholder="Password">
+							<input type="password" id="login_password" ng-model="login_password" class="form-control" placeholder="Password" tooltip-placement="right" tooltip="Password too short. Must be at least 6 characters long" tooltip-trigger="trig" required>
 						</div>
 						<button ng-click="login()" class="btn btn-success" style="margin-bottom:15px; width:100px">Sign in!</button>
 					</fieldset>
