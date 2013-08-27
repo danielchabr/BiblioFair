@@ -4,8 +4,17 @@ function loginControl($rootScope, $scope, $http, $location) {
 			hash = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
 			$http.post('/signup', {'email': $scope.signup_email, 'password': hash.toString()})
 				.success( function(data) {
-					$scope.message = data;
+					if(data == 'registered') {
+						$scope.signup_message = 'Verification email has been sent to ' + $scope.signup_email;
+					}
+					else {
+						$scope.signup_message = 'Account for ' + $scope.signup_email + ' already exists';
+					}
 				});
+		} else {
+			if($scope.signup_password.length < 6) {
+				$scope.signup_message = 'Password needs to be at least 6 characters long';
+			}
 		}
 	}
 	$scope.login = function() {
@@ -14,17 +23,20 @@ function loginControl($rootScope, $scope, $http, $location) {
 			$http.post('/login', {'email': $scope.login_email, 'password': hash.toString()})
 				.success( function(data) {
 					if(data == 'loginSuccess') {
-						$scope.message = data;
 						$rootScope.user = $scope.login_email;
 						$location.path('/');
 					}
 					else {
-						$scope.message = "Pleasy try again";
+						$scope.login_message = 'Email or password is incorrect. Please try again';
 					}
 				})
 			.error( function(data) {
 				$scope.message = "Pleasy try again";
 			});
+		} else {
+			if($scope.login_password.length < 6) {
+				$scope.login_message = 'Password needs to be at least 6 characters long';
+			}
 		}
 	}
 }

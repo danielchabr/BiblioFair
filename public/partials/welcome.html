@@ -35,10 +35,6 @@
 				<p style="font-size:18px">
 				Small organizations are also welcome to use our databases to manage their private libraries.
 				</p>
-				<p>
-				{{email}}
-				<h1>{{message}}</h1>
-				</p>
 				<!-- Open your library to the world -->
 			</div>
 		</div>
@@ -55,7 +51,14 @@
 							<label class="sr-only" for="signup_password">Sign up password:</label>
 							<input type="password" ng-model="signup_password" class="form-control" placeholder="Password" required>
 						</div>
-						<button ng-click="signup()" class="btn btn-success" style="margin-bottom:15px; width:100px">Join!</button>
+						<div class="row">
+							<div class="col-xs-4">
+								<button ng-click="signup()" class="btn btn-success" style="margin-bottom:15px; width:100px">Join!</button>
+							</div>
+							<div class="col-xs-8">
+								<p class="help-block text-danger">{{signup_message}}</p>
+							</div>
+						</div>
 					</fieldset>
 				</form>
 			</div>
@@ -71,7 +74,14 @@
 							<label class="sr-only" for="login_password">Login password:</label>
 							<input type="password" id="login_password" ng-model="login_password" class="form-control" placeholder="Password" required>
 						</div>
-						<button ng-click="login()" class="btn btn-success" style="margin-bottom:15px; width:100px">Sign in!</button>
+						<div class="row">
+							<div class="col-xs-4">
+								<button ng-click="login()" class="btn btn-success" style="margin-bottom:15px; width:100px">Sign in!</button>
+							</div>
+							<div class="col-xs-8">
+								<p class="help-block text-danger">{{login_message}}</p>
+							</div>
+						</div>
 					</fieldset>
 				</form>
 			</div>
