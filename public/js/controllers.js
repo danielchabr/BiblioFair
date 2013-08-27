@@ -42,9 +42,6 @@ function loginControl($rootScope, $scope, $http, $location) {
 }
 function homeControl($rootScope, $scope, $http, $modal, $location) {
 	$scope.bookOrder = 'title';
-	$scope.details = function (book) {
-		$rootScope.details_view = book;
-	};
 	queryBooks($rootScope, $scope, $http, $location);
 
 	$scope.open = function (book) {
@@ -81,26 +78,19 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 		if($scope.newbook.title && $scope.newbook.author) {
 			$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
 				.success( function(data) {
-					var book = {};
-					book.title = $scope.newbook.title;
-					book.author = $scope.newbook.author;
+					var book = $scope.newbook;
 					$rootScope.mybooks.push(book);
 					$rootScope.books.push(book);
-				$scope.newbook.title = "";
-				$scope.newbook.author = "";
-			})
-		.error( function(data) {
-		});
+					$scope.newbook = {};
+				})
+			.error( function(data) {
+			});
 		}
-	};
-	$scope.details = function (book) {
-		$rootScope.details_view = book;
 	};
 	$scope.selectBook = function () {
 		$scope.selected_books = $filter('filter')($scope.books, $scope.newbook, true);
 		if($scope.selected_books.length == 1) {
-			$scope.newbook.title = $scope.selected_books[0].title;
-			$scope.newbook.author = $scope.selected_books[0].author;
+			$scope.newbook = $scope.selected_books[0];
 		}
 	};
 	$scope.open = function (book) {
@@ -118,18 +108,19 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 		}, function () {
 		});
 	};
+	///// EUROPEAN LIBRARY API ////////////
+	$scope.search_tel = function (query) {
+		//$http.jsonp('http://data.theeuropeanlibrary.org/opensearch/json?query=' + query + '&apikey=ev3fbloutqdhrqe3pidpal4bav&callback=JSONP_CALLBACK')
+		$http.get('/api/' + $scope.user + '/tel/' + query)
+			.success( function (data) {
+				console.log(data);
+			});
+	}
 
 }
 function accountControl($scope, $http, $location) {
 	$scope.centerLat = 30;
 	$scope.centerLng = -30;
-	$http.post('/api/' + $scope.user + '/users/query', {loc: {lat: '', lng: ''}})
-		.success( function(data) {
-			if(data.loc) {
-				$scope.centerLat = data.loc.lat;
-				$scope.centerLng = data.loc.lng;
-			}
-		});
 	$scope.draw_map = function()
 	{
 		var options={
@@ -143,6 +134,15 @@ function accountControl($scope, $http, $location) {
 		$scope.map = new MQA.TileMap(options);
 	};
 	$scope.draw_map();
+	$http.post('/api/' + $scope.user + '/users/query', {loc: {lat: '', lng: ''}})
+		.success( function(data) {
+			if(data.loc) {
+				$scope.centerLat = data.loc.lat;
+				$scope.centerLng = data.loc.lng;
+				console.log($scope.map);
+				$scope.map.setCenterAnimate(new MQA.LatLng(data.loc.lat, data.loc.lng), 10,{totalMs:3000,steps:10});
+			}
+		});
 	MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
 		$scope.map.addControl(
 			new MQA.LargeZoom(),
@@ -179,8 +179,7 @@ function queryMyBooks ($rootScope, $scope, $http, $location) {
 			$rootScope.mybooks = [];
 			for (var i = 0; i < data.length; i++) {
 				var book = {};
-				book.title = data[i].title;
-				book.author = data[i].author;
+				book = data[i];
 				$rootScope.mybooks.push(book);
 			}
 		});
@@ -191,8 +190,7 @@ function queryBooks ($rootScope, $scope, $http, $location) {
 			$rootScope.books = [];
 			for (var i = 0; i < data.length; i++) {
 				var book = {};
-				book.title = data[i].title;
-				book.author = data[i].author;
+				book = data[i];
 				$rootScope.books.push(book);
 			}
 		});
