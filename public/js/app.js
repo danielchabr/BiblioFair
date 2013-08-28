@@ -26,7 +26,7 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 	$httpProvider.interceptors.push('myHttpInterceptor');
 }])
 .run(function ($rootScope, $http, $location) {
-	$rootScope.user = {};
+	$rootScope.user = "";
 	$rootScope.books = [];
 	$rootScope.mybooks = [];
 
