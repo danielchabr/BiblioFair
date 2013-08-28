@@ -163,7 +163,7 @@ function accountControl($scope, $http, $location) {
 	$scope.draw_map();
 	$http.post('/api/' + $scope.user + '/users/query', {loc: {lat: '', lng: ''}})
 		.success( function(data) {
-			if(data.loc) {
+			if(data.loc.lat && data.loc.lng) {
 				$scope.centerLat = data.loc.lat;
 				$scope.centerLng = data.loc.lng;
 				$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 10,{totalMs:3000,steps:10});
