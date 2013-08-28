@@ -109,12 +109,22 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 		});
 	};
 	///// EUROPEAN LIBRARY API ////////////
-	$scope.search_tel = function (query) {
-		//$http.jsonp('http://data.theeuropeanlibrary.org/opensearch/json?query=' + query + '&apikey=ev3fbloutqdhrqe3pidpal4bav&callback=JSONP_CALLBACK')
+	$scope.tel = []
+	$scope.searchTel = function (query) {
+		if(query.length >= 10) {
 		$http.get('/api/' + $scope.user + '/tel/' + query)
 			.success( function (data) {
 				console.log(data);
+				for(var i = 0; i < data.Results.length; i++) {
+					if(data.Results[i].TITLE && data.Results[i].CREATOR) {
+						var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
+						addbook.isbn10 = query;
+						$scope.tel.push(addbook);
+					}
+				}
+				console.log($scope.tel);
 			});
+		}
 	}
 	$scope.check = function (data, prop) {
 		var arr = [];
@@ -124,7 +134,14 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 				arr.push(sel[i][prop].toString());
 			}
 		}
-		console.log(arr);
+		if($scope.tel.length > 0) {
+			console.log($scope.tel);
+			for (var i = 0; i < $scope.tel.length;i++) {
+				if($scope.tel[i][prop]) {
+					arr.push($scope.tel[i][prop].toString());
+				}
+			}
+		}
 		return arr;
 	};
 }

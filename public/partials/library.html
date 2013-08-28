@@ -58,6 +58,12 @@
 					<form class="form">
 						<fieldset>
 							<!-- <legend>Legend</legend> -->
+							<p>Recommended:</p>
+							<div class="form-group">
+								<label class="sr-only" for="new_isbn10">ISBN:</label>
+								<input type="text" id="new_isbn10" ng-model="newbook.isbn10" class="form-control" placeholder="ISBN" typeahead="book for book in check(books, 'isbn10') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook(); searchTel(newbook.isbn10)" ng-change="searchTel(newbook.isbn10)">
+							</div>
+							<p>Required:</p>
 							<div class="form-group">
 								<label class="sr-only" for="new_title">Book title:</label>
 								<input type="text" id="new_title" ng-model="newbook.title" class="form-control" placeholder="Title" typeahead="book for book in check(books, 'title') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" required>
@@ -65,11 +71,6 @@
 							<div class="form-group">
 								<label class="sr-only" for="new_author">Author:</label>
 								<input type="text" id="new_author" ng-model="newbook.author" class="form-control" placeholder="Author" typeahead="book for book in check(books, 'author') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" required>
-							</div>
-							<p>Recommended:</p>
-							<div class="form-group">
-								<label class="sr-only" for="new_isbn10">ISBN:</label>
-								<input type="text" id="new_isbn10" ng-model="newbook.isbn10" class="form-control" placeholder="ISBN" typeahead="book for book in check(books, 'isbn10') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()">
 							</div>
 							<p>Optional:</p>
 							<div class="form-group">
