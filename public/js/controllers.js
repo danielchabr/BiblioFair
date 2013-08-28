@@ -127,6 +127,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 		if(query.length >= 10) {
 		$http.get('/api/' + $scope.user + '/tel/' + query)
 			.success( function (data) {
+				console.log(data);
 				for(var i = 0; i < data.Results.length; i++) {
 					if(data.Results[i].TITLE && data.Results[i].CREATOR) {
 						var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
