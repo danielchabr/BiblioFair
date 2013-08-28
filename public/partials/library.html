@@ -30,7 +30,7 @@
 	<div class="row" style="height:80px">
 	</div>
 	<div class="row">
-		<div class="col-xs-9">
+		<div class="col-xs-8 col-sm-9">
 			<div class="col-lg-4 col-sm-6" style="padding:0px" ng-repeat="book in mybooks | filter:search">
 				<a ng-click="open(book)">
 					<div class="well" style="margin:8px; padding:10px">
@@ -51,29 +51,27 @@
 				</a>
 			</div>
 		</div>
-		<div class="col-xs-3">
+		<div class="col-xs-4 col-sm-3">
 			<div class="row">
 				<div class="col-lg-12">
 					<h3>Add books to your library</h3>
-					<form>
+					<form class="form">
 						<fieldset>
 							<!-- <legend>Legend</legend> -->
 							<div class="form-group">
 								<label class="sr-only" for="new_title">Book title:</label>
-								<input type="text" id="new_title" ng-model="newbook.title" class="form-control" placeholder="Title" typeahead="book.title for book in books | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook(); search_tel(newbook.title)" required>
+								<input type="text" id="new_title" ng-model="newbook.title" class="form-control" placeholder="Title" typeahead="book for book in check(books, 'title') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" required>
 							</div>
 							<div class="form-group">
 								<label class="sr-only" for="new_author">Author:</label>
-								<input type="text" id="new_author" ng-model="newbook.author" class="form-control" placeholder="Author" typeahead="book.author for book in books | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" required>
+								<input type="text" id="new_author" ng-model="newbook.author" class="form-control" placeholder="Author" typeahead="book for book in check(books, 'author') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" required>
 							</div>
+							<p>Recommended:</p>
 							<div class="form-group">
-								<label class="sr-only" for="new_isbn10">ISBN-10:</label>
-								<input type="text" id="new_isbn10" ng-model="newbook.isbn10" class="form-control" placeholder="ISBN-10" typeahead="book.isbn10 for book in books | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()">
+								<label class="sr-only" for="new_isbn10">ISBN:</label>
+								<input type="text" id="new_isbn10" ng-model="newbook.isbn10" class="form-control" placeholder="ISBN" typeahead="book for book in check(books, 'isbn10') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()">
 							</div>
-							<div class="form-group">
-								<label class="sr-only" for="new_isbn13">ISBN-13:</label>
-								<input type="text" id="new_isbn13" ng-model="newbook.isbn13" class="form-control" placeholder="ISBN-13" typeahead="book.isbn13 for book in books | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()">
-							</div>
+							<p>Optional:</p>
 							<div class="form-group">
 								<label class="sr-only" for="new_publisher">Publisher:</label>
 								<input type="text" id="new_publisher" ng-model="newbook.publisher" class="form-control" placeholder="Publisher">
@@ -82,13 +80,15 @@
 								<label class="sr-only" for="new_published">Published:</label>
 								<input type="text" id="new_published" ng-model="newbook.published" class="form-control" placeholder="Year of publishment">
 							</div>
-							<div class="form-group">
-								<label class="sr-only" for="new_edition">Edition:</label>
-								<input type="text" id="new_edition" ng-model="newbook.edition" class="form-control" placeholder="Edition">
-							</div>
-							<div class="form-group">
-								<label class="sr-only" for="new_volume">Volume:</label>
-								<input type="text" id="newvolume" ng-model="newbook.volume" class="form-control" placeholder="Volume">
+							<div class="form-inline row form-group">
+								<div class="form-group col-xs-6">
+									<label class="sr-only" for="new_edition">Edition:</label>
+									<input type="text" id="new_edition" ng-model="newbook.edition" class="form-control" placeholder="Edition">
+								</div>
+								<div class="form-group col-xs-6">
+									<label class="sr-only" for="new_volume">Volume:</label>
+									<input type="text" id="newvolume" ng-model="newbook.volume" class="form-control" placeholder="Volume">
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="sr-only" for="new_language">Language:</label>

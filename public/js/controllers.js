@@ -116,7 +116,17 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 				console.log(data);
 			});
 	}
-
+	$scope.check = function (data, prop) {
+		var arr = [];
+		var sel = $filter('filter')($scope.books, $scope.newbook);
+		for (var i = 0; i < sel.length;i++) {
+			if(sel[i][prop]) {
+				arr.push(sel[i][prop].toString());
+			}
+		}
+		console.log(arr);
+		return arr;
+	};
 }
 function accountControl($scope, $http, $location) {
 	$scope.centerLat = 30;
