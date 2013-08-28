@@ -62,8 +62,8 @@ function homeControl($rootScope, $scope, $http, $modal, $location) {
 }
 var ModalInstanceCtrl = function ($scope, $modalInstance, book) {
 	$scope.details_view = book;
-	$scope.ok = function () {
-		$modalInstance.close();
+	$scope.remove = function () {
+		$modalInstance.close('remove');
 	};
 
 	$scope.cancel = function () {
@@ -95,7 +95,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 	};
 	$scope.open = function (book) {
 		var modalInstance = $modal.open({
-			templateUrl: '/partials/book_detail.html',
+			templateUrl: '/partials/library_detail.html',
 			controller: ModalInstanceCtrl,
 			resolve: {
 				book: function () {
@@ -104,8 +104,16 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 			}
 		});
 
-		modalInstance.result.then(function () {
-		}, function () {
+		modalInstance.result.then(function (action) {
+			if(action == 'remove') {
+				var index = -1; index = $scope.mybooks.indexOf(book);
+				if(index >= 0) $scope.mybooks.splice(index, 1);
+				/*
+				$http.post('/api/' + $scope.user + '/books/remove', book)
+					.success( function(data) {
+					});
+					*/
+			}
 		});
 	};
 	///// EUROPEAN LIBRARY API ////////////
@@ -135,7 +143,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 			}
 		}
 		if($scope.tel.length > 0) {
-			console.log($scope.tel);
 			for (var i = 0; i < $scope.tel.length;i++) {
 				if($scope.tel[i][prop]) {
 					arr.push($scope.tel[i][prop].toString());
@@ -166,7 +173,7 @@ function accountControl($scope, $http, $location) {
 			if(data.loc.lat && data.loc.lng) {
 				$scope.centerLat = data.loc.lat;
 				$scope.centerLng = data.loc.lng;
-				$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 10,{totalMs:3000,steps:10});
+				$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:3000,steps:10});
 			}
 		});
 	MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
