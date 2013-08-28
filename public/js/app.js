@@ -1,4 +1,4 @@
-angular.module('mainapp', []).
+angular.module('mainapp', ['ui.bootstrap']).
 
 config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', function($routeProvider, $locationProvider, $httpProvider, $provide) {
 	$routeProvider
