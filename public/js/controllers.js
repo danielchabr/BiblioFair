@@ -87,12 +87,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 			});
 		}
 	};
-	$scope.selectBook = function () {
-		$scope.selected_books = $filter('filter')($scope.books, $scope.newbook, true);
-		if($scope.selected_books.length == 1) {
-			$scope.newbook = $scope.selected_books[0];
-		}
-	};
+	//////////// BOOK DETAIL MODAL //////////////////
 	$scope.open = function (book) {
 		var modalInstance = $modal.open({
 			templateUrl: '/partials/library_detail.html',
@@ -117,12 +112,21 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 		});
 	};
 	///// EUROPEAN LIBRARY API ////////////
-	$scope.tel = []
+	$scope.selected_books = [];
+	$scope.selectBook = function () {
+		console.log($scope.selected_books);
+		console.log($scope.newbook);
+		$scope.selected_books = $filter('filter')($scope.selected_books, $scope.newbook);
+		console.log($scope.selected_books);
+		if($scope.selected_books.length == 1) {
+			$scope.newbook = $scope.selected_books[0];
+		}
+	};
 	$scope.searchTel = function (query) {
+		$scope.tel = []
 		if(query.length >= 10) {
 		$http.get('/api/' + $scope.user + '/tel/' + query)
 			.success( function (data) {
-				console.log(data);
 				for(var i = 0; i < data.Results.length; i++) {
 					if(data.Results[i].TITLE && data.Results[i].CREATOR) {
 						var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
@@ -130,23 +134,18 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 						$scope.tel.push(addbook);
 					}
 				}
-				console.log($scope.tel);
+				$scope.tel =  $filter('filter')($scope.tel, $scope.newbook, true);
+				$scope.selected_books = $scope.selected_books.concat($scope.tel);
 			});
 		}
 	}
 	$scope.check = function (data, prop) {
 		var arr = [];
-		var sel = $filter('filter')($scope.books, $scope.newbook);
+		if($scope.selected_books.length == 0) $scope.selected_books = $scope.books;
+		var sel = $filter('filter')($scope.selected_books, $scope.newbook);
 		for (var i = 0; i < sel.length;i++) {
 			if(sel[i][prop]) {
 				arr.push(sel[i][prop].toString());
-			}
-		}
-		if($scope.tel.length > 0) {
-			for (var i = 0; i < $scope.tel.length;i++) {
-				if($scope.tel[i][prop]) {
-					arr.push($scope.tel[i][prop].toString());
-				}
 			}
 		}
 		return arr;
