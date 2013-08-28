@@ -166,8 +166,7 @@ function accountControl($scope, $http, $location) {
 			if(data.loc) {
 				$scope.centerLat = data.loc.lat;
 				$scope.centerLng = data.loc.lng;
-				console.log($scope.map);
-				$scope.map.setCenterAnimate(new MQA.LatLng(data.loc.lat, data.loc.lng), 10,{totalMs:3000,steps:10});
+				$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 10,{totalMs:3000,steps:10});
 			}
 		});
 	MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {

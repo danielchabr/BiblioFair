@@ -73,14 +73,6 @@
 								<input type="text" id="new_author" ng-model="newbook.author" class="form-control" placeholder="Author" typeahead="book for book in check(books, 'author') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" required>
 							</div>
 							<p>Optional:</p>
-							<div class="form-group">
-								<label class="sr-only" for="new_publisher">Publisher:</label>
-								<input type="text" id="new_publisher" ng-model="newbook.publisher" class="form-control" placeholder="Publisher">
-							</div>
-							<div class="form-group">
-								<label class="sr-only" for="new_published">Published:</label>
-								<input type="text" id="new_published" ng-model="newbook.published" class="form-control" placeholder="Year of publishment">
-							</div>
 							<div class="form-inline row form-group">
 								<div class="form-group col-xs-6">
 									<label class="sr-only" for="new_edition">Edition:</label>
@@ -92,8 +84,18 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="sr-only" for="new_publisher">Publisher:</label>
+								<input type="text" id="new_publisher" ng-model="newbook.publisher" class="form-control" placeholder="Publisher">
+							</div>
+							<div class="form-inline row form-group">
+							<div class="form-group col-xs-6">
+								<label class="sr-only" for="new_published">Published:</label>
+								<input type="text" id="new_published" ng-model="newbook.published" class="form-control" placeholder="Year of publishment">
+							</div>
+							<div class="form-group col-xs-6">
 								<label class="sr-only" for="new_language">Language:</label>
 								<input type="text" id="new_language" ng-model="newbook.language" class="form-control" placeholder="Language">
+							</div>
 							</div>
 							<button ng-click="addbook()" class="btn btn-default btn-success pull-center" style="margin-bottom:15px; width:100px">Add book</button>
 						</fieldset>
