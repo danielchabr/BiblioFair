@@ -137,6 +137,9 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 				}
 				$scope.tel =  $filter('filter')($scope.tel, $scope.newbook, true);
 				$scope.selected_books = $scope.selected_books.concat($scope.tel);
+				if($scope.tel.length == 1) {
+					$scope.newbook = $scope.tel[0];
+				}
 			});
 		}
 	}
