@@ -101,13 +101,15 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 
 		modalInstance.result.then(function (action) {
 			if(action == 'remove') {
+				removeBook($rootScope, $scope, $http, $location, book);
 				var index = -1; index = $scope.mybooks.indexOf(book);
 				if(index >= 0) $scope.mybooks.splice(index, 1);
+
 				/*
-				$http.post('/api/' + $scope.user + '/books/remove', book)
-					.success( function(data) {
-					});
-					*/
+				   $http.post('/api/' + $scope.user + '/books/remove', book)
+				   .success( function(data) {
+				   });
+				 */
 			}
 		});
 	};
@@ -124,16 +126,18 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 	};
 	$scope.searchTel = function (query) {
 		$scope.tel = []
-		if(query.length >= 10) {
-		$http.get('/api/' + $scope.user + '/tel/' + query)
-			.success( function (data) {
-				console.log(data);
-				for(var i = 0; i < data.Results.length; i++) {
-					if(data.Results[i].TITLE && data.Results[i].CREATOR) {
-						var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
-						addbook.isbn10 = query;
-						$scope.tel.push(addbook);
-					}
+			if(query.length >= 10) {
+				$http.get('/api/' + $scope.user + '/tel/' + query)
+					.success( function (data) {
+						console.log(data);
+						for(var i = 0; i < data.Results.length; i++) {
+							if(data.Results[i].TITLE && data.Results[i].CREATOR) {
+								var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
+								if(data.Results[i].YEAR) addbook.published = data.Results[i].YEAR;
+								if(data.Results[i].LANGUAGE) addbook.language = data.Results[i].LANGUAGE;
+								addbook.isbn10 = query;
+								$scope.tel.push(addbook);
+							}
 				}
 				$scope.tel =  $filter('filter')($scope.tel, $scope.newbook, true);
 				$scope.selected_books = $scope.selected_books.concat($scope.tel);
@@ -210,9 +214,10 @@ function accountControl($scope, $http, $location) {
 }
 
 function queryMyBooks ($rootScope, $scope, $http, $location) {
-	$http.get('/api/' + $scope.user + '/books/querymy')
+	$http.get('/api/' + $scope.user + '/users/queryBooks')
 		.success( function(data) {
 			$rootScope.mybooks = [];
+				console.log(data);
 			for (var i = 0; i < data.length; i++) {
 				var book = {};
 				book = data[i];
@@ -229,5 +234,10 @@ function queryBooks ($rootScope, $scope, $http, $location) {
 				book = data[i];
 				$rootScope.books.push(book);
 			}
+		});
+};
+function removeBook ($rootScope, $scope, $http, $location, book) {
+	$http.post('/api/' + $scope.user + '/users/removeBook', book)
+		.success( function(data) {
 		});
 };
