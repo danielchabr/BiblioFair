@@ -76,6 +76,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 
 	$scope.addbook = function() {
 		if($scope.newbook.title && $scope.newbook.author) {
+			if($scope.newbook.isbn10) $scope.newbook.isbn10 = $scope.newbook.isbn10.replace(/-/g, '');;
 			$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
 				.success( function(data) {
 					var book = $scope.newbook;
@@ -125,26 +126,29 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 		}
 	};
 	$scope.searchTel = function (query) {
-		$scope.tel = []
-			if(query.length >= 10) {
-				$http.get('/api/' + $scope.user + '/tel/' + query)
-					.success( function (data) {
-						console.log(data);
-						for(var i = 0; i < data.Results.length; i++) {
-							if(data.Results[i].TITLE && data.Results[i].CREATOR) {
-								var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
-								if(data.Results[i].YEAR) addbook.published = data.Results[i].YEAR;
-								if(data.Results[i].LANGUAGE) addbook.language = data.Results[i].LANGUAGE;
-								addbook.isbn10 = query;
-								$scope.tel.push(addbook);
-							}
-				}
-				$scope.tel =  $filter('filter')($scope.tel, $scope.newbook, true);
-				$scope.selected_books = $scope.selected_books.concat($scope.tel);
-				if($scope.tel.length == 1) {
-					$scope.newbook = $scope.tel[0];
-				}
-			});
+		if(query == $scope.newbook.isbn10) {
+			$scope.newbook.isbn10 = query = query.replace(/-/g, '');
+		}
+		$scope.tel = [];
+		if(query.length >= 10) {
+			$http.get('/api/' + $scope.user + '/tel/' + query)
+				.success( function (data) {
+					console.log(data);
+					for(var i = 0; i < data.Results.length; i++) {
+						if(data.Results[i].TITLE && data.Results[i].CREATOR) {
+							var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
+							if(data.Results[i].YEAR) addbook.published = data.Results[i].YEAR;
+							if(data.Results[i].LANGUAGE) addbook.language = data.Results[i].LANGUAGE;
+							addbook.isbn10 = query;
+							$scope.tel.push(addbook);
+						}
+					}
+					$scope.tel =  $filter('filter')($scope.tel, $scope.newbook, true);
+					$scope.selected_books = $scope.selected_books.concat($scope.tel);
+					if($scope.tel.length == 1) {
+						$scope.newbook = $scope.tel[0];
+					}
+				});
 		}
 	}
 	$scope.check = function (data, prop) {
@@ -241,3 +245,4 @@ function removeBook ($rootScope, $scope, $http, $location, book) {
 		.success( function(data) {
 		});
 };
+

@@ -33,9 +33,9 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-9">
-			<div class="col-lg-4 col-sm-6" style="padding:0px;left:0px" ng-repeat="book in books | filter:search | orderBy:bookOrder">
-				<a ng-click="open(book)">
-					<div class="well" style="margin:8px; padding:10px">
+			<ul class="bookview">
+				<li class="col-lg-4 col-sm-6" ng-repeat="book in books | filter:search | orderBy:bookOrder">
+					<div class="well" ng-click="open(book)">
 						<div class="row">
 							<div class="col-xs-10">
 								<h4>{{book.title}}</h4>
@@ -50,8 +50,8 @@
 							</div>
 						</div>
 					</div>
-				</a>
-			</div>
+				</li>
+			</ul>
 		</div>
 		<div class="col-xs-3">
 			<div class="row">

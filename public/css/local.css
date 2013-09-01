@@ -29,3 +29,21 @@ h1 {
 .map img {
 	max-width: none;
 }
+.bookview {
+	list-style: none;
+	padding: 0px;
+}
+.bookview li {
+	padding: 0px;
+}
+.bookview li .well {
+	cursor: pointer;
+	margin: 8px;
+	padding: 10px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	height: 100px;
+}
+.bookview li :hover {
+	background-color: #0F676E;
+}
