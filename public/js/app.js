@@ -44,4 +44,8 @@ config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', func
 		//clearListCookies();
 		$location.path('/login');
 	}
+	$rootScope.collapse = function () {
+		$rootScope.isCollapsed = $('.navbar-toggle').css("display") == 'none';
+	};
+	window.onresize = function () {$rootScope.collapse();$rootScope.$apply();};
 });
