@@ -13,15 +13,15 @@
 		<form class="navbar-form navbar-left hidden-sm" action="" role="search">
 			<div class="form-group">
 				<label class="sr-only" for="search-box">Search box</label>
-				<input type="text" ng-model="search" class="form-control textfont" placeholder="I want to read ...">
+				<input type="text" ng-model="search" class="form-control textfont" placeholder="{{ 'NAV.SEARCH.PLACEHOLDER' | translate }}">
 			</div>
-			<button class="btn btn-default textfont" type="button">Go!</button>
+			<button class="btn btn-default textfont" type="button">{{ 'NAV.SEARCH.BUTTON' | translate }}</button>
 		</form>
 		<ul class="nav navbar-nav navbar-right">
-			<li class="active"><a ng-href="/">Browse</a></li>
-			<li><a ng-href="/library">My library</a></li> 
-			<li><a ng-href="/account">Account</a></li> 
-			<li><a ng-href="" ng-click="logout()">Sign out</a></li>
+			<li class="active"><a ng-href="/">{{ 'NAV.BROWSE' | translate }}</a></li>
+			<li><a ng-href="/library">{{ 'NAV.LIBRARY' | translate }}</a></li> 
+			<li><a ng-href="/account">{{ 'NAV.ACCOUNT' | translate }}</a></li> 
+			<li><a href="" ng-click="logout()">{{ 'NAV.SIGN_OUT' | translate }}</a></li>
 		</ul>
 	</div>
 </div>
@@ -54,17 +54,17 @@
 		<div class="col-xs-3">
 			<div class="row">
 				<div class="col-lg-12">
-					<h4>Order by:</h4>
+					<h4>{{ 'HOME.ORDER.TEXT' | translate }}</h4>
 					<div class="radio">
 						<label>
 							<input type="radio" ng-model="bookOrder" name="order" id="optionsRadios1" value="title" checked>
-							Title
+							{{ 'HOME.ORDER.TITLE' | translate }}
 						</label>
 					</div>
 					<div class="radio">
 						<label>
 							<input type="radio" ng-model="bookOrder" name="order" id="optionsRadios2" value="author">
-							Author
+							{{ 'HOME.ORDER.AUTHOR' | translate }}
 						</label>
 					</div>
 				</div>

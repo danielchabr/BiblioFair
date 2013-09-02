@@ -9,21 +9,21 @@
 			<button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
 			<h2>{{details_view.title}}</h4>
 			<p>
-			<b><i>by {{details_view.author}}</i></b>
+			<b><i>{{ 'DETAIL.BY' | translate }} {{details_view.author}}</i></b>
 			</p>
 		</div>
 		<div class="modal-body">
-			Publisher: {{details_view.publisher}}</br>
-			Published in: {{details_view.published}}</br>
-			Edition: {{details_view.edition}}</br>
-			Volume: {{details_view.edition}}</br>
-			Language: {{details_view.language}}</br>
-			ISBN-10: {{details_view.isbn10}}</br>
-			ISBN-13: {{details_view.isbn13}}
+			{{ 'LIBRARY.ADD.SUBTITLE' | translate }}: {{details_view.subtitle}}</br>
+			{{ 'LIBRARY.ADD.PUBLISHER' | translate }}: {{details_view.publisher}}</br>
+			{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</br>
+			{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</br>
+			{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</br>
+			{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</br>
+			{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn10}}
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-primary pull-left" ng-click="remove()">Remove</button>
-			<button class="btn btn-warning" ng-click="cancel()">Close</button>
+			<button class="btn btn-primary pull-left" ng-click="remove()">{{ 'DETAIL.REMOVE' | translate }}</button>
+			<button class="btn btn-warning" ng-click="cancel()">{{ 'DETAIL.CLOSE' | translate }}</button>
 		</div>
 	</div>
 </div>

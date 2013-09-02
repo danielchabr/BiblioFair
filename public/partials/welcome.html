@@ -15,15 +15,15 @@
 <div class="container">
 	<div class="navbar-header" style="width:100%">
 		<a class="navbar-brand logo" href="/#!">BiblioFair</a>
-		<ul class="nav navbar-nav pull-right" style="width:120px">
+		<ul class="nav navbar-nav pull-right">
 			<li class="dropdown" style="cursor:pointer" >
-				<a class="dropdown-toggle" style="width:120px">
-					Language
+				<a class="dropdown-toggle">
+					{{ 'NAV.LANGUAGE' | translate }}
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" style="color: black">
-					<li><a role="menuitem" tabindex="-1" ng-click="language=en">English</a></li>
-					<li><a role="menuitem" tabindex="-1" ng-click="language=cz">Czech</a></li>
+					<li><a role="menuitem" tabindex="-1" ng-click="changeLanguage('en')">{{ 'NAV.ENGLISH' | translate }}</a></li>
+					<li><a role="menuitem" tabindex="-1" ng-click="changeLanguage('cz')">{{ 'NAV.CZECH' | translate }}</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -37,18 +37,13 @@
 		<!-- Contents -->
 		<div class="col-sm-7 col-xs-12" style="color:#fff">
 			<div class="well">
-				<h2>Dive into the world of home libraries</h2>
+				<h2>{{ 'WELCOME.HEADING' | translate }}</h2>
 				<p style="font-size:18px">
-				Our aim is to enable you to share your home bookshelves. You will get requests from your friends or others to sell, rent or lend them books from your home library.
+				{{ 'WELCOME.TEXT1' | translate }}
 				</p>
 				<p style="font-size:18px">
-				Would you like to read a book that is otherwise too expensive or hard to get? Just sign up and easily search our databases. If you can't find what you're looking for, just put it on your wish list and we will notify you as soon as the book gets available.
+				{{ 'WELCOME.TEXT2' | translate }}
 				</p>
-				<!--
-				<p style="font-size:18px">
-				Small organizations are also welcome to use our databases to manage their private libraries.
-				</p>
-				-->
 				<!-- Open your library to the world -->
 			</div>
 		</div>
@@ -56,18 +51,18 @@
 			<div class="well">
 				<form>
 					<fieldset>
-						<legend>Register for a free account</legend> 
+						<legend>{{ 'WELCOME.REGISTER_TEXT' | translate }}</legend> 
 						<div class="form-group" id="div_signup_email">
 							<label class="sr-only" for="signup_email">Sign up email:</label>
-							<input type="email" id="email" ng-model="signup_email" class="form-control" placeholder="Email" required>
+							<input type="email" id="email" ng-model="signup_email" class="form-control" placeholder="{{ 'WELCOME.EMAIL' | translate }}" required>
 						</div>
 						<div class="form-group" id="div_signup_password">
 							<label class="sr-only" for="signup_password">Sign up password:</label>
-							<input type="password" ng-model="signup_password" class="form-control" placeholder="Password" required>
+							<input type="password" ng-model="signup_password" class="form-control" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
 						</div>
 						<div class="row">
 							<div class="col-xs-4">
-								<button ng-click="signup()" class="btn btn-success" style="margin-bottom:15px; width:100px">Join!</button>
+								<button ng-click="signup()" class="btn btn-success" style="margin-bottom:15px; width:100px">{{ 'WELCOME.JOIN' | translate }}</button>
 							</div>
 							<div class="col-xs-8">
 								<p class="help-block text-danger">{{signup_message}}</p>
@@ -79,18 +74,18 @@
 			<div class="well">
 				<form>
 					<fieldset>
-						<legend>Sign in</legend> 
+						<legend>{{ 'WELCOME.SIGNIN_TEXT' | translate }}</legend> 
 						<div class="form-group" id="div_login_email">
 							<label class="sr-only" for="login_email">Login email:</label>
-							<input type="email" id="login_email" ng-model="login_email"  class="form-control" placeholder="Email" required>
+							<input type="email" id="login_email" ng-model="login_email"  class="form-control" placeholder="{{ 'WELCOME.EMAIL' | translate }}" required>
 						</div>
 						<div class="form-group" id="div_login_password">
 							<label class="sr-only" for="login_password">Login password:</label>
-							<input type="password" id="login_password" ng-model="login_password" class="form-control" placeholder="Password" required>
+							<input type="password" id="login_password" ng-model="login_password" class="form-control" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
 						</div>
 						<div class="row">
 							<div class="col-xs-4">
-								<button ng-click="login()" class="btn btn-success" style="margin-bottom:15px; width:100px">Sign in!</button>
+								<button ng-click="login()" class="btn btn-success" style="margin-bottom:15px; width:100px">{{ 'WELCOME.SIGNIN' | translate }}</button>
 							</div>
 							<div class="col-xs-8">
 								<p class="help-block text-danger">{{login_message}}</p>

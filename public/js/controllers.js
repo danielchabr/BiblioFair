@@ -1,4 +1,4 @@
-function loginControl($rootScope, $scope, $http, $location) {
+function loginControl($rootScope, $scope, $http, $location, $translate) {
 	$scope.log = function (l) { console.log(l);};
 	$scope.signup = function() {
 		if($scope.signup_email && $scope.signup_password.length > 5) {
@@ -6,15 +6,15 @@ function loginControl($rootScope, $scope, $http, $location) {
 			$http.post('/signup', {'email': $scope.signup_email, 'password': hash.toString()})
 				.success( function(data) {
 					if(data == 'registered') {
-						$scope.signup_message = 'Verification email has been sent to ' + $scope.signup_email;
+						$scope.signup_message = $translate('WELCOME.VERIFICATION_SENT') + $scope.signup_email;
 					}
 					else {
-						$scope.signup_message = 'Account for ' + $scope.signup_email + ' already exists';
+						$scope.signup_message = $translate('WELCOME.EXISTS');
 					}
 				});
 		} else {
 			if($scope.signup_password.length < 6) {
-				$scope.signup_message = 'Password needs to be at least 6 characters long';
+				$scope.signup_message = $translate('WELCOME.SHORT_PASSWORD');
 			}
 		}
 	}
@@ -28,15 +28,15 @@ function loginControl($rootScope, $scope, $http, $location) {
 						$location.path('/');
 					}
 					else {
-						$scope.login_message = 'Email or password is incorrect. Please try again';
+						$scope.login_message = $translate('WELCOME.AGAIN');
 					}
 				})
 			.error( function(data) {
-				$scope.message = "Pleasy try again";
+				$scope.message = $translate('WELCOME.AGAIN');
 			});
 		} else {
 			if($scope.login_password.length < 6) {
-				$scope.login_message = 'Password needs to be at least 6 characters long';
+				$scope.login_message = $translate('WELCOME.SHORT_PASSWORD');
 			}
 		}
 	}
@@ -162,7 +162,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
 		return arr;
 	};
 }
-function accountControl($scope, $http, $location) {
+function accountControl($scope, $http, $location, $translate) {
 	$scope.centerLat = 30;
 	$scope.centerLng = -30;
 	$scope.draw_map = function()
@@ -206,12 +206,12 @@ function accountControl($scope, $http, $location) {
 	};
 	MQA.EventManager.addListener($scope.map, 'move', update_loc);
 	MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
-	$scope.save_text = "Save";
+	$scope.save_text = $translate('ACCOUNT.SAVE');
 	$scope.save = function () {
-		$scope.save_text = "Saving ...";
+		$scope.save_text = $translate('ACCOUNT.SAVING');
 		$http.post('/api/' + $scope.user + '/users/update', {loc:{lat:$scope.centerLat, lng:$scope.centerLng}})
 			.success( function(data) {
-				$scope.save_text = "Saved";
+				$scope.save_text = $translate('ACCOUNT.SAVED');
 			});
 	};
 }
