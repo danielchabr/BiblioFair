@@ -63,8 +63,8 @@
 							<!-- <legend>Legend</legend> -->
 							<p>{{ 'LIBRARY.ADD.TEXT' | translate }}</p>
 							<div class="form-group">
-								<label class="" for="new_isbn10">{{ 'LIBRARY.ADD.ISBN' | translate }}:</label>
-								<input type="text" id="new_isbn10" ng-model="newbook.isbn10" class="form-control" placeholder="{{ 'LIBRARY.ADD.ISBN' | translate }}" typeahead="book for book in check(books, 'isbn10') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook(); searchTel(newbook.isbn10)" ng-change="searchTel(newbook.isbn10)">
+								<label class="" for="new_isbn">{{ 'LIBRARY.ADD.ISBN' | translate }}:</label>
+								<input type="text" id="new_isbn" ng-model="newbook.isbn" class="form-control" placeholder="{{ 'LIBRARY.ADD.ISBN' | translate }}" typeahead="book for book in check(books, 'isbn') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook(); searchTel(newbook.isbn)" ng-change="searchTel(newbook.isbn)">
 							</div>
 							<div class="form-group">
 								<label class="" for="new_title">{{ 'LIBRARY.ADD.TITLE' | translate }}:</label>

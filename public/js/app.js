@@ -83,7 +83,7 @@ angular.module('mainapp', ['ui.bootstrap', 'pascalprecht.translate'])
 				'SEARCH': { 'BUTTON':'Hledat',
 							'PLACEHOLDER': 'Titul, autor, ISBN, ...'}},
 		'WELCOME': { 'HEADING': 'Ponořte se do světa domácích knihoven',
-					'TEXT1': 'Naším cílem je umožnit Vám přeměnit vaši poličky s knihami v knihovnu nebo knihkupectví. Budete dostávat žádosti o koupi, pronájem nebo půjčení Vašich knih. Jen Vy rozhodujete o tom, které knihy a jak pošlete dále do světa.',
+					'TEXT1': 'Naším cílem je umožnit Vám přeměnit vaše poličky s knihami v knihovnu nebo knihkupectví. Budete dostávat žádosti o koupi, pronájem nebo půjčení Vašich knih. Jen Vy rozhodujete o tom, které knihy a jak pošlete dále do světa.',
 					'TEXT2': 'Rádi byste si přečetli knihu, která je ke koupi příliš drahá a v knihovnách neustále rozebraná? Chcete ušetřit a koupit raději knihu z druhé ruky? Během chvilky si u nás můžete zdarma vytvořit účet a zjistit, jestli Vaše požadovaná kniha není v domácí knihovně někoho v okolí. Pokud knihu náhodou nenajdete, můžete vložit na svůj seznam přání a my Vás budeme informovat hned, jakmile bude dostupná.',
 					'EMAIL': 'Email',
 					'PASSWORD': 'Heslo',
