@@ -8,16 +8,10 @@
 	font-size: 22px;
 	color:		#FFFFFF;
 }
-h1 {
-	font-family: 'Alegreya', serif;
-}
-.textfont {
-	font-family: 'Alegreya', serif;
-}
-.formlegend {
-	font-family: 'Alegreya', serif;
-	font-size:22px;
-}
+//.formlegend {
+//	font-family: 'Alegreya', serif;
+//	font-size:22px;
+//}
 .round {
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;

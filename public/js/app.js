@@ -120,7 +120,7 @@ angular.module('mainapp', ['ui.bootstrap', 'pascalprecht.translate'])
 					'CLOSE': 'Zavřít',
 					'REMOVE': 'Smazat'}
 	});
-	$translateProvider.preferredLanguage('en');
+	$translateProvider.preferredLanguage('cz');
 }])
 .run(function ($rootScope, $http, $location, $translate) {
 	$rootScope.user = "";

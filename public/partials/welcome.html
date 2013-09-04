@@ -7,14 +7,17 @@
 		background-size: cover;
 	}
 	.well {
-		opacity:0.8;
-		filter:alpha(opacity=80);
+		opacity:0.9;
+		filter:alpha(opacity=90);
 	}
 </style>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
 	<div class="navbar-header" style="width:100%">
-		<a class="navbar-brand logo" href="/#!">BiblioFair</a>
+		<a class="navbar-brand logo" href="/" style="padding:12px 15px">
+			<object type="image/svg+xml" data="img/logo.svg" height="24" width="34">Your browser does not support SVG</object>
+			BiblioFair 
+		</a>
 		<ul class="nav navbar-nav pull-right">
 			<li class="dropdown" style="cursor:pointer" >
 				<a class="dropdown-toggle">
@@ -35,7 +38,7 @@
 	</div>
 	<div class="row">
 		<!-- Contents -->
-		<div class="col-sm-7 col-xs-12" style="color:#fff">
+		<div class="col-sm-7 col-xs-12">
 			<div class="well">
 				<h2>{{ 'WELCOME.HEADING' | translate }}</h2>
 				<p style="font-size:18px">
