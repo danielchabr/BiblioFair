@@ -3,7 +3,7 @@ angular.module('mainapp', ['ui.bootstrap', 'pascalprecht.translate'])
 .config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', '$translateProvider', function($routeProvider, $locationProvider, $httpProvider, $provide, $translateProvider) {
 	$routeProvider
 	.when('/', {templateUrl: '/partials/home.html',   controller: homeControl})
-	.when('/login', {templateUrl: '/partials/welcome.html',   controller: loginControl})
+	.when('/login', {templateUrl: '/partials/welcome.html',   controller: welcomeControl})
 	.when('/library', {templateUrl: '/partials/library.html',   controller: libraryControl})
 	.when('/account', {templateUrl: '/partials/account.html',   controller: accountControl})
 	.otherwise({redirectTo: '/'});
