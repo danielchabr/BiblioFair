@@ -29,6 +29,7 @@ angular.module('mainapp', ['ui.bootstrap', 'pascalprecht.translate'])
 	$translateProvider.preferredLanguage('en');
 }])
 .run(function ($rootScope, $http, $location, $translate) {
+	$http.get('/api/v1/books?id=123&key=456');
 	$rootScope.user = "";
 	$rootScope.books = [];
 	$rootScope.mybooks = [];
