@@ -1,6 +1,14 @@
-function accountControl($scope, $http, $location, $translate) {
+function accountControl($scope, $http, $location, $translate, APIservice) {
 	$scope.centerLat = 30;
 	$scope.centerLng = -30;
+	$scope.save_text = $translate('ACCOUNT.SAVE');
+	$scope.save = function () {
+		$scope.save_text = $translate('ACCOUNT.SAVING');
+		$http.post('/api/' + $scope.user + '/users/update', {loc:{lat:$scope.centerLat, lng:$scope.centerLng}})
+			.success( function(data) {
+				$scope.save_text = $translate('ACCOUNT.SAVED');
+			});
+	};
 	$scope.draw_map = function()
 	{
 		var options={
@@ -14,14 +22,13 @@ function accountControl($scope, $http, $location, $translate) {
 		$scope.map = new MQA.TileMap(options);
 	};
 	$scope.draw_map();
-	$http.post('/api/' + $scope.user + '/users/query', {loc: {lat: '', lng: ''}})
-		.success( function(data) {
-			if(data.loc.lat && data.loc.lng) {
-				$scope.centerLat = data.loc.lat;
-				$scope.centerLng = data.loc.lng;
-				$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:3000,steps:10});
-			}
-		});
+	APIservice.users.read(function(data) {
+		if(data.loc.lat && data.loc.lng) {
+			$scope.centerLat = data.loc.lat;
+			$scope.centerLng = data.loc.lng;
+			$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
+		}
+	});
 	MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
 		$scope.map.addControl(
 			new MQA.LargeZoom(),
@@ -35,19 +42,11 @@ function accountControl($scope, $http, $location, $translate) {
 		/*Inset Map Control options*/ 
 		$scope.map.enableMouseWheelZoom();
 	});
-	function update_loc (){
+	var update_loc = function (){
 		$scope.centerLat = $scope.map.getCenter().lat;
 		$scope.centerLng = $scope.map.getCenter().lng;
 		$scope.$apply();
 	};
 	MQA.EventManager.addListener($scope.map, 'move', update_loc);
 	MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
-	$scope.save_text = $translate('ACCOUNT.SAVE');
-	$scope.save = function () {
-		$scope.save_text = $translate('ACCOUNT.SAVING');
-		$http.post('/api/' + $scope.user + '/users/update', {loc:{lat:$scope.centerLat, lng:$scope.centerLng}})
-			.success( function(data) {
-				$scope.save_text = $translate('ACCOUNT.SAVED');
-			});
-	};
 }

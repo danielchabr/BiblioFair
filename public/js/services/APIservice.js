@@ -1,9 +1,10 @@
 myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http) {
 	var f = {};
 	f.users = {
-		read: function () {
+		read: function (callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token}};
-			$http.get('/api/v1/users', par);
+			$http.get('/api/v1/users', par)
+				.success(callback);
 		},
 		create: function () {
 			var data = { id: $rootScope.user.id, token: $rootScope.user.token};
