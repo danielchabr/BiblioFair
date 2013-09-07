@@ -26,7 +26,7 @@ angular.module('mainapp', ['ui.bootstrap', 'pascalprecht.translate'])
 	$httpProvider.interceptors.push('myHttpInterceptor');
 	$translateProvider.translations('en', translateEN);
 	$translateProvider.translations('cz', translateCZ);
-	$translateProvider.preferredLanguage('cz');
+	$translateProvider.preferredLanguage('en');
 }])
 .run(function ($rootScope, $http, $location, $translate) {
 	$rootScope.user = "";
