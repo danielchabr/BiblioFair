@@ -1,4 +1,6 @@
-function libraryControl($rootScope, $scope, $http, $modal, $location, $filter) {
+function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, APIservice) {
+	APIservice.books.get('ahoj');
+
 	queryMyBooks($rootScope, $scope, $http, $location);
 	queryBooks($rootScope, $scope, $http, $location);
 

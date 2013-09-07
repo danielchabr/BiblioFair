@@ -1,6 +1,6 @@
-angular.module('mainapp', ['ui.bootstrap', 'pascalprecht.translate'])
+var myApp = angular.module('myApp', ['ui.bootstrap', 'pascalprecht.translate']);
 
-.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', '$translateProvider', function($routeProvider, $locationProvider, $httpProvider, $provide, $translateProvider) {
+myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', '$translateProvider', function($routeProvider, $locationProvider, $httpProvider, $provide, $translateProvider) {
 	$routeProvider
 	.when('/', {templateUrl: '/partials/home.html',   controller: homeControl})
 	.when('/login', {templateUrl: '/partials/welcome.html',   controller: welcomeControl})
@@ -27,12 +27,12 @@ angular.module('mainapp', ['ui.bootstrap', 'pascalprecht.translate'])
 	$translateProvider.translations('en', translateEN);
 	$translateProvider.translations('cz', translateCZ);
 	$translateProvider.preferredLanguage('en');
-}])
-.run(function ($rootScope, $http, $location, $translate) {
-	$http.get('/api/v1/books?id=123&key=456');
+}]);
+myApp.run(function ($rootScope, $http, $location, $translate) {
 	$rootScope.user = "";
 	$rootScope.books = [];
 	$rootScope.mybooks = [];
+	$rootScope.userid = {id: '123', token: '456'};
 
 	$http.get('/user')
 	.success(function (data) {
