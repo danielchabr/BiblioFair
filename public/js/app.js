@@ -29,10 +29,9 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide'
 	$translateProvider.preferredLanguage('en');
 }]);
 myApp.run(function ($rootScope, $http, $location, $translate) {
-	$rootScope.user = "";
 	$rootScope.books = [];
 	$rootScope.mybooks = [];
-	$rootScope.userid = {id: '123', token: '456'};
+	$rootScope.user = {};
 
 	$http.get('/user')
 	.success(function (data) {
