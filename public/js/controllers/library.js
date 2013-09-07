@@ -1,8 +1,8 @@
 function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, APIservice) {
 	APIservice.users.read();
 
-	queryMyBooks($rootScope, $scope, $http, $location);
-	queryBooks($rootScope, $scope, $http, $location);
+	//queryMyBooks($rootScope, $scope, $http, $location);
+	//queryBooks($rootScope, $scope, $http, $location);
 
 	$scope.addbook = function() {
 		if($scope.newbook.title && $scope.newbook.author) {
