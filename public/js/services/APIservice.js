@@ -2,23 +2,27 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 	var f = {};
 	f.users = {
 		read: function () {
-			var par = { params: { user: $rootScope.user, fields: 'loc'}};
+			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token}};
 			$http.get('/api/v1/users', par);
 		},
 		create: function () {
-			$http.post();
+			var data = { id: $rootScope.user.id, token: $rootScope.user.token};
+			$http.post('/api/vi1/users', data);
 		},
 		update: function () {
-			$http.put();
+			var data = { id: $rootScope.user.id, token: $rootScope.user.token};
+			$http.put('/api/vi1/users', data);
 		},
 		del: function () {
-			$http.del();
+			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token}};
+			$http.del('/api/v1/users', par);
 		},
 	};
 	f.books = {
-		get: function (query) {
-			var par = { params: { user: $rootScope.user, q: query, fields: 'loc'}};
-			$http.get('/api/v1/books', par);
+		read: function (fields, query, limit, offset, callback) {
+			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token, q: query, fields: fields, limit: limit, offset: offset}};
+			$http.get('/api/v1/books', par)
+				.success(callback);
 		}
 	};
 	return f;

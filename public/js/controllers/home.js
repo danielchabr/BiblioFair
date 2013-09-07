@@ -1,6 +1,8 @@
-function homeControl($rootScope, $scope, $http, $modal, $location) {
+function homeControl($rootScope, $scope, $http, $modal, $location, APIservice) {
 	$scope.bookOrder = 'title';
-	queryBooks($rootScope, $scope, $http, $location);
+	APIservice.books.read('','', 20, 0, function(data) {
+		 $rootScope.books = data
+	});
 
 	$scope.open = function (book) {
 		var modalInstance = $modal.open({

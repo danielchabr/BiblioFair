@@ -1,5 +1,9 @@
 function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, APIservice) {
 	APIservice.users.read();
+	APIservice.books.read('','', 20, 0, function(data) {
+		 $rootScope.books = data
+	});
+	console.log($rootScope.mybooks);
 
 	//queryMyBooks($rootScope, $scope, $http, $location);
 	//queryBooks($rootScope, $scope, $http, $location);
