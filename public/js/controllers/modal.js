@@ -28,7 +28,6 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, book, APIservice) {
 				$scope.map.addShape(point);
 			}
 			$scope.map.bestFit(false, 4, 12);
-				);
 		}
 	});
 };
