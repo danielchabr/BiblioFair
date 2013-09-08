@@ -9,13 +9,6 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 
 		});
 	};
-	/*$scope.save = function () {
-		$scope.save_text = $translate('ACCOUNT.SAVING');
-		$http.post('/api/' + $scope.user + '/users/update', {loc:{lat:$scope.centerLat, lng:$scope.centerLng}})
-			.success( function(data) {
-				$scope.save_text = $translate('ACCOUNT.SAVED');
-			});
-	};*/
 	$scope.draw_map = function()
 	{
 		var options={
@@ -41,10 +34,10 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 			new MQA.LargeZoom(),
 			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
 			);
-		$scope.map.addControl(new MQA.ViewOptions());
+		//$scope.map.addControl(new MQA.ViewOptions());
 		$scope.map.addControl(
 			new MQA.GeolocationControl(),
-			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_RIGHT, new MQA.Size(10,50))
+			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_RIGHT, new MQA.Size(10,10))
 			);
 		/*Inset Map Control options*/ 
 		$scope.map.enableMouseWheelZoom();

@@ -19,7 +19,10 @@
 			{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</br>
 			{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</br>
 			{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</br>
-			{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}
+			{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</br></br>
+			<div style="height:300px">
+			<div id="map" ng-model="map" style="height:300px" ng-init="draw_map()"></div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<button class="btn btn-warning" ng-click="cancel()">{{ 'DETAIL.CLOSE' | translate }}</button>
