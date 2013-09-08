@@ -18,6 +18,12 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 			$http.del('/api/v1/users', par);
 		},
 	};
+	f.library = {
+		read: function (callback) {
+			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token}};
+			$http.get('/api/v1/library', par).success(callback);
+		}
+	};
 	f.books = {
 		read: function (fields, query, limit, offset, callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token, q: query, fields: fields, limit: limit, offset: offset}};

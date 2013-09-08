@@ -1,6 +1,6 @@
 function homeControl($rootScope, $scope, $http, $modal, $location, APIservice) {
 	$scope.bookOrder = 'title';
-	APIservice.books.read('','', 20, 0, function(data) {
+	APIservice.books.read('','', 30, 0, function(data) {
 		 $rootScope.books = data
 	});
 

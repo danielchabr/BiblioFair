@@ -1,12 +1,14 @@
 function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, APIservice) {
-	APIservice.users.read();
 	APIservice.books.read('','', 20, 0, function(data) {
-		 $rootScope.books = data
+		 $rootScope.books = data;
 	});
-	console.log($rootScope.mybooks);
-
-	//queryMyBooks($rootScope, $scope, $http, $location);
-	//queryBooks($rootScope, $scope, $http, $location);
+	APIservice.library.read(function(data) {
+		console.log(data.library);
+		 $rootScope.mybooks = [];
+		 for(var i = 0; i < data.library.length; i++) {
+			 $rootScope.mybooks.push(data.library[i].id);
+		 }
+	});
 
 	$scope.addbook = function() {
 		if($scope.newbook.title && $scope.newbook.author) {
