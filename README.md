@@ -1,3 +1,3 @@
-# This is my README
+BiblioFair
 =======
-Swapify
+Web app project enabling book sharing and trading

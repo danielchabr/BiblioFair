@@ -14,8 +14,6 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
  */
 function ISBN10toISBN13(isbn10) {
 	if(typeof isbn10 != 'string' || isbn10.length != 10) return false;
-	console.log(typeof isbn10);
-	console.log(isbn10.length);
 
 	var sum = 38 + 3 * (parseInt(isbn10[0]) + parseInt(isbn10[2]) + parseInt(isbn10[4]) + parseInt(isbn10[6]) 
 			+ parseInt(isbn10[8])) + parseInt(isbn10[1]) + parseInt(isbn10[3]) + parseInt(isbn10[5]) + parseInt(isbn10[7]);
