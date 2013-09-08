@@ -14,7 +14,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 			if($scope.newbook.isbn) $scope.newbook.isbn = $scope.newbook.isbn.replace(/-/g, '');
 			if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
 			APIservice.library.create($scope.newbook, function(data, status) {
-				//var book = $scope.newbook;
 				$rootScope.mybooks.push(data);
 				$scope.newbook = {};
 			});
@@ -61,12 +60,19 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 	$scope.check = function (data, prop) {
 		var arr = [];
 		if($scope.selected_books.length == 0) $scope.selected_books = $scope.books;
+		var template = {};
+		for (var prop in $scope.newbook) {
+			template[prop] = $scope.newbook[prop];
+		}
+		delete template.edition;
+		delete template.volume;
 		var sel = $filter('filter')($scope.selected_books, $scope.newbook);
 		for (var i = 0; i < sel.length;i++) {
 			if(sel[i][prop]) {
 				arr.push(sel[i][prop].toString());
 			}
 		}
+		console.log($scope.newbook);
 		return arr;
 	};
 	//////////// BOOK DETAIL MODAL //////////////////
