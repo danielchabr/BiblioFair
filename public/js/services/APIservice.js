@@ -25,7 +25,7 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 		},
 		create: function (book, callback) {
 			var data = { id: $rootScope.user.id, token: $rootScope.user.token, book: book};
-			$http.post('/api/v1/library', data);
+			$http.post('/api/v1/library', data).success(callback);
 		},
 		del: function (book_id, callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token, book: book_id}};

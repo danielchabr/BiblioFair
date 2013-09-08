@@ -11,9 +11,12 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 
 	$scope.addbook = function() {
 		if($scope.newbook.title && $scope.newbook.author) {
-			if($scope.newbook.isbn) $scope.newbook.isbn = $scope.newbook.isbn.replace(/-/g, '');
-			if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
+			if($scope.newbook.isbn) {
+				$scope.newbook.isbn = $scope.newbook.isbn.replace(/-/g, '');
+				if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
+			}
 			APIservice.library.create($scope.newbook, function(data, status) {
+				console.log(data);
 				$rootScope.mybooks.push(data);
 				$scope.newbook = {};
 			});
@@ -23,7 +26,13 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 	$scope.selected_books = [];
 	// on selection of one of typeaheads checks if it matches only one result and if so, fills the rest of form
 	$scope.selectBook = function () {
-		$scope.selected_books = $filter('filter')($scope.selected_books, $scope.newbook);
+		var template = {};
+		for (var prop in $scope.newbook) {
+			template[prop] = $scope.newbook[prop];
+		}
+		delete template.edition;
+		delete template.volume;
+		$scope.selected_books = $filter('filter')($scope.selected_books, template);
 		if($scope.selected_books.length == 1) {
 			$scope.newbook = $scope.selected_books[0];
 		}
@@ -66,7 +75,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}
 		delete template.edition;
 		delete template.volume;
-		var sel = $filter('filter')($scope.selected_books, $scope.newbook);
+		var sel = $filter('filter')($scope.selected_books, template);
 		for (var i = 0; i < sel.length;i++) {
 			if(sel[i][prop]) {
 				arr.push(sel[i][prop].toString());
