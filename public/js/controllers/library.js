@@ -14,21 +14,10 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 			if($scope.newbook.isbn) $scope.newbook.isbn = $scope.newbook.isbn.replace(/-/g, '');
 			if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
 			APIservice.library.create($scope.newbook, function(data, status) {
-				var book = $scope.newbook;
-				$rootScope.mybooks.push(book);
+				//var book = $scope.newbook;
+				$rootScope.mybooks.push(data);
 				$scope.newbook = {};
 			});
-			/*
-			$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
-				.success( function(data) {
-					var book = $scope.newbook;
-					$rootScope.mybooks.push(book);
-					$rootScope.books.push(book);
-					$scope.newbook = {};
-				})
-			.error( function(data) {
-			});
-			*/
 		}
 	};
 	///// EUROPEAN LIBRARY API ////////////
@@ -47,9 +36,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}
 		$scope.tel = [];
 		if(query.length >= 10) {
-			/*$http.get('/api/' + $scope.user + '/tel/' + query)
-				.success( 
-				*/
 			APIservice.tel.read(query, function (data) {
 					for(var i = 0; i < data.Results.length; i++) {
 						if(data.Results[i].TITLE && data.Results[i].CREATOR) {
@@ -97,7 +83,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 
 		modalInstance.result.then(function (action) {
 			if(action == 'remove') {
-				removeBook($rootScope, $scope, $http, $location, book);
+				APIservice.library.del(book._id, function(data) {});
 				var index = -1; index = $scope.mybooks.indexOf(book);
 				if(index >= 0) $scope.mybooks.splice(index, 1);
 			}
