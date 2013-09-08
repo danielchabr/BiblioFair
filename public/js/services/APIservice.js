@@ -22,12 +22,22 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 		read: function (callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token}};
 			$http.get('/api/v1/library', par).success(callback);
+		},
+		create: function (book, callback) {
+			var data = { id: $rootScope.user.id, token: $rootScope.user.token, book: book};
+			$http.post('/api/v1/library', data);
 		}
 	};
 	f.books = {
 		read: function (fields, query, limit, offset, callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token, q: query, fields: fields, limit: limit, offset: offset}};
 			$http.get('/api/v1/books', par).success(callback);
+		}
+	};
+	f.tel = {
+		read: function (query, callback) {
+			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token, q: query}};
+			$http.get('/api/v1/tel', par).success(callback);
 		}
 	};
 	return f;

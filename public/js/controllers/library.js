@@ -3,7 +3,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		 $rootScope.books = data;
 	});
 	APIservice.library.read(function(data) {
-		console.log(data.library);
 		 $rootScope.mybooks = [];
 		 for(var i = 0; i < data.library.length; i++) {
 			 $rootScope.mybooks.push(data.library[i].id);
@@ -14,6 +13,12 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		if($scope.newbook.title && $scope.newbook.author) {
 			if($scope.newbook.isbn) $scope.newbook.isbn = $scope.newbook.isbn.replace(/-/g, '');
 			if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
+			APIservice.library.create($scope.newbook, function(data, status) {
+				var book = $scope.newbook;
+				$rootScope.mybooks.push(book);
+				$scope.newbook = {};
+			});
+			/*
 			$http.post('/api/' + $scope.user + '/books/add', $scope.newbook)
 				.success( function(data) {
 					var book = $scope.newbook;
@@ -23,6 +28,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 				})
 			.error( function(data) {
 			});
+			*/
 		}
 	};
 	///// EUROPEAN LIBRARY API ////////////
@@ -30,7 +36,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 	// on selection of one of typeaheads checks if it matches only one result and if so, fills the rest of form
 	$scope.selectBook = function () {
 		$scope.selected_books = $filter('filter')($scope.selected_books, $scope.newbook);
-		console.log($scope.selected_books);
 		if($scope.selected_books.length == 1) {
 			$scope.newbook = $scope.selected_books[0];
 		}
@@ -42,9 +47,10 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}
 		$scope.tel = [];
 		if(query.length >= 10) {
-			$http.get('/api/' + $scope.user + '/tel/' + query)
-				.success( function (data) {
-					console.log(data);
+			/*$http.get('/api/' + $scope.user + '/tel/' + query)
+				.success( 
+				*/
+			APIservice.tel.read(query, function (data) {
 					for(var i = 0; i < data.Results.length; i++) {
 						if(data.Results[i].TITLE && data.Results[i].CREATOR) {
 							var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
@@ -57,9 +63,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 							$scope.tel.push(addbook);
 						}
 					}
-					console.log($scope.tel);
 					$scope.tel =  $filter('filter')($scope.tel, $scope.newbook, true);
-					console.log($scope.tel);
 					$scope.selected_books = $scope.selected_books.concat($scope.tel);
 					if($scope.tel.length == 1) {
 						$scope.newbook = $scope.tel[0];
@@ -77,7 +81,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 				arr.push(sel[i][prop].toString());
 			}
 		}
-		console.log($scope.selected_books);
 		return arr;
 	};
 	//////////// BOOK DETAIL MODAL //////////////////
