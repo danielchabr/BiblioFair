@@ -18,16 +18,16 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, book, APIservice) {
 			zoomOnDoubleClick:true                    /*zoom in when double-clicking on map*/ 
 		};
 		$scope.map = new MQA.TileMap(options);
-	};
-	APIservice.books.readById($scope.details_view._id, function(data) {
-		console.log(data.users);
-		for(var i = 0; i < data.users.length; i++) {
-			if(data.users[i].loc.coordinates != [-30, 30]) {
-				console.log( data.users[i].loc.coordinates[1] + ' ' + data.users[i].loc.coordinates[0]);
-				var point = new MQA.Poi( {lat: data.users[i].loc.coordinates[1], lng: data.users[i].loc.coordinates[0]} );
-				$scope.map.addShape(point);
+		APIservice.books.readById($scope.details_view._id, function(data) {
+			console.log(data.users);
+			for(var i = 0; i < data.users.length; i++) {
+				if(data.users[i].loc.coordinates && data.users[i].loc.coordinates != [-30, 30]) {
+					console.log( data.users[i].loc.coordinates[1] + ' ' + data.users[i].loc.coordinates[0]);
+					var point = new MQA.Poi( {lat: data.users[i].loc.coordinates[1], lng: data.users[i].loc.coordinates[0]} );
+					$scope.map.addShape(point);
+				}
+				$scope.map.bestFit(false, 4, 12);
 			}
-			$scope.map.bestFit(false, 4, 12);
-		}
-	});
+		});
+	};
 };
