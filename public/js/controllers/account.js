@@ -2,13 +2,20 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 	$scope.centerLat = 30;
 	$scope.centerLng = -30;
 	$scope.save_text = $translate('ACCOUNT.SAVE');
-	$scope.save = function () {
+	$scope.save = function() {
+		$scope.save_text = $translate('ACCOUNT.SAVING');
+		APIservice.users.update({lng: $scope.centerLng, lat: $scope.centerLat}, function (data, stat) {
+			$scope.save_text = $translate('ACCOUNT.SAVED');
+
+		});
+	};
+	/*$scope.save = function () {
 		$scope.save_text = $translate('ACCOUNT.SAVING');
 		$http.post('/api/' + $scope.user + '/users/update', {loc:{lat:$scope.centerLat, lng:$scope.centerLng}})
 			.success( function(data) {
 				$scope.save_text = $translate('ACCOUNT.SAVED');
 			});
-	};
+	};*/
 	$scope.draw_map = function()
 	{
 		var options={
@@ -23,9 +30,9 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 	};
 	$scope.draw_map();
 	APIservice.users.read(function(data) {
-		if(data.loc.lat && data.loc.lng) {
-			$scope.centerLat = data.loc.lat;
-			$scope.centerLng = data.loc.lng;
+		if(data.loc.coordinates.length == 2) {
+			$scope.centerLat = data.loc.coordinates[1];
+			$scope.centerLng = data.loc.coordinates[0];
 			$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
 		}
 	});
