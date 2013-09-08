@@ -4,6 +4,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 	});
 	APIservice.library.read(function(data) {
 		 $rootScope.mybooks = [];
+		 console.log(data);
 		 for(var i = 0; i < data.library.length; i++) {
 			 $rootScope.mybooks.push(data.library[i].id);
 		 }

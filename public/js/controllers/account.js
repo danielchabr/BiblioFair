@@ -48,5 +48,8 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		$scope.$apply();
 	};
 	MQA.EventManager.addListener($scope.map, 'move', update_loc);
+	MQA.EventManager.addListener($scope.map, 'drag', update_loc);
+	MQA.EventManager.addListener($scope.map, 'click', update_loc);
+	MQA.EventManager.addListener($scope.map, 'doubleclick', update_loc);
 	MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
 }
