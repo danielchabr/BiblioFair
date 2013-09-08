@@ -1,4 +1,4 @@
-angular.module("ui.bootstrap", ["ui.bootstrap.tpls", "ui.bootstrap.transition","ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.bindHtml","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.position","ui.bootstrap.datepicker","ui.bootstrap.dropdownToggle","ui.bootstrap.modal","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]);
+angular.module("ui.bootstrap", ["ui.bootstrap.tpls", "ui.bootstrap.transition","ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.position","ui.bootstrap.datepicker","ui.bootstrap.dropdownToggle","ui.bootstrap.modal","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]);
 angular.module("ui.bootstrap.tpls", ["template/accordion/accordion-group.html","template/accordion/accordion.html","template/alert/alert.html","template/carousel/carousel.html","template/carousel/slide.html","template/datepicker/datepicker.html","template/datepicker/popup.html","template/modal/backdrop.html","template/modal/window.html","template/pagination/pager.html","template/pagination/pagination.html","template/tooltip/tooltip-html-unsafe-popup.html","template/tooltip/tooltip-popup.html","template/popover/popover.html","template/progressbar/bar.html","template/progressbar/progress.html","template/rating/rating.html","template/tabs/tab.html","template/tabs/tabset-titles.html","template/tabs/tabset.html","template/timepicker/timepicker.html","template/typeahead/typeahead-match.html","template/typeahead/typeahead-popup.html"]);
 angular.module('ui.bootstrap.transition', [])
 
@@ -337,16 +337,6 @@ angular.module("ui.bootstrap.alert", []).directive('alert', function () {
   };
 });
 
-angular.module('ui.bootstrap.bindHtml', [])
-
-  .directive('bindHtmlUnsafe', function () {
-    return function (scope, element, attr) {
-      element.addClass('ng-binding').data('$binding', attr.bindHtmlUnsafe);
-      scope.$watch(attr.bindHtmlUnsafe, function bindHtmlUnsafeWatchAction(value) {
-        element.html(value || '');
-      });
-    };
-  });
 angular.module('ui.bootstrap.buttons', [])
 
   .constant('buttonConfig', {
@@ -820,8 +810,8 @@ angular.module('ui.bootstrap.position', [])
         return {
           width: element.prop('offsetWidth'),
           height: element.prop('offsetHeight'),
-          top: boundingClientRect.top + ($window.pageYOffset || $document[0].body.scrollTop || $document[0].documentElement.scrollTop),
-          left: boundingClientRect.left + ($window.pageXOffset || $document[0].body.scrollLeft  || $document[0].documentElement.scrollLeft)
+          top: boundingClientRect.top + ($window.pageYOffset || $document[0].body.scrollTop),
+          left: boundingClientRect.left + ($window.pageXOffset || $document[0].body.scrollLeft)
         };
       }
     };
@@ -1101,6 +1091,23 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
         scope.$destroy();
       });
 
+      function formatDate(value) {
+        return (value) ? dateFilter(value, dateFormat) : null;
+      }
+      ngModel.$formatters.push(formatDate);
+
+      // TODO: reverse from dateFilter string to Date object
+      function parseDate(value) {
+        if ( value ) {
+          var date = new Date(value);
+          if (!isNaN(date)) {
+            return date;
+          }
+        }
+        return value;
+      }
+      ngModel.$parsers.push(parseDate);
+
       var getIsOpen, setIsOpen;
       if ( attrs.isOpen ) {
         getIsOpen = $parse(attrs.isOpen);
@@ -1145,58 +1152,33 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
         datepickerEl.attr(angular.extend({}, originalScope.$eval(attrs.datepickerOptions)));
       }
 
-      // TODO: reverse from dateFilter string to Date object
-      function parseDate(viewValue) {
-        if (!viewValue) {
-          ngModel.$setValidity('date', true);
-          return null;
-        } else if (angular.isDate(viewValue)) {
-          ngModel.$setValidity('date', true);
-          return viewValue;
-        } else if (angular.isString(viewValue)) {
-          var date = new Date(viewValue);
-          if (isNaN(date)) {
-            ngModel.$setValidity('date', false);
-            return undefined;
-          } else {
-            ngModel.$setValidity('date', true);
-            return date;
-          }
-        } else {
-          ngModel.$setValidity('date', false);
-          return undefined;
-        }
-      }
-      ngModel.$parsers.unshift(parseDate);
+      var $setModelValue = $parse(attrs.ngModel).assign;
 
       // Inner change
       scope.dateSelection = function() {
-        ngModel.$setViewValue(scope.date);
-        ngModel.$render();
-
+        $setModelValue(originalScope, scope.date);
         if (closeOnDateSelection) {
           setOpen( false );
         }
       };
 
-      element.bind('input change keyup', function() {
-        scope.$apply(function() {
-          updateCalendar();
-        });
-      });
-
       // Outter change
-      ngModel.$render = function() {
-        var date = ngModel.$viewValue ? dateFilter(ngModel.$viewValue, dateFormat) : '';
-        element.val(date);
+      scope.$watch(function() {
+        return ngModel.$modelValue;
+      }, function(value) {
+        if (angular.isString(value)) {
+          var date = parseDate(value);
 
-        updateCalendar();
-      };
-
-      function updateCalendar() {
-        scope.date = ngModel.$modelValue;
+          if (value && !date) {
+            $setModelValue(originalScope, null);
+            throw new Error(value + ' cannot be parsed to a date object.');
+          } else {
+            value = date;
+          }
+        }
+        scope.date = value;
         updatePosition();
-      }
+      });
 
       function addWatchableAttribute(attribute, scopeProperty, datepickerAttribute) {
         if (attribute) {
@@ -1245,8 +1227,6 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
           setIsOpen(originalScope, value);
         }
       });
-
-      var $setModelValue = $parse(attrs.ngModel).assign;
 
       scope.today = function() {
         $setModelValue(originalScope, new Date());
@@ -1352,13 +1332,6 @@ angular.module('ui.bootstrap.modal', [])
               }
             }
           },
-          keys: function() {
-            var keys = [];
-            for (var i = 0; i < stack.length; i++) {
-              keys.push(stack[i].key);
-            }
-            return keys;
-          },
           top: function () {
             return stack[stack.length - 1];
           },
@@ -1389,6 +1362,7 @@ angular.module('ui.bootstrap.modal', [])
   .directive('modalBackdrop', ['$modalStack', '$timeout', function ($modalStack, $timeout) {
     return {
       restrict: 'EA',
+      scope: {},
       replace: true,
       templateUrl: 'template/modal/backdrop.html',
       link: function (scope, element, attrs) {
@@ -1400,10 +1374,11 @@ angular.module('ui.bootstrap.modal', [])
 
         scope.close = function (evt) {
           var modal = $modalStack.getTop();
-          if (modal && modal.value.backdrop && modal.value.backdrop != 'static') {
+          //TODO: this logic is duplicated with the place where modal gets opened
+          if (modal && modal.window.backdrop && modal.window.backdrop != 'static') {
             evt.preventDefault();
             evt.stopPropagation();
-            $modalStack.dismiss(modal.key, 'backdrop click');
+            $modalStack.dismiss(modal.instance, 'backdrop click');
           }
         };
       }
@@ -1413,15 +1388,11 @@ angular.module('ui.bootstrap.modal', [])
   .directive('modalWindow', ['$timeout', function ($timeout) {
     return {
       restrict: 'EA',
-      scope: {
-        index: '@'
-      },
+      scope: {},
       replace: true,
       transclude: true,
       templateUrl: 'template/modal/window.html',
       link: function (scope, element, attrs) {
-        scope.windowClass = attrs.windowClass || '';
-
         //trigger CSS transitions
         $timeout(function () {
           scope.animate = true;
@@ -1433,26 +1404,9 @@ angular.module('ui.bootstrap.modal', [])
   .factory('$modalStack', ['$document', '$compile', '$rootScope', '$$stackedMap',
     function ($document, $compile, $rootScope, $$stackedMap) {
 
-      var backdropjqLiteEl, backdropDomEl;
-      var backdropScope = $rootScope.$new(true);
       var body = $document.find('body').eq(0);
       var openedWindows = $$stackedMap.createNew();
       var $modalStack = {};
-
-      function backdropIndex() {
-        var topBackdropIndex = -1;
-        var opened = openedWindows.keys();
-        for (var i = 0; i < opened.length; i++) {
-          if (openedWindows.get(opened[i]).value.backdrop) {
-            topBackdropIndex = i;
-          }
-        }
-        return topBackdropIndex;
-      }
-
-      $rootScope.$watch(backdropIndex, function(newBackdropIndex){
-        backdropScope.index = newBackdropIndex;
-      });
 
       function removeModalWindow(modalInstance) {
 
@@ -1461,13 +1415,12 @@ angular.module('ui.bootstrap.modal', [])
         //clean up the stack
         openedWindows.remove(modalInstance);
 
-        //remove window DOM element
+        //remove DOM element
         modalWindow.modalDomEl.remove();
 
-        //remove backdrop if no longer needed
-        if (backdropIndex() == -1) {
-          backdropDomEl.remove();
-          backdropDomEl = undefined;
+        //remove backdrop
+        if (modalWindow.backdropDomEl) {
+          modalWindow.backdropDomEl.remove();
         }
 
         //destroy scope
@@ -1489,27 +1442,24 @@ angular.module('ui.bootstrap.modal', [])
 
       $modalStack.open = function (modalInstance, modal) {
 
+        var backdropDomEl;
+        if (modal.backdrop) {
+          backdropDomEl = $compile(angular.element('<modal-backdrop>'))($rootScope);
+          body.append(backdropDomEl);
+        }
+        var modalDomEl = $compile(angular.element('<modal-window>').html(modal.content))(modal.scope);
+        body.append(modalDomEl);
+
+        
+
         openedWindows.add(modalInstance, {
           deferred: modal.deferred,
           modalScope: modal.scope,
+          modalDomEl: modalDomEl,
           backdrop: modal.backdrop,
+          backdropDomEl: backdropDomEl,
           keyboard: modal.keyboard
         });
-
-        var angularDomEl = angular.element('<div modal-window></div>');
-        angularDomEl.attr('window-class', modal.windowClass);
-        angularDomEl.attr('index', openedWindows.length() - 1);
-        angularDomEl.html(modal.content);
-
-        var modalDomEl = $compile(angularDomEl)(modal.scope);
-        openedWindows.top().value.modalDomEl = modalDomEl;
-        body.append(modalDomEl);
-
-        if (backdropIndex() >= 0 && !backdropDomEl) {
-            backdropjqLiteEl = angular.element('<div modal-backdrop></div>');
-            backdropDomEl = $compile(backdropjqLiteEl)(backdropScope);
-            body.append(backdropDomEl);
-        }
       };
 
       $modalStack.close = function (modalInstance, result) {
@@ -1529,7 +1479,13 @@ angular.module('ui.bootstrap.modal', [])
       };
 
       $modalStack.getTop = function () {
-        return openedWindows.top();
+        var top = openedWindows.top();
+        if (top) {
+          return {
+            instance: top.key,
+            window: top.value
+          };
+        }
       };
 
       return $modalStack;
@@ -1537,11 +1493,13 @@ angular.module('ui.bootstrap.modal', [])
 
   .provider('$modal', function () {
 
-    var $modalProvider = {
-      options: {
-        backdrop: true, //can be also false or 'static'
-        keyboard: true
-      },
+    var defaultOptions = {
+      backdrop: true, //can be also false or 'static'
+      keyboard: true
+    };
+
+    return {
+      options: defaultOptions,
       $get: ['$injector', '$rootScope', '$q', '$http', '$templateCache', '$controller', '$modalStack',
         function ($injector, $rootScope, $q, $http, $templateCache, $controller, $modalStack) {
 
@@ -1574,15 +1532,15 @@ angular.module('ui.bootstrap.modal', [])
               result: modalResultDeferred.promise,
               opened: modalOpenedDeferred.promise,
               close: function (result) {
-                $modalStack.close(modalInstance, result);
+                $modalStack.close(this, result);
               },
               dismiss: function (reason) {
-                $modalStack.dismiss(modalInstance, reason);
+                $modalStack.dismiss(this, reason);
               }
             };
 
             //merge and clean up options
-            modalOptions = angular.extend({}, $modalProvider.options, modalOptions);
+            modalOptions = angular.extend(defaultOptions, modalOptions);
             modalOptions.resolve = modalOptions.resolve || {};
 
             //verify options
@@ -1597,8 +1555,6 @@ angular.module('ui.bootstrap.modal', [])
             templateAndResolvePromise.then(function resolveSuccess(tplAndVars) {
 
               var modalScope = (modalOptions.scope || $rootScope).$new();
-              modalScope.$close = modalInstance.close;
-              modalScope.$dismiss = modalInstance.dismiss;
 
               var ctrlInstance, ctrlLocals = {};
               var resolveIter = 1;
@@ -1619,8 +1575,7 @@ angular.module('ui.bootstrap.modal', [])
                 deferred: modalResultDeferred,
                 content: tplAndVars[0],
                 backdrop: modalOptions.backdrop,
-                keyboard: modalOptions.keyboard,
-                windowClass: modalOptions.windowClass
+                keyboard: modalOptions.keyboard
               });
 
             }, function resolveError(reason) {
@@ -1639,8 +1594,6 @@ angular.module('ui.bootstrap.modal', [])
           return $modal;
         }]
     };
-
-    return $modalProvider;
   });
 angular.module('ui.bootstrap.pagination', [])
 
@@ -1889,7 +1842,7 @@ angular.module('ui.bootstrap.pagination', [])
  * function, placement as a function, inside, support for more triggers than
  * just mouse enter/leave, html tooltips, and selector delegation.
  */
-angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap.bindHtml' ] )
+angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position' ] )
 
 /**
  * The $tooltip service creates tooltip- and popover-like directives as well as
@@ -2351,8 +2304,8 @@ angular.module('ui.bootstrap.rating', [])
 
 .constant('ratingConfig', {
   max: 5,
-  stateOn: null,
-  stateOff: null
+  stateOn: 'icon-star',
+  stateOff: 'icon-star-empty'
 })
 
 .controller('RatingController', ['$scope', '$attrs', '$parse', 'ratingConfig', function($scope, $attrs, $parse, ratingConfig) {
@@ -2980,7 +2933,7 @@ angular.module('ui.bootstrap.timepicker', [])
   };
 }]);
 
-angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap.bindHtml'])
+angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position'])
 
 /**
  * A helper service that can parse typeahead's syntax (string provided by users)
@@ -3225,18 +3178,9 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         }
       });
 
-      // Keep reference to click handler to unbind it.
-      var dismissClickHandler = function (evt) {
-        if (element[0] !== evt.target) {
-          resetMatches();
-          scope.$digest();
-        }
-      };
-
-      $document.bind('click', dismissClickHandler);
-
-      originalScope.$on('$destroy', function(){
-        $document.unbind('click', dismissClickHandler);
+      $document.bind('click', function(){
+        resetMatches();
+        scope.$digest();
       });
 
       element.after($compile(popUpEl)(scope));
@@ -3304,7 +3248,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
     }
 
     return function(matchItem, query) {
-      return query ? matchItem.replace(new RegExp(escapeRegexp(query), 'gi'), '<strong>$&</strong>') : matchItem;
+      return query ? matchItem.replace(new RegExp(escapeRegexp(query), 'gi'), '<strong>$&</strong>') : query;
     };
   });
 angular.module("template/accordion/accordion-group.html", []).run(["$templateCache", function($templateCache) {
@@ -3399,12 +3343,12 @@ angular.module("template/datepicker/popup.html", []).run(["$templateCache", func
 
 angular.module("template/modal/backdrop.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/modal/backdrop.html",
-    "<div class=\"modal-backdrop fade\" ng-class=\"{in: animate}\" ng-style=\"{'z-index': 1040 + index*10}\" ng-click=\"close($event)\"></div>");
+    "<div class=\"modal-backdrop fade\" ng-class=\"{in: animate}\" ng-click=\"close($event)\"></div>");
 }]);
 
 angular.module("template/modal/window.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/modal/window.html",
-    "<div class=\"modal fade {{ windowClass }}\" ng-class=\"{in: animate}\" ng-style=\"{'z-index': 1050 + index*10}\" ng-transclude></div>");
+    "<div class=\"modal fade\" ng-class=\"{in: animate}\" ng-transclude></div>");
 }]);
 
 angular.module("template/pagination/pager.html", []).run(["$templateCache", function($templateCache) {
@@ -3470,7 +3414,7 @@ angular.module("template/progressbar/progress.html", []).run(["$templateCache", 
 angular.module("template/rating/rating.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/rating/rating.html",
     "<span ng-mouseleave=\"reset()\">\n" +
-    "	<i ng-repeat=\"r in range\" ng-mouseenter=\"enter($index + 1)\" ng-click=\"rate($index + 1)\" ng-class=\"$index < val && (r.stateOn || 'icon-star') || (r.stateOff || 'icon-star-empty')\"></i>\n" +
+    "	<i ng-repeat=\"r in range\" ng-mouseenter=\"enter($index + 1)\" ng-click=\"rate($index + 1)\" ng-class=\"$index < val && r.stateOn || r.stateOff\"></i>\n" +
     "</span>");
 }]);
 
@@ -3519,7 +3463,7 @@ angular.module("template/timepicker/timepicker.html", []).run(["$templateCache",
     "		<td class=\"control-group\" ng-class=\"{'error': invalidHours}\"><input type=\"text\" ng-model=\"hours\" ng-change=\"updateHours()\" class=\"span1 text-center\" ng-mousewheel=\"incrementHours()\" ng-readonly=\"readonlyInput\" maxlength=\"2\" /></td>\n" +
     "		<td>:</td>\n" +
     "		<td class=\"control-group\" ng-class=\"{'error': invalidMinutes}\"><input type=\"text\" ng-model=\"minutes\" ng-change=\"updateMinutes()\" class=\"span1 text-center\" ng-readonly=\"readonlyInput\" maxlength=\"2\"></td>\n" +
-    "		<td ng-show=\"showMeridian\"><button type=\"button\" ng-click=\"toggleMeridian()\" class=\"btn text-center\">{{meridian}}</button></td>\n" +
+    "		<td ng-show=\"showMeridian\"><button ng-click=\"toggleMeridian()\" class=\"btn text-center\">{{meridian}}</button></td>\n" +
     "	</tr>\n" +
     "	<tr class=\"text-center\">\n" +
     "		<td><a ng-click=\"decrementHours()\" class=\"btn btn-link\"><i class=\"icon-chevron-down\"></i></a></td>\n" +
@@ -3532,7 +3476,7 @@ angular.module("template/timepicker/timepicker.html", []).run(["$templateCache",
 
 angular.module("template/typeahead/typeahead-match.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("template/typeahead/typeahead-match.html",
-    "<a tabindex=\"-1\" bind-html-unsafe=\"match.label | typeaheadHighlight:query\"></a>");
+    "<a tabindex=\"-1\" ng-bind-html-unsafe=\"match.label | typeaheadHighlight:query\"></a>");
 }]);
 
 angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCache", function($templateCache) {
