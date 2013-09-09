@@ -35,22 +35,22 @@
 	<div class="row">
 		<div class="col-xs-9">
 			<ul class="bookview">
-				<li class="col-lg-4 col-sm-6" ng-repeat="book in books | filter:search | orderBy:bookOrder">
-					<div class="well" ng-click="open(book)">
-						<div class="row">
-							<div class="col-xs-10">
-								<h4>{{book.title}}</h4>
-								<p>
-								<i>{{book.author}}</i>
-								</p>
-							</div>
-							<div class="col-xs-2">
-								<div class="row" style="text-align:right">
-									<i class="icon-info-sign icon-large" style="margin-right:15px"></i>
-								</div>
+				<li class="col-lg-4 col-sm-6" ng-repeat="book in books | filter:search | orderBy:bookOrder | paginationShift:(currentPage-1)*pageSize | limitTo:pageSize">
+				<div class="well" ng-click="open(book)">
+					<div class="row">
+						<div class="col-xs-10">
+							<h4>{{book.title}}</h4>
+							<p>
+							<i>{{book.author}}</i>
+							</p>
+						</div>
+						<div class="col-xs-2">
+							<div class="row" style="text-align:right">
+								<i class="icon-info-sign icon-large" style="margin-right:15px"></i>
 							</div>
 						</div>
 					</div>
+				</div>
 				</li>
 			</ul>
 		</div>
@@ -73,5 +73,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="container col-xs-9 text-center">
+		<pagination total-items="books.length" page="currentPage" items-per-gae="pageSize"></pagination>
 	</div>
 </div>
