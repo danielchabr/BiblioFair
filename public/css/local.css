@@ -8,10 +8,9 @@
 	font-size: 22px;
 	color:		#FFFFFF;
 }
-//.formlegend {
-//	font-family: 'Alegreya', serif;
-//	font-size:22px;
-//}
+.modal-dialog {
+	padding-bottom: 55px;
+}
 .round {
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
