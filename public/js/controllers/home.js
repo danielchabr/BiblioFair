@@ -19,5 +19,13 @@ function homeControl($rootScope, $scope, $http, $modal, $location, APIservice) {
 		}, function () {
 		});
 	};
+	$scope.currentPage = 1;
+	$scope.pageSize = 12;
 }
+	myApp.filter('paginationShift', function() {
+		return function(input, start) {
+			start = +start;
+			return input.slice(start);
+		};
+	});
 
