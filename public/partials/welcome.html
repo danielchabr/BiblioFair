@@ -25,8 +25,8 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" style="color: black">
-					<li><a role="menuitem" tabindex="-1" ng-click="changeLanguage('en')">{{ 'NAV.ENGLISH' | translate }}</a></li>
-					<li><a role="menuitem" tabindex="-1" ng-click="changeLanguage('cz')">{{ 'NAV.CZECH' | translate }}</a></li>
+					<li><a role="menuitem" tabindex="-1" ng-init="lang='en'" ng-click="changeLanguage('en');lang='en'">{{ 'NAV.ENGLISH' | translate }}</a></li>
+					<li><a role="menuitem" tabindex="-1" ng-click="changeLanguage('cz');lang='cz'">{{ 'NAV.CZECH' | translate }}</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -55,12 +55,16 @@
 				<form>
 					<fieldset>
 						<legend>{{ 'WELCOME.REGISTER_TEXT' | translate }}</legend> 
+						<div class="form-group" id="div_signup_username">
+							<label class="sr-only" for="signup_username">{{ 'WELCOME.USERNAME' | translate }}</label>
+							<input type="text" id="username" ng-model="signup_username" class="form-control" placeholder="{{ 'WELCOME.USERNAME' | translate }}" required>
+						</div>
 						<div class="form-group" id="div_signup_email">
-							<label class="sr-only" for="signup_email">Sign up email:</label>
+							<label class="sr-only" for="signup_email">{{ 'WELCOME.EMAIL' | translate }}</label>
 							<input type="email" id="email" ng-model="signup_email" class="form-control" placeholder="{{ 'WELCOME.EMAIL' | translate }}" required>
 						</div>
 						<div class="form-group" id="div_signup_password">
-							<label class="sr-only" for="signup_password">Sign up password:</label>
+							<label class="sr-only" for="signup_password">{{ 'WELCOME.PASSWORD' | translate }}</label>
 							<input type="password" ng-model="signup_password" class="form-control" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
 						</div>
 						<div class="row">
@@ -78,12 +82,12 @@
 				<form>
 					<fieldset>
 						<legend>{{ 'WELCOME.SIGNIN_TEXT' | translate }}</legend> 
-						<div class="form-group" id="div_login_email">
-							<label class="sr-only" for="login_email">Login email:</label>
-							<input type="email" id="login_email" ng-model="login_email"  class="form-control" placeholder="{{ 'WELCOME.EMAIL' | translate }}" required>
+						<div class="form-group" id="div_login_id">
+							<label class="sr-only" for="login_id">{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}</label>
+							<input type="text" id="login_id" ng-model="login_id"  class="form-control" placeholder="{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}" required>
 						</div>
 						<div class="form-group" id="div_login_password">
-							<label class="sr-only" for="login_password">Login password:</label>
+							<label class="sr-only" for="login_password">{{ 'WELCOME.PASSWORD' | translate }}</label>
 							<input type="password" id="login_password" ng-model="login_password" class="form-control" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
 						</div>
 						<div class="row">
