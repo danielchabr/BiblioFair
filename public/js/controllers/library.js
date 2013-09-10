@@ -58,7 +58,13 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 							$scope.tel.push(addbook);
 						}
 					}
-					$scope.tel =  $filter('filter')($scope.tel, $scope.newbook, true);
+					var template = {};
+					for (var prop in $scope.newbook) {
+						template[prop] = $scope.newbook[prop];
+					}
+					delete template.edition;
+					delete template.volume;
+					$scope.tel =  $filter('filter')($scope.tel, template, true);
 					$scope.selected_books = $scope.selected_books.concat($scope.tel);
 					if($scope.tel.length == 1) {
 						$scope.newbook = $scope.tel[0];
