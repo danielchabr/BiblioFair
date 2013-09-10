@@ -64,7 +64,10 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 					}
 					delete template.edition;
 					delete template.volume;
+					console.log($scope.tel);
+					console.log(template);
 					$scope.tel =  $filter('filter')($scope.tel, template, true);
+					console.log($scope.tel);
 					$scope.selected_books = $scope.selected_books.concat($scope.tel);
 					if($scope.tel.length == 1) {
 						$scope.newbook = $scope.tel[0];

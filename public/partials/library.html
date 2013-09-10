@@ -113,7 +113,7 @@
 									<div class="form-group col-xs-6">
 										<label class="" for="new_language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}:</label>
 										<select class="form-control" id="new_language" ng-model="newbook.language" ng-init="newbook.language=1">
-											<option value="{{abbr[$index]}}" ng-repeat="lang in languages track by $index">{{lang}}</option>
+											<option ng-repeat="lang in languages track by $index" value="{{abbr[$index]}}" ng-init="newbook.language=undefined">{{lang}}</option>
 										</select>
 									</div>
 								</div>
