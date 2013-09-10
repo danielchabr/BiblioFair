@@ -28,7 +28,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide'
 	$translateProvider.translations('cz', translateCZ);
 	$translateProvider.preferredLanguage('en');
 }]);
-myApp.run(function ($rootScope, $http, $location, $translate) {
+myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 	$rootScope.books = [];
 	$rootScope.mybooks = [];
 	$rootScope.user = {};
@@ -42,11 +42,11 @@ myApp.run(function ($rootScope, $http, $location, $translate) {
 	});
 
 	$rootScope.logout = function () {
-		$rootScope.user = {}
-		$http.post('/logout', {});
-		//clearListCookies();
-		$location.path('/login');
-	}
+		$rootScope.user = {};
+		APIservice.users.del(function(data) {
+			$location.path('/login');
+		});
+	};
 	$rootScope.collapse = function () {
 		$rootScope.isCollapsed = $('.navbar-toggle').css("display") == 'none';
 	};

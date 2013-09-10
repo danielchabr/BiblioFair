@@ -13,9 +13,9 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 			var data = { id: $rootScope.user.id, token: $rootScope.user.token, loc: [data.lng, data.lat]};
 			$http.put('/api/v1/users', data).success(callback);
 		},
-		del: function () {
+		del: function (callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token}};
-			$http.delete('/api/v1/users', par);
+			$http.delete('/api/v1/users', par).success(callback);
 		}
 	};
 	f.library = {
