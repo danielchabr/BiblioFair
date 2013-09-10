@@ -18,6 +18,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide'
 				if (status == 401) {
 					$rootScope.redirect = $location.url(); // save the current url so we can redirect the user back
 					$location.path('/login');
+					$location.replace();
 				}
 				return $q.reject(rejection);
 			}
