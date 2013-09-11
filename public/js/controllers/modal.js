@@ -21,7 +21,7 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, book, APIservice) {
 		APIservice.books.readById($scope.details_view._id, function(data) {
 			console.log(data.users);
 			for(var i = 0; i < data.users.length; i++) {
-				if(data.users[i].loc.coordinates && data.users[i].loc.coordinates != [-30, 30]) {
+				if(data.users[i].loc.coordinates && data.users[i].loc.coordinates.length == 2 && data.users[i].loc.coordinates != [-30, 30]) {
 					console.log( data.users[i].loc.coordinates[1] + ' ' + data.users[i].loc.coordinates[0]);
 					var point = new MQA.Poi( {lat: data.users[i].loc.coordinates[1], lng: data.users[i].loc.coordinates[0]} );
 					$scope.map.addShape(point);
