@@ -62,20 +62,22 @@
 		<script src="http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4"></script> 
 	</head>
 	<body>
+		<div class="ng-view"></div>
+		<div class="col-xs-12" style="height:60px"></div>
 		<!-- AddThis Smart Layers BEGIN -->
 		<!-- Go to http://www.addthis.com/get/smart-layers to customize -->
-		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fd1d0b46333104"></script>
 		<script type="text/javascript">
-			addthis.layers({
+			$.getScript('//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fd1d0b46333104', function() {
+					    // replace the following line with your specific layers configuration
+				addthis.layers({
 					'theme' : 'transparent',
 					'share' : {
 					'position' : 'left',
 					'numPreferredServices' : 5
 					}   
 				});
+			});
 		</script>
 		<!-- AddThis Smart Layers END -->
-		<div class="ng-view"></div>
-		<div class="col-xs-12" style="height:60px"></div>
 	</body>
 </html>
