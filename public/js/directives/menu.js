@@ -6,7 +6,6 @@ myApp.directive('menu', function() {
 			if(attrs.menu == 'browse') scope.browse = 'active';
 			if(attrs.menu == 'library') scope.library = 'active';
 			if(attrs.menu == 'messages') scope.messages = 'active';
-			if(attrs.menu == 'wishlist') scope.wishlist = 'active';
 			if(attrs.menu == 'account') scope.account = 'active';
 		}
 	};

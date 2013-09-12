@@ -7,7 +7,6 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide'
 	.when('/library', {templateUrl: '/partials/library.html',   controller: libraryControl})
 	.when('/account', {templateUrl: '/partials/account.html',   controller: accountControl})
 	.when('/messages', {templateUrl: '/partials/messages.html',   controller: messagesControl})
-	.when('/wishlist', {templateUrl: '/partials/wishlist.html',   controller: wishlistControl})
 	.otherwise({redirectTo: '/'});
 	$locationProvider.html5Mode(true).hashPrefix('!');
 	$provide.factory('myHttpInterceptor', function($q, $location, $rootScope) {
