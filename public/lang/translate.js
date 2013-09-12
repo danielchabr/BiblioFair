@@ -1,6 +1,8 @@
 var translateEN = {
 	'NAV': { 'BROWSE': 'Browse',
 		'LIBRARY': 'My Library',
+		'MESSAGES': 'Messages',
+		'WISHLIST': 'Wish list',
 		'ACCOUNT': 'Account',
 		'SIGN_OUT': 'Sign out',
 		'LANGUAGE': 'Language',
@@ -53,6 +55,8 @@ var translateEN = {
 var translateCZ = {
 	'NAV': { 'BROWSE': 'Procházet',
 		'LIBRARY': 'Moje knihovna',
+		'MESSAGES': 'Zprávy',
+		'WISHLIST': 'Přání',
 		'ACCOUNT': 'Účet',
 		'SIGN_OUT': 'Odhlásit',
 		'LANGUAGE': 'Jazyk',
