@@ -11,9 +11,10 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 	});
 
 	$scope.addbook = function() {
+		console.log($scope.newbook.title + " " + $scope.newbook.author);
 		if($scope.newbook.title && $scope.newbook.author) {
 			if($scope.newbook.isbn) {
-				$scope.newbook.isbn = $scope.newbook.isbn.replace(/-/g, '');
+				//$scope.newbook.isbn = $scope.newbook.isbn.replace(/-/g, '');
 				if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
 			}
 			APIservice.library.create($scope.newbook, function(data, status) {
