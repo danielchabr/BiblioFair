@@ -43,9 +43,10 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		$scope.map.enableMouseWheelZoom();
 	});
 	var update_loc = function (){
+		$scope.$apply(function() {
 		$scope.centerLat = $scope.map.getCenter().lat;
 		$scope.centerLng = $scope.map.getCenter().lng;
-		$scope.$apply();
+		});
 	};
 	MQA.EventManager.addListener($scope.map, 'move', update_loc);
 	MQA.EventManager.addListener($scope.map, 'drag', update_loc);
