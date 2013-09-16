@@ -20,14 +20,14 @@
 		"crypto-js": ">= 3.1.2-1",
 		"mailgun": "~0.4.2"
 	},
-	"devDependencies": {
-/*		"recess": "1.1.9",
+	"comment_devDependencies": {
+		"recess": "1.1.9",
 		"less": "1.4.2",
 		"nodemon": "0.7.10",
 		"grunt-cli": "0.1.9",
 		"grunt": "0.4.1",
 		"grunt-contrib": "0.7.0",
-		"ngmin": "0.4.0"*/
+		"ngmin": "0.4.0"
 	},
 	"bundleDependencies": [],
 	"engines": {
