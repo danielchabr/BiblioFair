@@ -46,34 +46,47 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}
 		$scope.tel = [];
 		if(query.length >= 10) {
-			APIservice.tel.read(query, function (data) {
-					for(var i = 0; i < data.Results.length; i++) {
-						if(data.Results[i].TITLE && data.Results[i].CREATOR) {
-							var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
-							if(data.Results[i].SUBTITLE) addbook.subtitle = data.Results[i].SUBTITLE[0];
-							if(data.Results[i].YEAR) addbook.published = data.Results[i].YEAR[0];
-							if(data.Results[i].LANGUAGE) addbook.language = data.Results[i].LANGUAGE[0];
-							addbook.edition = 1;
-							addbook.volume = 1;
-							addbook.isbn = query;
-							$scope.tel.push(addbook);
-						}
+			var processData = function (data) {
+				for(var i = 0; i < data.Results.length; i++) {
+					if(data.Results[i].TITLE && data.Results[i].CREATOR) {
+						var addbook = {title: data.Results[i].TITLE[0], author: data.Results[i].CREATOR[0]};
+						if(data.Results[i].SUBTITLE) addbook.subtitle = data.Results[i].SUBTITLE[0];
+						if(data.Results[i].YEAR) addbook.published = data.Results[i].YEAR[0];
+						if(data.Results[i].LANGUAGE) addbook.language = data.Results[i].LANGUAGE[0];
+						addbook.edition = 1;
+						addbook.volume = 1;
+						if(query.length == 10) addbook.isbn = ISBN10toISBN13(query);
+						else addbook.isbn = query;
+						$scope.tel.push(addbook);
 					}
-					var template = {};
-					for (var prop in $scope.newbook) {
-						template[prop] = $scope.newbook[prop];
-					}
-					delete template.edition;
-					delete template.volume;
-					console.log($scope.tel);
-					console.log(template);
-					$scope.tel =  $filter('filter')($scope.tel, template, true);
-					console.log($scope.tel);
-					$scope.selected_books = $scope.selected_books.concat($scope.tel);
-					if($scope.tel.length == 1) {
-						$scope.newbook = $scope.tel[0];
-					}
-				});
+				}
+				var template = {};
+				for (var prop in $scope.newbook) {
+					template[prop] = $scope.newbook[prop];
+				}
+				delete template.edition;
+				delete template.volume;
+				if(template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
+				console.log(template.isbn);
+				$scope.tel =  $filter('filter')($scope.tel, template, true);
+				console.log($scope.tel);
+				$scope.selected_books = $scope.selected_books.concat($scope.tel);
+				if($scope.tel.length == 1) {
+					$scope.newbook = $scope.tel[0];
+				}
+			}
+			if(/97[89].*/.test(query)) {
+				if(query.length == 13) {
+					console.log('check1');
+					APIservice.tel.read(query, processData);
+					APIservice.tel.read(ISBN13toISBN10(query), processData);
+				}
+			}
+			else {
+				console.log('check2');
+				APIservice.tel.read(query, processData);
+				APIservice.tel.read(ISBN10toISBN13(query), processData);
+			}
 		}
 	}
 	// retrieves array of wanted property in books, checks for empty slots
@@ -86,6 +99,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}
 		delete template.edition;
 		delete template.volume;
+		if(template.isbn && template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
 		var sel = $filter('filter')($scope.selected_books, template);
 		for (var i = 0; i < sel.length;i++) {
 			if(sel[i][prop]) {

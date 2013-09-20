@@ -28,7 +28,7 @@ function ISBN10toISBN13(isbn10) {
  * The isbn13 is a string of length 13 and must be a legal isbn13. No dashes.
  */
 function ISBN13toISBN10(isbn13) {
-	if(typeof isbn13 != String || isbn13.length != 13) return false;
+	if(typeof isbn13 != 'string' || isbn13.length != 13) return false;
 
 	var start = isbn13.substring(3, 12);
 	var sum = 0;
