@@ -15,7 +15,7 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 		},
 		del: function (callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token}};
-			$http.delete('/api/v1/users', par).success(callback);
+			$http['delete']('/api/v1/users', par).success(callback);
 		}
 	};
 	f.library = {
@@ -29,7 +29,7 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 		},
 		del: function (bookId, callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token, book: bookId}};
-			$http.delete('/api/v1/library', par).success(callback);
+			$http['delete']('/api/v1/library', par).success(callback);
 		}
 	};
 	f.books = {
