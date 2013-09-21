@@ -25,8 +25,8 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, book, APIservice) {
 					console.log(data.users[i]);
 					console.log( data.users[i].loc.coordinates[1] + ' ' + data.users[i].loc.coordinates[0]);
 					var point = new MQA.Poi( {lat: data.users[i].loc.coordinates[1], lng: data.users[i].loc.coordinates[0]} );
-					point.setRolloverContent(data.users[i].username + '@bibliofair.com');
-					point.setInfoContentHTML(data.users[i].username + '@bibliofair.com');
+					point.setRolloverContent('<h4 style="margin:0">' + data.users[i].username + '@bibliofair.com</h4>');
+					point.setInfoContentHTML('<h4 style="margin:0">' + data.users[i].username + '@bibliofair.com</h4>');
 					$scope.map.addShape(point);
 				}
 				$scope.map.bestFit(false, 4, 12);
