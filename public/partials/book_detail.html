@@ -11,13 +11,13 @@
 	</p>
 </div>
 <div class="modal-body">
-	{{ 'LIBRARY.ADD.SUBTITLE' | translate }}: {{details_view.subtitle}}</br>
-	{{ 'LIBRARY.ADD.PUBLISHER' | translate }}: {{details_view.publisher}}</br>
-	{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</br>
-	{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</br>
-	{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</br>
-	{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</br>
-	{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</br></br>
+	<span ng-if="details_view.subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}: {{details_view.subtitle}}</br></span>
+	<span ng-if="details_view.publisher">{{ 'LIBRARY.ADD.PUBLISHER' | translate }}: {{details_view.publisher}}</br></span>
+	<span ng-if="details_view.published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</br></span>
+	<span ng-if="details_view.volume">{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</br></span>
+	<span ng-if="details_view.edition">{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</br></span>
+	<span ng-if="details_view.language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</br></span>
+	<span ng-if="details_view.isbn">{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</br></br></span>
 	<div style="height:300px">
 		<div id="map" ng-model="map" style="height:300px" ng-init="draw_map()"></div>
 	</div>
