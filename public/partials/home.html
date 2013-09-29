@@ -2,7 +2,7 @@
 <div class="container"><!-- style="margin-top:40px">-->
 	<div class="row" style="height:80px">
 	</div>
-	<div class="row">
+	<div class="row" style="padding-left:30px; padding-right:30px">
 		<div class="col-xs-12">
 			<h2 class="text-center">{{ 'HOME.BROWSE' | translate }}</h2>
 			<form class="row" action="" role="search">
@@ -12,7 +12,7 @@
 				</div>
 			</form>
 			<ul class="bookview row">
-				<li class="col-lg-3 col-sm-4" ng-repeat="book in books | filter:search | orderBy:bookOrder | paginationShift:(currentPage-1)*pageSize | limitTo:pageSize">
+				<li class="col-lg-3 col-md-4 col-sm-6" ng-repeat="book in books | filter:search | orderBy:bookOrder | paginationShift:(currentPage-1)*pageSize | limitTo:pageSize">
 				<div class="well" ng-click="open(book)">
 					<div class="row">
 						<div class="col-xs-10">
