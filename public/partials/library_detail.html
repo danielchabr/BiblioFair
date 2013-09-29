@@ -12,12 +12,13 @@
 </div>
 <div class="modal-body">
 	<span ng-if="details_view.subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}: {{details_view.subtitle}}</br></span>
-	<span ng-if="details_view.isbn">{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</br></br></span>
+	<span ng-if="details_view.isbn">{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</br></span>
 	<span ng-if="details_view.volume">{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</br></span>
 	<span ng-if="details_view.edition">{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</br></span>
 	<span ng-if="details_view.language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</br></span>
 	<span ng-if="details_view.publisher">{{ 'LIBRARY.ADD.PUBLISHER' | translate }}: {{details_view.publisher}}</br></span>
 	<span ng-if="details_view.published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</br></span>
+	<br>
 </div>
 <div class="modal-footer">
 	<button class="btn btn-primary pull-left" ng-click="remove()">{{ 'DETAIL.REMOVE' | translate }}</button>

@@ -3,6 +3,9 @@
 @-ms-viewport       { width: device-width; }
 @-o-viewport        { width: device-width; }
 @viewport           { width: device-width; }
+h1, h2, h3, h4, h5 {
+	margin-top: 10px;
+}
 .logo {
 	font-family: 'Sonsie One', cursive;
 	font-size: 22px;
@@ -31,9 +34,9 @@
 	max-width: none;
 }
 @media (max-width: 400px) {
-#lang {
-	display: none;
-}
+	#lang {
+		display: none;
+	}
 }
 .bookview {
 	list-style: none;

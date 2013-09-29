@@ -55,7 +55,7 @@
 			<div class="well">
 				<form>
 					<fieldset>
-						<legend>{{ 'WELCOME.REGISTER_TEXT' | translate }}</legend> 
+						<legend style="margin-bottom:10px;">{{ 'WELCOME.REGISTER_TEXT' | translate }}</legend> 
 						<div class="form-group" id="div_signup_username">
 							<label class="sr-only" for="signup_username">{{ 'WELCOME.USERNAME' | translate }}</label>
 							<input type="text" id="username" ng-model="signup_username" class="form-control" placeholder="{{ 'WELCOME.USERNAME' | translate }}" required>
@@ -70,7 +70,7 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-4">
-								<button ng-click="signup()" class="btn btn-success" style="margin-bottom:15px; width:100px">{{ 'WELCOME.JOIN' | translate }}</button>
+								<button ng-click="signup()" class="btn btn-success" style="margin-bottom:0px; width:100px"><b>{{ 'WELCOME.JOIN' | translate }}</b></button>
 							</div>
 							<div class="col-xs-8">
 								<p class="help-block text-danger">{{signup_message}}</p>
@@ -82,7 +82,7 @@
 			<div class="well">
 				<form>
 					<fieldset>
-						<legend>{{ 'WELCOME.SIGNIN_TEXT' | translate }}</legend> 
+						<legend style="margin-bottom:10px;">{{ 'WELCOME.SIGNIN_TEXT' | translate }}</legend> 
 						<div class="form-group" id="div_login_id">
 							<label class="sr-only" for="login_id">{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}</label>
 							<input type="text" id="login_id" ng-model="login_id"  class="form-control" placeholder="{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}" required>
@@ -96,7 +96,7 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-4">
-								<button ng-click="login()" class="btn btn-success" style="margin-bottom:15px; width:100px">{{ 'WELCOME.SIGNIN' | translate }}</button>
+								<button ng-click="login()" class="btn btn-success" style="margin-bottom:0px; width:100px"><b>{{ 'WELCOME.SIGNIN' | translate }}</b></button>
 							</div>
 							<div class="col-xs-6">
 								<p class="help-block text-danger">{{login_message}}</p>
