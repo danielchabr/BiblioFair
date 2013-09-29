@@ -53,5 +53,21 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 			$http.get('/api/v1/tel', par).success(callback);
 		}
 	};
+	f.messages = {
+		send: function (userTo, sender, userFrom, book, callback) {
+			var subject = 'Book request';
+			var body = ['Hello ' + userTo + '!',
+				'User ' + userFrom + ' would like to buy a book from you. If you are intereseted reply to this message and arrange details of the deal directly with him.',
+				'Details of requested book:',
+				'Title: ' + book.title,
+				'Author: ' + book.author,
+				'\nBest regards,',
+				'BiblioFair team'
+				].join('\n');
+			var recipient = userTo + '@bibliofair.com';
+			var data = { id: $rootScope.user.id, token: $rootScope.user.token, recipient: recipient, sender: sender, subject: subject, 'body-plain': body};
+			$http.post('/api/v1/messages', data).success(callback);
+		}
+	};
 	return f;
 }]);

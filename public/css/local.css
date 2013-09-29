@@ -16,6 +16,11 @@
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 }
+.well, .btn, .form-control, .modal-content {
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
 .map {
 	height:400px;
 }
