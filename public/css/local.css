@@ -16,10 +16,13 @@
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 }
-.well, .btn, .form-control, .modal-content {
+.well, .btn, .form-control, .modal-content, .pagination > li:first-child > a, .pagination > li:last-child > a {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
+}
+.navbar {
+	border: 0px;
 }
 .map {
 	height:400px;
