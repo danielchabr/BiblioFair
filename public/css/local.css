@@ -30,6 +30,11 @@
 .map img {
 	max-width: none;
 }
+@media (max-width: 400px) {
+#lang {
+	display: none;
+}
+}
 .bookview {
 	list-style: none;
 	padding: 0px;
