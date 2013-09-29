@@ -1,4 +1,4 @@
-function welcomeControl($rootScope, $scope, $http, $location, $translate) {
+function welcomeControl($rootScope, $scope, $http, $location, $translate, $modal) {
 	$scope.signup = function() {
 		if($scope.signup_email && $scope.signup_username && $scope.signup_password.length > 5) {
 			hash_username = CryptoJS.SHA3($scope.signup_password + $scope.signup_username, {outputLength: 256 });
@@ -42,5 +42,16 @@ function welcomeControl($rootScope, $scope, $http, $location, $translate) {
 			}
 		}
 	}
+	$scope.open = function () {
+		var modalInstance = $modal.open({
+			templateUrl: '/partials/recovery.html',
+			controller: ModalRecoveryCtrl,
+			resolve: {
+			}
+		});
+
+		modalInstance.result.then(function () {
+		});
+	};
 }
 

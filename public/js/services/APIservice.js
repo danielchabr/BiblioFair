@@ -10,7 +10,12 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 			$http.post('/api/v1/users', data);
 		},
 		update: function (data, callback) {
-			var data = { id: $rootScope.user.id, token: $rootScope.user.token, loc: [data.lng, data.lat]};
+			if(data.action && data.action == 'recover') {
+				var data = { action: 'recover', email: data.email};
+			}
+			else {
+				var data = { id: $rootScope.user.id, token: $rootScope.user.token, action: 'loc', loc: [data.lng, data.lat]};
+			}
 			$http.put('/api/v1/users', data).success(callback);
 		},
 		del: function (callback) {

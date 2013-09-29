@@ -90,12 +90,15 @@
 						<div class="form-group" id="div_login_password">
 							<label class="sr-only" for="login_password">{{ 'WELCOME.PASSWORD' | translate }}</label>
 							<input type="password" id="login_password" ng-model="login_password" class="form-control" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
+							<div class="col-xs-12 text-right" style="color:#888888">	
+								<i class="icon-question-sign icon-large" ng-click="open()" style="position:absolute;top:-28px; right:15px; cursor:pointer"></i> 
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-4">
 								<button ng-click="login()" class="btn btn-success" style="margin-bottom:15px; width:100px">{{ 'WELCOME.SIGNIN' | translate }}</button>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-xs-6">
 								<p class="help-block text-danger">{{login_message}}</p>
 							</div>
 						</div>

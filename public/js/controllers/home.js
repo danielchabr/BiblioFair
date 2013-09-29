@@ -7,7 +7,7 @@ function homeControl($rootScope, $scope, $http, $modal, $location, APIservice) {
 	$scope.open = function (book) {
 		var modalInstance = $modal.open({
 			templateUrl: '/partials/book_detail.html',
-			controller: ModalInstanceCtrl,
+			controller: ModalBookCtrl,
 			resolve: {
 				book: function () {
 					return book;
