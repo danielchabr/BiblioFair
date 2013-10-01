@@ -1,7 +1,7 @@
 function homeControl($rootScope, $scope, $http, $modal, $translate, $location, APIservice) {
 	$scope.bookOrder = 'title';
 	APIservice.books.read('','', 30, 0, function(data) {
-		 $rootScope.books = data
+		$rootScope.books = data
 	});
 
 	$scope.open = function (book) {
@@ -22,10 +22,10 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 	$scope.currentPage = 1;
 	$scope.pageSize = 12;
 }
-	myApp.filter('paginationShift', function() {
-		return function(input, start) {
-			start = +start;
-			return input.slice(start);
-		};
-	});
+myApp.filter('paginationShift', function() {
+	return function(input, start) {
+		start = +start;
+		return input.slice(start);
+	};
+});
 

@@ -77,6 +77,12 @@ var translateEN = {
 		'BY': 'By',
 		'CLOSE': 'Close',
 		'REMOVE': 'Remove'
+	},
+	'OTHER': {
+		'PAGINATION': {
+			'NEXT': 'Next',
+			'PREVIOUS': 'Previous'
+		}
 	}
 };
 var translateCZ = {
@@ -159,5 +165,11 @@ var translateCZ = {
 		'BY': 'od',
 		'CLOSE': 'Zavřít',
 		'REMOVE': 'Smazat'
+	},
+	'OTHER': {
+		'PAGINATION': {
+			'NEXT': 'Další',
+			'PREVIOUS': 'Předchozí'
+		}
 	}
 };
