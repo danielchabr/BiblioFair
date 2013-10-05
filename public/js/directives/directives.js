@@ -10,6 +10,13 @@ myApp.directive('menu', function() {
 	};
 	return directiveObject;
 });
+myApp.directive('info', function() {
+	var directiveObject = {
+		restrict: 'C',
+		templateUrl: '/partials/info.html'
+	};
+	return directiveObject;
+});
 /*
 myApp.directive('request', function($compile) {
 	var directiveObject = {
