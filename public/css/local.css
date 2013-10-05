@@ -77,11 +77,11 @@ html, body {
 	min-height:100%; /* real browsers */
 }
 .info {
-	opacity:0.6;
-	filter:alpha(opacity=60);
+	opacity:0.4;
+	filter:alpha(opacity=40);
 	position:absolute;
 	margin:0px;
-	height:28px;
+	height:21px;
 	width:100%;
 	bottom:-2px;
 	right:0px;
@@ -89,8 +89,9 @@ html, body {
 	color:black;
 }
 .info_text {
-	padding:4px;
+	padding-top:2px;
 	margin: 0px;
+	font-size:12px;
 }
 .info_text > ul {
 	margin: 0px;
