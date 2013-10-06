@@ -1,13 +1,45 @@
 function accountControl($scope, $http, $location, $translate, APIservice) {
 	$scope.centerLat = 30;
 	$scope.centerLng = -30;
-	$scope.save_text = $translate('ACCOUNT.SAVE');
-	$scope.save = function() {
-		$scope.save_text = $translate('ACCOUNT.SAVING');
-		APIservice.users.update({lng: $scope.centerLng, lat: $scope.centerLat}, function (data, stat) {
-			$scope.save_text = $translate('ACCOUNT.SAVED');
+	$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
+	$scope.saveLoc = function() {
+		$scope.save_loc_text = $translate('ACCOUNT.SAVING');
+		APIservice.users.update({action:'loc', lng: $scope.centerLng, lat: $scope.centerLat}, function (data, stat) {
+			$scope.save_loc_text = $translate('ACCOUNT.SAVED_LOC');
 
 		});
+	};
+	$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
+	$scope.savePass = function() {
+		if($scope.new_password != $scope.new_password_again) {
+			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.NOTEQUAL');
+		}
+		else if($scope.new_password.length < 6) {
+			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.SHORT');
+		}
+		else {
+		$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGING');
+		APIservice.users.read(function(data) {
+			if(data.username && data.email) {
+				old_hash_username = CryptoJS.SHA3($scope.old_password + data.username, {outputLength: 256 });
+				old_hash_email = CryptoJS.SHA3($scope.old_password + data.email, {outputLength: 256 });
+				hash_username = CryptoJS.SHA3($scope.new_password + data.username, {outputLength: 256 });
+				hash_email = CryptoJS.SHA3($scope.new_password + data.email, {outputLength: 256 });
+				console.log(old_hash_username);
+				console.log(hash_username);
+				APIservice.users.update({action:'pass', old_password_username: old_hash_username.toString(), old_password_email: old_hash_email.toString(), password_username: hash_username.toString(), password_email: hash_email.toString()}, function (data, stat) {
+					if(stat == 404) {
+						$scope.change_pass_message = $translate('ACCOUNT.CHANGE.INCORRECT');
+						$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
+					}
+					else {
+						$scope.change_pass_message = '';
+						$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGED');
+					}
+				});
+			}
+		});
+		}
 	};
 	$scope.draw_map = function()
 	{

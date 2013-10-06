@@ -13,10 +13,16 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 			if(data.action && data.action == 'recover') {
 				var data = { action: 'recover', email: data.email};
 			}
-			else {
+			else if(data.action && data.action == 'loc') {
 				var data = { id: $rootScope.user.id, token: $rootScope.user.token, action: 'loc', loc: [data.lng, data.lat]};
 			}
-			$http.put('/api/v1/users', data).success(callback);
+			else if(data.action && data.action == 'pass') {
+				var data = { id: $rootScope.user.id, token: $rootScope.user.token, action: 'pass', old_password_username: data.old_password_username, old_password_email: data.old_password_email, password_username: data.password_username, password_email: data.password_email};
+			}
+			else {
+				console.log('user update error');
+			}
+			$http.put('/api/v1/users', data).success(callback).error(callback);
 		},
 		del: function (callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token}};

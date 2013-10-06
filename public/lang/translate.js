@@ -69,9 +69,22 @@ var translateEN = {
 		'SETLOCATION': 'Set your location by centering the map',
 		'LONGITUDE': 'Longitude',
 		'LATITUDE': 'Latitude',
-		'SAVE': 'Save',
+		'SAVE_LOC': 'Save location',
 		'SAVING': 'Saving ...',
-		'SAVED': 'Saved'
+		'SAVED_LOC': 'Location saved',
+		'CHANGE': {
+			'HEADER':'Change password',
+			'OLD_PASSWORD':'Old password',
+			'NEW_PASSWORD':'New password',
+			'NEW_PASSWORD_AGAIN':'New password again',
+			'CHANGE':'Change password',
+			'CHANGING':'Changing ...',
+			'CHANGED':'Password changed',
+			'SHORT':'Password needs to be at least 6 characters long',
+			'NOTEQUAL':'New passwords do not match',
+			'INCORRECT':'Incorrect password',
+			'ERROR':'Password not changed'
+		}
 	},
 	'DETAIL': { 
 		'BY': 'By',
@@ -157,9 +170,22 @@ var translateCZ = {
 		'SETLOCATION': 'Nastavte svoji polohu vycentrováním mapy',
 		'LONGITUDE': 'Zeměpisná délka',
 		'LATITUDE': 'Zeměpisná šířka',
-		'SAVE': 'Ulož',
+		'SAVE_LOC': 'Uložit polohu',
 		'SAVING': 'Ukládám ...',
-		'SAVED': 'Uloženo'
+		'SAVED_LOC': 'Poloha uložena',
+		'CHANGE': {
+			'HEADER':'Změna hesla',
+			'OLD_PASSWORD':'Staré heslo',
+			'NEW_PASSWORD':'Nové heslo',
+			'NEW_PASSWORD_AGAIN':'Nové heslo znovu',
+			'CHANGE':'Změnit heslo',
+			'CHANGING':'Měním heslo ...',
+			'CHANGED':'Heslo zmeněno',
+			'SHORT':'Heslo musí mít alespoň 6 znaků',
+			'NOTEQUAL':'Nová hesla se nerovnají',
+			'INCORRECT':'Zadáno špatné heslo',
+			'ERROR':'Heslo nezměněno'
+		}
 	},
 	'DETAIL': { 
 		'BY': 'od',
