@@ -14,7 +14,7 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		if($scope.new_password != $scope.new_password_again) {
 			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.NOTEQUAL');
 		}
-		else if($scope.new_password.length < 6) {
+		else if($scope.new_password && $scope.new_password.length < 6) {
 			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.SHORT');
 		}
 		else {
