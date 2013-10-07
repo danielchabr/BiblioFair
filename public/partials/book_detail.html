@@ -20,9 +20,7 @@
 	<span ng-if="details_view.published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</br></span>
 	<br>
 	<div class="row" style="margin:0px">
-	<div class="col-xs-12" style="padding:0px;height:300px">
-		<div id="map" ng-model="map" style="height:300px" ng-init="draw_map()"></div>
-	</div>
+		<div id="map" ng-model="map" class="col-xs-12" style="height:300px;padding:0px" ng-init="draw_map()"></div>
 	</div>
 	<h3 class="text-center">Owners</h3>
 	<table class="table table-striped">
