@@ -58,6 +58,9 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		if(data.loc.coordinates.length == 2) {
 			$scope.centerLat = data.loc.coordinates[1];
 			$scope.centerLng = data.loc.coordinates[0];
+			console.log(data.loc);
+			console.log($scope.centerLat + ' ' + $scope.centerLng);
+			console.log(data.loc.coordinates[1] + ' ' + data.loc.coordinates[0]);
 			$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
 		}
 	});
