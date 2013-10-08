@@ -112,7 +112,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 	//////////// BOOK DETAIL MODAL //////////////////
 	$scope.open = function (book) {
 		var modalInstance = $modal.open({
-			templateUrl: '/partials/library_detail.html',
+			templateUrl: '/partials/private/library_detail.html',
 			controller: ModalBookCtrl,
 			resolve: {
 				book: function () {

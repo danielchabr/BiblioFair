@@ -6,7 +6,7 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 
 	$scope.open = function (book) {
 		var modalInstance = $modal.open({
-			templateUrl: '/partials/book_detail.html',
+			templateUrl: '/partials/private/book_detail.html',
 			controller: ModalBookCtrl,
 			resolve: {
 				book: function () {

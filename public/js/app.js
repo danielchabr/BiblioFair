@@ -2,10 +2,10 @@ var myApp = angular.module('myApp', ['ui.bootstrap', 'pascalprecht.translate']);
 
 myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', '$translateProvider', function($routeProvider, $locationProvider, $httpProvider, $provide, $translateProvider) {
 	$routeProvider
-	.when('/', {templateUrl: '/partials/home.html',   controller: homeControl})
+	.when('/', {templateUrl: '/partials/private/home.html',   controller: homeControl})
 	.when('/login', {templateUrl: '/partials/welcome.html',   controller: welcomeControl})
-	.when('/library', {templateUrl: '/partials/library.html',   controller: libraryControl})
-	.when('/account', {templateUrl: '/partials/account.html',   controller: accountControl})
+	.when('/library', {templateUrl: '/partials/private/library.html',   controller: libraryControl})
+	.when('/account', {templateUrl: '/partials/private/account.html',   controller: accountControl})
 	.otherwise({redirectTo: '/'});
 	$locationProvider.html5Mode(true).hashPrefix('!');
 	$provide.factory('myHttpInterceptor', function($q, $location, $rootScope) {
