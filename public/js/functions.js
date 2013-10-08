@@ -1,4 +1,5 @@
 function queryMyBooks ($rootScope, $scope, $http, $location) {
+	console.log('deprecated');
 	$http.get('/api/' + $scope.user + '/users/queryBooks')
 		.success( function(data) {
 			$rootScope.mybooks = [];
@@ -10,6 +11,7 @@ function queryMyBooks ($rootScope, $scope, $http, $location) {
 		});
 };
 function queryBooks ($rootScope, $scope, $http, $location) {
+	console.log('deprecated');
 	$http.get('/api/' + $scope.user + '/books/query')
 		.success( function(data) {
 			$rootScope.books = [];
@@ -21,6 +23,7 @@ function queryBooks ($rootScope, $scope, $http, $location) {
 		});
 };
 function removeBook ($rootScope, $scope, $http, $location, book) {
+	console.log('deprecated');
 	$http.post('/api/' + $scope.user + '/users/removeBook', book)
 		.success( function(data) {
 		});

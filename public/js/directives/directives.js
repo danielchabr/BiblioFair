@@ -12,8 +12,12 @@ myApp.directive('menu', function() {
 });
 myApp.directive('info', function() {
 	var directiveObject = {
-		restrict: 'C',
-		templateUrl: '/partials/info.html'
+		restrict: 'A',
+		templateUrl: '/partials/info.html',
+		link: function (scope, element, attrs) {
+			if(attrs.info == 'welcome') scope.loc = 'welcome';
+			console.log(attrs.info);
+		}
 	};
 	return directiveObject;
 });

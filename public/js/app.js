@@ -37,8 +37,10 @@ myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 	$http.get('/user')
 	.success(function (data) {
 		$rootScope.user = data;
+		if(data.lang) $rootScope.changeLanguage(data.lang);
 	})
 	.error(function (data) {
+		if(data.lang) $rootScope.changeLanguage(data.lang);
 		$location.path('/login');
 	});
 
@@ -53,6 +55,11 @@ myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 	};
 	window.onresize = function () {$rootScope.collapse();$rootScope.$apply();};
 	$rootScope.changeLanguage = function (langKey) {
-		$translate.uses(langKey);
+		if(langKey == 'en' || langKey == 'cz') {
+			$translate.uses(langKey);
+			$rootScope.lang = langKey;
+			APIservice.users.update({action: 'lang', lang: langKey}, function(err) {
+			});
+		}
 	};
 });

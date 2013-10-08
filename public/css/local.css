@@ -81,7 +81,7 @@ html, body {
 	filter:alpha(opacity=40);
 	position:absolute;
 	margin:0px;
-	height:21px;
+	min-height:21px;
 	width:100%;
 	bottom:-2px;
 	right:0px;
@@ -96,4 +96,7 @@ html, body {
 .info_text > ul {
 	margin: 0px;
 }
-
+.info_text > ul > li > a {
+	color: black;
+	text-decoration: underline
+}

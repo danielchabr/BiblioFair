@@ -3,7 +3,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $translate, $modal
 		if($scope.signup_email && $scope.signup_username && $scope.signup_password.length > 5) {
 			hash_username = CryptoJS.SHA3($scope.signup_password + $scope.signup_username, {outputLength: 256 });
 			hash_email = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
-			$http.post('/signup', {'lang': $scope.lang, 'username': $scope.signup_username, 'email': $scope.signup_email, 'password_username': hash_username.toString(), 'password_email': hash_email.toString()})
+			$http.post('/signup', {'lang': $rootScope.lang, 'username': $scope.signup_username, 'email': $scope.signup_email, 'password_username': hash_username.toString(), 'password_email': hash_email.toString()})
 				.success( function(data) {
 					if(data == 'registered') {
 						$scope.signup_message = $translate('WELCOME.VERIFICATION_SENT') + $scope.signup_email;
@@ -26,7 +26,8 @@ function welcomeControl($rootScope, $scope, $http, $location, $translate, $modal
 			hash = CryptoJS.SHA3($scope.login_password + $scope.login_id, {outputLength: 256 });
 			$http.post('/login', {'id': $scope.login_id, 'password': hash.toString()})
 				.success( function(data) {
-					if(data == 'loginSuccess') {
+					if(data.message == 'loginSuccess') {
+						$scope.changeLanguage(data.lang);
 						$location.path('/');
 					}
 					else {
