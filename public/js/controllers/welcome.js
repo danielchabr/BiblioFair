@@ -1,5 +1,6 @@
 function welcomeControl($rootScope, $scope, $http, $location, $translate, $modal) {
 	$scope.signup = function() {
+		$scope.signup_message = "";
 		if($scope.signup_email && $scope.signup_username && $scope.signup_password.length > 5) {
 			hash_username = CryptoJS.SHA3($scope.signup_password + $scope.signup_username, {outputLength: 256 });
 			hash_email = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
@@ -22,6 +23,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $translate, $modal
 		}
 	}
 	$scope.login = function() {
+		$scope.signup_message = "";
 		if($scope.login_id && $scope.login_password.length > 5) {
 			hash = CryptoJS.SHA3($scope.login_password + $scope.login_id, {outputLength: 256 });
 			$http.post('/login', {'id': $scope.login_id, 'password': hash.toString()})
