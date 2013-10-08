@@ -3,11 +3,16 @@ var ModalBookCtrl = function ($scope, $modalInstance, $compile, $translate, book
 	$scope.remove = function () {
 		$modalInstance.close('remove');
 	};
+	$scope.btn_style = "btn-success";
+	$scope.requestBtn = $translate('HOME.MODAL.REQUEST');
 	$scope.sendRequest = function (username) {
-		console.log(username);
+		//console.log(username);
 		APIservice.users.read(function(data) {
 			APIservice.messages.send(username, data.email, data.username, book, function(data) {
 				console.log('message sent');
+				$scope.requestBtn = $translate('HOME.MODAL.REQUEST_SENT');
+				$scope.btn_style = "";
+				$scope.sent = true;
 			});
 		});
 	};
@@ -30,8 +35,8 @@ var ModalBookCtrl = function ($scope, $modalInstance, $compile, $translate, book
 			console.log(data.users);
 			for(var i = 0; i < data.users.length; i++) {
 				if(data.users[i].loc.coordinates && data.users[i].loc.coordinates.length == 2 && data.users[i].loc.coordinates != [-30, 30]) {
-					console.log(data.users[i]);
-					console.log(data.users[i].loc.coordinates[1] + ' ' + data.users[i].loc.coordinates[0]);
+					//console.log(data.users[i]);
+					//console.log(data.users[i].loc.coordinates[1] + ' ' + data.users[i].loc.coordinates[0]);
 					var point = new MQA.Poi( {lat: data.users[i].loc.coordinates[1], lng: data.users[i].loc.coordinates[0]} );
 					//point.setRolloverContent('<button class="btn btn-success" ng-click="sendRequest()">' + $translate('HOME.MODAL.REQUEST') + '</button>');
 					//point.setInfoContentHTML('<button class="btn btn-success" ng-click="sendRequest()">' + $translate('HOME.MODAL.REQUEST') + '</button>');

@@ -31,7 +31,7 @@
 			<tr ng-repeat="owner in owners" style="list-style:none">
 				<td>{{owner}}</td>
 				<td>{{owner}}@bibliofair.com</td>
-				<td><button type="button" class="btn btn-sm btn-success" ng-click="sendRequest(owner)">{{ 'HOME.MODAL.REQUEST' | translate }}</button></td>
+				<td><button type="button" class="btn btn-sm" ng-class="btn_style" ng-disabled="sent" ng-click="sendRequest(owner)">{{ requestBtn }}</button></td>
 			</tr>
 		</tbody>
 	</table>

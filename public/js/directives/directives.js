@@ -16,7 +16,6 @@ myApp.directive('info', function() {
 		templateUrl: '/partials/info.html',
 		link: function (scope, element, attrs) {
 			if(attrs.info == 'welcome') scope.loc = 'welcome';
-			console.log(attrs.info);
 		}
 	};
 	return directiveObject;

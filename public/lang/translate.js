@@ -42,7 +42,8 @@ var translateEN = {
 			'AUTHOR': 'Author'
 		},
 		'MODAL': {
-			'REQUEST': 'Send request'
+			'REQUEST': 'Send request',
+			'REQUEST_SENT': 'Request was sent'
 		},
 		'WISHLIST': 'Wish list',
 		'BROWSE': 'Available books'
@@ -143,7 +144,8 @@ var translateCZ = {
 			'AUTHOR': 'Autor'
 		},
 		'MODAL': {
-			'REQUEST': 'Požádat o knihu'
+			'REQUEST': 'Požádat o knihu',
+			'REQUEST_SENT': 'Žádost odeslána'
 		},
 		'WISHLIST': 'Seznam přání',
 		'BROWSE': 'Dostupné knihy'
