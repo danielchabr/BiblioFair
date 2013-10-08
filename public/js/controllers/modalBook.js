@@ -3,16 +3,17 @@ var ModalBookCtrl = function ($scope, $modalInstance, $compile, $translate, book
 	$scope.remove = function () {
 		$modalInstance.close('remove');
 	};
-	$scope.btn_style = "btn-success";
-	$scope.requestBtn = $translate('HOME.MODAL.REQUEST');
-	$scope.sendRequest = function (username) {
+	$scope.sendRequest = function (owner) {
 		//console.log(username);
 		APIservice.users.read(function(data) {
-			APIservice.messages.send(username, data.email, data.username, book, function(data) {
+			APIservice.messages.send(owner.username, data.email, data.username, book, function(data) {
 				console.log('message sent');
-				$scope.requestBtn = $translate('HOME.MODAL.REQUEST_SENT');
-				$scope.btn_style = "";
-				$scope.sent = true;
+				/*for(var i = 0; i < $scope.owners.length; i++ ) {
+					if($scope.owners[i].username == owner.username) {
+					}
+				}*/
+				owner.style = true;
+				owner.message = $translate('HOME.MODAL.REQUEST_SENT');
 			});
 		});
 	};
@@ -42,7 +43,7 @@ var ModalBookCtrl = function ($scope, $modalInstance, $compile, $translate, book
 					//point.setInfoContentHTML('<button class="btn btn-success" ng-click="sendRequest()">' + $translate('HOME.MODAL.REQUEST') + '</button>');
 					//console.log($compile('<button class="btn" ng-click="sendRequest()">ahoj</button>')($scope)[0].outerHTML);
 					point.setRolloverContent(data.users[i].username);
-					$scope.owners.push(data.users[i].username);
+					$scope.owners.push({username: data.users[i].username, style: false, message : $translate('HOME.MODAL.REQUEST')});
 					//point.setRolloverContent('<div request=""></div>');
 					$scope.map.addShape(point);
 				}

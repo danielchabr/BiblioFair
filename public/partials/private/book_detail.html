@@ -29,9 +29,9 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="owner in owners" style="list-style:none">
-				<td>{{owner}}</td>
-				<td>{{owner}}@bibliofair.com</td>
-				<td><button type="button" class="btn btn-sm" ng-class="btn_style" ng-disabled="sent" ng-click="sendRequest(owner)">{{ requestBtn }}</button></td>
+				<td>{{owner.username}}</td>
+				<td>{{owner.username}}@bibliofair.com</td>
+				<td><button type="button" class="btn btn-sm" ng-class="{'btn-success':!owner.style}" ng-disabled="owner.style" ng-click="sendRequest(owner)">{{ owner.message }}</button></td>
 			</tr>
 		</tbody>
 	</table>
