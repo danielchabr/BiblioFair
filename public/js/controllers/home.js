@@ -1,8 +1,21 @@
 function homeControl($rootScope, $scope, $http, $modal, $translate, $location, APIservice) {
 	$scope.bookOrder = 'title';
-	APIservice.books.read('','', 30, 0, function(data) {
-		$rootScope.books = data
+	APIservice.books.read('','', 20, 0, function(data) {
+		$rootScope.books = data;
 	});
+	//	read: function (fields, query, limit, offset, callback) {
+	$scope.retrieveBooks = function () {
+		APIservice.books.read('', $scope.search, 12, 0, function(data) {
+			var arr = $rootScope.books.concat(data).sort(function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
+
+			$rootScope.books = [];
+			for(var i = 0; i < arr.length; i++) {
+				if(arr[i+1] == undefined || arr[i]._id != arr[i+1]._id) {
+					$rootScope.books.push(arr[i]);
+				}
+			}
+		});
+	}
 
 	$scope.open = function (book) {
 		var modalInstance = $modal.open({
