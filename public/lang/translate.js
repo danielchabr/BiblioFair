@@ -164,7 +164,7 @@ var translateCZ = {
 			'EDITION': 'Vydání',
 			'VOLUME': 'Díl',
 			'PUBLISHED': 'Vydáno roku',
-			'PUBLISHER': 'Vydavatel',
+			'PUBLISHER': 'Nakladatel',
 			'LANGUAGE': 'Jazyk',
 			'BUTTON': 'Vlož knihu'
 		},

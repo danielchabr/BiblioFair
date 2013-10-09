@@ -54,4 +54,11 @@ var ModalBookCtrl = function ($scope, $modalInstance, $compile, $translate, book
 			}
 		});
 	};
+
+	MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
+		$scope.map.addControl(
+			new MQA.LargeZoom(),
+			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
+			);
+	});
 };

@@ -70,10 +70,10 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
 			);
 		//$scope.map.addControl(new MQA.ViewOptions());
-		$scope.map.addControl(
+		/*$scope.map.addControl(
 			new MQA.GeolocationControl(),
 			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_RIGHT, new MQA.Size(10,10))
-			);
+			);*/
 		/*Inset Map Control options*/ 
 		$scope.map.enableMouseWheelZoom();
 	});
