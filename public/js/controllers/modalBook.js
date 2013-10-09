@@ -1,5 +1,8 @@
 var ModalBookCtrl = function ($scope, $modalInstance, $compile, $translate, book, APIservice) {
 	$scope.details_view = book;
+	if(book.published) {
+		$scope.details_view.published = new Date(book.published).getFullYear();
+	}
 	$scope.remove = function () {
 		$modalInstance.close('remove');
 	};

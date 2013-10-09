@@ -10,7 +10,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		 }
 	});
 	APIservice.users.read(function(data) {
-		console.log(data);
 		if(data.loc.coordinates.length == 0) {
 			$scope.disable = true;
 		}
@@ -47,11 +46,13 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		for (var prop in $scope.selected_books[0]) {
 			var flag = false;
 			$scope.selected_books.forEach(function(element) {
-				console.log($scope.selected_books[0][prop] + " " + element[prop]);
 				if($scope.selected_books[0][prop] == element[prop]) flag = true;
 			});
 			if(flag) $scope.newbook[prop] = $scope.selected_books[0][prop];
+			console.log($scope.newbook.published);
 		}
+		if($scope.newbook.published) $scope.newbook.published = new Date($scope.newbook.published).getFullYear();
+		console.log($scope.newbook.published);
 	};
 	// is called on each change of ISBN but gives call after 10th char only
 	$scope.searchTel = function (query) {
@@ -92,31 +93,26 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 			}
 			if(/97[89].*/.test(query)) {
 				if(query.length == 13) {
-					console.log('check1');
 					APIservice.tel.read(query, processData);
 					APIservice.tel.read(ISBN13toISBN10(query), processData);
 				}
 			}
 			else {
-				console.log('check2');
 				APIservice.tel.read(query, processData);
 				APIservice.tel.read(ISBN10toISBN13(query), processData);
 			}
-			console.log("testsss");
 		}
 	}
 	// retrieves array of wanted property in books, checks for empty slots
 	$scope.check = function (data, prop, val) {
 		if($scope.selected_books.length == 0) $scope.selected_books = $scope.books;
 		var template = {};
-		console.log('check');
 		for (var prop in $scope.newbook) {
 			template[prop] = $scope.newbook[prop];
 		}
 		delete template.edition;
 		delete template.volume;
 		if(template.isbn && template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
-		console.log('check');
 		var arr = $filter('filter')($scope.selected_books, template);
 		/*var arr = [];
 		for (var i = 0; i < sel.length;i++) {
@@ -124,9 +120,8 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 				arr.push(sel[i][prop].toString());
 			}
 		}*/
-		console.log($scope.newbook);
-		console.log(arr);
-		console.log('check');
+		//console.log($scope.newbook);
+		//console.log(arr);
 		return arr;
 	};
 	//////////// BOOK DETAIL MODAL //////////////////
