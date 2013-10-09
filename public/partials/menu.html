@@ -1,3 +1,14 @@
+<style type="text/css">
+.my-svg-alternate {
+  display: none;
+}
+.no-svg .my-svg-alternate {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-image: url(image.png);
+}
+</style>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
 	<div class="navbar-header">
@@ -7,7 +18,11 @@
 			<span class="icon-bar"></span>
 		</button>
 		<a class="navbar-brand logo" href="/" style="padding:12px 15px">
-			<object type="image/svg+xml" data="img/logo.svg" height="24" width="34"></object>
+			<!--<object type="image/svg+xml" data="img/logo.svg" height="24" width="34"></object>
+			<svg type="image/svg+xml" data="img/logo.svg" height="24" width="34"></svg>-->
+			<svg width="34" height="24">
+			  <image xlink:href="img/logo.svg" src="img/logo.png" width="34" height="24"/>
+			</svg>
 			BiblioFair &nbsp;&nbsp;
 		</a>
 	</div>
