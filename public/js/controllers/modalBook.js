@@ -1,4 +1,4 @@
-var ModalBookCtrl = function ($scope, $modalInstance, $compile, $translate, book, APIservice) {
+var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservice) {
 	$scope.details_view = book;
 	if(book.published) {
 		$scope.details_view.published = new Date(book.published).getFullYear();
@@ -24,8 +24,7 @@ var ModalBookCtrl = function ($scope, $modalInstance, $compile, $translate, book
 		$modalInstance.dismiss('cancel');
 	};
 	$scope.owners = [];
-	$scope.draw_map = function()
-	{
+	$scope.draw_map = function() {
 		var options={
 			elt:document.getElementById('map'),       /*ID of element on the page where you want the map added*/ 
 			zoom:2,                                  /*initial zoom level of the map*/ 
@@ -35,30 +34,24 @@ var ModalBookCtrl = function ($scope, $modalInstance, $compile, $translate, book
 			zoomOnDoubleClick:true                    /*zoom in when double-clicking on map*/ 
 		};
 		$scope.map = new MQA.TileMap(options);
+		MQA.withModule('largezoom','viewoptions','insetmapcontrol','mousewheel', function() {
+			$scope.map.addControl(
+				new MQA.LargeZoom(),
+				new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
+				);
+			$scope.map.enableMouseWheelZoom();
+		});
 		APIservice.books.readById($scope.details_view._id, function(data) {
 			console.log(data.users);
 			for(var i = 0; i < data.users.length; i++) {
 				if(data.users[i].loc.coordinates && data.users[i].loc.coordinates.length == 2 && data.users[i].loc.coordinates != [-30, 30]) {
-					//console.log(data.users[i]);
-					//console.log(data.users[i].loc.coordinates[1] + ' ' + data.users[i].loc.coordinates[0]);
 					var point = new MQA.Poi( {lat: data.users[i].loc.coordinates[1], lng: data.users[i].loc.coordinates[0]} );
-					//point.setRolloverContent('<button class="btn btn-success" ng-click="sendRequest()">' + $translate('HOME.MODAL.REQUEST') + '</button>');
-					//point.setInfoContentHTML('<button class="btn btn-success" ng-click="sendRequest()">' + $translate('HOME.MODAL.REQUEST') + '</button>');
-					//console.log($compile('<button class="btn" ng-click="sendRequest()">ahoj</button>')($scope)[0].outerHTML);
 					point.setRolloverContent(data.users[i].username);
 					$scope.owners.push({username: data.users[i].username, style: false, message : $translate('HOME.MODAL.REQUEST')});
-					//point.setRolloverContent('<div request=""></div>');
 					$scope.map.addShape(point);
 				}
 				$scope.map.bestFit(false, 4, 12);
 			}
 		});
 	};
-
-	MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
-		$scope.map.addControl(
-			new MQA.LargeZoom(),
-			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
-			);
-	});
 };

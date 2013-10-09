@@ -2,7 +2,6 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 	$scope.bookOrder = 'title';
 	APIservice.books.read('','', 60, 0, function(data) {
 		$rootScope.books = data;
-		console.log($rootScope.books.length);
 	});
 	//	read: function (fields, query, limit, offset, callback) {
 	$scope.retrieveBooks = function () {

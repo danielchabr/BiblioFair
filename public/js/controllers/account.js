@@ -52,8 +52,20 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 			zoomOnDoubleClick:true                    /*zoom in when double-clicking on map*/ 
 		};
 		$scope.map = new MQA.TileMap(options);
+		MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
+			$scope.map.addControl(
+				new MQA.LargeZoom(),
+				new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
+				);
+			$scope.map.enableMouseWheelZoom();
+		});
+		MQA.EventManager.addListener($scope.map, 'move', update_loc);
+		MQA.EventManager.addListener($scope.map, 'drag', update_loc);
+		MQA.EventManager.addListener($scope.map, 'dragend', update_loc);
+		MQA.EventManager.addListener($scope.map, 'click', update_loc);
+		MQA.EventManager.addListener($scope.map, 'doubleclick', update_loc);
+		MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
 	};
-	$scope.draw_map();
 	APIservice.users.read(function(data) {
 		if(data.loc.coordinates.length == 2) {
 			$scope.centerLat = data.loc.coordinates[1];
@@ -64,29 +76,10 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 			$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
 		}
 	});
-	MQA.withModule('largezoom','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
-		$scope.map.addControl(
-			new MQA.LargeZoom(),
-			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
-			);
-		//$scope.map.addControl(new MQA.ViewOptions());
-		/*$scope.map.addControl(
-			new MQA.GeolocationControl(),
-			new MQA.MapCornerPlacement(MQA.MapCorner.TOP_RIGHT, new MQA.Size(10,10))
-			);*/
-		/*Inset Map Control options*/ 
-		$scope.map.enableMouseWheelZoom();
-	});
 	var update_loc = function (){
 		$scope.$apply(function() {
 		$scope.centerLat = $scope.map.getCenter().lat;
 		$scope.centerLng = $scope.map.getCenter().lng;
 		});
 	};
-	MQA.EventManager.addListener($scope.map, 'move', update_loc);
-	MQA.EventManager.addListener($scope.map, 'drag', update_loc);
-	MQA.EventManager.addListener($scope.map, 'dragend', update_loc);
-	MQA.EventManager.addListener($scope.map, 'click', update_loc);
-	MQA.EventManager.addListener($scope.map, 'doubleclick', update_loc);
-	MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
 }
