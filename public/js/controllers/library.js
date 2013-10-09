@@ -38,6 +38,14 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		if($scope.selected_books.length == 1) {
 			$scope.newbook = $scope.selected_books[0];
 		}
+		for (var prop in $scope.selected_books[0]) {
+			var flag = false;
+			$scope.selected_books.forEach(function(element) {
+				console.log($scope.selected_books[0][prop] + " " + element[prop]);
+				if($scope.selected_books[0][prop] == element[prop]) flag = true;
+			});
+			if(flag) $scope.newbook[prop] = $scope.selected_books[0][prop];
+		}
 	};
 	// is called on each change of ISBN but gives call after 10th char only
 	$scope.searchTel = function (query) {
@@ -74,6 +82,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 				if($scope.tel.length == 1) {
 					$scope.newbook = $scope.tel[0];
 				}
+				$scope.selectBook();
 			}
 			if(/97[89].*/.test(query)) {
 				if(query.length == 13) {
@@ -87,10 +96,11 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 				APIservice.tel.read(query, processData);
 				APIservice.tel.read(ISBN10toISBN13(query), processData);
 			}
+			console.log("testsss");
 		}
 	}
 	// retrieves array of wanted property in books, checks for empty slots
-	$scope.check = function (data, prop) {
+	$scope.check = function (data, prop, val) {
 		var arr = [];
 		if($scope.selected_books.length == 0) $scope.selected_books = $scope.books;
 		var template = {};
@@ -129,8 +139,17 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 			}
 		});
 	};
-	$scope.languages = ['English', 'Čeština', 'Slovenčina', 'Qafara','Аҧсуа','avesta','Afrikaans','akana','አማርኛ','aragonés','العربية','অসমীয়া','авар мацӀ; магӀарул мацӀ','aymar aru','Azərbaycanca','башҡорт теле','Беларуская мова','български език','भोजपुरी','Bislama','bamanankan','বাংলা','བོད་ཡིག','brezhoneg','bosanski jezik','català; valencià','нохчийн мотт','Chamoru','corsu; lingua corsa','ᓀᐦᐃᔭᐍᐏᐣ','ѩзыкъ словѣньскъ','чӑваш чӗлхи','Cymraeg','dansk','Deutsch','ދިވެހިބަސ','རྫོང་ཁ','Ɛʋɛgbɛ','Ελληνικά','Esperanto','español; castellano','eesti keel','euskara','فارسی','Fulfulde; Pulaar; Pular','suomi; suomen kieli','vosa Vakaviti','føroyskt','français; langue française','frysk','Gaeilge','Gàidhlig','Galego','Avañe\'ẽ','ગુજરાતી','Gaelg; Manninagh','Hausancī; هَوُسَ','עִבְרִית; עברית','हिन्दी','Hiri Motu','hrvatski jezik','Kreyòl ayisyen','magyar','Հայերեն լեզու','Otjiherero','interlingua','Bahasa Indonesia','Interlingue','Igbo', 'Nuosu' ,'Iñupiaq; Iñupiatun','Ido','íslenska','italiano','ᐃᓄᒃᑎᑐᑦ','日本語','basa Jawa','ქართული ენა (kartuli ena)','Kikongo','Gĩkũyũ','kuanyama','Қазақ тілі','kalaallisut; kalaallit oqaasii','ភាសាខ្មែរ','ಕನ್ನಡ','한국어 (韓國語); 조선말 (朝鮮語)','kanuri','कॉशुर; کٲشُر','Kurdî; كوردي','коми кыв','Kernewek','кыргыз тили','latine; lingua Latina','Lëtzebuergesch','Luganda','Limburgs','lingala','ພາສາລາວ','lietuvių kalba', 'Luba-Katanga','latviešu valoda','Malagasy fiteny','Kajin M̧ajeļ','te reo Māori',
-		'македонски јазик','മലയാളം','монгол хэл','मराठी','bahasa Melayu; بهاس ملايو','Malti','မြန်မာစာ','Ekakairũ Naoero','bokmål','isiNdebele','नेपाली','Owambo','Nederlands','nynorsk','norsk','isiNdebele','Diné bizaad; Dinékʼehǰí','chiCheŵa; chinyanja','Occitan','ᐊᓂᔑᓇᐯᒧᐏᐣ (Anishinaabemowin)','Afaan Oromoo','ଓଡ଼ିଆ','ирон ӕвзаг','ਪੰਜਾਬੀ; پنجابی','पालि','polski','پښتو','português','Runa Simi; Kichwa','rumantsch grischun','Rundi','română','русский язык','Ikinyarwanda','संस्कृतम्','sardu','سنڌي، سندھی; सिन्धी','sámi; sámegiella','yângâ tî sängö','සිංහල' , 'slovenščina','gagana fa\'a Samoa','chiShona','Soomaaliga; af Soomaali','Shqip','српски језик; srpski jezik','siSwati','Sesotho','basa Sunda','svenska','Kiswahili','தமிழ்','тоҷикӣ; تاجیکی' , 'Tajik', 'ภาษาไทย','ትግርኛ','Түркмен','Wikang Tagalog','Setswana','faka-Tonga','Türkçe','Xitsonga','татарча; tatarça', 'Twi', 'te reo Tahiti; te reo Māʼohi','Uyƣurqə; Uyğurçe; ئۇيغۇرچ','українська мова','اردو','O\'zbek; Ўзбек; أۇزبېك','Tshivenḓa','Tiếng Việt','Volapük','walon','Wolof','isiXhosa','ייִדיש','Yorùbá','Saɯ cueŋƅ; Saw cuengh','漢語; 汉语; 中文','isiZulu'];
+	$scope.languages = [['eng', 'English'],['cze', 'Čeština'],['slo', 'Slovenčina'],['aar', 'Qafara'],['abk', 'Аҧсуа'],['ave', 'avesta'],['afr', 'Afrikaans'],['aka', 'akana'],['amh', 'አማርኛ'],['arg', 'aragonés'],['ara', 'العربية'],['asm', 'অসমীয়া'],['ava', 'авар мацӀ; магӀарул мацӀ'],['aym', 'aymar aru'],['aze', 'Azərbaycanca'],['bak', 'башҡорт теле'],['bel', 'Беларуская мова'],['bul', 'български език'],
+		['bih', 'भोजपुरी'],['bis', 'Bislama'],['bam', 'bamanankan'],['ben', 'বাংলা'],['tib', 'བོད་ཡིག'],['bre', 'brezhoneg'],['bos', 'bosanski jezik'],['cat', 'català; valencià'],['che', 'нохчийн мотт'],['cha', 'Chamoru'],['cos', 'corsu; lingua corsa'],['cre', 'ᓀᐦᐃᔭᐍᐏᐣ'],['chu', 'ѩзыкъ словѣньскъ'],['chv', 'чӑваш чӗлхи'],['wel', 'Cymraeg'],['dan', 'dansk'],['ger', 'Deutsch'],['div', 'ދިވެހިބަސ'],['dzo', 'རྫོང་ཁ'],['ewe', 'Ɛʋɛgbɛ'],['gre', 'Ελληνικά'],['epo', 'Esperanto'],['spa', 'español; castellano'],['est', 'eesti keel'],['baq', 'euskara'],['per', 'فارسی'],['ful', 'Fulfulde; Pulaar; Pular'],
+		['fin', 'suomi; suomen kieli'],['fij', 'vosa Vakaviti'],['fao', 'føroyskt'],['fre', 'français; langue française'],['fry', 'frysk'],['gle', 'Gaeilge'],['gla', 'Gàidhlig'],['glg', 'Galego'],['grn', 'Avañe\'ẽ'],['guj', 'ગુજરાતી'],['glv', 'Gaelg; Manninagh'],
+		['hau', 'Hausancī; هَوُسَ'],['heb', 'עִבְרִית; עברית'],['hin', 'हिन्दी'],['hmo', 'Hiri Motu'],['hrv', 'hrvatski jezik'],['hat', 'Kreyòl ayisyen'],['hun', 'magyar'],['arm', 'Հայերեն լեզու'],['her', 'Otjiherero'],['ina', 'interlingua'],['ind', 'Bahasa Indonesia'],['ile', 'Interlingue'],['ibo', 'Igbo'],['iii', 'Nuosu'],['ipk', 'Iñupiaq; Iñupiatun'],['ido', 'Ido'],['ice', 'íslenska'],['ita', 'italiano'],['iku', 'ᐃᓄᒃᑎᑐᑦ'],
+		['jpn', '日本語'],['jav', 'basa Jawa'],['geo', 'ქართული ენა (kartuli ena)'],['kon', 'Kikongo'],['kik', 'Gĩkũyũ'],['kua', 'kuanyama'],['kaz', 'Қазақ тілі'],['kal', 'kalaallisut; kalaallit oqaasii'],['khm', 'ភាសាខ្មែរ'],['kan', 'ಕನ್ನಡ'],['kor', '한국어 (韓國語); 조선말 (朝鮮語)'],['kau', 'kanuri'],['kas', 'कॉशुर; کٲشُر'],['kur', 'Kurdî; كوردي'],['kom', 'коми кыв'],['cor', 'Kernewek'],['kir', 'кыргыз тили'],
+		['lat', 'latine; lingua Latina'],['ltz', 'Lëtzebuergesch'],['lug', 'Luganda'],['lim', 'Limburgs'],['lin', 'lingala'],['lao', 'ພາສາລາວ'],['lit', 'lietuvių kalba'],['lub', 'Luba-Katanga'],['lav', 'latviešu valoda'],['mlg', 'Malagasy fiteny'],['mah', 'Kajin M̧ajeļ'],['mao', 'te reo Māori'],['mac', 'македонски јазик'],['mal', 'മലയാളം'],['mon', 'монгол хэл'],['mar', 'मराठी'],['may', 'bahasa Melayu; بهاس ملايو'],['mlt', 'Malti'],
+		['bur', 'မြန်မာစာ'],['nau', 'Ekakairũ Naoero'],['nob', 'bokmål'],['nde', 'isiNdebele'],['nep', 'नेपाली'],['ndo', 'Owambo'],['dut', 'Nederlands'],['nno', 'nynorsk'],['nor', 'norsk'],['nbl', 'isiNdebele'],['nav', 'Diné bizaad; Dinékʼehǰí'],['nya', 'chiCheŵa; chinyanja'],['oci', 'Occitan'],['oji', 'ᐊᓂᔑᓇᐯᒧᐏᐣ (Anishinaabemowin)'],['orm', 'Afaan Oromoo'],['ori', 'ଓଡ଼ିଆ'],['oss', 'ирон ӕвзаг'],['pan', 'ਪੰਜਾਬੀ; پنجابی'],['pli', 'पालि'],
+		['pol', 'polski'],['pus', 'پښتو'],['por', 'português'],['que', 'Runa Simi; Kichwa'],['roh', 'rumantsch grischun'],['run', 'Rundi'],['rum', 'română'],['rus', 'русский язык'],['kin', 'Ikinyarwanda'],['san', 'संस्कृतम्'],['srd', 'sardu'],['snd', 'سنڌي، سندھی; सिन्धी'],['sme', 'sámi; sámegiella'],['sag', 'yângâ tî sängö'],['sin', 'සිංහල'],['slv', 'slovenščina'],['smo', 'gagana fa\'a Samoa'],['sna', 'chiShona'],['som', 'Soomaaliga; af Soomaali'],
+		['alb', 'Shqip'],['srp', 'српски језик; srpski jezik'],['ssw', 'siSwati'],['sot', 'Sesotho'],['sun', 'basa Sunda'],['swe', 'svenska'],['swa', 'Kiswahili'],['tam', 'தமிழ்'],['tel', 'тоҷикӣ; تاجیکی'],['tgk', 'Tajik'],['tha', 'ภาษาไทย'],['tir', 'ትግርኛ'],['tuk', 'Түркмен'],['tgl', 'Wikang Tagalog'],['tsn', 'Setswana'],['ton', 'faka-Tonga'],['tur', 'Türkçe'],['tso', 'Xitsonga'],['tat', 'татарча; tatarça'],
+		['twi', 'Twi'],['tah', 'te reo Tahiti; te reo Māʼohi'],['uig', 'Uyƣurqə; Uyğurçe; ئۇيغۇرچ'],['ukr', 'українська мова'],['urd', 'اردو'],['uzb', 'O\'zbek; Ўзбек; أۇزبېك'],['ven', 'Tshivenḓa'],['vie', 'Tiếng Việt'],['vol', 'Volapük'],['wln', 'walon'],['wol', 'Wolof'],['xho', 'isiXhosa'],['yid', 'ייִדיש'],['yor', 'Yorùbá'],['zha', 'Saɯ cueŋƅ; Saw cuengh'],['chi', '漢語; 汉语; 中文'],['zul', 'isiZulu']];
 
-	$scope.abbr = ['eng', 'cze', 'slo', 'aar','abk','ave','afr','aka','amh','arg','ara','asm','ava','aym','aze','bak','bel','bul','bih','bis','bam','ben','tib','bre','bos','cat','che','cha','cos','cre','chu','chv','wel','dan','ger','div','dzo','ewe','gre','epo','spa','est','baq','per','ful','fin','fij','fao','fre','fry','gle','gla','glg','grn','guj','glv','hau','heb','hin','hmo','hrv','hat','hun','arm','her','ina','ind','ile','ibo','iii','ipk','ido','ice','ita','iku','jpn','jav','geo','kon','kik','kua','kaz','kal','khm','kan','kor','kau','kas','kur','kom','cor','kir','lat','ltz','lug','lim','lin','lao','lit','lub','lav','mlg','mah','mao','mac','mal','mon','mar','may','mlt','bur','nau','nob','nde','nep','ndo','dut','nno','nor','nbl','nav','nya','oci','oji','orm','ori','oss','pan','pli','pol','pus','por','que','roh','run','rum','rus','kin','san','srd','snd','sme','sag','sin','slv','smo','sna','som','alb','srp','ssw','sot','sun','swe','swa','tam','tel','tgk','tha','tir','tuk','tgl','tsn','ton','tur','tso','tat','twi','tah','uig','ukr','urd','uzb','ven','vie','vol','wln','wol','xho','yid','yor','zha','chi','zul'];
+
+
 }

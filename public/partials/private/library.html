@@ -35,11 +35,11 @@
 							<p>{{ 'LIBRARY.ADD.TEXT' | translate }}</p>
 							<div class="form-group">
 								<label class="" for="new_isbn"><abbr title="{{'LIBRARY.ADD.ISBN_ABBR' | translate}}">{{ 'LIBRARY.ADD.ISBN' | translate }}:</abbr></label>
-								<input type="text" id="new_isbn" ng-model="newbook.isbn" class="form-control" placeholder="{{ 'LIBRARY.ADD.ISBN' | translate }}" typeahead="book for book in check(books, 'isbn') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook(); searchTel(newbook.isbn)" ng-change="searchTel(newbook.isbn)">
+								<input type="text" id="new_isbn" ng-model="newbook.isbn" class="form-control" placeholder="{{ 'LIBRARY.ADD.ISBN' | translate }}" typeahead="book for book in check(books, 'isbn', $viewValue) | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook(); searchTel(newbook.isbn)" ng-change="searchTel(newbook.isbn)">
 							</div>
 							<div class="form-group">
 								<label class="" for="new_title">{{ 'LIBRARY.ADD.TITLE' | translate }}:</label>
-								<input type="text" id="new_title" ng-model="newbook.title" class="form-control" placeholder="{{ 'LIBRARY.ADD.TITLE' | translate }}" typeahead="book for book in check(books, 'title') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" required>
+								<input type="text" id="new_title" ng-model="newbook.title" class="form-control" placeholder="{{ 'LIBRARY.ADD.TITLE' | translate }}" typeahead="book for book in check(books, 'title') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" typeahead-min-length="0" required>
 							</div>
 							<div class="form-group">
 								<label class="" for="new_author">{{ 'LIBRARY.ADD.AUTHOR' | translate }}:</label>
@@ -83,9 +83,12 @@
 									</div>
 									<div class="form-group col-xs-6">
 										<label class="" for="new_language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}:</label>
-										<select class="form-control" id="new_language" ng-model="newbook.language" ng-init="newbook.language=1">
-											<option ng-repeat="lang in languages track by $index" value="{{abbr[$index]}}" ng-init="newbook.language=undefined">{{lang}}</option>
+										<select class="form-control" id="new_language" ng-options="lang[0] as lang[1] for lang in languages" ng-model="newbook.language">
 										</select>
+										<!--
+										<select class="form-control" id="new_language" ng-model="newbook.language" ng-init="">
+											<option ng-repeat="lang in languages track by $index" value="{{abbr[$index]}}">{{lang}}</option>
+										</select>-->
 									</div>
 								</div>
 								<div class="form-group">
