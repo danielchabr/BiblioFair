@@ -16,7 +16,7 @@ var translateEN = {
 	'WELCOME': { 
 		'HEADING': 'Dive into the world of home libraries',
 		'TEXT1': 'Our aim is to enable you to share your home bookshelves. You will get requests from your friends or others to sell, rent or lend them books from your home library.',
-		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get? Just sign up and easily search our databases. If you can\'t find what you\'re looking for, just put it on your wish list and we will notify you as soon as the book gets available.',
+		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get? Just sign up and easily search our databases.',
 		'EMAIL': 'Email',
 		'USERNAME': 'Username',
 		'EMAIL_OR_USERNAME': 'Username or email',
@@ -118,8 +118,8 @@ var translateCZ = {
 	},
 	'WELCOME': { 
 		'HEADING': 'Ponořte se do světa domácích knihoven',
-		'TEXT1': 'Naším cílem je umožnit Vám přeměnit vaše poličky s knihami v knihovnu nebo knihkupectví. Budete dostávat žádosti o koupi, pronájem nebo půjčení Vašich knih. Jen Vy rozhodujete o tom, které knihy a jak pošlete dále do světa.',
-		'TEXT2': 'Rádi byste si přečetli knihu, která je ke koupi příliš drahá a v knihovnách neustále rozebraná? Chcete ušetřit a koupit raději knihu z druhé ruky? Během chvilky si u nás můžete zdarma vytvořit účet a zjistit, jestli Vaše požadovaná kniha není v domácí knihovně někoho v okolí. Pokud knihu náhodou nenajdete, můžete vložit na svůj seznam přání a my Vás budeme informovat hned, jakmile bude dostupná.',
+		'TEXT1': 'Umožníme Vám přeměnit Vaše poličky s knihami v soukromou knihovnu nebo knihkupectví. Budete dostávat žádosti o koupi, pronájem nebo půjčení Vašich knih. Jen Vy rozhodujete o tom, které knihy a jak pošlete dále do světa.',
+		'TEXT2': 'Rádi byste si přečetli knihu, která je ke koupi příliš drahá a v knihovnách neustále rozebraná? Chcete ušetřit a koupit raději knihu z druhé ruky? Během chvilky si u nás můžete zdarma vytvořit účet a zjistit, jestli Vaše požadovaná kniha není v domácí knihovně někoho v okolí.',
 		'EMAIL': 'Email',
 		'USERNAME': 'Uživatelské jméno',
 		'EMAIL_OR_USERNAME': 'Email nebo uživatelské jméno',
