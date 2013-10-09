@@ -43,7 +43,8 @@ var translateEN = {
 		},
 		'MODAL': {
 			'REQUEST': 'Send request',
-			'REQUEST_SENT': 'Request was sent'
+			'REQUEST_SENT': 'Request was sent',
+			'REPORT': 'Report this book'
 		},
 		'WISHLIST': 'Wish list',
 		'BROWSE': 'Available books'
@@ -146,7 +147,8 @@ var translateCZ = {
 		},
 		'MODAL': {
 			'REQUEST': 'Požádat o knihu',
-			'REQUEST_SENT': 'Žádost odeslána'
+			'REQUEST_SENT': 'Žádost odeslána',
+			'REPORT': 'Nahlásit knihu'
 		},
 		'WISHLIST': 'Seznam přání',
 		'BROWSE': 'Dostupné knihy'

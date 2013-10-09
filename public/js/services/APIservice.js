@@ -76,6 +76,15 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 			var recipient = userTo + '@bibliofair.com';
 			var data = { id: $rootScope.user.id, token: $rootScope.user.token, recipient: recipient, sender: sender, subject: subject, 'body-plain': body};
 			$http.post('/api/v1/messages', data).success(callback);
+		},
+		reportBook: function (from, username, book, callback) {
+			var body = ['Hello!',
+			'User ' + username + ' reported book',
+			'Title: ' + book.title,
+			'Author: ' + book.author
+			].join('\n');
+			var data = { id: $rootScope.user.id, token: $rootScope.user.token, recipient: 'morgus@bibliofair.com', sender: from, subject: 'Book report', 'body-plain': body};
+			$http.post('/api/v1/messages', data).success(callback);
 		}
 	};
 	return f;

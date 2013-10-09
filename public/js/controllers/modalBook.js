@@ -6,15 +6,20 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 	$scope.remove = function () {
 		$modalInstance.close('remove');
 	};
+	$scope.report = function () {
+		if(!$scope.report_sent) {
+			APIservice.users.read(function(data) {
+				APIservice.messages.reportBook(data.email, data.username, book, function(data) {
+					$scope.report_sent = true;
+				});
+			});
+		}
+	};
 	$scope.sendRequest = function (owner) {
 		//console.log(username);
 		APIservice.users.read(function(data) {
 			APIservice.messages.send(owner.username, data.email, data.username, book, function(data) {
 				console.log('message sent');
-				/*for(var i = 0; i < $scope.owners.length; i++ ) {
-					if($scope.owners[i].username == owner.username) {
-					}
-				}*/
 				owner.style = true;
 				owner.message = $translate('HOME.MODAL.REQUEST_SENT');
 			});

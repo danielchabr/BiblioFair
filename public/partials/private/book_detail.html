@@ -2,8 +2,17 @@
 	div.modal {
 		display:block;
 	}
+	.reported {
+		color: white;
+		cursor: default;
+	}
+	.not_reported {
+		color: #a11d27;
+		cursor: pointer;
+	}
 </style>
 <div class="modal-header text-center">
+	<i class="icon-flag icon-large pull-left" tooltip="{{ 'HOME.MODAL.REPORT' | translate }}" ng-class="{reported: report_sent, not_reported: !report_sent}" ng-click="report()"></i>
 	<button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
 	<h2>{{details_view.title}}</h2>
 	<p>
