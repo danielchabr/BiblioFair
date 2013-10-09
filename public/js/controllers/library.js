@@ -39,17 +39,23 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}
 		delete template.edition;
 		delete template.volume;
-		$scope.selected_books = $filter('filter')($scope.selected_books, template);
+		console.log($scope.selected_books);
+		var arr = $filter('filter')($scope.selected_books, template);
+		template.isbn = ISBN10toISBN13(template.isbn);
+		$scope.selected_books = arr.concat($filter('filter')($scope.selected_books, template));
+		console.log($scope.selected_books);
 		if($scope.selected_books.length == 1) {
 			$scope.newbook = $scope.selected_books[0];
 		}
 		for (var prop in $scope.selected_books[0]) {
-			var flag = false;
+			var flag = true;
 			$scope.selected_books.forEach(function(element) {
-				if($scope.selected_books[0][prop] == element[prop]) flag = true;
+				if($scope.selected_books[0][prop] != element[prop]) {
+					console.log($scope.selected_books[0][prop] + " " + element[prop]);
+					flag = false;
+				}
 			});
 			if(flag) $scope.newbook[prop] = $scope.selected_books[0][prop];
-			console.log($scope.newbook.published);
 		}
 		if($scope.newbook.published) $scope.newbook.published = new Date($scope.newbook.published).getFullYear();
 		console.log($scope.newbook.published);
@@ -84,8 +90,8 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 				if(template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
 				console.log(template.isbn);
 				$scope.tel =  $filter('filter')($scope.tel, template, true);
-				console.log($scope.tel);
 				$scope.selected_books = $scope.selected_books.concat($scope.tel);
+				console.log($scope.selected_books);
 				if($scope.tel.length == 1) {
 					$scope.newbook = $scope.tel[0];
 				}
