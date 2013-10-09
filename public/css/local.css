@@ -3,6 +3,9 @@
 @-ms-viewport       { width: device-width; }
 @-o-viewport        { width: device-width; }
 @viewport           { width: device-width; }
+.nav, .pagination, .carousel a { 
+	cursor: pointer; 
+}
 h1, h2, h3, h4, h5 {
 	margin-top: 10px;
 }
