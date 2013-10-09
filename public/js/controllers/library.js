@@ -9,6 +9,12 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 			 $rootScope.mybooks.push(data.library[i].id);
 		 }
 	});
+	APIservice.users.read(function(data) {
+		console.log(data);
+		if(data.loc.coordinates.length == 0) {
+			$scope.disable = true;
+		}
+	});
 
 	$scope.addbook = function() {
 		console.log($scope.newbook.title + " " + $scope.newbook.author);
@@ -103,12 +109,14 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 	$scope.check = function (data, prop, val) {
 		if($scope.selected_books.length == 0) $scope.selected_books = $scope.books;
 		var template = {};
+		console.log('check');
 		for (var prop in $scope.newbook) {
 			template[prop] = $scope.newbook[prop];
 		}
 		delete template.edition;
 		delete template.volume;
 		if(template.isbn && template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
+		console.log('check');
 		var arr = $filter('filter')($scope.selected_books, template);
 		/*var arr = [];
 		for (var i = 0; i < sel.length;i++) {
@@ -118,6 +126,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}*/
 		console.log($scope.newbook);
 		console.log(arr);
+		console.log('check');
 		return arr;
 	};
 	//////////// BOOK DETAIL MODAL //////////////////

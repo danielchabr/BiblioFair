@@ -5,8 +5,11 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-8 col-md-9">
 			<h2 class="text-center">{{ 'NAV.LIBRARY' | translate }}</h2>
+			<div ng-if="disable" class="well text-center" style="background-color:#C2BF04">
+				{{ 'LIBRARY.ALERT' | translate }}
+			</div>
 			<ul class="bookview">
-				<li class="col-lg-4 col-sm-6" ng-repeat="book in mybooks | filter:search">
+				<li class="col-lg-4 col-md-6 col-sm-12" ng-repeat="book in mybooks | filter:search">
 					<div class="well" ng-click="open(book)">
 						<div class="row">
 							<div class="col-xs-10 col-sm-9 col-md-10">
@@ -35,7 +38,7 @@
 							<p>{{ 'LIBRARY.ADD.TEXT' | translate }}</p>
 							<div class="form-group">
 								<label class="" for="new_isbn"><abbr title="{{'LIBRARY.ADD.ISBN_ABBR' | translate}}">{{ 'LIBRARY.ADD.ISBN' | translate }}:</abbr></label>
-								<input type="text" id="new_isbn" ng-model="newbook.isbn" class="form-control" placeholder="{{ 'LIBRARY.ADD.ISBN' | translate }}" typeahead="book for book in check(books, 'isbn', $viewValue) | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook(); searchTel(newbook.isbn)" ng-change="searchTel(newbook.isbn)">
+								<input type="text" id="new_isbn" ng-model="newbook.isbn" class="form-control" placeholder="{{ 'LIBRARY.ADD.ISBN' | translate }}" typeahead="book.isbn as book.title + ' || ' + book.author for book in check(books, 'isbn', $viewValue) | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook(); searchTel(newbook.isbn)" ng-change="searchTel(newbook.isbn)">
 							</div>
 							<div class="form-group">
 								<label class="" for="new_title">{{ 'LIBRARY.ADD.TITLE' | translate }}:</label>
@@ -96,7 +99,7 @@
 									<input type="text" id="new_publisher" ng-model="newbook.publisher" class="form-control" placeholder="{{ 'LIBRARY.ADD.PUBLISHER' | translate }}">
 								</div>
 							</div>
-							<button ng-click="addbook(); log()" class="btn btn-default btn-success pull-center" style="margin-bottom:15px; width:100px">{{ 'LIBRARY.ADD.BUTTON' | translate }}</button>
+							<button ng-click="addbook(); log()" ng-disabled="disable" class="btn btn-default btn-success pull-center" style="margin-bottom:15px; width:100px">{{ 'LIBRARY.ADD.BUTTON' | translate }}</button>
 						</fieldset>
 					</form>
 				</div>

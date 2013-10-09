@@ -50,7 +50,7 @@ var translateEN = {
 	},
 	'LIBRARY': { 
 		'ADD': { 
-			'HEADING': 'Add books to your library',
+			'HEADING': 'Add book',
 			'TEXT': 'We recommend first filling in ISBN, the rest might get filled in automatically from our databases',
 			'ISBN': 'ISBN',
 			'ISBN_ABBR': 'Internation Standard Book Number can usually be found above bar code at the back side of the book',
@@ -64,7 +64,8 @@ var translateEN = {
 			'PUBLISHER': 'Publisher',
 			'LANGUAGE': 'Language',
 			'BUTTON': 'Add book'
-		}
+		},
+		'ALERT': 'Set your location in your account settings to add books'
 	},
 	'ACCOUNT': { 
 		'SETLOCATION': 'Set your location by centering the map',
@@ -152,7 +153,7 @@ var translateCZ = {
 	},
 	'LIBRARY': { 
 		'ADD': { 
-			'HEADING': 'Vložte knihy do své knihovny: ',
+			'HEADING': 'Přidat knihu',
 			'TEXT': 'Doporučujeme začít vyplněním pole ISBN, další údaje se možná vyplní automaticky z naší databáze',
 			'ISBN': 'ISBN',
 			'ISBN_ABBR': 'Mezinárodní standardní číslo knihy je většinou nad čárovým kódem na zadní straně knihy',
@@ -166,7 +167,8 @@ var translateCZ = {
 			'PUBLISHER': 'Vydavatel',
 			'LANGUAGE': 'Jazyk',
 			'BUTTON': 'Vlož knihu'
-	}
+		},
+		'ALERT': 'Pro přidávání knih nejdříve nastavte Vaši polohu v záložce Účet'
 	},
 	'ACCOUNT': { 
 		'SETLOCATION': 'Nastavte svoji polohu vycentrováním mapy',
