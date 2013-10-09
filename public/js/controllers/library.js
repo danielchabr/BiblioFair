@@ -101,7 +101,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 	}
 	// retrieves array of wanted property in books, checks for empty slots
 	$scope.check = function (data, prop, val) {
-		var arr = [];
 		if($scope.selected_books.length == 0) $scope.selected_books = $scope.books;
 		var template = {};
 		for (var prop in $scope.newbook) {
@@ -110,13 +109,15 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		delete template.edition;
 		delete template.volume;
 		if(template.isbn && template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
-		var sel = $filter('filter')($scope.selected_books, template);
+		var arr = $filter('filter')($scope.selected_books, template);
+		/*var arr = [];
 		for (var i = 0; i < sel.length;i++) {
 			if(sel[i][prop]) {
 				arr.push(sel[i][prop].toString());
 			}
-		}
+		}*/
 		console.log($scope.newbook);
+		console.log(arr);
 		return arr;
 	};
 	//////////// BOOK DETAIL MODAL //////////////////
