@@ -29,3 +29,13 @@ function removeBook ($rootScope, $scope, $http, $location, book) {
 		});
 };
 
+var uniqBooks = function (arr, comparator) {
+	var arr = arr.sort(comparator);
+	var res = [];
+	for(var i = 0; i < arr.length; i++) {
+		if(arr[i+1] == undefined || comparator(arr[i], arr[i+1]) != 0) {
+			res.push(arr[i]);
+		}
+	}
+	return res;
+};
