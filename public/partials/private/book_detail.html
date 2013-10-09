@@ -14,7 +14,7 @@
 <div class="modal-header text-center">
 	<i class="icon-flag icon-large pull-left" tooltip="{{ 'HOME.MODAL.REPORT' | translate }}" ng-class="{reported: report_sent, not_reported: !report_sent}" ng-click="report()"></i>
 	<button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
-	<h2>{{details_view.title}}</h2>
+	<h2 style="padding-right:7px">{{details_view.title}}</h2>
 	<p>
 	<i>{{ 'DETAIL.BY' | translate }} {{details_view.author}}</i>
 	</p>
@@ -31,8 +31,9 @@
 	<div class="row" style="margin:0px">
 		<div id="map" ng-model="map" class="col-xs-12" style="height:300px;padding:0px" ng-init="draw_map()"></div>
 	</div>
+	<br>
 	<h3 class="text-center">Owners</h3>
-	<table class="table table-striped">
+	<table class="table table-striped" style="margin-bottom:0px">
 		<thead>
 			<tr><th>{{ 'WELCOME.USERNAME' | translate }}</th><th>{{ 'WELCOME.EMAIL' | translate }}</th><th></th></tr>
 		</thead>
