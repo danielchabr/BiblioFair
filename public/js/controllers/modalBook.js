@@ -1,4 +1,6 @@
 var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservice) {
+	var map_width = $("#map_row").width();
+	$("#map").css("width", map_width);
 	$scope.details_view = book;
 	if(book.published) {
 		$scope.details_view.published = new Date(book.published).getFullYear();

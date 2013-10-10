@@ -1,4 +1,7 @@
 function accountControl($scope, $http, $location, $translate, APIservice) {
+	var map_width = $("#map_row").width();
+	$("#map").css("width", map_width);
+	$("#cross").css("left", map_width/2 -18);
 	$scope.centerLat = 30;
 	$scope.centerLng = -30;
 	$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
