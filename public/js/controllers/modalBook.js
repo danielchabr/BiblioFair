@@ -58,6 +58,7 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 					$scope.map.addShape(point);
 				}
 				$scope.map.bestFit(false, 4, 12);
+				$scope.map.setZoomLevel($scope.map.zoom-1);
 			}
 		});
 	};
