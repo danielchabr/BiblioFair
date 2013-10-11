@@ -1,6 +1,4 @@
 var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservice) {
-	var map_width = $("#map_row").width();
-	$("#map").css("width", map_width);
 	$scope.details_view = book;
 	if(book.published) {
 		$scope.details_view.published = new Date(book.published).getFullYear();
@@ -32,6 +30,8 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 	};
 	$scope.owners = [];
 	$scope.draw_map = function() {
+		var map_width = $("#map_row").width();
+		$("#map").css("width", map_width);
 		var options={
 			elt:document.getElementById('map'),       /*ID of element on the page where you want the map added*/ 
 			zoom:2,                                  /*initial zoom level of the map*/ 
