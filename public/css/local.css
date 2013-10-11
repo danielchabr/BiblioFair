@@ -80,8 +80,8 @@ html, body {
 	min-height:100%; /* real browsers */
 }
 .info {
-	opacity:0.4;
-	filter:alpha(opacity=40);
+	opacity:0.6;
+	filter:alpha(opacity=60);
 	position:absolute;
 	margin:0px;
 	min-height:21px;

@@ -1,4 +1,14 @@
-function welcomeControl($rootScope, $scope, $http, $location, $translate, $modal) {
+function welcomeControl($rootScope, $scope, $http, $location, APIservice, $translate, $modal) {
+	APIservice.books.read('','', 6, 0, function(data) {
+		$rootScope.books = data;
+		console.log(data.length);
+	});
+	$scope.retrieveBooks = function () {
+		APIservice.books.read('', $scope.search, 6, 0, function(data) {
+			var arr = $rootScope.books.concat(data);
+			$rootScope.books = uniqBooks(arr, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
+		});
+	}
 	$scope.signup = function() {
 		$scope.signup_message = "";
 		if($scope.signup_email && $scope.signup_username && $scope.signup_password.length > 5) {
