@@ -44,8 +44,23 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		});
 		}
 	};
+	var loadLoc = function (callback) {
+		$scope.$apply(function() {
+			APIservice.users.read(function(data) {
+				if(data.loc.coordinates.length == 2) {
+					$scope.centerLat = data.loc.coordinates[1];
+					$scope.centerLng = data.loc.coordinates[0];
+					console.log(data.loc);
+					console.log($scope.centerLat + ' ' + $scope.centerLng);
+					console.log(data.loc.coordinates[1] + ' ' + data.loc.coordinates[0]);
+					$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
+				}
+			});
+		});
+	};
 	$scope.draw_map = function()
 	{
+		$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4", function() {
 		var options={
 			elt:document.getElementById('map'),       /*ID of element on the page where you want the map added*/ 
 			zoom:2,                                  /*initial zoom level of the map*/ 
@@ -68,17 +83,11 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		MQA.EventManager.addListener($scope.map, 'click', update_loc);
 		MQA.EventManager.addListener($scope.map, 'doubleclick', update_loc);
 		MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
+		console.log('calling loadLoc()');
+		loadLoc();
+		console.log('end loadLoc()');
+		});
 	};
-	APIservice.users.read(function(data) {
-		if(data.loc.coordinates.length == 2) {
-			$scope.centerLat = data.loc.coordinates[1];
-			$scope.centerLng = data.loc.coordinates[0];
-			console.log(data.loc);
-			console.log($scope.centerLat + ' ' + $scope.centerLng);
-			console.log(data.loc.coordinates[1] + ' ' + data.loc.coordinates[0]);
-			$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
-		}
-	});
 	var update_loc = function (){
 		$scope.$apply(function() {
 		$scope.centerLat = $scope.map.getCenter().lat;

@@ -1,4 +1,5 @@
 function homeControl($rootScope, $scope, $http, $modal, $translate, $location, APIservice) {
+	$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4");
 	$scope.bookOrder = 'title';
 	APIservice.books.read('','', 60, 0, function(data) {
 		$rootScope.books = data;
