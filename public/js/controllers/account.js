@@ -28,8 +28,6 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 				old_hash_email = CryptoJS.SHA3($scope.old_password + data.email, {outputLength: 256 });
 				hash_username = CryptoJS.SHA3($scope.new_password + data.username, {outputLength: 256 });
 				hash_email = CryptoJS.SHA3($scope.new_password + data.email, {outputLength: 256 });
-				console.log(old_hash_username);
-				console.log(hash_username);
 				APIservice.users.update({action:'pass', old_password_username: old_hash_username.toString(), old_password_email: old_hash_email.toString(), password_username: hash_username.toString(), password_email: hash_email.toString()}, function (data, stat) {
 					if(stat == 404) {
 						$scope.change_pass_message = $translate('ACCOUNT.CHANGE.INCORRECT');
