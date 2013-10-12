@@ -92,6 +92,7 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		$scope.$apply(function() {
 			$scope.centerLat = $scope.map.getCenter().lat;
 			$scope.centerLng = $scope.map.getCenter().lng;
+			$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
 		});
 	};
 }
