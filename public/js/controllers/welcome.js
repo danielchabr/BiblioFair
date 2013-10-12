@@ -25,6 +25,13 @@ function welcomeControl($rootScope, $scope, $http, $location, APIservice, $trans
 					else if(data == 'usernameExists') {
 						$scope.signup_message = $translate('WELCOME.USERNAME_EXISTS');
 					}
+					else if(data == 'invalidEmail') {
+						$scope.signup_message = $translate('WELCOME.EMAIL_INVALID');
+					}
+					else if(data == 'invalidUsername') {
+						$scope.signup_message = $translate('WELCOME.USERNAME_INVALID');
+					}
+					console.log(data);
 				});
 		} else {
 			if($scope.signup_password.length < 6) {

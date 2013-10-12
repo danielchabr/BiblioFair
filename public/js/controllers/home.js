@@ -1,13 +1,19 @@
 function homeControl($rootScope, $scope, $http, $modal, $translate, $location, APIservice) {
 	$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4");
 	$scope.bookOrder = 'title';
-	APIservice.books.read('','', 60, 0, function(data) {
+	APIservice.users.read(function(data) {
+		if(data.loc.coordinates.length == 2) {
+			$scope.lat = data.loc.coordinates[1];
+			$scope.lng = data.loc.coordinates[0];
+		}
+	});
+	APIservice.books.read('', '', 60, 0, $scope.lat, $scope.lng, 10, function(data) {
 		$rootScope.books = data;
 		console.log(data.length);
 	});
 	//	read: function (fields, query, limit, offset, callback) {
 	$scope.retrieveBooks = function () {
-		APIservice.books.read('', $scope.search, 12, 0, function(data) {
+		APIservice.books.read('', $scope.search, 12, 0, $scope.lat, $scope.lng, 10, function(data) {
 			var arr = $rootScope.books.concat(data);
 			$rootScope.books = uniqBooks(arr, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
 		});

@@ -1,12 +1,9 @@
 function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, APIservice) {
-	APIservice.books.read('','', 20, 0, function(data) {
-		 $rootScope.books = data;
-	});
 	APIservice.library.read(function(data) {
-		 $rootScope.mybooks = [];
+		 $scope.mybooks = [];
 		 console.log(data);
 		 for(var i = 0; i < data.library.length; i++) {
-			 $rootScope.mybooks.push(data.library[i].id);
+			 $scope.mybooks.push(data.library[i].id);
 		 }
 	});
 	APIservice.users.read(function(data) {
@@ -14,7 +11,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 			$scope.disable = true;
 		}
 	});
-
 	$scope.addbook = function() {
 		console.log($scope.newbook.title + " " + $scope.newbook.author);
 		if($scope.newbook.title && $scope.newbook.author) {
@@ -24,12 +20,11 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 			}
 			APIservice.library.create($scope.newbook, function(data, status) {
 				console.log(data);
-				$rootScope.mybooks.push(data);
+				$scope.mybooks.push(data);
 				$scope.newbook = {};
 			});
 		}
 	};
-	///// EUROPEAN LIBRARY API ////////////
 	$scope.selected_books = [];
 	// on selection of one of typeaheads checks if it matches only one result and if so, fills the rest of form
 	$scope.selectBook = function () {
@@ -60,6 +55,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}
 		if($scope.newbook.published) $scope.newbook.published = new Date($scope.newbook.published).getFullYear();
 	};
+	///// EUROPEAN LIBRARY API ////////////
 	// is called on each change of ISBN but gives call after 10th char only
 	$scope.searchTel = function (query) {
 		if(query == $scope.newbook.isbn && typeof query == 'string') {
@@ -108,7 +104,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 			}
 		}
 	}
-	// retrieves array of wanted property in books, checks for empty slots
 	$scope.check = function (data, prop, val) {
 		if($scope.selected_books.length == 0) $scope.selected_books = $scope.books;
 		var template = {};
@@ -119,14 +114,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		delete template.volume;
 		if(template.isbn && template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
 		var arr = $filter('filter')($scope.selected_books, template);
-		/*var arr = [];
-		for (var i = 0; i < sel.length;i++) {
-			if(sel[i][prop]) {
-				arr.push(sel[i][prop].toString());
-			}
-		}*/
-		//console.log($scope.newbook);
-		//console.log(arr);
 		arr = uniqBooks(arr, function(a, b) { if(a.title + a.author < b.title + b.author) return -1; else if (a.title + a.author > b.title + b.author) return 1; else return 0; });
 		return arr;
 	};

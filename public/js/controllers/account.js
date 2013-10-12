@@ -90,8 +90,8 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 	};
 	var update_loc = function (){
 		$scope.$apply(function() {
-		$scope.centerLat = $scope.map.getCenter().lat;
-		$scope.centerLng = $scope.map.getCenter().lng;
+			$scope.centerLat = $scope.map.getCenter().lat;
+			$scope.centerLng = $scope.map.getCenter().lng;
 		});
 	};
 }

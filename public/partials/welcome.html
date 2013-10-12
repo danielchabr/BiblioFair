@@ -50,7 +50,7 @@
 					<input type="text" ng-model="search" ng-change="retrieveBooks()" class="form-control" placeholder="{{ 'NAV.SEARCH.PLACEHOLDER' | translate }}">
 				</div>
 			</form>
-			<ul class="bookview row">
+			<ul class="bookview row" style="padding-left:8px; padding-right:8px;">
 				<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in books | filter:search | orderBy:bookOrder | limitTo:6">
 				<div class="well" style="cursor:default">
 					<div class="row">

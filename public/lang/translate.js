@@ -28,6 +28,8 @@ var translateEN = {
 		'AGAIN': 'Email or password is incorrect. Please try again',
 		'SHORT_PASSWORD': 'Password needs to be at least 6 characters long',
 		'VERIFICATION_SENT': 'Verification email has been sent to ',
+		'EMAIL_INVALID': 'Invalid email',
+		'USERNAME_INVALID': 'Invalid username. Try removing spaces.',
 		'EMAIL_EXISTS': 'Email already registered',
 		'USERNAME_EXISTS': 'Username already registered'},
 	'RECOVERY': {
@@ -132,6 +134,8 @@ var translateCZ = {
 		'AGAIN': 'Chybný email nebo heslo, prosím zkusto to znovu',
 		'SHORT_PASSWORD': 'Heslo musí mít alespoň 6 znaků',
 		'VERIFICATION_SENT': 'Ověřovací email byl zaslán na adresu ',
+		'EMAIL_INVALID': 'Neplatný email',
+		'USERNAME_INVALID': 'Neplatné uživatelské jméno. Zkuste vynechat mezery',
 		'EMAIL_EXISTS': 'Účet s tímto emailem již existuje',
 		'USERNAME_EXISTS': 'Účet s tímto uživatelským jménem již existuje'
 	},

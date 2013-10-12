@@ -47,8 +47,12 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 		}
 	};
 	f.books = {
-		read: function (fields, query, limit, offset, callback) {
-			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token, q: query, fields: fields, limit: limit, offset: offset}};
+		read: function (fields, query, limit, offset, lat, lng, radius, callback) {
+			if(typeof lat == 'function') {
+				callback = lat;
+				lat = undefined;
+			}
+			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token, q: query, fields: fields, limit: limit, offset: offset, lat: lat, lng: lng, radius: radius}};
 			$http.get('/api/v1/books', par).success(callback);
 		},
 		readById: function (bookId, callback) {
