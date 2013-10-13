@@ -46,7 +46,7 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 				new MQA.LargeZoom(),
 				new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5))
 				);
-			$scope.map.enableMouseWheelZoom();
+			//$scope.map.enableMouseWheelZoom();
 		});
 		APIservice.books.readById($scope.details_view._id, function(data) {
 			console.log(data.users);
