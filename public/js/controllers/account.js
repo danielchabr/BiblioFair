@@ -9,7 +9,9 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		$scope.save_loc_text = $translate('ACCOUNT.SAVING');
 		APIservice.users.update({action:'loc', lng: $scope.centerLng, lat: $scope.centerLat}, function (data, stat) {
 			$scope.save_loc_text = $translate('ACCOUNT.SAVED_LOC');
-
+			$scope.map.removeAllShapes();
+			var point = new MQA.Poi( {lat: $scope.centerLat, lng: $scope.centerLng} );
+			$scope.map.addShape(point);
 		});
 	};
 	$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
@@ -51,7 +53,10 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 					console.log(data.loc);
 					console.log($scope.centerLat + ' ' + $scope.centerLng);
 					console.log(data.loc.coordinates[1] + ' ' + data.loc.coordinates[0]);
-					$scope.map.setCenterAnimate(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
+					$scope.map.setCenter(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
+					$scope.map.setZoomLevel(11);
+					var point = new MQA.Poi( {lat: $scope.centerLat, lng: $scope.centerLng} );
+					$scope.map.addShape(point);
 				}
 			});
 		});
@@ -90,7 +95,7 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		$scope.$apply(function() {
 			$scope.centerLat = $scope.map.getCenter().lat;
 			$scope.centerLng = $scope.map.getCenter().lng;
-			$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
+			$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
 		});
 	};
 }

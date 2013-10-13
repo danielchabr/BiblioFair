@@ -67,16 +67,27 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 		}
 	};
 	f.messages = {
-		send: function (userTo, sender, userFrom, book, callback) {
+		send: function (userTo, sender, userFrom, book, lang, callback) {
 			var subject = 'Book request';
-			var body = ['Hello ' + userTo + '!',
-				'User ' + userFrom + ' would like to buy a book from you. If you are intereseted reply to this message and arrange details of the deal directly with him.',
-				'Details of requested book:',
-				'Title: ' + book.title,
-				'Author: ' + book.author,
-				'\nBest regards,',
-				'BiblioFair team'
-				].join('\n');
+			if(lang == 'cz') {
+				var body = ['Dobrý den ' + userTo + '!',
+					'Uživatel ' + userFrom + ' by si od Vás rad koupil knihu. Pokud máte zájem, stačí odpovědět na tuto zprávu a domluvit detaily předání přímo s ním.',
+					'Informace o požadované knize:',
+					'Titul: ' + book.title,
+					'Autor: ' + book.author,
+					'\nS pozdravem a přáním hezkého dne,',
+					'Tým BiblioFair'
+					].join('\n');
+			} else {
+				var body = ['Hello ' + userTo + '!',
+					'User ' + userFrom + ' would like to buy a book from you. If you are intereseted reply to this message and arrange details of the deal directly with him.',
+					'Details of requested book:',
+					'Title: ' + book.title,
+					'Author: ' + book.author,
+					'\nBest regards,',
+					'BiblioFair team'
+					].join('\n');
+			}
 			var recipient = userTo + '@bibliofair.com';
 			var data = { id: $rootScope.user.id, token: $rootScope.user.token, recipient: recipient, sender: sender, subject: subject, 'body-plain': body};
 			$http.post('/api/v1/messages', data).success(callback);

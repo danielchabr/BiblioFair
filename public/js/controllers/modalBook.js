@@ -16,9 +16,8 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 		}
 	};
 	$scope.sendRequest = function (owner) {
-		//console.log(username);
 		APIservice.users.read(function(data) {
-			APIservice.messages.send(owner.username, data.email, data.username, book, function(data) {
+			APIservice.messages.send(owner.username, data.email, data.username, book, data.language, function(data) {
 				console.log('message sent');
 				owner.style = true;
 				owner.message = $translate('HOME.MODAL.REQUEST_SENT');
