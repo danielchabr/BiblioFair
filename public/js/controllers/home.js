@@ -13,7 +13,7 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 					data.distance = i;
 					$rootScope.books.push(data[i]);
 				}
-				$rootScope.books = uniqBooks(arr, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
+				$rootScope.books = uniqBooks($rootScope.books, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
 				console.log(data.length);
 			}
 		});
