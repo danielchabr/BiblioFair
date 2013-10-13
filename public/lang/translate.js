@@ -31,7 +31,9 @@ var translateEN = {
 		'EMAIL_INVALID': 'Invalid email',
 		'USERNAME_INVALID': 'Invalid username. Try removing spaces.',
 		'EMAIL_EXISTS': 'Email already registered',
-		'USERNAME_EXISTS': 'Username already registered'},
+		'USERNAME_EXISTS': 'Username already registered',
+		'BOOKS_AVAILABLE': 'books available'
+	},
 	'RECOVERY': {
 		'EMAIL': 'Account email address',
 		'SEND': 'Send',
@@ -137,7 +139,8 @@ var translateCZ = {
 		'EMAIL_INVALID': 'Neplatný email',
 		'USERNAME_INVALID': 'Neplatné uživatelské jméno. Zkuste vynechat mezery',
 		'EMAIL_EXISTS': 'Účet s tímto emailem již existuje',
-		'USERNAME_EXISTS': 'Účet s tímto uživatelským jménem již existuje'
+		'USERNAME_EXISTS': 'Účet s tímto uživatelským jménem již existuje',
+		'BOOKS_AVAILABLE': 'dostupných knih'
 	},
 	'RECOVERY': {
 		'EMAIL': 'Emailová adresa Vašeho účtu',

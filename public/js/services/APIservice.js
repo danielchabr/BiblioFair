@@ -58,7 +58,11 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 		readById: function (bookId, callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token}};
 			$http.get('/api/v1/books/' + bookId, par).success(callback);
-		}
+		},
+		count: function (callback) {
+			var par = { params: {}};
+			$http.get('/api/v1/books/count', par).success(callback);
+		},
 	};
 	f.tel = {
 		read: function (query, callback) {

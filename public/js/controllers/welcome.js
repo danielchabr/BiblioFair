@@ -1,4 +1,7 @@
-function welcomeControl($rootScope, $scope, $http, $location, APIservice, $translate, $modal) {
+function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, $translate, $modal) {
+	APIservice.books.count(function(data) {
+		if(data) $scope.books_available = data + " " + $translate('WELCOME.BOOKS_AVAILABLE');
+	});
 	APIservice.books.read('','', 6, 0, function(data) {
 		$rootScope.books = data;
 		console.log(data.length);
