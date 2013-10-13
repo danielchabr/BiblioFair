@@ -7,10 +7,18 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 			$scope.lng = data.loc.coordinates[0];
 		}
 		APIservice.books.read('', '', 60, 0, $scope.lat, $scope.lng, 10000 , function(data) {
-			$rootScope.books = data;
-			console.log(data.length);
+			if(data){
+				$rootScope.books=[];
+				for(var i = 0; i < data.length; i++) {
+					data.distance = i;
+					$rootScope.books.push(data[i]);
+				}
+				$rootScope.books = uniqBooks(arr, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
+				console.log(data.length);
+			}
 		});
 	});
+	$scope.bookOrder = "distance";
 	//	read: function (fields, query, limit, offset, callback) {
 	$scope.retrieveBooks = function () {
 		APIservice.books.read('', $scope.search, 12, 0, function(data) {
