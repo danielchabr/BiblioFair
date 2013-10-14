@@ -1,4 +1,5 @@
 function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, $translate, $modal) {
+	//// Log in dropdown hack
 	var switchoff = false;
 	$('html').click(function() {
 		if(!switchoff) $('#login').css('display', 'none');
@@ -15,10 +16,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		switchoff = true;
 		$('#login').delay(1000).css('display', 'block');
 	});
-	/*$scope.login_open = function() {
-		$('#login').css('display', 'block');
-		console.log('triggered');
-	};*/
+	/////////////////////
 	APIservice.books.count(function(data) {
 		if(data) $scope.books_available = data + " " + $translate('WELCOME.BOOKS_AVAILABLE');
 	});
@@ -32,6 +30,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 			$rootScope.books = uniqBooks(arr, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
 		});
 	}
+	//// Sign up action
 	$scope.signup = function() {
 		$scope.signup_message = "";
 		if($scope.signup_email && $scope.signup_username && $scope.signup_password.length > 5) {
@@ -41,6 +40,8 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 				.success( function(data) {
 					if(data == 'registered') {
 						$scope.signup_message = $translate('WELCOME.VERIFICATION_SENT') + $scope.signup_email;
+						//// Google Analytics register goal
+						ga('send', 'event', 'Register', 'register');
 					}
 					else if(data == 'emailExists') {
 						$scope.signup_message = $translate('WELCOME.EMAIL_EXISTS');
@@ -62,6 +63,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 			}
 		}
 	}
+	//// Log in action
 	$scope.login = function() {
 		$scope.signup_message = "";
 		if($scope.login_id && $scope.login_password.length > 5) {
@@ -85,6 +87,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 			}
 		}
 	}
+	//// Password recovery modal window
 	$scope.open = function () {
 		var modalInstance = $modal.open({
 			templateUrl: '/partials/recovery.html',
