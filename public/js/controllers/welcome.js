@@ -1,4 +1,24 @@
 function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, $translate, $modal) {
+	var switchoff = false;
+	$('html').click(function() {
+		if(!switchoff) $('#login').css('display', 'none');
+		switchoff = false;
+	});
+	$('#login_opener').click(function() {
+		if($('#login').css('display') == 'none') {
+			$('#login').css('display', 'block');
+		} else {
+			$('#login').css('display', 'none');
+		}
+	});
+	$('#login').click(function() {
+		switchoff = true;
+		$('#login').delay(1000).css('display', 'block');
+	});
+	/*$scope.login_open = function() {
+		$('#login').css('display', 'block');
+		console.log('triggered');
+	};*/
 	APIservice.books.count(function(data) {
 		if(data) $scope.books_available = data + " " + $translate('WELCOME.BOOKS_AVAILABLE');
 	});

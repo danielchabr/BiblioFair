@@ -29,11 +29,11 @@
 		</a>
 		<ul class="nav navbar-nav pull-right">
 			<li>
-			<a class="dropdown-toggle">
+			<a class="dropdown-toggle" id="login_opener">
 				<i class="icon-signin icon-large"></i> 
 				<span id="lang">{{ 'WELCOME.SIGNIN_TEXT' | translate }}</span>
 			</a>
-			<ul class="dropdown-menu" style="color: black">
+			<ul class="dropdown-menu" style="color: black" ng-click="login_open();" id="login">
 				<li style="padding:10px 15px;">
 					<form style="width:170px">
 						<fieldset>
