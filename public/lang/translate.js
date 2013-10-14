@@ -49,7 +49,11 @@ var translateEN = {
 			'REQUEST': 'Send request',
 			'REQUEST_SENT': 'Request was sent',
 			'REPORT': 'Report this book',
-			'OWNERS': 'Owners'
+			'OWNERS': 'Owners',
+			'LABEL':'Actions',
+			'SELL':'Sells',
+			'DONATE':'Donates',
+			'LEND':'Lends'
 		},
 		'WISHLIST': 'Wish list',
 		'BROWSE': 'Available books'
@@ -62,6 +66,13 @@ var translateEN = {
 			'ISBN_ABBR': 'Internation Standard Book Number can usually be found above bar code at the back side of the book',
 			'TITLE': 'Title',
 			'AUTHOR': 'Author',
+			'ACTIONS': {
+				'LABEL':'Actions',
+				'SELL':'Sell',
+				'DONATE':'Donate',
+				'LEND':'Lend',
+				'WARNING':'At least one action must be checked'
+			},
 			'OPTIONAL': 'View optional fields',
 			'SUBTITLE': 'Subtitle',
 			'EDITION': 'Edition',
@@ -69,7 +80,8 @@ var translateEN = {
 			'PUBLISHED': 'Published on',
 			'PUBLISHER': 'Publisher',
 			'LANGUAGE': 'Language',
-			'BUTTON': 'Add book'
+			'BUTTON': 'Add book',
+			'NOT_FILLED': 'Title or author is missing'
 		},
 		'ALERT': 'Set your location in your account settings to add books'
 	},
@@ -157,7 +169,11 @@ var translateCZ = {
 			'REQUEST': 'Požádat o knihu',
 			'REQUEST_SENT': 'Žádost odeslána',
 			'REPORT': 'Nahlásit knihu',
-			'OWNERS': 'Vlastníci'
+			'OWNERS': 'Vlastníci',
+			'LABEL':'Akce',
+			'SELL':'Prodává',
+			'DONATE':'Daruje',
+			'LEND':'Půjčuje'
 		},
 		'WISHLIST': 'Seznam přání',
 		'BROWSE': 'Dostupné knihy'
@@ -170,6 +186,13 @@ var translateCZ = {
 			'ISBN_ABBR': 'Mezinárodní standardní číslo knihy je většinou nad čárovým kódem na zadní straně knihy',
 			'TITLE': 'Titul',
 			'AUTHOR': 'Autor',
+			'ACTIONS': {
+				'LABEL':'Akce',
+				'SELL':'Prodat',
+				'DONATE':'Darovat',
+				'LEND':'Půjčit',
+				'WARNING':'Alespoň jedna akce musí být zaškrtnuta'
+			},
 			'OPTIONAL': 'Zobrazit volitelná pole',
 			'SUBTITLE': 'Podtitul',
 			'EDITION': 'Vydání',
@@ -177,7 +200,8 @@ var translateCZ = {
 			'PUBLISHED': 'Vydáno roku',
 			'PUBLISHER': 'Nakladatel',
 			'LANGUAGE': 'Jazyk',
-			'BUTTON': 'Vlož knihu'
+			'BUTTON': 'Vlož knihu',
+			'NOT_FILLED': 'Titul nebo autor není vyplněn'
 		},
 		'ALERT': 'Pro přidávání knih nejdříve nastavte Vaši polohu v záložce Účet'
 	},

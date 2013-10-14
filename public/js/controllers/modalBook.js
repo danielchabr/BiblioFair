@@ -50,12 +50,18 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 		APIservice.books.readById($scope.details_view._id, function(data) {
 			console.log(data.users);
 			for(var i = 0; i < data.users.length; i++) {
+				var new_user = {username: data.users[i].username, style: false, message : $translate('HOME.MODAL.REQUEST')}
+				for(var j = 0; j < data.users[i].library.length; j++) {
+					if(data.users[i].library[j].id == $scope.details_view._id) {
+						new_user.actions = data.users[i].library[j].actions;
+					}
+				}
 				if(data.users[i].loc.coordinates && data.users[i].loc.coordinates.length == 2 && data.users[i].loc.coordinates != [-30, 30]) {
 					var point = new MQA.Poi( {lat: data.users[i].loc.coordinates[1], lng: data.users[i].loc.coordinates[0]} );
 					point.setRolloverContent(data.users[i].username);
-					$scope.owners.push({username: data.users[i].username, style: false, message : $translate('HOME.MODAL.REQUEST')});
 					$scope.map.addShape(point);
 				}
+				$scope.owners.push(new_user);
 				$scope.map.bestFit(false, 4, 12);
 				$scope.map.setZoomLevel($scope.map.zoom-1);
 			}
