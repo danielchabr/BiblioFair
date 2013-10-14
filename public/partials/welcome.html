@@ -14,17 +14,6 @@
 		padding-top: 25px;
 		background: rgba(0, 0, 0, 0.5);
 	}
-	#login {
-		opacity:1;
-		filter:alpha(opacity=100);
-		position:absolute;
-		border-top:0px;
-		top:50px;
-		left:-1px;
-		width:220px;
-		z-index:400;
-		background-color:white;
-	}
 	.popover {
 		color:black;
 	}
@@ -40,35 +29,37 @@
 		</a>
 		<ul class="nav navbar-nav pull-right">
 			<li>
-			<a ng-click="show_login=!show_login" ng-init="show_login=false">
+			<a class="dropdown-toggle">
 				<i class="icon-signin icon-large"></i> 
 				<span id="lang">{{ 'WELCOME.SIGNIN_TEXT' | translate }}</span>
 			</a>
-			<div class="well" id="login" ng-show="show_login" style="">
-				<form>
-					<fieldset>
-						<div class="form-group" id="div_login_id">
-							<label class="sr-only" for="login_id">{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}</label>
-							<input type="text" id="login_id" ng-model="login_id"  class="form-control input-sm" placeholder="{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}" required autofocus>
-						</div>
-						<div class="form-group" id="div_login_password">
-							<label class="sr-only" for="login_password">{{ 'WELCOME.PASSWORD' | translate }}</label>
-							<input type="password" id="login_password" ng-model="login_password" class="form-control input-sm" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
-							<div class="col-xs-12 text-right" style="color:#888888">	
-								<i class="icon-question-sign icon-large" ng-click="open()" style="position:absolute;top:-20px; right:12px; cursor:pointer"></i> 
+			<ul class="dropdown-menu" style="color: black">
+				<li style="padding:10px 15px;">
+					<form style="width:170px">
+						<fieldset>
+							<div class="form-group" id="div_login_id">
+								<label class="sr-only" for="login_id">{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}</label>
+								<input type="text" id="login_id" ng-model="login_id"  class="form-control input-sm" placeholder="{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}" required autofocus>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-4">
-								<button ng-click="login()" class="btn btn-success btn-sm" style="margin-bottom:0px; min-width:100px"><b>{{ 'WELCOME.SIGNIN' | translate }}</b></button>
+							<div class="form-group" id="div_login_password">
+								<label class="sr-only" for="login_password">{{ 'WELCOME.PASSWORD' | translate }}</label>
+								<input type="password" id="login_password" ng-model="login_password" class="form-control input-sm" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
+								<div class="col-xs-12 text-right" style="color:#888888">	
+									<i class="icon-question-sign icon-large" ng-click="open()" style="position:absolute;top:-20px; right:12px; cursor:pointer"></i> 
+								</div>
 							</div>
-							<div class="col-xs-6">
-								<p class="help-block text-danger">{{login_message}}</p>
+							<div class="row">
+								<div class="col-xs-4">
+									<button ng-click="login()" class="btn btn-success btn-sm" style="margin-bottom:0px; min-width:100px"><b>{{ 'WELCOME.SIGNIN' | translate }}</b></button>
+								</div>
+								<div class="col-xs-6">
+									<p class="help-block text-danger">{{login_message}}</p>
+								</div>
 							</div>
-						</div>
-					</fieldset>
-				</form>
-			</div>
+						</fieldset>
+					</form>
+				</li>
+			</ul>
 			</li>
 			<li class="dropdown" style="cursor:pointer" >
 			<a class="dropdown-toggle">
