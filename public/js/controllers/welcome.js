@@ -100,6 +100,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		});
 	};
 	//// Google analytics
+	ga('create', 'UA-43562427-1', 'bibliofair.com');
 	ga('send', 'pageview');
 }
 
