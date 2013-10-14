@@ -15,11 +15,10 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 				}
 				$rootScope.books = uniqBooks($rootScope.books, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
 				console.log(data.length);
+				$scope.bookOrder = "distance";
 			}
 		});
 	});
-	$scope.bookOrder = "distance";
-	//	read: function (fields, query, limit, offset, callback) {
 	$scope.retrieveBooks = function () {
 		APIservice.books.read('', $scope.search, 12, 0, function(data) {
 			var arr = $rootScope.books.concat(data);

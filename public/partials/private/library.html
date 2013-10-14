@@ -3,7 +3,7 @@
 	<div class="row" style="height:70px">
 	</div>
 	<div class="row">
-		<div class="col-xs-12 col-sm-8 col-md-9">
+		<div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
 			<h2 class="text-center">{{ 'NAV.LIBRARY' | translate }}</h2>
 			<div ng-if="disable" class="well text-center" style="background-color:#C2BF04">
 				{{ 'LIBRARY.ALERT' | translate }}
@@ -18,7 +18,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="col-xs-12 col-sm-4 col-md-3">
+		<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
 			<div class="row">
 				<div class="col-lg-12">
 					<h3 class="text-center">{{ 'LIBRARY.ADD.HEADING' | translate }}</h3>
@@ -32,11 +32,11 @@
 							</div>
 							<div class="form-group">
 								<label class="" for="new_title">{{ 'LIBRARY.ADD.TITLE' | translate }}:</label>
-								<input type="text" id="new_title" ng-model="newbook.title" class="form-control" placeholder="{{ 'LIBRARY.ADD.TITLE' | translate }}" typeahead="book.title as book.title + ' || ' + book.author for book in check(books, 'title') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" typeahead-min-length="0" required>
+								<input type="text" id="new_title" ng-model="newbook.title" class="form-control" placeholder="{{ 'LIBRARY.ADD.TITLE' | translate }}" typeahead="book.title as book.title + ' || ' + book.author for book in check(books, 'title') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" typeahead-min-length="0">
 							</div>
 							<div class="form-group">
 								<label class="" for="new_author">{{ 'LIBRARY.ADD.AUTHOR' | translate }}:</label>
-								<input type="text" id="new_author" ng-model="newbook.author" class="form-control" placeholder="{{ 'LIBRARY.ADD.AUTHOR' | translate }}" typeahead="book.author as book.author + ' || ' + book.title for book in check(books, 'author') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()" required>
+								<input type="text" id="new_author" ng-model="newbook.author" class="form-control" placeholder="{{ 'LIBRARY.ADD.AUTHOR' | translate }}" typeahead="book.author as book.author + ' || ' + book.title for book in check(books, 'author') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook()">
 							</div>
 							<hr>
 
@@ -78,10 +78,6 @@
 										<label class="" for="new_language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}:</label>
 										<select class="form-control" id="new_language" ng-options="lang[0] as lang[1] for lang in languages" ng-model="newbook.language">
 										</select>
-										<!--
-										<select class="form-control" id="new_language" ng-model="newbook.language" ng-init="">
-											<option ng-repeat="lang in languages track by $index" value="{{abbr[$index]}}">{{lang}}</option>
-										</select>-->
 									</div>
 								</div>
 								<div class="form-group">
@@ -89,7 +85,16 @@
 									<input type="text" id="new_publisher" ng-model="newbook.publisher" class="form-control" placeholder="{{ 'LIBRARY.ADD.PUBLISHER' | translate }}">
 								</div>
 							</div>
-							<button ng-click="addbook(); log()" ng-disabled="disable" class="btn btn-default btn-success pull-center" style="margin-bottom:15px"><i class="icon-expand-alt icon-large"></i>&nbsp {{ 'LIBRARY.ADD.BUTTON' | translate }}&nbsp</button>
+							<hr>
+							<div class="form-group">
+								<label class="sr-only" for="new_actions">{{ 'LIBRARY.ADD.ACTIONS.LABEL' | translate }}:</label>
+								<button class="btn btn-sm" ng-class="{'btn-primary':!newbook.actions.sell, 'btn-success':newbook.actions.sell}" ng-model="newbook.actions.sell" ng-init="newbook.actions.sell=false" ng-click="newbook.actions.sell=!newbook.actions.sell"><i ng-class="{'icon-check':newbook.actions.sell, 'icon-check-empty':!newbook.actions.sell}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
+								<button class="btn btn-sm" ng-class="{'btn-primary':!newbook.actions.donate, 'btn-success':newbook.actions.donate}" ng-model="newbook.actions.donate" ng-init="newbook.actions.donate=false" ng-click="newbook.actions.donate=!newbook.actions.donate"><i ng-class="{'icon-check':newbook.actions.donate, 'icon-check-empty':!newbook.actions.donate}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.DONATE' | translate }}</button>
+								<button class="btn btn-sm" ng-class="{'btn-primary':!newbook.actions.lend, 'btn-success':newbook.actions.lend}" ng-model="newbook.actions.lend" ng-init="newbook.actions.lend=false" ng-click="newbook.actions.lend=!newbook.actions.lend"><i ng-class="{'icon-check':newbook.actions.lend, 'icon-check-empty':!newbook.actions.lend}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.LEND' | translate }}</button>
+							</div>
+							<hr>
+							<button ng-click="addbook(); log()" ng-disabled="disable" class="btn btn-default btn-success pull-center" style="margin-bottom:15px;width:100%"><i class="icon-plus icon-large"></i>&nbsp {{ 'LIBRARY.ADD.BUTTON' | translate }}&nbsp</button>
+							{{ warning_text }}
 						</fieldset>
 					</form>
 				</div>

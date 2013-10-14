@@ -1,4 +1,4 @@
-function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, APIservice) {
+function libraryControl($rootScope, $scope, $http, $modal, $translate, $location, $filter, APIservice) {
 	APIservice.library.read(function(data) {
 		 $scope.mybooks = [];
 		 console.log(data);
@@ -11,18 +11,29 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 			$scope.disable = true;
 		}
 	});
+	APIservice.books.read('', '', 60, 0, function(data) {
+		if(data){
+			$scope.books = data;
+		}
+	});
 	$scope.addbook = function() {
 		console.log($scope.newbook.title + " " + $scope.newbook.author);
 		if($scope.newbook.title && $scope.newbook.author) {
-			if($scope.newbook.isbn) {
-				//$scope.newbook.isbn = $scope.newbook.isbn.replace(/-/g, '');
-				if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
+			if( $scope.newbook.actions && ( $scope.newbook.actions.sell || $scope.newbook.actions.donate || $scope.newbook.actions.lend ) ) {
+				if($scope.newbook.isbn) {
+					if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
+				}
+				APIservice.library.create($scope.newbook, function(data, status) {
+					console.log(data);
+					$scope.mybooks.push(data);
+					$scope.newbook = {};
+					$scope.warning_text = "";
+				});
+			} else {
+				$scope.warning_text = $translate('LIBRARY.ADD.ACTIONS.WARNING');
 			}
-			APIservice.library.create($scope.newbook, function(data, status) {
-				console.log(data);
-				$scope.mybooks.push(data);
-				$scope.newbook = {};
-			});
+		} else {
+			$scope.warning_text = $translate('LIBRARY.ADD.NOT_FILLED');
 		}
 	};
 	$scope.selected_books = [];
@@ -34,6 +45,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}
 		delete template.edition;
 		delete template.volume;
+		delete template.actions;
 		var arr = $filter('filter')($scope.selected_books, template);
 		template.isbn = ISBN13toISBN10(template.isbn);
 		if(template.isbn) {
@@ -83,6 +95,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 				}
 				delete template.edition;
 				delete template.volume;
+				delete template.actions;
 				if(template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
 				$scope.tel =  $filter('filter')($scope.tel, template, true);
 				console.log($scope.tel);
@@ -112,6 +125,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		}
 		delete template.edition;
 		delete template.volume;
+		delete template.actions;
 		if(template.isbn && template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
 		var arr = $filter('filter')($scope.selected_books, template);
 		arr = uniqBooks(arr, function(a, b) { if(a.title + a.author < b.title + b.author) return -1; else if (a.title + a.author > b.title + b.author) return 1; else return 0; });
