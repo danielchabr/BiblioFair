@@ -31,12 +31,12 @@
 	<h3 class="text-center">{{ 'HOME.MODAL.OWNERS' | translate }}</h3>
 	<table class="table table-striped" style="margin-bottom:0px">
 		<thead>
-			<tr><th>{{ 'WELCOME.USERNAME' | translate }}</th><th>{{ 'WELCOME.EMAIL' | translate }}</th><th>{{ 'HOME.MODAL.LABEL' | translate }}</th><th></th></tr>
+			<tr><th>{{ 'WELCOME.USERNAME' | translate }}</th><th class="hidden-xs">{{ 'WELCOME.EMAIL' | translate }}</th><th>{{ 'HOME.MODAL.LABEL' | translate }}</th><th></th></tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="owner in owners" style="list-style:none">
 				<td><i class="icon-user"></i> {{owner.username}}</td>
-				<td>{{owner.username}}@bibliofair.com</td>
+				<td class="hidden-xs">{{owner.username}}@bibliofair.com</td>
 				<td style="padding-top:0">
 					<span class="label label-primary" ng-if="owner.actions.sell">{{ 'HOME.MODAL.SELL' | translate }}</span>
 					<span class="label label-primary" ng-if="owner.actions.donate">{{  'HOME.MODAL.DONATE' | translate  }}</span>

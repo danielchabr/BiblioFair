@@ -103,3 +103,8 @@ html, body {
 	color: black;
 	text-decoration: underline
 }
+@media screen and (min-width: 768px) {
+.modal-dialog {
+	width:748px;
+}
+}
