@@ -99,5 +99,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		modalInstance.result.then(function () {
 		});
 	};
+	//// Google analytics
+	ga('send', 'pageview');
 }
 

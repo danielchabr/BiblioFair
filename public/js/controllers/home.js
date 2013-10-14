@@ -44,6 +44,8 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 	///// pagination
 	$scope.currentPage = 1;
 	$scope.pageSize = 12;
+	//// Google Analytics
+	ga('send', 'pageview');
 }
 myApp.filter('paginationShift', function() {
 	return function(input, start) {

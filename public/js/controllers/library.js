@@ -148,6 +148,8 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		['alb', 'Shqip'],['srp', 'српски језик; srpski jezik'],['ssw', 'siSwati'],['sot', 'Sesotho'],['sun', 'basa Sunda'],['swe', 'svenska'],['swa', 'Kiswahili'],['tam', 'தமிழ்'],['tel', 'тоҷикӣ; تاجیکی'],['tgk', 'Tajik'],['tha', 'ภาษาไทย'],['tir', 'ትግርኛ'],['tuk', 'Түркмен'],['tgl', 'Wikang Tagalog'],['tsn', 'Setswana'],['ton', 'faka-Tonga'],['tur', 'Türkçe'],['tso', 'Xitsonga'],['tat', 'татарча; tatarça'],
 		['twi', 'Twi'],['tah', 'te reo Tahiti; te reo Māʼohi'],['uig', 'Uyƣurqə; Uyğurçe; ئۇيغۇرچ'],['ukr', 'українська мова'],['urd', 'اردو'],['uzb', 'O\'zbek; Ўзбек; أۇزبېك'],['ven', 'Tshivenḓa'],['vie', 'Tiếng Việt'],['vol', 'Volapük'],['wln', 'walon'],['wol', 'Wolof'],['xho', 'isiXhosa'],['yid', 'ייִדיש'],['yor', 'Yorùbá'],['zha', 'Saɯ cueŋƅ; Saw cuengh'],['chi', '漢語; 汉语; 中文'],['zul', 'isiZulu']];
 
+	//// Google Analytics
+	ga('send', 'pageview');
 
 
 }

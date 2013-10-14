@@ -98,4 +98,7 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 			$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
 		});
 	};
+	//// Google Analytics
+	ga('send', 'pageview');
+
 }
