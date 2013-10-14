@@ -149,8 +149,5 @@ function libraryControl($rootScope, $scope, $http, $modal, $location, $filter, A
 		['twi', 'Twi'],['tah', 'te reo Tahiti; te reo Māʼohi'],['uig', 'Uyƣurqə; Uyğurçe; ئۇيغۇرچ'],['ukr', 'українська мова'],['urd', 'اردو'],['uzb', 'O\'zbek; Ўзбек; أۇزبېك'],['ven', 'Tshivenḓa'],['vie', 'Tiếng Việt'],['vol', 'Volapük'],['wln', 'walon'],['wol', 'Wolof'],['xho', 'isiXhosa'],['yid', 'ייִדיש'],['yor', 'Yorùbá'],['zha', 'Saɯ cueŋƅ; Saw cuengh'],['chi', '漢語; 汉语; 中文'],['zul', 'isiZulu']];
 
 	//// Google Analytics
-	ga('create', 'UA-43562427-1', 'bibliofair.com');
-	ga('send', 'pageview');
-
-
+	ga('send', 'pageview', '/library');
 }

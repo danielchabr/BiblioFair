@@ -45,8 +45,7 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 	$scope.currentPage = 1;
 	$scope.pageSize = 12;
 	//// Google Analytics
-	ga('create', 'UA-43562427-1', 'bibliofair.com');
-	ga('send', 'pageview');
+	ga('send', 'pageview', '/');
 }
 myApp.filter('paginationShift', function() {
 	return function(input, start) {

@@ -99,7 +99,5 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		});
 	};
 	//// Google Analytics
-	ga('create', 'UA-43562427-1', 'bibliofair.com');
-	ga('send', 'pageview');
-
+	ga('send', 'pageview', '/account');
 }
