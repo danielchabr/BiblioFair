@@ -40,7 +40,7 @@
 							</div>
 							<hr>
 
-							<p>{{ 'LIBRARY.ADD.OPTIONAL' | translate }}: &nbsp;<label class="checkbox-inline"><input type="checkbox" ng-model="optional"></label></p>
+							<p>{{ 'LIBRARY.ADD.OPTIONAL' | translate }}: &nbsp; <i ng-class="{'icon-caret-up':optional, 'icon-caret-down':!optional}" class="icon-2x" ng-click="optional=!optional" ng-init="optional=false" style="cursor:pointer"></i></p>
 							<div ng-show="optional">
 								<div class="form-group">
 									<label class="" for="new_subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}:</label>
