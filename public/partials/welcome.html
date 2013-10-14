@@ -84,11 +84,11 @@
 			<form class="row" action="" role="search">
 				<div class="form-group col-xs-12 col-sm-8 col-sm-offset-2">
 					<label class="sr-only" for="search-box">Search box</label>
-					<input type="text" ng-model="search" ng-change="retrieveBooks()" class="form-control" placeholder="{{ 'NAV.SEARCH.PLACEHOLDER' | translate }}" popover="{{ books_available }}" popover-trigger="mouseenter" popover-placement="top">
+					<input type="text" ng-model="search_query" ng-change="retrieveBooks()" class="form-control" placeholder="{{ 'NAV.SEARCH.PLACEHOLDER' | translate }}">
 				</div>
 			</form>
 			<ul class="bookview row">
-				<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in books | filter:search | orderBy:bookOrder | limitTo:6">
+				<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in books | filter:search_query | orderBy:bookOrder | limitTo:6">
 				<div class="well" style="cursor:default">
 					<h4>{{book.title | shorten:41}}</h4>
 					<i style="position:absolute;bottom:20px">{{book.author | shorten:25}}</i>
