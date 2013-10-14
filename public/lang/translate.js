@@ -15,8 +15,8 @@ var translateEN = {
 	},
 	'WELCOME': { 
 		'HEADING': 'Dive into the world of home libraries',
-		'TEXT1': 'Our aim is to enable you to share your home bookshelves. You will get requests from your friends or others to sell, rent or lend them books from your home library.',
-		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get? Just sign up and easily search our databases.',
+		'TEXT1': 'We will enable you to your home bookshelves into a private library or bookshop. You will get requests from your friends or others to sell, rent or lend them books from your home library. Only you decide, which books to send into the world.',
+		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get in a library? Do you want to save money and the environment by getting a second hand book? Just sign up and easily search our databases.',
 		'EMAIL': 'Email',
 		'USERNAME': 'Username',
 		'EMAIL_OR_USERNAME': 'Username or email',
