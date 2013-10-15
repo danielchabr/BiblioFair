@@ -10,11 +10,22 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 			if(data){
 				$rootScope.books=[];
 				for(var i = 0; i < data.length; i++) {
-					data.distance = i;
+					data[i].distance = i;
+					data[i].actions = {};
+					for(var j = 0; j < data[i].users.length; j++) {
+						for(var k = 0; k < data[i].users[j].library.length; k++) {
+							if(data[i].users[j].library[k].id == data[i]._id) {
+								if(data[i].users[j].library[k].actions) {
+									if(data[i].users[j].library[k].actions.sell == true) data[i].actions.sell = true;
+									if(data[i].users[j].library[k].actions.donate == true) data[i].actions.donate = true;
+									if(data[i].users[j].library[k].actions.lend == true) data[i].actions.lend = true;
+								}
+							}
+						}
+					}
 					$rootScope.books.push(data[i]);
 				}
 				$rootScope.books = uniqBooks($rootScope.books, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
-				console.log(data.length);
 				$scope.bookOrder = "distance";
 			}
 		});

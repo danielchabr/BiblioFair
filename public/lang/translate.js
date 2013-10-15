@@ -43,7 +43,8 @@ var translateEN = {
 		'ORDER': { 
 			'TEXT': 'Order by:',
 			'TITLE': 'Title',
-			'AUTHOR': 'Author'
+			'AUTHOR': 'Author',
+			'DISTANCE': 'Distance'
 		},
 		'MODAL': {
 			'REQUEST': 'Send request',
@@ -164,7 +165,8 @@ var translateCZ = {
 		'ORDER': { 
 			'TEXT': 'Seřadit podle:',
 			'TITLE': 'Titul',
-			'AUTHOR': 'Autor'
+			'AUTHOR': 'Autor',
+			'DISTANCE': 'Vzdálenost'
 		},
 		'MODAL': {
 			'REQUEST': 'Požádat o knihu',
