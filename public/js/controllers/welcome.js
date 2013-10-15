@@ -80,6 +80,10 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 			$http.post('/login', {'id': $scope.login_id, 'password': hash.toString()})
 				.success( function(data) {
 					if(data.message == 'loginSuccess') {
+						$rootScope.user.username = data.user.username;
+						$rootScope.user.email = data.user.email;
+						$rootScope.user.library = data.user.library;
+						$rootScope.user.loc = data.user.loc;
 						$scope.changeLanguage(data.lang);
 						$location.path('/');
 					}
