@@ -5,8 +5,9 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	});
 	//// Animate book flow
 	$scope.animate = function(elm) {
-		console.log(elm);
-		console.log($('.book_'+elm));
+		//console.log(elm);
+		//$(this).hide();
+		//console.log($(this));
 	};
 	//// Log in dropdown hack
 	var switchoff = false;
@@ -26,6 +27,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		$('#login').delay(1000).css('display', 'block');
 	});
 	/////////////////////
+	$scope.bookOrder = 'title';
 	APIservice.books.count(function(data) {
 		if(data) $scope.books_available = data + " " + $translate('WELCOME.BOOKS_AVAILABLE');
 	});
@@ -34,7 +36,8 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		console.log(data.length);
 	});
 	$scope.retrieveBooks = function () {
-		APIservice.books.read('', $scope.search, 6, 0, function(data) {
+		APIservice.books.read('', $scope.search_query, 6, 0, function(data) {
+			console.log($scope.search_query);
 			var arr = $rootScope.books.concat(data);
 			$rootScope.books = uniqBooks(arr, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
 		});

@@ -229,7 +229,7 @@ var translateCZ = {
 			'NOT_FILLED': 'Titul nebo autor není vyplněn',
 			'INVALID_PUBLISHED': 'Neplatný rok vydání'
 		},
-		'ALERT': 'Pro přidávání knih nejdříve nastavte Vaši polohu v záložce Účet'
+		'ALERT': 'Pro přidávání knih nejdříve nastavte Vaši polohu v nastavení účtu'
 	},
 	'ACCOUNT': { 
 		'SETLOCATION': 'Nastavte svoji polohu vycentrováním mapy',
