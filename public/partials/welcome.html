@@ -37,6 +37,22 @@
 			padding-top:50px;
 		}
 	}
+	.animate-enter {
+		-webkit-transition: 0.5s linear all; /* Chrome */
+		transition: 0.5s linear all;
+		opacity: 0;
+	}
+	.animate-enter.animate-enter-active {
+		opacity: 1;
+	}
+	/*.animate-leave {
+		-webkit-transition: 0.5s linear all;
+		transition: 0.5s linear all;
+		opacity: 1;
+	}
+	.animate-leave.animate-leave-active {
+		opacity: 0;
+	}*/
 </style>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
@@ -110,7 +126,7 @@
 				</div>
 			</form>
 			<ul class="bookview row">
-				<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in books | filter:search_query | orderBy:bookOrder | limitTo:6" ng-init="animate($index)" ng-class="{book: ($index==4 || $index==5)}">
+				<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in books | filter:search_query | orderBy:bookOrder | limitTo:6" ng-animate=" 'animate' " ng-class="{book: ($index==4 || $index==5)}">
 				<div class="well" style="cursor:default">
 					<h4>{{book.title | shorten:41}}</h4>
 					<i style="position:absolute;bottom:20px">{{book.author | shorten:25}}</i>
