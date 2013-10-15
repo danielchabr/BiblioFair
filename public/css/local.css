@@ -84,7 +84,7 @@ html, body {
 	filter:alpha(opacity=60);
 	position:absolute;
 	margin:0px;
-	min-height:21px;
+	min-height:25px;
 	width:100%;
 	bottom:-2px;
 	right:0px;
@@ -92,9 +92,9 @@ html, body {
 	color:black;
 }
 .info_text {
-	padding-top:2px;
+	padding-top:4px;
 	margin: 0px;
-	font-size:12px;
+	font-size:13px;
 }
 .info_text > ul {
 	margin: 0px;

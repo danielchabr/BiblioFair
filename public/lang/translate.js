@@ -15,8 +15,18 @@ var translateEN = {
 	},
 	'WELCOME': { 
 		'HEADING': 'Dive into the world of home libraries',
+		'HEADING2': 'Let\'s get the books flowing',
 		'TEXT1': 'We will enable you to your home bookshelves into a private library or bookshop. You will get requests from your friends or others to sell, rent or lend them books from your home library. Only you decide, which books to send into the world.',
 		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get in a library? Do you want to save money and the environment by getting a second hand book? Just sign up and easily search our databases.',
+		'PROCESS': {
+			'READER': 'Reader',
+			'OWNER': 'Book owner',
+			'CHOOSE': 'Choose a book',
+			'SEND': 'Send request',
+			'ADD_BOOKS': 'Add your books',
+			'RECIEVE': 'Recieve request',
+			'MEET': 'Arrange handing the book over'
+		},
 		'EMAIL': 'Email',
 		'USERNAME': 'Username',
 		'EMAIL_OR_USERNAME': 'Username or email',
@@ -138,8 +148,18 @@ var translateCZ = {
 	},
 	'WELCOME': { 
 		'HEADING': 'Ponořte se do světa domácích knihoven',
+		'HEADING2': 'Pojďme vyslat knihy do světa',
 		'TEXT1': 'Umožníme Vám přeměnit Vaše poličky s knihami v soukromou knihovnu nebo knihkupectví. Budete dostávat žádosti o koupi, pronájem nebo půjčení Vašich knih. Jen Vy rozhodujete o tom, které knihy a jak pošlete dále do světa.',
 		'TEXT2': 'Rádi byste si přečetli knihu, která je ke koupi příliš drahá a v knihovnách neustále rozebraná? Chcete ušetřit a koupit raději knihu z druhé ruky? Během chvilky si u nás můžete zdarma vytvořit účet a zjistit, jestli Vaše požadovaná kniha není v domácí knihovně někoho v okolí.',
+		'PROCESS': {
+			'READER': 'Čtenář',
+			'OWNER': 'Majitel knihy',
+			'CHOOSE': 'Zvolte knihu',
+			'SEND': 'Pošlete žádost',
+			'ADD_BOOKS': 'Přidejte knihu',
+			'RECIEVE': 'Obdržte žádost',
+			'MEET': 'Domluvte se na předání'
+		},
 		'EMAIL': 'Email',
 		'USERNAME': 'Uživatelské jméno',
 		'EMAIL_OR_USERNAME': 'Email nebo uživatelské jméno',
