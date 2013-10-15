@@ -1,11 +1,18 @@
 var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservice) {
 	$scope.details_view = book;
+	console.log($scope.details_view);
 	if(book.published) {
 		$scope.details_view.published = new Date(book.published).getFullYear();
 	}
+	///// LIBRARY
+	$scope.updateActions = function () {
+		APIservice.library.update($scope.details_view._id, $scope.details_view.actions, function(data) {
+		});
+	};
 	$scope.remove = function () {
 		$modalInstance.close('remove');
 	};
+	//// HOME
 	$scope.report = function () {
 		if(!$scope.report_sent) {
 			APIservice.users.read(function(data) {

@@ -41,6 +41,10 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 			var data = { id: $rootScope.user.id, token: $rootScope.user.token, book: book};
 			$http.post('/api/v1/library', data).success(callback);
 		},
+		update: function (bookId, actions, callback) {
+			var data = { id: $rootScope.user.id, token: $rootScope.user.token, book: bookId, actions: actions};
+			$http.put('/api/v1/library', data).success(callback);
+		},
 		del: function (bookId, callback) {
 			var par = { params: { id: $rootScope.user.id, token: $rootScope.user.token, book: bookId}};
 			$http['delete']('/api/v1/library', par).success(callback);

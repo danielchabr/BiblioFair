@@ -81,7 +81,8 @@ var translateEN = {
 			'PUBLISHER': 'Publisher',
 			'LANGUAGE': 'Language',
 			'BUTTON': 'Add book',
-			'NOT_FILLED': 'Title or author is missing'
+			'NOT_FILLED': 'Title or author is missing',
+			'INVALID_PUBLISHED': 'Invalid year of publishment'
 		},
 		'ALERT': 'Set your location in your account settings to add books'
 	},
@@ -201,7 +202,8 @@ var translateCZ = {
 			'PUBLISHER': 'Nakladatel',
 			'LANGUAGE': 'Jazyk',
 			'BUTTON': 'Vlož knihu',
-			'NOT_FILLED': 'Titul nebo autor není vyplněn'
+			'NOT_FILLED': 'Titul nebo autor není vyplněn',
+			'INVALID_PUBLISHED': 'Neplatný rok vydání'
 		},
 		'ALERT': 'Pro přidávání knih nejdříve nastavte Vaši polohu v záložce Účet'
 	},

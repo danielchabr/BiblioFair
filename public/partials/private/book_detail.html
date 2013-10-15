@@ -37,7 +37,7 @@
 			<tr ng-repeat="owner in owners" style="list-style:none">
 				<td><i class="icon-user"></i> {{owner.username}}</td>
 				<td class="hidden-xs">{{owner.username}}@bibliofair.com</td>
-				<td style="padding-top:0">
+				<td>
 					<span class="label label-primary" ng-if="owner.actions.sell">{{ 'HOME.MODAL.SELL' | translate }}</span>
 					<span class="label label-primary" ng-if="owner.actions.donate">{{  'HOME.MODAL.DONATE' | translate  }}</span>
 					<span class="label label-primary" ng-if="owner.actions.lend">{{  'HOME.MODAL.LEND' | translate  }}</span>

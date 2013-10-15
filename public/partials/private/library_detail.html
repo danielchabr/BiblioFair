@@ -2,6 +2,9 @@
 	div.modal {
 		display:block;
 	}
+	.btn-sm {
+		margin-bottom:10px;
+	}
 </style>
 <div class="modal-header text-center">
 	<button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
@@ -11,14 +14,29 @@
 	</p>
 </div>
 <div class="modal-body">
-	<span ng-if="details_view.subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}: {{details_view.subtitle}}</br></span>
-	<span ng-if="details_view.isbn">{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</br></span>
-	<span ng-if="details_view.volume">{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</br></span>
-	<span ng-if="details_view.edition">{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</br></span>
-	<span ng-if="details_view.language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</br></span>
-	<span ng-if="details_view.publisher">{{ 'LIBRARY.ADD.PUBLISHER' | translate }}: {{details_view.publisher}}</br></span>
-	<span ng-if="details_view.published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</br></span>
-	<br>
+	<div class="row" style="padding-right:15px">
+		<div class="col-xs-8 col-sm-10">
+			<span ng-if="details_view.subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}: {{details_view.subtitle}}</br></span>
+			<span ng-if="details_view.isbn">{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</br></span>
+			<span ng-if="details_view.volume">{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</br></span>
+			<span ng-if="details_view.edition">{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</br></span>
+			<span ng-if="details_view.language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</br></span>
+			<span ng-if="details_view.publisher">{{ 'LIBRARY.ADD.PUBLISHER' | translate }}: {{details_view.publisher}}</br></span>
+			<span ng-if="details_view.published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</br></span>
+			<br>
+		</div>
+		<div class="col-xs-4 col-sm-2">
+			<div class="row">
+				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.sell, 'btn-success':details_view.actions.sell}" ng-model="details_view.actions.sell" ng-click="details_view.actions.sell=!details_view.actions.sell;updateActions()"><i ng-class="{'icon-check':details_view.actions.sell, 'icon-check-empty':!details_view.actions.sell}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
+			</div>
+			<div class="row">
+				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.donate, 'btn-success':details_view.actions.donate}" ng-model="details_view.actions.donate" ng-click="details_view.actions.donate=!details_view.actions.donate;updateActions()"><i ng-class="{'icon-check':details_view.actions.donate, 'icon-check-empty':!details_view.actions.donate}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.DONATE' | translate }}</button>
+			</div>
+			<div class="row">
+				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.lend, 'btn-success':details_view.actions.lend}" ng-model="details_view.actions.lend" ng-click="details_view.actions.lend=!details_view.actions.lend;updateActions()"><i ng-class="{'icon-check':details_view.actions.lend, 'icon-check-empty':!details_view.actions.lend}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.LEND' | translate }}</button>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="modal-footer">
 	<button class="btn btn-primary pull-left" ng-click="remove()"><i class="icon-trash"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
