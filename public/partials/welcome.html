@@ -11,11 +11,7 @@
 		filter:alpha(opacity=90);
 	}
 	.well-alt {
-		background-color:#bf222e;
-		border-color:#9f020e;
-		border-width:1px;
-		opacity:0.9;
-		filter:alpha(opacity=90);
+		padding:8px;
 	}
 	.content_row {
 		padding-top: 25px;
@@ -23,6 +19,10 @@
 	}
 	.popover {
 		color:black;
+	}
+	.btn-success {
+		background-color:#38ba2b;
+		border-color:#258d1b;
 	}
 </style>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -97,7 +97,7 @@
 				</div>
 			</form>
 			<ul class="bookview row">
-				<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in books | filter:search_query | orderBy:bookOrder | limitTo:6">
+				<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in books | filter:search_query | orderBy:bookOrder | limitTo:6" ng-init="animate($index)" ng-class="book_{{$index}}">
 				<div class="well" style="cursor:default">
 					<h4>{{book.title | shorten:41}}</h4>
 					<i style="position:absolute;bottom:20px">{{book.author | shorten:25}}</i>
@@ -136,94 +136,87 @@
 		</div>
 	</div>
 </div>
-<div class="content_row" style="padding-top:50px;padding-bottom:50px">
+<div class="content_row" style="padding-top:40px;padding-bottom:50px">
 	<div class="container">
-		<div class="row" style="margin-bottom:20px">
-			<div class="col-xs-6 text-center">
-				<h3 class="text-center">{{ 'WELCOME.PROCESS.READER' | translate }}</h3>
-			</div>
-			<div class="col-xs-6 text-center">
-				<h3 class="text-center">{{ 'WELCOME.PROCESS.OWNER' | translate }}</h3>
-			</div>
-		</div>
 		<div class="row">
-			<div class="col-sm-1 hidden-xs" style="font-size:26px;font-family:times;padding:20px">
-				I.
-			</div>
-			<div class="col-xs-6 col-sm-4 text-center">
-				<div class="well well-alt">
-					<h4>{{ 'WELCOME.PROCESS.CHOOSE' | translate }}</h4>
-				</div>
-			</div>
-			<div class="col-sm-1">
-			</div>
-			<div class="col-sm-1 hidden-xs" style="font-size:26px;font-family:times;padding:20px">
-				I.
-			</div>
-			<div class="col-xs-6 col-sm-4 text-center">
-				<div class="well well-alt">
-					<h4>{{ 'WELCOME.PROCESS.ADD_BOOKS' | translate }}</h4>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-1 hidden-xs" style="font-size:26px;font-family:times;padding:20px">
-				II.
-			</div>
-			<div class="col-xs-6 col-sm-4 text-center">
-				<div class="well well-alt">
-					<h4>{{ 'WELCOME.PROCESS.SEND' | translate }}</h4>
-				</div>
-			</div>
-			<div class="col-sm-1">
-			</div>
-			<div class="col-sm-1 hidden-xs" style="font-size:26px;font-family:times;padding:20px">
-				II.
-			</div>
-			<div class="col-xs-6 col-sm-4 text-center">
-				<div class="well well-alt">
-					<h4>{{ 'WELCOME.PROCESS.RECIEVE' | translate }}</h4>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-3 col-sm-3">
-			</div>
-			<div class="col-sm-1 hidden-xs" style="font-size:26px;font-family:times;padding:20px">
-				III.
-			</div>
-			<div class="col-xs-6 col-sm-4 text-center">
-				<div class="well well-alt">
-					<h4>{{ 'WELCOME.PROCESS.MEET' | translate }}</h4>
+			<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-xs-12">
+				<div class="well">
+					<h2 class="text-center">{{  'WELCOME.HEADING2' | translate  }}</h2>
+					<br>
+					<p style="font-size:18px">
+					{{ 'WELCOME.TEXT1' | translate }}
+					</p>
+					<br>
+					<p style="font-size:18px">
+					{{ 'WELCOME.TEXT2' | translate }}
+					</p>
+					<!-- Open your library to the world -->
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="container" style="padding-top:50px;padding-bottom:30px">
+	<div class="row" style="margin-bottom:20px;color:black">
+		<div class="col-xs-6 text-center">
+			<h3 class="text-center">{{ 'WELCOME.PROCESS.READER' | translate }}</h3>
+		</div>
+		<div class="col-xs-6 text-center">
+			<h3 class="text-center">{{ 'WELCOME.PROCESS.OWNER' | translate }}</h3>
+		</div>
+	</div>
 	<div class="row">
-		<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-xs-12">
-			<div class="well">
-				<h2 class="text-center">{{  'WELCOME.HEADING2' | translate  }}</h2>
-				<br>
-				<p style="font-size:18px">
-				{{ 'WELCOME.TEXT1' | translate }}
-				</p>
-				<br>
-				<p style="font-size:18px">
-				{{ 'WELCOME.TEXT2' | translate }}
-				</p>
-				<!-- Open your library to the world -->
+		<div class="col-sm-1 hidden-xs" style="color:black;font-size:26px;font-family:times;padding:20px">
+		</div>
+		<div class="col-xs-6 col-sm-4 text-center">
+			<div class="well well-alt">
+				<h4>1. {{ 'WELCOME.PROCESS.CHOOSE' | translate }}</h4>
+			</div>
+		</div>
+		<div class="col-sm-1">
+		</div>
+		<div class="col-sm-1 hidden-xs" style="color:black;font-size:26px;font-family:times;padding:20px">
+		</div>
+		<div class="col-xs-6 col-sm-4 text-center">
+			<div class="well well-alt">
+				<h4>1. {{ 'WELCOME.PROCESS.ADD_BOOKS' | translate }}</h4>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-1 hidden-xs" style="">
+		</div>
+		<div class="col-xs-6 col-sm-4 text-center">
+			<div class="well well-alt">
+				<h4>2. {{ 'WELCOME.PROCESS.SEND' | translate }}</h4>
+			</div>
+		</div>
+		<div class="col-sm-1">
+		</div>
+		<div class="col-sm-1 hidden-xs" style="color:black;font-size:26px;font-family:times;padding:20px">
+		</div>
+		<div class="col-xs-6 col-sm-4 text-center">
+			<div class="well well-alt">
+				<h4>2. {{ 'WELCOME.PROCESS.RECIEVE' | translate }}</h4>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 col-sm-4">
+		</div>
+		<div class="col-xs-6 col-sm-4 text-center">
+			<div class="well well-alt">
+				<h4>3. {{ 'WELCOME.PROCESS.MEET' | translate }}</h4>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="container" style="padding-bottom:60px">
-	<div class="row text-center">
-		<a href="#top"><button type="button text-center col-sm-8" class="btn btn-lg btn-success">{{  'WELCOME.REGISTER_ACTION' | translate  }}</button></a>
+<div class="content_row" style="padding-top:40px;padding-bottom:70px">
+	<div class="container">
+		<div class="row text-center">
+			<a href="#top"><button type="button text-center col-sm-8" class="btn btn-lg btn-success">{{  'WELCOME.REGISTER_ACTION' | translate  }}</button></a>
+		</div>
 	</div>
-</div>
-<div class="row" style="heigth:21px;min-height:21px;width:100%">
 </div>
 <div class="row info" info="welcome">
 </div>

@@ -3,6 +3,11 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	$('a[href=#top]').click(function(){
 		$('html, body').animate({scrollTop:0}, 'slow');
 	});
+	//// Animate book flow
+	$scope.animate = function(elm) {
+		console.log(elm);
+		console.log($('.book_'+elm));
+	};
 	//// Log in dropdown hack
 	var switchoff = false;
 	$('html').click(function() {

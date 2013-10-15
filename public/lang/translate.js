@@ -20,7 +20,7 @@ var translateEN = {
 		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get in a library? Do you want to save money and the environment by getting a second hand book? Just sign up and easily search our databases.',
 		'PROCESS': {
 			'READER': 'For readers',
-			'OWNER': 'For book owner',
+			'OWNER': 'For book owners',
 			'CHOOSE': 'Choose a book',
 			'SEND': 'Send request',
 			'ADD_BOOKS': 'Add your books',
@@ -34,7 +34,7 @@ var translateEN = {
 		'JOIN': 'Join',
 		'SIGNIN': 'Sign in',
 		'REGISTER_TEXT': 'Get a free account',
-		'REGISTER_ACTION': 'Save money on books today',
+		'REGISTER_ACTION': 'Register and save money on books today',
 		'SIGNIN_TEXT': 'Sign in',
 		'AGAIN': 'Email or password is incorrect. Please try again',
 		'SHORT_PASSWORD': 'Password needs to be at least 6 characters long',
@@ -154,11 +154,11 @@ var translateCZ = {
 		'PROCESS': {
 			'READER': 'Pro čtenáře',
 			'OWNER': 'Pro majitele knihy',
-			'CHOOSE': 'Zvolte knihu',
+			'CHOOSE': 'Zvolíte knihu',
 			'SEND': 'Pošlete žádost',
-			'ADD_BOOKS': 'Přidejte knihu',
-			'RECIEVE': 'Obdržte žádost',
-			'MEET': 'Domluvte se na předání'
+			'ADD_BOOKS': 'Přidáte knihu',
+			'RECIEVE': 'Obdržíte žádost',
+			'MEET': 'Domluvíte se na předání'
 		},
 		'EMAIL': 'Email',
 		'USERNAME': 'Uživatelské jméno',
@@ -166,7 +166,7 @@ var translateCZ = {
 		'PASSWORD': 'Heslo',
 		'JOIN': 'Registrovat',
 		'SIGNIN': 'Přihlásit',
-		'REGISTER_ACTION': 'Ušetřete za knihy již dnes',
+		'REGISTER_ACTION': 'Registrujte se a ušetřete za knihy již dnes',
 		'REGISTER_TEXT': 'Získejte účet zdarma',
 		'SIGNIN_TEXT': 'Přihlásit se',
 		'AGAIN': 'Chybný email nebo heslo, prosím zkusto to znovu',
