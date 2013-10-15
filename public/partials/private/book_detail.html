@@ -20,13 +20,15 @@
 	</p>
 </div>
 <div class="modal-body">
-	<span ng-if="details_view.subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}: {{details_view.subtitle}}</br></span>
-	<span ng-if="details_view.isbn">{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</br></span>
-	<span ng-if="details_view.volume">{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</br></span>
-	<span ng-if="details_view.edition">{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</br></span>
-	<span ng-if="details_view.language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</br></span>
-	<span ng-if="details_view.publisher">{{ 'LIBRARY.ADD.PUBLISHER' | translate }}: {{details_view.publisher}}</br></span>
-	<span ng-if="details_view.published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</br></span>
+	<div class="row">
+		<span class="col-xs-6" ng-if="details_view.subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}: {{details_view.subtitle}}</span>
+		<span class="col-xs-6" ng-if="details_view.isbn">{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</span>
+		<span class="col-xs-6" ng-if="details_view.volume">{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</span>
+		<span class="col-xs-6" ng-if="details_view.edition">{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</span>
+		<span class="col-xs-6" ng-if="details_view.language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</span>
+		<span class="col-xs-6" ng-if="details_view.publisher">{{ 'LIBRARY.ADD.PUBLISHER' | translate }}: {{details_view.publisher}}</span>
+		<span class="col-xs-6" ng-if="details_view.published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</span>
+	</div>
 	<hr>
 	<h3 class="text-center">{{ 'HOME.MODAL.OWNERS' | translate }}</h3>
 	<table class="table table-striped" style="margin-bottom:0px">
