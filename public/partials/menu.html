@@ -20,8 +20,8 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li ng-class="browse"><a ng-href="/">{{ 'NAV.BROWSE' | translate }}</a></li>
 			<li ng-class="library"><a ng-href="/library">{{ 'NAV.LIBRARY' | translate }}</a></li> 
-			<li ng-class="account"><a ng-href="/account">{{ 'NAV.ACCOUNT' | translate }}</a></li> 
-			<li><a href="" ng-click="logout()">{{ 'NAV.SIGN_OUT' | translate }}</a></li>
+			<li ng-class="account"><a ng-href="/account" title="{{ 'NAV.ACCOUNT' | translate }}"><i class="icon-user"></i> {{ user.username }}</a></li> 
+			<li><a ng-href="" title="{{ 'NAV.SIGN_OUT' | translate }}" ng-click="logout()"><i class="icon-signout"></i></a></li>
 		</ul>
 	</div>
 </div>

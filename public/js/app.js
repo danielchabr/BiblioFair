@@ -38,6 +38,12 @@ myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 	.success(function (data) {
 		$rootScope.user = data;
 		if(data.lang) $rootScope.changeLanguage(data.lang);
+		APIservice.users.read(function(data) {
+			$rootScope.user.username = data.username;
+			$rootScope.user.email = data.email;
+			$rootScope.user.library = data.library;
+			$rootScope.user.loc = data.loc;
+		});
 	})
 	.error(function (data) {
 		if(data.lang) $rootScope.changeLanguage(data.lang);
