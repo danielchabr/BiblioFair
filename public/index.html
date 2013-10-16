@@ -8,7 +8,7 @@
 		<!--[if gte IE 9]><!-->
 		<script src="js/lib/jquery-2.0.3.min.js"></script>
 		<!--<![endif]-->
-		<title>BiblioFair | Book trading, exchanging and swaping made easier</title>
+		<title>BiblioFair | Book trading, exchanging and swapping made easier</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,18 +65,23 @@
 		<div class="ng-view"></div>
 		<!-- AddThis Smart Layers BEGIN -->
 		<!-- Go to http://www.addthis.com/get/smart-layers to customize -->
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fd1d0b46333104"></script>
 		<script type="text/javascript">
-			$.getScript('//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fd1d0b46333104', function() {
-					    // replace the following line with your specific layers configuration
-				addthis.layers({
+			addthis.layers({
 					'theme' : 'transparent',
 					'share' : {
-					'position' : 'left',
-					'numPreferredServices' : 5,
-					'mobile' : false
+						'position' : 'left',
+						'numPreferredServices' : 5,
+						'mobile' : false
+					}, 
+					'follow' : {
+						'services' : [ 
+							{'service': 'facebook', 'id': 'bibliofair'}, 
+							{'service': 'twitter', 'id': 'BiblioFair'}
+						],
+						'offset':{'top':'55px'}
 					}   
 				});
-			});
 		</script>
 		<!-- AddThis Smart Layers END -->
 	</body>
