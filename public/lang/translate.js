@@ -16,16 +16,16 @@ var translateEN = {
 	'WELCOME': { 
 		'HEADING': 'Dive into the world of home libraries',
 		'HEADING2': 'Let\'s get the books flowing',
-		'TEXT1': 'We will enable you to turn your home bookshelves into a private library or bookshop. You will get requests from your friends or others to sell, rent or lend them books from your home library. Only you decide, which books to send into the world.',
-		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get in a library? Do you want to save money and the environment by getting a second hand book? Just sign up and easily search our databases.',
+		'TEXT1': 'We will enable you to turn your home bookshelf into a private library or bookshop. You will get requests from your friends or others, asking you to sell, rent or lend them books from your home library. Only you decide which books you send out into the world.',
+		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get in a library? Do you want to save money and the environment by getting a second hand book? Just sign up and search our databases easily.',
 		'PROCESS': {
 			'READER': 'For readers',
 			'OWNER': 'For book owners',
 			'CHOOSE': 'Choose a book',
-			'SEND': 'Send request',
+			'SEND': 'Send a request',
 			'ADD_BOOKS': 'Add your books',
-			'RECIEVE': 'Recieve request',
-			'MEET': 'Arrange handing the book over'
+			'RECIEVE': 'Receive requests',
+			'MEET': 'Arrange your book exchange'
 		},
 		'EMAIL': 'Email',
 		'USERNAME': 'Username',
@@ -33,8 +33,8 @@ var translateEN = {
 		'PASSWORD': 'Password',
 		'JOIN': 'Join',
 		'SIGNIN': 'Sign in',
-		'REGISTER_TEXT': 'Get a free account',
-		'REGISTER_ACTION': 'Register and save money on books today',
+		'REGISTER_TEXT': 'Get a Free Account',
+		'REGISTER_ACTION': 'Sign up and Save Money on Books Today',
 		'SIGNIN_TEXT': 'Sign in',
 		'AGAIN': 'Email or password is incorrect. Please try again',
 		'SHORT_PASSWORD': 'Password needs to be at least 6 characters long',
