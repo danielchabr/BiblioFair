@@ -1,24 +1,32 @@
 function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, $translate, $modal) {
 	//// Animate scrollUp
-	$('a[href=#top]').click(function(){
+	$('a[id=top]').click(function(){
 		$('html, body').animate({scrollTop:0}, 'slow');
 	});
 	//// Log in dropdown hack
-	var switchoff = false;
-	$('html').click(function() {
-		if(!switchoff) $('#login').css('display', 'none');
-		switchoff = false;
+	var switcher = function() {
+		var x = {};
+		x.value = false;
+		x.change = function(){ x.value = !x.value;};
+		return x;
+	};
+	var switchoff = switcher();
+	$('body').click(function() {
+		if(!switchoff.value) $('#login').css('display', 'none');
+		switchoff.change();
 	});
 	$('#login_opener').click(function() {
 		if($('#login').css('display') == 'none') {
 			$('#login').css('display', 'block');
+			switchoff.value = false;
 		} else {
 			$('#login').css('display', 'none');
 		}
 	});
 	$('#login').click(function() {
-		switchoff = true;
-		$('#login').delay(1000).css('display', 'block');
+		switchoff.change();
+		switchoff.value = true;
+//		$('#login').delay(1000).css('display', 'block');
 	});
 	/////////////////////
 	$scope.bookOrder = 'title';
