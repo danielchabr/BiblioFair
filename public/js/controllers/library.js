@@ -1,13 +1,18 @@
 function libraryControl($rootScope, $scope, $http, $modal, $translate, $location, $filter, APIservice) {
-	APIservice.library.read(function(data) {
-		 $scope.mybooks = [];
-		 console.log(data);
-		 for(var i = 0; i < data.library.length; i++) {
-			 var book = data.library[i].id;
-			 book.actions = data.library[i].actions;
-			 $scope.mybooks.push(book);
-		 }
-	});
+	var loadLibraryBooks = function () {
+		$scope.loading = true;
+		APIservice.library.read(function(data) {
+			$scope.mybooks = [];
+			console.log(data);
+			$scope.loading = false;
+			for(var i = 0; i < data.library.length; i++) {
+				var book = data.library[i].id;
+				book.actions = data.library[i].actions;
+				$scope.mybooks.push(book);
+			}
+		});
+	}();
+
 	APIservice.users.read(function(data) {
 		if(data.loc.coordinates.length == 0) {
 			$scope.disable = true;

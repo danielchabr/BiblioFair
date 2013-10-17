@@ -9,6 +9,9 @@
 				{{ 'LIBRARY.ALERT' | translate }}
 			</div>
 			<ul class="bookview">
+				<div class="col-xs-12 text-center" style="top:50px" ng-if="loading">
+					<i class="icon-spinner icon-spin icon-3x"></i>
+				</div>
 				<li class="col-lg-4 col-md-6 col-sm-12" ng-repeat="book in mybooks | filter:search">
 					<div class="well" ng-click="open(book)" style="padding-right:28px;">
 						<h4>{{book.title | shorten:41}}</h4>
