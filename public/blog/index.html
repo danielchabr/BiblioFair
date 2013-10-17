@@ -35,43 +35,44 @@
 		</script>
 	</head>
 	<body>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand logo" href="http://www.bibliofair.com" style="padding:12px 15px">
-					<svg width="34" height="24" style="margin-top:2px; margin-bottom:-2px">
-					<image xlink:href="img/logo.svg" src="img/logo.png" width="34" height="24" style="margin-top:2px; margin-bottom:-2px; vertical-align:baseline;" />
-					</svg>
-					<span style="margin-left:-7px">
-						BiblioFair &nbsp;&nbsp;
-					</span>
-				</a>
-			</div>
-		</div>
-		</nav>
-		<style type="text/css">
-			.content {
-				font-size: 15px;
-				margin-top:20px;
-			}
-			.footnote {
-				font-size: 15px;
-			}
-		</style>
-		<div class="container">
-			<div class="row" style="height:70px">
-			</div>
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 text-center">
-					<h1>Blog about building BiblioFair</h1>
+		<div class="super-container">
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand logo" href="http://www.bibliofair.com" style="padding:12px 15px">
+						<svg width="34" height="24" style="margin-top:2px; margin-bottom:-2px">
+						<image xlink:href="img/logo.svg" src="img/logo.png" width="34" height="24" style="margin-top:2px; margin-bottom:-2px; vertical-align:baseline;" />
+						</svg>
+						<span style="margin-left:-7px">
+							BiblioFair &nbsp;&nbsp;
+						</span>
+					</a>
 				</div>
 			</div>
-			<div class="row" style="height:30px">
-			</div>
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 well article">
-					<h2>Our Application Stack</h2>
-					<small>Posted on October 16, 2013
+			</nav>
+			<style type="text/css">
+				.content {
+					font-size: 15px;
+					margin-top:20px;
+				}
+				.footnote {
+					font-size: 15px;
+				}
+			</style>
+			<div class="container">
+				<div class="row" style="height:70px">
+				</div>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 text-center">
+						<h1>Blog about building BiblioFair</h1>
+					</div>
+				</div>
+				<div class="row" style="height:30px">
+				</div>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 well article">
+						<h2>Our Application Stack</h2>
+						<small>Posted on October 16, 2013</small>
 						<div class="content" style="text-align:justify">
 							<p>
 							I'm going to introduce all the 3rd party products, frameworks and programming languages that are in use at BiblioFair.
@@ -87,77 +88,94 @@
 								<li> <a href="http://expressjs.com/"><b>ExpressJS</b></a> is one of the packages for Node. It's a package which makes it very simple to run a server and to route various requests. Listening on a server can be as simple as writing: <br><code>var app = express(); app.listen(port, ipaddr);</code>. </li>
 								<li> <a href="http://angularjs.org/"><b>MongoDb</b></a> is a NoSQL database. I can't compare it to a SQL database because I have never used one. In fact I'm taking a SQL database course at school right now. For this one I will refer you to the <a href="http://www.mongodb.com/">MongoDB website</a>. To access MongoDB from Node, I use the MongooseJS package. Even though I has given me a hard time, I still think it is a great tool which is evolving very quickly and soon will become a serious competitor to the traditional database businesses.</li>
 								<li> <a href="http://angularjs.org/"><b>AngularJS</b></a> is a front-end JavaScript framework which among other things extends HTML functionality. It is an open sourced project by Google. There are still things that I have trouble to wrapping my head around. I don't know if it's just me or the bad documentation. But I really like the concept and even though it sometimes takes me a little longer to implement some functionality, I still think it has saved me time overall. Plus, it has been getting better as I understand more of it now.</li>
-								</p>
-								<p>
-								That's for the main stack. All our design is built upon <a href="http://getbootstrap.com/"><b>Bootstrap</b></a>, a responsive UI front-end framework developed and open sourced by Twitter. Our server runs on the <a href="www.openshift.com"><b>OpenShift</b></a> free plan hosting.
-								</p>
-								<p>
-								I hope I haven't forgetten about anything important. If I have, leave a comment and I will expand the article accordingly.
-								</p>
-							</div>
-							<div class="footnote text-right">
-								<br>
-								<p>Daniel</p>
-							</div>
-							<div id="disqus_thread"></div>
+							</ul>
+							</p>
+							<p>
+							That's for the main stack. All our design is built upon <a href="http://getbootstrap.com/"><b>Bootstrap</b></a>, a responsive UI front-end framework developed and open sourced by Twitter. Our server runs on the <a href="www.openshift.com"><b>OpenShift</b></a> free plan hosting.
+							</p>
+							<p>
+							I hope I haven't forgetten about anything important. If I have, leave a comment and I will expand the article accordingly.
+							</p>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-8 col-lg-offset-2 well article">
-							<h2>Hello World!</h2>
-							<small>Posted on October 10, 2013
-								<div class="content" style="text-align:justify">
-									<p>
-									Hello,
-									My name is Daniel Chabr. I am a student living in Czech Republic. Two months ago I decided to build a service for all people who read books.
-									</p>
-									<p>
-									I plan to blog here about all the ups and downs of developing a web app project. 
-									Some people might call it a startup, but having almost no budget, building it alone, and, at the same time studying at two universities and working a part time job, I think it would be too ambitious for me to call it that. 
-									Let's just call it a project.
-									Nevertheless, I do enjoy working on this project and I do see some potential value in it, so I will continue building it :). 
-									</p>
-								</div>
-								<div class="footnote text-right">
-									<br>
-									<p>Daniel</p>
-								</div>
-								<div id="disqus_thread"></div>
-							</div>
+						<div class="footnote text-right">
+							<br>
+							<p>Daniel</p>
 						</div>
+						<div id="disqus_thread"></div>
 					</div>
-					<script type="text/javascript">
-						/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-					var disqus_shortname = 'bibliofair'; // required: replace example with your forum shortname
-					var disqus_identifier = '/application_stack';
-					/* * * DON'T EDIT BELOW THIS LINE * * */
-					(function() {
-					 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-					 dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-					 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-					 })();
-				 </script>
-				 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-				 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-				 <!-- AddThis Smart Layers BEGIN -->
-				 <!-- Go to http://www.addthis.com/get/smart-layers to customize -->
-				 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fd1d0b46333104"></script>
-				 <script type="text/javascript">
-					 addthis.layers({
-							 'theme' : 'transparent',
-							 'share' : {
-							 'position' : 'left',
-							 'numPreferredServices' : 5,
-							 'mobile' : false
-							 }, 
-							 'follow' : {
-							 'services' : [ 
-							 {'service': 'facebook', 'id': 'bibliofair'}, 
-							 {'service': 'twitter', 'id': 'BiblioFair'}
-							 ]
-							 }   
-							 });
-				</script>
+				</div>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 well article">
+						<h2>Hello World!</h2>
+						<small>Posted on October 10, 2013</small>
+						<div class="content" style="text-align:justify">
+							<p>
+							Hello,
+							My name is Daniel Chabr. I am a student living in Czech Republic. Two months ago I decided to build a service for all people who read books.
+							</p>
+							<p>
+							I plan to blog here about all the ups and downs of developing a web app project. 
+							Some people might call it a startup, but having almost no budget, building it alone, and, at the same time studying at two universities and working a part time job, I think it would be too ambitious for me to call it that. 
+							Let's just call it a project.
+							Nevertheless, I do enjoy working on this project and I do see some potential value in it, so I will continue building it :). 
+							</p>
+						</div>
+						<div class="footnote text-right">
+							<br>
+							<p>Daniel</p>
+						</div>
+						<div id="disqus_thread"></div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="height:60px">
+			</div>
 
- </body>
-</html>
+			<div class="row info">
+				<div class="col-xs-12 text-center info_text">
+					<ul class="list-inline">
+						<li>
+						support@bibliofair.com &nbsp&nbsp |
+						</li>
+						<li>
+						&copy 2013 BiblioFair
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<script type="text/javascript">
+				/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+			var disqus_shortname = 'bibliofair'; // required: replace example with your forum shortname
+			var disqus_identifier = '/application_stack';
+			/* * * DON'T EDIT BELOW THIS LINE * * */
+			(function() {
+			 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			 dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+			 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			 })();
+		 </script>
+		 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		 <!-- AddThis Smart Layers BEGIN -->
+		 <!-- Go to http://www.addthis.com/get/smart-layers to customize -->
+		 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fd1d0b46333104"></script>
+		 <script type="text/javascript">
+			 addthis.layers({
+					 'theme' : 'transparent',
+					 'share' : {
+					 'position' : 'left',
+					 'numPreferredServices' : 5,
+					 'mobile' : false
+					 }, 
+					 'follow' : {
+					 'services' : [ 
+					 {'service': 'facebook', 'id': 'bibliofair'}, 
+					 {'service': 'twitter', 'id': 'BiblioFair'}
+					 ]
+					 }   
+					 });
+				 </script>
+			 </div>
+		 </body>
+	 </html>

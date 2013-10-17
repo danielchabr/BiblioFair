@@ -71,7 +71,7 @@ html, body {
 	margin:0px;
 	padding:0px;
 }
-.ng-view {
+.ng-view, .super-container {
 	position:relative; /* needed for footer positioning*/
 	margin:0 auto; /* center, not in IE5 */
 	width:100%;
