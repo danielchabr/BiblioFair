@@ -1,11 +1,4 @@
-#div_login_id > .ie-show {
-	position:relative;
-	width:auto;
-	height:auto;
-	padding:auto;
-	margin:auto;
-}
-#div_login_id > .sr-only {
+label.sr-only {
 	position:relative;
 	width:auto;
 	height:auto;
