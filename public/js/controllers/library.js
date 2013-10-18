@@ -11,7 +11,8 @@ function libraryControl($rootScope, $scope, $http, $modal, $translate, $location
 				$scope.mybooks.push(book);
 			}
 		});
-	}();
+	};
+	loadLibraryBooks();
 
 	APIservice.users.read(function(data) {
 		if(data.loc.coordinates.length == 0) {
