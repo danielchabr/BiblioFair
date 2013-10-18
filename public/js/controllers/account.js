@@ -92,11 +92,17 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		});
 	};
 	var update_loc = function (){
-		$scope.$apply(function() {
+		if(!$scope.$$phase) {
+			$scope.$apply(function() {
+				$scope.centerLat = $scope.map.getCenter().lat;
+				$scope.centerLng = $scope.map.getCenter().lng;
+				$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
+			});
+		} else {
 			$scope.centerLat = $scope.map.getCenter().lat;
 			$scope.centerLng = $scope.map.getCenter().lng;
 			$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
-		});
+		}
 	};
 	//// Google Analytics
 	ga('send', 'pageview', '/account');
