@@ -7,6 +7,7 @@ myApp.directive('menu', function() {
 			if(attrs.menu == 'browse') scope.browse = 'active';
 			if(attrs.menu == 'library') scope.library = 'active';
 			if(attrs.menu == 'account') scope.account = 'active';
+			if(attrs.menu == 'welcome') scope.welcome = true;
 		}
 	};
 	return directiveObject;

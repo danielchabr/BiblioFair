@@ -40,18 +40,28 @@
 </style>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
-	<div class="navbar-header" style="width:100%">
-		<a class="navbar-brand logo" href="/" style="padding:12px 15px" class="btn btn-info">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" ng-init="collapse()" ng-click="isCollapsed = !isCollapsed">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand logo" href="/" style="padding:12px 15px">
 			<svg width="34" height="24" style="margin-top:2px; margin-bottom:-2px">
-			<image xlink:href="img/logo.svg" src="img/logo.png" width="34" height="24" style="margin-top:2px; margin-bottom:-2px; vertical-align:baseline;" />
+				<image xlink:href="img/logo.svg" src="img/logo.png" width="34" height="24" style="margin-top:2px; margin-bottom:-2px; vertical-align:baseline;" />
 			</svg>
+			<span style="margin-left:-7px">
 			BiblioFair 
+			</span>
 		</a>
-		<ul class="nav navbar-nav pull-right">
-			<li class="dropdown" style="cursor:pointer" >
+	</div>
+
+	<div class="navbar-collapse navbar-responsive-collapse navbar-right" ng-show="isCollapsed">
+		<ul class="nav navbar-nav">
+			<li class="dropdown" style="cursor:pointer" id="login_all">
 			<a class="dropdown-toggle" id="login_opener">
 				<i class="icon-signin icon-large"></i> 
-				<span id="lang">{{ 'WELCOME.SIGNIN_TEXT' | translate }}</span>
+				{{ 'WELCOME.SIGNIN_TEXT' | translate }}
 			</a>
 			<ul class="dropdown-menu" style="color: black" ng-click="login_open();" id="login">
 				<li style="padding:10px 15px;">
@@ -86,7 +96,7 @@
 			<li class="dropdown" style="cursor:pointer" >
 			<a class="dropdown-toggle">
 				<i class="icon-globe icon-large"></i> 
-				<span id="lang">{{ 'NAV.LANGUAGE' | translate }}</span>
+				{{ 'NAV.LANGUAGE' | translate }}
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu" style="color: black">

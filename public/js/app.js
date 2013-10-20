@@ -36,6 +36,8 @@ myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 
 	$http.get('/user')
 	.success(function (data) {
+		$location.path('/');
+		$location.replace();
 		$rootScope.user = data;
 		if(data.lang) $rootScope.changeLanguage(data.lang);
 		APIservice.users.read(function(data) {

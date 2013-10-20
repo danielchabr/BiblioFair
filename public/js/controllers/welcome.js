@@ -12,12 +12,16 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	};
 	var switchoff = switcher();
 	$('body').click(function() {
-		if(!switchoff.value) $('#login').css('display', 'none');
+		if(!switchoff.value) {
+			$('#login').css('display', 'none');
+		}
+		$('#login_all').addClass('open');
 		switchoff.change();
 	});
 	$('#login_opener').click(function() {
 		if($('#login').css('display') == 'none') {
 			$('#login').css('display', 'block');
+			$('#login_all').addClass('open');
 			switchoff.value = false;
 		} else {
 			$('#login').css('display', 'none');
@@ -26,7 +30,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	$('#login').click(function() {
 		switchoff.change();
 		switchoff.value = true;
-//		$('#login').delay(1000).css('display', 'block');
+		$('#login_all').addClass('open');
 	});
 	/////////////////////
 	$scope.bookOrder = 'title';
