@@ -1,5 +1,6 @@
 <style type="text/css">
 	div.modal {
+		margin-top:60px;
 		display:block;
 	}
 </style>
@@ -8,11 +9,13 @@
 	<h2>{{ 'RECOVERY.HEADING' | translate }}</h2>
 </div>
 <div class="modal-body">
-	<form class="form-inline text-center" role="form">
-		<div class="form-group" style="width:70%">
-			<label class="sr-only" for="recovery_id">{{ 'RECOVERY.EMAIL' | translate }}</label>
-			<input type="email" id="recovery_id" ng-model="email"  class="form-control" placeholder="{{ 'RECOVERY.EMAIL' | translate }}    " required>
+	<form class="form-inline text-center row" role="form">
+		<div class="text-center col-xs-12 col-sm-10 col-sm-offset-1">
+			<div class="form-group" style="width:65%;display:inline-block">
+				<label class="sr-only" for="recovery_id">{{ 'RECOVERY.EMAIL' | translate }}</label>
+				<input type="email" id="recovery_id" ng-model="email"  class="form-control" placeholder="{{ 'RECOVERY.EMAIL' | translate }}    " required>
+			</div>
+			<button class="btn btn-warning" ng-click="recover(email)">{{ 'RECOVERY.SEND' | translate }}</button>
 		</div>
-		<button class="btn btn-warning" ng-click="recover(email)">{{ 'RECOVERY.SEND' | translate }}</button>
 	</form>
 </div>
