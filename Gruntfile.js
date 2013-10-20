@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 		htmlSnapshot: {
 			all: {
 				options: {
-				  snapshotPath: 'public/snapshot/',
+				  snapshotPath: 'public/',
 				  sitePath: 'http://www.bibliofair.com', 
 				  urls: ['']
 				}
