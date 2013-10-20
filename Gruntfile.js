@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+	grunt.loadNpmTasks('grunt-html-snapshot');
 
 	  // Project configuration.
 	grunt.initConfig({
@@ -11,6 +12,15 @@ module.exports = function(grunt) {
 				src: 'public/js/app.js',
 				dest: 'public/js/app.min.js'
 			}
+		},
+		htmlSnapshot: {
+			all: {
+				options: {
+				  snapshotPath: 'public/snapshot/',
+				  sitePath: 'http://www.bibliofair.com', 
+				  urls: ['']
+				}
+			}
 		}
 	});
 
@@ -18,6 +28,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 		  // Default task(s).
-	grunt.registerTask('default', ['uglify']);
+	grunt.registerTask('default', ['htmlSnapshot']);
 
 };
