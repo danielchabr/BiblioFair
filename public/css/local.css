@@ -17,11 +17,6 @@ h1, h2, h3, h4, h5 {
 .modal-dialog {
 	padding-bottom: 55px;
 }
-.round {
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-}
 .well, .btn, .form-control, .modal-content, .pagination > li:first-child > a, .pagination > li:last-child > a {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
@@ -35,11 +30,6 @@ h1, h2, h3, h4, h5 {
 }
 .map img {
 	max-width: none;
-}
-@media (max-width: 400px) {
-	#lang {
-		display: none;
-	}
 }
 .bookview {
 	list-style: none;
