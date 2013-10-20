@@ -1,6 +1,5 @@
 var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservice) {
 	$scope.details_view = book;
-	console.log($scope.details_view);
 	if(book.published) {
 		$scope.details_view.published = new Date(book.published).getFullYear();
 	}
@@ -25,7 +24,6 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 	$scope.sendRequest = function (owner) {
 		APIservice.users.read(function(data) {
 			APIservice.messages.send(owner.username, data.email, data.username, book, data.language, function(data) {
-				console.log('message sent');
 				owner.style = true;
 				owner.message = $translate('HOME.MODAL.REQUEST_SENT');
 			});
@@ -55,7 +53,6 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 			//$scope.map.enableMouseWheelZoom();
 		});
 		APIservice.books.readById($scope.details_view._id, function(data) {
-			console.log(data.users);
 			for(var i = 0; i < data.users.length; i++) {
 				var new_user = {username: data.users[i].username, style: false, message : $translate('HOME.MODAL.REQUEST')}
 				for(var j = 0; j < data.users[i].library.length; j++) {

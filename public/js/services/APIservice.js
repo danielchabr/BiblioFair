@@ -23,7 +23,7 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 				var data = { id: $rootScope.user.id, token: $rootScope.user.token, action: 'lang', lang: data.lang };
 			}
 			else {
-				console.log('user update error');
+				return 'user update error';
 			}
 			$http.put('/api/v1/users', data).success(callback).error(callback);
 		},

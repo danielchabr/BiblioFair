@@ -39,11 +39,9 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	});
 	APIservice.books.read('','', 6, 0, function(data) {
 		$rootScope.books = data;
-		console.log(data.length);
 	});
 	$scope.retrieveBooks = function () {
 		APIservice.books.read('', $scope.search_query, 6, 0, function(data) {
-			console.log($scope.search_query);
 			var arr = $rootScope.books.concat(data);
 			$rootScope.books = uniqBooks(arr, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
 		});
@@ -73,7 +71,6 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 					else if(data == 'invalidUsername') {
 						$scope.signup_message = $translate('WELCOME.USERNAME_INVALID');
 					}
-					console.log(data);
 				});
 		} else {
 			if($scope.signup_password.length < 6) {

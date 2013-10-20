@@ -50,9 +50,6 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 				if(data.loc.coordinates.length == 2) {
 					$scope.centerLat = data.loc.coordinates[1];
 					$scope.centerLng = data.loc.coordinates[0];
-					console.log(data.loc);
-					console.log($scope.centerLat + ' ' + $scope.centerLng);
-					console.log(data.loc.coordinates[1] + ' ' + data.loc.coordinates[0]);
 					$scope.map.setCenter(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
 					$scope.map.setZoomLevel(11);
 					var point = new MQA.Poi( {lat: $scope.centerLat, lng: $scope.centerLng} );
@@ -86,9 +83,7 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		MQA.EventManager.addListener($scope.map, 'click', update_loc);
 		MQA.EventManager.addListener($scope.map, 'doubleclick', update_loc);
 		MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
-		console.log('calling loadLoc()');
 		loadLoc();
-		console.log('end loadLoc()');
 		});
 	};
 	var update_loc = function (){

@@ -3,7 +3,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $translate, $location
 		$scope.loading = true;
 		APIservice.library.read(function(data) {
 				$scope.mybooks = [];
-				console.log(data);
 				$scope.loading = false;
 				for(var i = 0; i < data.library.length; i++) {
 				var book = data.library[i].id;
@@ -24,7 +23,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $translate, $location
 			}
 			});
 	$scope.addbook = function() {
-		console.log($scope.newbook.title + " " + $scope.newbook.author);
 		if($scope.newbook.title && $scope.newbook.author) {
 			if( $scope.newbook.actions  && ( $scope.newbook.actions.sell || $scope.newbook.actions.donate || $scope.newbook.actions.lend ) ) {
 				if(!$scope.newbook.published || (!isNaN($scope.newbook.published) && ( parseInt($scope.newbook.published) < 2015 && parseInt($scope.newbook.published) > 0 ) ) ) {
@@ -32,7 +30,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $translate, $location
 						if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
 					}
 					APIservice.library.create($scope.newbook, function(data, status) {
-							console.log(data);
 							$scope.mybooks.push(data);
 							$scope.newbook = { edition:1, volume:1, language:'cze'};
 							$scope.warning_text = "";
@@ -111,7 +108,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $translate, $location
 				delete template.language;
 				if(template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
 				$scope.tel =  $filter('filter')($scope.tel, template, true);
-				console.log($scope.tel);
 				$scope.selected_books = $scope.selected_books.concat($scope.tel);
 				if($scope.tel.length == 1) {
 					$scope.newbook = $scope.tel[0];
@@ -143,8 +139,6 @@ function libraryControl($rootScope, $scope, $http, $modal, $translate, $location
 		if(template.isbn && template.isbn.length == 10) template.isbn = ISBN10toISBN13(template.isbn);
 		var arr = $filter('filter')($scope.selected_books, template);
 		arr = uniqBooks(arr, function(a, b) { if(a.title + a.author < b.title + b.author) return -1; else if (a.title + a.author > b.title + b.author) return 1; else return 0; });
-		console.log($scope.selected_books);
-		console.log(arr);
 		return arr;
 	};
 	//////////// BOOK DETAIL MODAL //////////////////
