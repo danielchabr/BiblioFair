@@ -33,6 +33,7 @@ function libraryControl($rootScope, $scope, $http, $modal, $translate, $location
 							$scope.mybooks.push(data);
 							$scope.newbook = { edition:1, volume:1, language:'cze'};
 							$scope.warning_text = "";
+							ga('send', 'event', 'book', 'add');
 							});
 				} else {
 					$scope.warning_text = $translate('LIBRARY.ADD.INVALID_PUBLISHED');
