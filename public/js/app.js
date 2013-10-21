@@ -41,7 +41,8 @@ myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 
 	$http.get('/user')
 	.success(function (data) {
-		$location.path('/home');
+		if($location.path() == '/library' || $location.path() == '/account' || $location.path() == '/home') {}
+		else $location.path('/home');
 		$rootScope.user = data;
 		if(data.lang) $rootScope.changeLanguage(data.lang);
 		APIservice.users.read(function(data) {
