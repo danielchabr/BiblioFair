@@ -35,7 +35,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	/////////////////////
 	$scope.bookOrder = 'title';
 	APIservice.books.count(function(data) {
-		if(data) $scope.books_available = data + " " + $translate('WELCOME.BOOKS_AVAILABLE');
+		if(data) $scope.books_available = data;
 	});
 	APIservice.books.read('','', 6, 0, function(data) {
 		$rootScope.books = data;
