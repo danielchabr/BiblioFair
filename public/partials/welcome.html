@@ -13,9 +13,19 @@
 	.well-alt {
 		padding:8px;
 	}
+	.white_bg {
+		display:inline-block;
+		background-color:white;
+		background: rgba(255, 255, 255, 0.7);
+		padding:10px;
+	}
 	.content_row {
 		padding-top: 25px;
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(0, 0, 0, 0.6);
+	}
+	.content_row_white {
+		padding-top: 25px;
+		background: rgba(255, 255, 255, 0.2);
 	}
 	.popover {
 		color:black;
@@ -153,7 +163,9 @@
 	<div class="row" ng-init="bubble=true">
 		<!-- Contents -->
 		<div class="bubble" ng-animate=" 'bubble' " ng-if="books_available"><h4>{{ books_available + " " + ('WELCOME.BOOKS_AVAILABLE' | translate) }}</h4></div>
-		<h1 style="color:black; padding-bottom:50px" class="text-center">{{ 'WELCOME.HEADING' | translate }}</h1>
+		<div class="col-xs-12 text-center">
+			<h1 style="color:black; margin-bottom:50px" class="">{{ 'WELCOME.HEADING' | translate }}</h1>
+		</div>
 		<div class="col-sm-7 col-md-8 col-xs-12">
 			<form class="row" action="" role="search">
 				<div class="form-group col-xs-12 col-sm-8 col-sm-offset-2">
@@ -221,7 +233,8 @@
 		</div>
 	</div>
 </div>
-<div class="container" style="padding-top:50px;padding-bottom:30px">
+<div class="content_row_white">
+<div class="container" style="padding-top:30px;padding-bottom:30px">
 	<div class="row" style="margin-bottom:20px;color:black">
 		<div class="col-xs-6 text-center">
 			<h3 class="text-center">{{ 'WELCOME.PROCESS.READER' | translate }}</h3>
@@ -275,6 +288,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <div class="content_row" style="padding-top:40px;padding-bottom:70px">
 	<div class="container">
