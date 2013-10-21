@@ -3,6 +3,8 @@ var myApp = angular.module('myApp', ['ui.bootstrap', 'pascalprecht.translate']);
 myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', '$translateProvider', function($routeProvider, $locationProvider, $httpProvider, $provide, $translateProvider) {
 	$routeProvider
 	.when('/', {templateUrl: '/partials/welcome.html',   controller: welcomeControl})
+	.when('/en', {templateUrl: '/partials/welcome.html',   controller: welcomeControl})
+	.when('/cz', {templateUrl: '/partials/welcome.html',   controller: welcomeControl})
 	.when('/home', {templateUrl: '/partials/private/home.html',   controller: homeControl})
 	.when('/library', {templateUrl: '/partials/private/library.html',   controller: libraryControl})
 	.when('/account', {templateUrl: '/partials/private/account.html',   controller: accountControl})
@@ -17,8 +19,11 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide'
 				var status = rejection.status;
 				if (status == 401) {
 					$rootScope.redirect = $location.url(); // save the current url so we can redirect the user back
-					$location.path('/');
-					$location.replace();
+					if($location.path() == '/en' || $location.path() == '/cz') {}
+					else {
+						$location.path('/');
+						$location.replace();
+					}
 				}
 				return $q.reject(rejection);
 			}
@@ -37,7 +42,6 @@ myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 	$http.get('/user')
 	.success(function (data) {
 		$location.path('/home');
-		$location.replace();
 		$rootScope.user = data;
 		if(data.lang) $rootScope.changeLanguage(data.lang);
 		APIservice.users.read(function(data) {
@@ -48,8 +52,16 @@ myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 		});
 	})
 	.error(function (data) {
-		if(data.lang) $rootScope.changeLanguage(data.lang);
-		$location.path('/');
+		if($location.path().slice(1, 3) == 'en' || $location.absUrl().slice(-3, -1) == 'en') {
+			$rootScope.changeLanguage('en');
+		} else if($location.path().slice(1, 3) == 'cz' || $location.absUrl().slice(-3, -1) == 'cz') {
+			$rootScope.changeLanguage('cz');
+		} else if(data.lang) {
+			$rootScope.changeLanguage(data.lang);
+		}
+
+		if($location.path() == '/en' || $location.path() == '/cz') {}
+		else { $location.path('/'); $location.replace(); }
 	});
 
 	$rootScope.logout = function () {
@@ -64,9 +76,13 @@ myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 	window.onresize = function () {$rootScope.collapse();$rootScope.$apply();};
 	$rootScope.changeLanguage = function (langKey) {
 		if(langKey == 'en' || langKey == 'cz') {
+			console.log($location.url());
+			console.log( " " +langKey + $location.path().slice(1, 3) + $location.absUrl().slice(-3, -1) );
 			$translate.uses(langKey);
 			$rootScope.lang = langKey;
 			APIservice.users.update({action: 'lang', lang: langKey}, function(err) {
+				if( langKey == 'en' && ($location.path().slice(1, 3) == 'cz' || $location.absUrl().slice(-3, -1) == 'cz') ) window.location = '../';
+				else if( langKey == 'cz' && ($location.path().slice(1, 3) == 'en' || $location.absUrl().slice(-3, -1) == 'en') ) window.location = '../';
 			});
 		}
 	};
