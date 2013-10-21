@@ -17,8 +17,8 @@ module.exports = function(grunt) {
 			all: {
 				options: {
 				  snapshotPath: 'public/',
-				  sitePath: 'http://www.bibliofair.com', 
-				  urls: ['']
+				  sitePath: 'http://www.bibliofair.com/', 
+				  urls: ['en', 'cz']
 				}
 			}
 		}
