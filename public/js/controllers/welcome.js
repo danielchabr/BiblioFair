@@ -91,7 +91,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 						$rootScope.user.library = data.user.library;
 						$rootScope.user.loc = data.user.loc;
 						$scope.changeLanguage(data.lang);
-						$location.path('/');
+						$location.path('/home');
 					}
 					else {
 						$scope.login_message = $translate('WELCOME.AGAIN');
