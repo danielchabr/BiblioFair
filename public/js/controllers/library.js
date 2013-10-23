@@ -24,12 +24,13 @@ function libraryControl($rootScope, $scope, $http, $modal, $translate, $location
 			});
 	$scope.addbook = function() {
 		if($scope.newbook.title && $scope.newbook.author) {
-			if( $scope.newbook.actions  && ( $scope.newbook.actions.sell || $scope.newbook.actions.donate || $scope.newbook.actions.lend ) ) {
+			//if( $scope.newbook.actions  && ( $scope.newbook.actions.sell || $scope.newbook.actions.donate || $scope.newbook.actions.lend ) ) {
 				if(!$scope.newbook.published || (!isNaN($scope.newbook.published) && ( parseInt($scope.newbook.published) < 2015 && parseInt($scope.newbook.published) > 0 ) ) ) {
 					if($scope.newbook.isbn) {
 						if($scope.newbook.isbn.length == 10) $scope.newbook.isbn = ISBN10toISBN13($scope.newbook.isbn);
 					}
 					APIservice.library.create($scope.newbook, function(data, status) {
+							data.actions = $scope.newbook.actions;
 							$scope.mybooks.push(data);
 							$scope.newbook = { edition:1, volume:1, language:'cze'};
 							$scope.warning_text = "";
@@ -38,9 +39,9 @@ function libraryControl($rootScope, $scope, $http, $modal, $translate, $location
 				} else {
 					$scope.warning_text = $translate('LIBRARY.ADD.INVALID_PUBLISHED');
 				}
-			} else {
-				$scope.warning_text = $translate('LIBRARY.ADD.ACTIONS.WARNING');
-			}
+			//} else {
+			//	$scope.warning_text = $translate('LIBRARY.ADD.ACTIONS.WARNING');
+			//}
 		} else {
 			$scope.warning_text = $translate('LIBRARY.ADD.NOT_FILLED');
 		}
