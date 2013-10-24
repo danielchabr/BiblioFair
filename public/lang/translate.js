@@ -9,7 +9,7 @@ var translateEN = {
 		'ENGLISH': 'English',
 		'CZECH': 'Česky',
 		'SEARCH': { 
-			'HEADING':'Check out your favorite book ...',
+			'HEADING':'Try checking out your favorite book ...',
 			'BUTTON':'Search',
 			'PLACEHOLDER': 'Title, author, ISBN, ...'
 		}
@@ -144,7 +144,7 @@ var translateCZ = {
 		'ENGLISH': 'English',
 		'CZECH': 'Česky',
 		'SEARCH': { 
-			'HEADING':'Najděte svoji oblíbenou knihu ...',
+			'HEADING':'Zkuste najít svoji oblíbenou knihu ...',
 			'BUTTON':'Hledat',
 			'PLACEHOLDER': 'Titul, autor, ISBN, ...'
 		}
@@ -171,7 +171,7 @@ var translateCZ = {
 		'SIGNIN': 'Přihlásit',
 		'REGISTER_ACTION': 'Přidejte se a ušetřete za knihy již dnes',
 		'REGISTER_ACTION_SMALL': 'Přidejte se již dnes',
-		'REGISTER_TEXT': 'Získejte účet zdarma',
+		'REGISTER_TEXT': 'Získejte účet zcela zdarma',
 		'SIGNIN_TEXT': 'Přihlásit se',
 		'AGAIN': 'Chybný email nebo heslo, prosím zkusto to znovu',
 		'SHORT_PASSWORD': 'Heslo musí mít alespoň 6 znaků',
