@@ -9,6 +9,7 @@ var translateEN = {
 		'ENGLISH': 'English',
 		'CZECH': 'Česky',
 		'SEARCH': { 
+			'HEADING':'Check out your favorite book ...',
 			'BUTTON':'Search',
 			'PLACEHOLDER': 'Title, author, ISBN, ...'
 		}
@@ -143,6 +144,7 @@ var translateCZ = {
 		'ENGLISH': 'English',
 		'CZECH': 'Česky',
 		'SEARCH': { 
+			'HEADING':'Najděte svoji oblíbenou knihu ...',
 			'BUTTON':'Hledat',
 			'PLACEHOLDER': 'Titul, autor, ISBN, ...'
 		}
