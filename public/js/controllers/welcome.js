@@ -1,7 +1,7 @@
 function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, $translate, $modal) {
 	//// Animate scrollUp
-	$('a[id=top]').click(function(){
-		$('html, body').animate({scrollTop:0}, 'slow');
+	$('a[class=bottom]').click(function(){
+		$('html, body').animate({scrollTop:$(document).height()}, 'slow');
 	});
 	//// Log in dropdown hack
 	var switcher = function() {

@@ -24,13 +24,12 @@
 	}
 	.content_row {
 		padding-top: 70px;
-		padding-bottom: 70px;
+		padding-bottom: 50px;
 		background: rgba(0, 0, 0, 0.6);
 	}
 	.content_row_white {
-		padding-top: 40px;
-		padding-bottom: 40px;
-		background: rgba(255, 255, 255, 0);
+		padding-top: 30px;
+		padding-bottom: 30px;
 	}
 	.popover {
 		color:black;
@@ -164,12 +163,12 @@
 	</div>
 </div>
 </nav>
-<div class="container" style="padding-top:90px;padding-bottom:50px;" id="top">
+<div class="container" style="padding-top:90px;padding-bottom:30px;" id="top">
 	<div class="row" ng-init="bubble=true">
 		<!-- Contents -->
 		<div class="bubble" ng-animate=" 'bubble' " ng-if="books_available"><h4>{{ books_available + " " + ('WELCOME.BOOKS_AVAILABLE' | translate) }}</h4></div>
 		<div class="col-xs-12 text-center">
-			<h1 style="color:black; margin-bottom:50px" class="">{{ 'WELCOME.HEADING' | translate }}</h1>
+			<h1 style="color:black; margin-bottom:30px" class="">{{ 'WELCOME.HEADING' | translate }}</h1>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 			<div class="well" style="background-color:rgba(255, 255, 255, 0.9);color:black;border:0px;">
@@ -183,6 +182,11 @@
 				</p>
 				<!-- Open your library to the world -->
 			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 text-center">
+			<a ng-href="" class="bottom"><button type="button text-center col-sm-8" class="btn btn-lg btn-success"><span class="hidden-xs">{{  'WELCOME.REGISTER_ACTION' | translate  }}</span><span class="visible-xs">{{  'WELCOME.REGISTER_ACTION_SMALL' | translate  }}</span></button></a>
 		</div>
 	</div>
 </div>
@@ -205,6 +209,11 @@
 					</div>
 					</li>
 				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<a ng-href="" class="bottom"><button type="button text-center col-sm-8" class="btn btn-lg btn-success"><span class="hidden-xs">{{  'WELCOME.REGISTER_ACTION' | translate  }}</span><span class="visible-xs">{{  'WELCOME.REGISTER_ACTION_SMALL' | translate  }}</span></button></a>
 			</div>
 		</div>
 	</div>
@@ -300,9 +309,6 @@
 					</form>
 				</div>
 			</div>
-			<!--
-			<a ng-href="" id="top"><button type="button text-center col-sm-8" class="btn btn-lg btn-success"><span class="hidden-xs">{{  'WELCOME.REGISTER_ACTION' | translate  }}</span><span class="visible-xs">{{  'WELCOME.REGISTER_ACTION_SMALL' | translate  }}</span></button></a>
-			-->
 		</div>
 	</div>
 </div>
