@@ -57,7 +57,10 @@ var translateEN = {
 			'TEXT': 'Order by:',
 			'TITLE': 'Title',
 			'AUTHOR': 'Author',
-			'DISTANCE': 'Distance'
+			'DISTANCE': 'Distance',
+			'SELLING': 'Selling',
+			'DONATING': 'Donating',
+			'LENDING': 'Lending'
 		},
 		'MODAL': {
 			'REQUEST': 'Send request',
@@ -192,7 +195,10 @@ var translateCZ = {
 			'TEXT': 'Seřadit podle:',
 			'TITLE': 'Titul',
 			'AUTHOR': 'Autor',
-			'DISTANCE': 'Vzdálenost'
+			'DISTANCE': 'Vzdálenost',
+			'SELLING': 'K prodeji',
+			'DONATING': 'K darování',
+			'LENDING': 'K půjčení'
 		},
 		'MODAL': {
 			'REQUEST': 'Požádat o knihu',
