@@ -22,6 +22,10 @@
 		background: rgba(255, 255, 255, 0.7);
 		padding:10px;
 	}
+	#welcome_text {
+		margin-left: -5px;
+		margin-right: -5px;
+	}
 	.content_row {
 		padding-top: 70px;
 		padding-bottom: 50px;
@@ -170,7 +174,7 @@
 			<h1 style="color:black; margin-bottom:30px" class="">{{ 'WELCOME.HEADING' | translate }}</h1>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-			<div class="well" style="background-color:rgba(255, 255, 255, 0.9);color:black;border:0px;">
+			<div class="well" id="welcome_text" style="background-color:rgba(255, 255, 255, 0.9);color:black;border:0px;">
 				<br>
 				<p style="font-size:18px">
 				{{ 'WELCOME.TEXT1' | translate }}
