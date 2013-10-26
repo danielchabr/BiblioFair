@@ -15,8 +15,12 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		if(!switchoff.value) {
 			$('#login').css('display', 'none');
 		}
-		$('#login_all').addClass('open');
-		switchoff.change();
+		if(switchoff.value == true) {
+			switchoff.change();
+			$('#login_all').addClass('open');
+		} else {
+			$('#login_all').removeClass('open');
+		}
 	});
 	$('#login_opener').click(function() {
 		if($('#login').css('display') == 'none') {

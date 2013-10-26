@@ -49,7 +49,12 @@
 					<span class="label label-primary" ng-if="owner.actions.donate">{{  'HOME.MODAL.DONATE' | translate  }}</span>
 					<span class="label label-primary" ng-if="owner.actions.lend">{{  'HOME.MODAL.LEND' | translate  }}</span>
 				</td>
-				<td><button type="button" class="btn btn-sm" ng-class="{'btn-success':!owner.style, 'btn-default':owner.style}" ng-disabled="owner.style" ng-click="sendRequest(owner)" title="{{ owner.message}}"><i class="icon-envelope"></i><span class="request_button"> {{ owner.message }}</span></button></td>
+				<td>
+					<button type="button" class="btn btn-sm pull-right" style="margin-right:10px" ng-class="{'btn-success':!owner.style, 'btn-default':owner.style}" ng-disabled="owner.style" ng-click="sendRequest(owner)" title="{{ owner.message}}">
+						<i class="icon-envelope"></i> 
+						<span class="request_button"> {{ owner.message }}</span>
+					</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>
