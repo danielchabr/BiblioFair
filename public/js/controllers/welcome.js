@@ -3,6 +3,22 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	$('a[class=bottom]').click(function(){
 		$('html, body').animate({scrollTop:$(document).height()}, 'slow');
 	});
+	$('#arrow').mouseover(function() {
+		$('html, body').animate({scrollTop:$('#arrow').offset().top - 50}, 'slow');
+	});
+	$('#arrow').click(function() {
+		$('html, body').animate({scrollTop:$('#arrow').offset().top - 50}, 'slow');
+	});
+	var windowEl = angular.element(document);
+	windowEl.on('scroll', function() {
+		$scope.$apply(function() {
+			if($('.info').offset().top < $(window).scrollTop() + $(window).height() ) {
+				$scope.bottom = true;
+			} else {
+				$scope.bottom = false;
+			}
+		});
+	});
 	//// Log in dropdown hack
 	var switcher = function() {
 		var x = {};
