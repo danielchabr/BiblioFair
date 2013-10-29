@@ -79,7 +79,7 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 			var subject = 'Book request';
 			if(lang == 'cz') {
 				var body = ['Dobrý den ' + userTo + '!',
-					'Uživatel ' + userFrom + ' by si od Vás rad koupil knihu. Pokud máte zájem, stačí odpovědět na tuto zprávu a domluvit detaily předání přímo s ním.',
+					'Uživatel ' + userFrom + ' by od Vás rád koupil, půjčil nebo jinak získal knihu. Pokud máte zájem, stačí odpovědět na tuto zprávu a domluvit detaily předání přímo s ním.',
 					'Informace o požadované knize:',
 					'Titul: ' + book.title,
 					'Autor: ' + book.author,
@@ -88,7 +88,7 @@ myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http)
 					].join('\n');
 			} else {
 				var body = ['Hello ' + userTo + '!',
-					'User ' + userFrom + ' would like to buy a book from you. If you are intereseted reply to this message and arrange details of the deal directly with him.',
+					'User ' + userFrom + ' would like to buy, borrow or otherwise get a book from you. If you are intereseted reply to this message and arrange details of the deal directly with him.',
 					'Details of requested book:',
 					'Title: ' + book.title,
 					'Author: ' + book.author,
