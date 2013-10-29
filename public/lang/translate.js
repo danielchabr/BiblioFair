@@ -172,7 +172,7 @@ var translateCZ = {
 		'USERNAME': 'Uživatelské jméno',
 		'EMAIL_OR_USERNAME': 'Email nebo uživatelské jméno',
 		'PASSWORD': 'Heslo',
-		'JOIN': 'Založi účet',
+		'JOIN': 'Založit účet',
 		'SIGNIN': 'Přihlásit',
 		'REGISTER_ACTION': 'Přidejte se',
 		'REGISTER_ACTION_SMALL': 'Přidejte se již dnes',

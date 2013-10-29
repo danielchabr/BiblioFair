@@ -27,18 +27,18 @@
 		</div>
 		<div class="col-xs-4 col-sm-2">
 			<div class="row">
-				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.sell, 'btn-success':details_view.actions.sell}" ng-model="details_view.actions.sell" ng-click="details_view.actions.sell=!details_view.actions.sell;updateActions()"><i ng-class="{'icon-check':details_view.actions.sell, 'icon-check-empty':!details_view.actions.sell}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
+				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.sell, 'btn-success':details_view.actions.sell}" ng-model="details_view.actions.sell" ng-click="details_view.actions.sell=!details_view.actions.sell;updateActions()"><i ng-class="{'fa-check-square-o':details_view.actions.sell, 'fa-square-o':!details_view.actions.sell}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
 			</div>
 			<div class="row">
-				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.donate, 'btn-success':details_view.actions.donate}" ng-model="details_view.actions.donate" ng-click="details_view.actions.donate=!details_view.actions.donate;updateActions()"><i ng-class="{'icon-check':details_view.actions.donate, 'icon-check-empty':!details_view.actions.donate}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.DONATE' | translate }}</button>
+				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.donate, 'btn-success':details_view.actions.donate}" ng-model="details_view.actions.donate" ng-click="details_view.actions.donate=!details_view.actions.donate;updateActions()"><i ng-class="{'fa-check-square-o':details_view.actions.donate, 'fa-square-o':!details_view.actions.donate}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.DONATE' | translate }}</button>
 			</div>
 			<div class="row">
-				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.lend, 'btn-success':details_view.actions.lend}" ng-model="details_view.actions.lend" ng-click="details_view.actions.lend=!details_view.actions.lend;updateActions()"><i ng-class="{'icon-check':details_view.actions.lend, 'icon-check-empty':!details_view.actions.lend}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.LEND' | translate }}</button>
+				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.lend, 'btn-success':details_view.actions.lend}" ng-model="details_view.actions.lend" ng-click="details_view.actions.lend=!details_view.actions.lend;updateActions()"><i ng-class="{'fa-check-square-o':details_view.actions.lend, 'fa-square-o':!details_view.actions.lend}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.LEND' | translate }}</button>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="modal-footer">
-	<button class="btn btn-primary pull-left" ng-click="remove()"><i class="icon-trash"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
+	<button class="btn btn-primary pull-left" ng-click="remove()"><i class="fa fa-trash-o"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
 	<button class="btn btn-warning" ng-click="cancel()">{{ 'DETAIL.CLOSE' | translate }}</button>
 </div>

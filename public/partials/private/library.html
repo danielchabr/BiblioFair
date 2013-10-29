@@ -10,13 +10,13 @@
 			</div>
 			<ul class="bookview">
 				<div class="col-xs-12 text-center" style="top:50px" ng-if="loading">
-					<i class="icon-spinner icon-spin icon-3x"></i>
+					<i class="fa fa-spinner fa-spin fa-4x"></i>
 				</div>
 				<li class="col-lg-4 col-md-6 col-sm-12" ng-repeat="book in mybooks | filter:search" ng-animate=" 'animate' ">
 					<div class="well" ng-click="open(book)" style="padding-right:28px;">
 						<h4>{{book.title | shorten:41}}</h4>
 						<i style="position:absolute;bottom:20px">{{book.author | shorten:25}}</i>
-						<i class="icon-edit icon-large" style="margin-right:15px; position:absolute; top:19px; right:4px"></i>
+						<i class="fa fa-edit fa-lg" style="margin-right:15px; position:absolute; top:22px; right:4px"></i>
 					</div>
 				</li>
 			</ul>
@@ -43,7 +43,7 @@
 							</div>
 							<hr>
 
-							<p>{{ 'LIBRARY.ADD.OPTIONAL' | translate }}: &nbsp; <i ng-class="{'icon-caret-up':optional, 'icon-caret-down':!optional}" class="icon-2x" ng-click="optional=!optional" ng-init="optional=false" style="cursor:pointer"></i></p>
+							<p>{{ 'LIBRARY.ADD.OPTIONAL' | translate }}: &nbsp; <i ng-class="{'fa-chevron-circle-up':optional, 'fa-chevron-circle-down':!optional}" class="fa fa-lg" ng-click="optional=!optional" ng-init="optional=false" style="cursor:pointer"></i></p>
 							<div ng-show="optional">
 								<div class="form-group">
 									<label class="" for="new_subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}:</label>
@@ -92,16 +92,16 @@
 							<div class="form-group" style="padding-bottom:30px">
 								<label class="sr-only pull-left col-xs-12" for="new_actions">{{ 'LIBRARY.ADD.ACTIONS.LABEL' | translate }}:</label>
 								<span class="col-xs-4" style="padding:3px; padding-left:0px">
-								<button class="btn btn-sm" style="width:100%" ng-class="{'btn-primary':!newbook.actions.sell, 'btn-success':newbook.actions.sell}" ng-model="newbook.actions.sell" ng-init="newbook.actions.sell=false" ng-click="newbook.actions.sell=!newbook.actions.sell"><i ng-class="{'icon-check':newbook.actions.sell, 'icon-check-empty':!newbook.actions.sell}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
+								<button class="btn btn-sm" style="width:100%" ng-class="{'btn-primary':!newbook.actions.sell, 'btn-success':newbook.actions.sell}" ng-model="newbook.actions.sell" ng-init="newbook.actions.sell=false" ng-click="newbook.actions.sell=!newbook.actions.sell"><i ng-class="{'fa-check-square-o':newbook.actions.sell, 'fa-square-o':!newbook.actions.sell}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
 								</span>
 								<span class="col-xs-4" style="padding:3px">
-								<button class="btn btn-sm" style="width:100%" ng-class="{'btn-primary':!newbook.actions.donate, 'btn-success':newbook.actions.donate}" ng-model="newbook.actions.donate" ng-init="newbook.actions.donate=false" ng-click="newbook.actions.donate=!newbook.actions.donate"><i ng-class="{'icon-check':newbook.actions.donate, 'icon-check-empty':!newbook.actions.donate}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.DONATE' | translate }}</button>
+								<button class="btn btn-sm" style="width:100%" ng-class="{'btn-primary':!newbook.actions.donate, 'btn-success':newbook.actions.donate}" ng-model="newbook.actions.donate" ng-init="newbook.actions.donate=false" ng-click="newbook.actions.donate=!newbook.actions.donate"><i ng-class="{'fa-check-square-o':newbook.actions.donate, 'fa-square-o':!newbook.actions.donate}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.DONATE' | translate }}</button>
 								</span>
 								<span class="col-xs-4" style="padding:3px; padding-right:0px">
-								<button class="btn btn-sm" style="width:100%" ng-class="{'btn-primary':!newbook.actions.lend, 'btn-success':newbook.actions.lend}" ng-model="newbook.actions.lend" ng-init="newbook.actions.lend=false" ng-click="newbook.actions.lend=!newbook.actions.lend"><i ng-class="{'icon-check':newbook.actions.lend, 'icon-check-empty':!newbook.actions.lend}" class="icon-large"></i> {{ 'LIBRARY.ADD.ACTIONS.LEND' | translate }}</button>
+								<button class="btn btn-sm" style="width:100%" ng-class="{'btn-primary':!newbook.actions.lend, 'btn-success':newbook.actions.lend}" ng-model="newbook.actions.lend" ng-init="newbook.actions.lend=false" ng-click="newbook.actions.lend=!newbook.actions.lend"><i ng-class="{'fa-check-square-o':newbook.actions.lend, 'fa-square-o':!newbook.actions.lend}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.LEND' | translate }}</button>
 								</span>
 							</div>
-							<button ng-click="addbook(); log()" ng-disabled="disable" class="btn btn-default btn-success pull-center" style="margin-bottom:15px;width:100%"><i class="icon-plus icon-large"></i>&nbsp {{ 'LIBRARY.ADD.BUTTON' | translate }}&nbsp</button>
+							<button ng-click="addbook(); log()" ng-disabled="disable" class="btn btn-default btn-success pull-center" style="margin-bottom:15px;width:100%"><i class="fa fa-plus fa-lg"></i>&nbsp {{ 'LIBRARY.ADD.BUTTON' | translate }}&nbsp</button>
 							{{ warning_text }}
 						</fieldset>
 					</form>

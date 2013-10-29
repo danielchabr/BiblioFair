@@ -118,7 +118,7 @@
 		<ul class="nav navbar-nav">
 			<li class="dropdown" style="cursor:pointer" id="login_all">
 			<a class="dropdown-toggle" id="login_opener">
-				<i class="icon-signin icon-large"></i> 
+				<i class="fa fa-sign-in fa-lg"></i> 
 				{{ 'WELCOME.SIGNIN_TEXT' | translate }}
 			</a>
 			<ul class="dropdown-menu" style="color: black" ng-click="login_open();" id="login">
@@ -133,7 +133,7 @@
 							<label class="sr-only" for="login_password">{{ 'WELCOME.PASSWORD' | translate }}</label>
 							<input type="password" id="login_password" ng-model="login_password" class="form-control input-sm" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
 							<div class="col-xs-12 text-right" style="color:#888888">	
-								<i class="icon-question-sign icon-large" ng-click="open()" style="position:absolute;top:-20px; right:12px; cursor:pointer"></i> 
+								<i class="fa fa-question-circle fa-lg" ng-click="open()" style="position:absolute;top:-21px; right:12px; cursor:pointer"></i> 
 							</div>
 						</div>
 						<div class="row">
@@ -153,7 +153,7 @@
 			</li>
 			<li class="dropdown" style="cursor:pointer" >
 			<a class="dropdown-toggle">
-				<i class="icon-globe icon-large"></i> 
+				<i class="fa fa-globe fa-lg"></i> 
 				{{ 'NAV.LANGUAGE' | translate }}
 				<span class="caret"></span>
 			</a>

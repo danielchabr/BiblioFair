@@ -17,7 +17,7 @@
 	}
 </style>
 <div class="modal-header text-center">
-	<i class="icon-ban-circle icon-large pull-left" tooltip="{{ 'HOME.MODAL.REPORT' | translate }}" ng-class="{reported: report_sent, not_reported: !report_sent}" ng-click="report()"></i>
+	<i class="fa fa-ban fa-lg pull-left" tooltip="{{ 'HOME.MODAL.REPORT' | translate }}" ng-class="{reported: report_sent, not_reported: !report_sent}" ng-click="report()"></i>
 	<button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
 	<h2 style="padding-right:7px">{{details_view.title}}</h2>
 	<p>
@@ -42,7 +42,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="owner in owners" style="list-style:none">
-				<td><i class="icon-user"></i> {{owner.username}}</td>
+				<td><i class="fa fa-user"></i> {{owner.username}}</td>
 				<td class="hidden-xs">{{owner.username}}@bibliofair.com</td>
 				<td>
 					<span class="label label-primary" ng-if="owner.actions.sell">{{ 'HOME.MODAL.SELL' | translate }}</span>
@@ -51,7 +51,7 @@
 				</td>
 				<td>
 					<button type="button" class="btn btn-sm pull-right" style="margin-right:10px" ng-class="{'btn-success':!owner.style, 'btn-default':owner.style}" ng-disabled="owner.style" ng-click="sendRequest(owner)" title="{{ owner.message}}">
-						<i class="icon-envelope"></i> 
+						<i class="fa fa-envelope"></i> 
 						<span class="request_button"> {{ owner.message }}</span>
 					</button>
 				</td>

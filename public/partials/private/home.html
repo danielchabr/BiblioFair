@@ -14,9 +14,9 @@
 						<input type="text" ng-model="search" ng-change="retrieveBooks()" class="form-control" placeholder="{{ 'NAV.SEARCH.PLACEHOLDER' | translate }}">
 					</div>
 					<div class="form-inline" ng-init="filter.actions={sell:false, donate:false, lend:false}">
-						<button class="col-xs-4 btn btn-sm" ng-class="{'btn-primary':!filter.actions.sell, 'btn-success':filter.actions.sell}" ng-model="filter.actions.sell" ng-click="filter.actions.sell=!filter.actions.sell"><i ng-class="{'icon-check':filter.actions.sell, 'icon-check-empty':!filter.actions.sell}" class="icon-large"></i> {{ 'HOME.ORDER.SELLING' | translate }}</button>
-						<button class="col-xs-4 btn btn-sm" ng-class="{'btn-primary':!filter.actions.donate, 'btn-success':filter.actions.donate}" ng-model="filter.actions.donate" ng-click="filter.actions.donate=!filter.actions.donate"><i ng-class="{'icon-check':filter.actions.donate, 'icon-check-empty':!filter.actions.donate}" class="icon-large"></i> {{ 'HOME.ORDER.DONATING' | translate }}</button>
-						<button class="col-xs-4 btn btn-sm" ng-class="{'btn-primary':!filter.actions.lend, 'btn-success':filter.actions.lend}" ng-model="filter.actions.lend" ng-click="filter.actions.lend=!filter.actions.lend"><i ng-class="{'icon-check':filter.actions.lend, 'icon-check-empty':!filter.actions.lend}" class="icon-large"></i> {{ 'HOME.ORDER.LENDING' | translate }}</button>
+						<button class="col-xs-4 btn btn-sm" ng-class="{'btn-primary':!filter.actions.sell, 'btn-success':filter.actions.sell}" ng-model="filter.actions.sell" ng-click="filter.actions.sell=!filter.actions.sell"><i ng-class="{'fa-check-square-o':filter.actions.sell, 'fa-square-o':!filter.actions.sell}" class="fa fa-lg"></i> {{ 'HOME.ORDER.SELLING' | translate }}</button>
+						<button class="col-xs-4 btn btn-sm" ng-class="{'btn-primary':!filter.actions.donate, 'btn-success':filter.actions.donate}" ng-model="filter.actions.donate" ng-click="filter.actions.donate=!filter.actions.donate"><i ng-class="{'fa-check-square-o':filter.actions.donate, 'fa-square-o':!filter.actions.donate}" class="fa fa-lg"></i> {{ 'HOME.ORDER.DONATING' | translate }}</button>
+						<button class="col-xs-4 btn btn-sm" ng-class="{'btn-primary':!filter.actions.lend, 'btn-success':filter.actions.lend}" ng-model="filter.actions.lend" ng-click="filter.actions.lend=!filter.actions.lend"><i ng-class="{'fa-check-square-o':filter.actions.lend, 'fa-square-o':!filter.actions.lend}" class="fa fa-lg"></i> {{ 'HOME.ORDER.LENDING' | translate }}</button>
 					</div>
 				</form>
 				<div class="col-sm-3 hidden-xs">
@@ -47,13 +47,13 @@
 			</div>
 			<ul class="bookview row">
 				<div class="col-xs-12 text-center" style="top:20px;padding-bottom:30px" ng-if="loading">
-					<i class="icon-spinner icon-spin icon-3x"></i>
+					<i class="fa fa-spinner fa-spin fa-4x"></i>
 				</div>
 				<li class="col-lg-3 col-md-4 col-sm-6" ng-repeat="book in books | filter:search | orderBy:bookOrder | actions:filter.actions | paginationShift:(currentPage-1)*pageSize | limitTo:pageSize" ng-animate=" 'animate' ">
 				<div class="well" ng-click="open(book)" style="padding-right:28px;">
 					<h4>{{book.title | shorten:41}}</h4>
 					<i style="position:absolute;bottom:20px">{{book.author | shorten:25}}</i>
-					<i class="icon-info-sign icon-large" style="margin-right:15px; position:absolute; top:19px; right:4px"></i>
+					<i class="fa fa-info-circle fa-lg" style="margin-right:15px; position:absolute; top:21px; right:4px"></i>
 					<!--<div class="text-right" style="margin-right:15px; position:absolute; bottom:15px; right:0px;width:60px">
 						<span class="label label-primary" ng-if="book.actions.donate">{{  'HOME.MODAL.DONATE' | translate  }}</span>
 						<span class="label label-primary" ng-if="book.actions.lend">{{  'HOME.MODAL.LEND' | translate  }}</span>
