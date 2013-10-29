@@ -81,7 +81,7 @@ var translateEN = {
 			'HEADING': 'Add book',
 			'TEXT': 'We recommend first filling in ISBN, the rest might get filled in automatically from our databases',
 			'ISBN': 'ISBN',
-			'ISBN_ABBR': 'Internation Standard Book Number can usually be found above bar code at the back side of the book',
+			'ISBN_ABBR': 'International Standard Book Number can usually be found above bar code at the back side of the book',
 			'TITLE': 'Title',
 			'AUTHOR': 'Author',
 			'ACTIONS': {
