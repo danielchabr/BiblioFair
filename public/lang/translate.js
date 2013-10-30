@@ -11,7 +11,8 @@ var translateEN = {
 		'SEARCH': { 
 			'HEADING':'Try checking out your favorite book ...',
 			'BUTTON':'Search',
-			'PLACEHOLDER': 'Title, author, ISBN, ...'
+			'PLACEHOLDER': 'Title, author, ISBN, ...',
+			'NOT_FOUND': 'No one has added this book yet. You can be the first one'
 		}
 	},
 	'WELCOME': { 
@@ -150,7 +151,8 @@ var translateCZ = {
 		'SEARCH': { 
 			'HEADING':'Zkuste najít svoji oblíbenou knihu ...',
 			'BUTTON':'Hledat',
-			'PLACEHOLDER': 'Titul, autor, ISBN, ...'
+			'PLACEHOLDER': 'Titul, autor, ISBN, ...',
+			'NOT_FOUND': 'Tuto knihu ještě nikdo nepřidal. Můžete být první'
 		}
 	},
 	'WELCOME': { 

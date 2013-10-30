@@ -210,12 +210,15 @@
 					</div>
 				</form>
 				<ul class="bookview row">
-					<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in books | filter:search_query | orderBy:bookOrder | limitTo:6" ng-animate=" 'animate' " ng-class="{book: ($index==4 || $index==5)}">
-					<div class="well" style="cursor:default">
-						<h4>{{book.title | shorten:41}}</h4>
-						<i style="position:absolute;bottom:20px">{{book.author | shorten:25}}</i>
-					</div>
+					<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in filteredBooks = (books | filter:search_query | orderBy:bookOrder | limitTo:6)" ng-animate=" 'animate' " ng-class="{book: ($index==4 || $index==5)}">
+						<div class="well" style="cursor:default">
+							<h4>{{book.title | shorten:41}}</h4>
+							<i style="position:absolute;bottom:20px">{{book.author | shorten:25}}</i>
+						</div>
 					</li>
+					<div ng-if="filteredBooks.length==0" class="text-center" style="padding:15px">
+						<p>{{ 'NAV.SEARCH.NOT_FOUND' | translate }}</p>
+					</div>
 				</ul>
 			</div>
 		</div>
