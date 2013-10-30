@@ -42,9 +42,6 @@
 		background-color:#38ba2b;
 		border-color:#258d1b;
 	}
-	.bookview > li :hover {
-		background-color: #037383;
-	}
 	@media (max-width: 1199px) {
 		.book {
 			display:none;
@@ -211,7 +208,7 @@
 				</form>
 				<ul class="bookview row">
 					<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in filteredBooks = (books | filter:search_query | orderBy:bookOrder | limitTo:6)" ng-animate=" 'animate' " ng-class="{book: ($index==4 || $index==5)}">
-						<div class="well" style="cursor:default">
+					<div class="well" style="cursor:default" popover-placement="top" popover="{{ 'WELCOME.REGISTRATION_REQUIRED' | translate }}">
 							<h4>{{book.title | shorten:41}}</h4>
 							<i style="position:absolute;bottom:20px">{{book.author | shorten:25}}</i>
 						</div>
