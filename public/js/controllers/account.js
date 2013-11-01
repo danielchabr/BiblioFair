@@ -11,6 +11,8 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 			$scope.save_loc_text = $translate('ACCOUNT.SAVED_LOC');
 			$scope.map.removeAllShapes();
 			var point = new MQA.Poi( {lat: $scope.centerLat, lng: $scope.centerLng} );
+			var icon = new MQA.Icon("img/poi_small.gif", 21, 32);
+			point.setIcon(icon);
 			$scope.map.addShape(point);
 		});
 	};
@@ -53,6 +55,8 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 					$scope.map.setCenter(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
 					$scope.map.setZoomLevel(11);
 					var point = new MQA.Poi( {lat: $scope.centerLat, lng: $scope.centerLng} );
+					var icon = new MQA.Icon("img/poi_small.gif", 21, 32);
+					point.setIcon(icon);
 					$scope.map.addShape(point);
 				}
 			});

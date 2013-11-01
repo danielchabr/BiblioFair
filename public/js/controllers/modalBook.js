@@ -62,6 +62,8 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 				}
 				if(data.users[i].loc.coordinates && data.users[i].loc.coordinates.length == 2 && data.users[i].loc.coordinates != [-30, 30]) {
 					var point = new MQA.Poi( {lat: data.users[i].loc.coordinates[1], lng: data.users[i].loc.coordinates[0]} );
+					var icon = new MQA.Icon("img/poi_small.gif", 21, 32);
+					point.setIcon(icon);
 					point.setRolloverContent(data.users[i].username);
 					$scope.map.addShape(point);
 				}
