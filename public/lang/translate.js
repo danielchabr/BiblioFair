@@ -43,7 +43,7 @@ var translateEN = {
 		'AGAIN': 'Email or password is incorrect. Please try again',
 		'SHORT_PASSWORD': 'Password needs to be at least 6 characters long',
 		'VERIFICATION_SENT': 'Verification email has been sent to ',
-		'EMAIL_INVALID': 'Invalid email',
+		'EMAIL_INVALID': 'Invalid email, please try again',
 		'USERNAME_INVALID': 'Invalid username. Try removing spaces.',
 		'EMAIL_EXISTS': 'Email already registered',
 		'USERNAME_EXISTS': 'Username already registered',
@@ -53,7 +53,8 @@ var translateEN = {
 	'RECOVERY': {
 		'EMAIL': 'Account email address',
 		'SEND': 'Send',
-		'HEADING' : 'Password recovery'
+		'HEADING' : 'Password recovery',
+		'SENT': 'Newly generated password has benn sent to your email address'
 	},
 	'HOME': { 
 		'ORDER': { 
@@ -184,7 +185,7 @@ var translateCZ = {
 		'AGAIN': 'Chybný email nebo heslo, prosím zkusto to znovu',
 		'SHORT_PASSWORD': 'Heslo musí mít alespoň 6 znaků',
 		'VERIFICATION_SENT': 'Ověřovací email byl zaslán na adresu ',
-		'EMAIL_INVALID': 'Neplatný email',
+		'EMAIL_INVALID': 'Neplatný email, prosím zkuste to znovu',
 		'USERNAME_INVALID': 'Neplatné uživatelské jméno. Zkuste vynechat mezery',
 		'EMAIL_EXISTS': 'Účet s tímto emailem již existuje',
 		'USERNAME_EXISTS': 'Účet s tímto uživatelským jménem již existuje',
@@ -194,7 +195,9 @@ var translateCZ = {
 	'RECOVERY': {
 		'EMAIL': 'Emailová adresa Vašeho účtu',
 		'SEND': 'Odeslat',
-		'HEADING' : 'Obnova hesla'
+		'SENDING': 'Odesílám',
+		'HEADING' : 'Obnova hesla',
+		'SENT': 'Nově vygenerované heslo bylo zasláno na Váš email'
 	},
 	'HOME': { 
 		'ORDER': { 

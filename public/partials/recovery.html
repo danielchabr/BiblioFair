@@ -15,7 +15,13 @@
 				<label class="sr-only" for="recovery_id">{{ 'RECOVERY.EMAIL' | translate }}</label>
 				<input type="email" id="recovery_id" ng-model="email"  class="form-control" placeholder="{{ 'RECOVERY.EMAIL' | translate }}    " required>
 			</div>
-			<button class="btn btn-warning" ng-click="recover(email)" style="vertical-align:bottom">{{ 'RECOVERY.SEND' | translate }}</button>
+			<button class="btn btn-warning" ng-click="recover(email)" style="vertical-align:bottom">{{ send_button }} <i ng-if="sending" class="fa fa-spinner fa-spin fa-lg"></i></button>
 		</div>
 	</form>
+	<div class="row" ng-show="message">
+		<div class="col-xs-12 text-center">
+			<br>
+			{{ message }}
+		</div>
+	</div>
 </div>
