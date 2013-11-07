@@ -1,4 +1,6 @@
 var translateEN = {
+	'TITLE': 'BiblioFair | Book trading, exchanging and swapping made easier',
+	'DESCRIPTION': 'Share your books and get requests from your friends or others to sell, lend or borrow them the wished books or textbooks. Enter the world of book trading',
 	'NAV': { 
 		'BROWSE': 'Browse',
 		'LIBRARY': 'My Library',
@@ -141,6 +143,8 @@ var translateEN = {
 	}
 };
 var translateCZ = {
+	'TITLE': 'BiblioFair | Prodávejte, půjčujte a směňujte knihy snadněji',
+	'DESCRIPTION': 'Přidejte své knihy do virtuální knihovny a dostávejte žádosti o prodej, půjčení nebo darování. Jen Vy volíte, jak vyšlete knihy dále do světa',
 	'NAV': { 
 		'BROWSE': 'Procházet',
 		'LIBRARY': 'Moje knihovna',
