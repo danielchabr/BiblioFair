@@ -9,6 +9,11 @@
 h1, h2, h3, h4, h5 {
 	margin-top: 10px;
 }
+a:active, a:focus, input, .btn:focus {
+    outline: 0;
+    outline-style:none;
+    outline-width:0;
+}
 .logo {
 	font-family: 'Sonsie One', cursive;
 	font-size: 22px;
