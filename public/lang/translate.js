@@ -107,7 +107,8 @@ var translateEN = {
 			'NOT_FILLED': 'Title or author is missing',
 			'INVALID_PUBLISHED': 'Invalid year of publishment'
 		},
-		'ALERT': 'Set your location in your account settings to add books'
+		'ALERT_1': 'To add books, please set your location in your ',
+		'ALERT_2': ' account settings'
 	},
 	'ACCOUNT': { 
 		'SETLOCATION': 'Set your location by centering the map',
@@ -252,7 +253,8 @@ var translateCZ = {
 			'NOT_FILLED': 'Titul nebo autor není vyplněn',
 			'INVALID_PUBLISHED': 'Neplatný rok vydání'
 		},
-		'ALERT': 'Pro přidávání knih nejdříve nastavte Vaši polohu v nastavení účtu'
+		'ALERT_1': 'Pro přidávání knih nejdříve nastavte Vaši polohu v ',
+		'ALERT_2': ' nastavení účtu'
 	},
 	'ACCOUNT': { 
 		'SETLOCATION': 'Nastavte svoji polohu vycentrováním mapy',
