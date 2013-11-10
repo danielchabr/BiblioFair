@@ -76,7 +76,8 @@ var translateEN = {
 			'LABEL':'Actions',
 			'SELL':'Sells',
 			'DONATE':'Donates',
-			'LEND':'Lends'
+			'LEND':'Lends',
+			'SHOW_NOTE':'Show note'
 		},
 		'WISHLIST': 'Wish list',
 		'BROWSE': 'Available books'
@@ -229,7 +230,8 @@ var translateCZ = {
 			'LABEL':'Akce',
 			'SELL':'Prodává',
 			'DONATE':'Daruje',
-			'LEND':'Půjčuje'
+			'LEND':'Půjčuje',
+			'SHOW_NOTE':'Poznámka'
 		},
 		'WISHLIST': 'Seznam přání',
 		'BROWSE': 'Dostupné knihy'

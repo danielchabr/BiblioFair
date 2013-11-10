@@ -62,6 +62,7 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 				for(var j = 0; j < data.users[i].library.length; j++) {
 					if(data.users[i].library[j].id == $scope.details_view._id) {
 						new_user.actions = data.users[i].library[j].actions;
+						new_user.note = data.users[i].library[j].note;
 					}
 				}
 				if(data.users[i].loc.coordinates && data.users[i].loc.coordinates.length == 2 && data.users[i].loc.coordinates != [-30, 30]) {

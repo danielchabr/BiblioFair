@@ -22,6 +22,7 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 										if(data[i].users[j].library[k].actions.sell == true) data[i].actions.sell = true;
 										if(data[i].users[j].library[k].actions.donate == true) data[i].actions.donate = true;
 										if(data[i].users[j].library[k].actions.lend == true) data[i].actions.lend = true;
+										if(data[i].users[j].library[k].note) data[i].note = data[i].users[j].library[k].note;
 									}
 								}
 							}
