@@ -37,8 +37,15 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="modal-footer">
-	<button class="btn btn-primary pull-left" ng-click="remove()"><i class="fa fa-trash-o"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
-	<button class="btn btn-warning" ng-click="cancel()">{{ 'DETAIL.CLOSE' | translate }}</button>
-</div>
+	<div class="row" style="">
+		<form role="form" class="col-xs-12">
+			<div class="form-group">
+				<label for="">{{ 'LIBRARY.ADD.NOTE' | translate }}</label>
+				<input type="text" class="form-control" id="" ng-model="details_view.note" placeholder="{{ 'LIBRARY.ADD.NOTE_TEXT' | translate }}">
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary pull-left" ng-click="remove()"><i class="fa fa-trash-o"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
+		<button class="btn btn-warning" ng-click="save();cancel()">{{ 'DETAIL.SAVE_AND_CLOSE' | translate }}</button>
+	</div>

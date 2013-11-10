@@ -103,6 +103,8 @@ var translateEN = {
 			'PUBLISHED': 'Published on',
 			'PUBLISHER': 'Publisher',
 			'LANGUAGE': 'Language',
+			'NOTE': 'Note',
+			'NOTE_TEXT': 'Price, physical condition, etc.',
 			'BUTTON': 'Add book',
 			'NOT_FILLED': 'Title or author is missing',
 			'INVALID_PUBLISHED': 'Invalid year of publishment'
@@ -137,6 +139,7 @@ var translateEN = {
 	'DETAIL': { 
 		'BY': 'By',
 		'CLOSE': 'Close',
+		'SAVE_AND_CLOSE': 'Save and Close',
 		'REMOVE': 'Remove'
 	},
 	'OTHER': {
@@ -252,6 +255,8 @@ var translateCZ = {
 			'PUBLISHED': 'Vydáno roku',
 			'PUBLISHER': 'Nakladatel',
 			'LANGUAGE': 'Jazyk',
+			'NOTE': 'Poznámka',
+			'NOTE_TEXT': 'Cena, stav knihy, atd.',
 			'BUTTON': 'Vlož knihu',
 			'NOT_FILLED': 'Titul nebo autor není vyplněn',
 			'INVALID_PUBLISHED': 'Neplatný rok vydání'
@@ -286,6 +291,7 @@ var translateCZ = {
 	'DETAIL': { 
 		'BY': 'od',
 		'CLOSE': 'Zavřít',
+		'SAVE_AND_CLOSE': 'Uložit a zavřít',
 		'REMOVE': 'Smazat'
 	},
 	'OTHER': {

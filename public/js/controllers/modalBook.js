@@ -5,7 +5,11 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 	}
 	///// LIBRARY
 	$scope.updateActions = function () {
-		APIservice.library.update($scope.details_view._id, $scope.details_view.actions, function(data) {
+		APIservice.library.update($scope.details_view._id, {actions: $scope.details_view.actions}, function(data) {
+		});
+	};
+	$scope.save = function () {
+		APIservice.library.update($scope.details_view._id, {note: $scope.details_view.note}, function(data) {
 		});
 	};
 	$scope.remove = function () {
