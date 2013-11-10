@@ -90,7 +90,7 @@
 							</div>
 							<hr>
 							<div class="form-group" style="padding-bottom:30px">
-								<label class="sr-only pull-left col-xs-12" for="new_actions">{{ 'LIBRARY.ADD.ACTIONS.LABEL' | translate }}:</label>
+								<label class="sr-only pull-left col-xs-12" for="new_actions">{{ 'LIBRARY.ADD.ACTIONS.LABEL' | translate }}:<br></label>
 								<span class="col-xs-4" style="padding:3px; padding-left:0px">
 								<button class="btn btn-sm" style="width:100%" ng-class="{'btn-primary':!newbook.actions.sell, 'btn-success':newbook.actions.sell}" ng-model="newbook.actions.sell" ng-init="newbook.actions.sell=false" ng-click="newbook.actions.sell=!newbook.actions.sell"><i ng-class="{'fa-check-square-o':newbook.actions.sell, 'fa-square-o':!newbook.actions.sell}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
 								</span>

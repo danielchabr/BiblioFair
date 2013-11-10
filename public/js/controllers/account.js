@@ -16,35 +16,21 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 			$scope.map.addShape(point);
 		});
 	};
-	$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
-	$scope.savePass = function() {
-		if($scope.new_password != $scope.new_password_again) {
-			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.NOTEQUAL');
-		}
-		else if($scope.new_password && $scope.new_password.length < 6) {
-			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.SHORT');
-		}
-		else {
-		$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGING');
-		APIservice.users.read(function(data) {
-			if(data.username && data.email) {
-				old_hash_username = CryptoJS.SHA3($scope.old_password + data.username, {outputLength: 256 });
-				old_hash_email = CryptoJS.SHA3($scope.old_password + data.email, {outputLength: 256 });
-				hash_username = CryptoJS.SHA3($scope.new_password + data.username, {outputLength: 256 });
-				hash_email = CryptoJS.SHA3($scope.new_password + data.email, {outputLength: 256 });
-				APIservice.users.update({action:'pass', old_password_username: old_hash_username.toString(), old_password_email: old_hash_email.toString(), password_username: hash_username.toString(), password_email: hash_email.toString()}, function (data, stat) {
-					if(stat == 404) {
-						$scope.change_pass_message = $translate('ACCOUNT.CHANGE.INCORRECT');
-						$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
-					}
-					else {
-						$scope.change_pass_message = '';
-						$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGED');
-					}
-				});
-			}
+	$scope.searchLoc = function () {
+		MQA.withModule('nominatim', function() {
+			MQA.Nominatim.processResults = function(results, map) {
+				if(results.length == 0) {
+					console.log('not_found');
+					$scope.$apply(function() {
+					$scope.not_found_message = $translate('ACCOUNT.NOT_FOUND');
+					});
+				} else {
+					$scope.not_found_message = undefined;
+					map.setCenter(new MQA.LatLng(results[0].lat, results[0].lon), 11,{totalMs:100,steps:1});
+				}
+			};
+			$scope.map.nominatimSearchAndAddLocation($scope.searchAddress, null);
 		});
-		}
 	};
 	var loadLoc = function (callback) {
 		$scope.$apply(function() {
@@ -101,6 +87,38 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 			$scope.centerLat = $scope.map.getCenter().lat;
 			$scope.centerLng = $scope.map.getCenter().lng;
 			$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
+		}
+	};
+
+	//// Password changing 
+	$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
+	$scope.savePass = function() {
+		if($scope.new_password != $scope.new_password_again) {
+			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.NOTEQUAL');
+		}
+		else if($scope.new_password && $scope.new_password.length < 6) {
+			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.SHORT');
+		}
+		else {
+		$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGING');
+		APIservice.users.read(function(data) {
+			if(data.username && data.email) {
+				old_hash_username = CryptoJS.SHA3($scope.old_password + data.username, {outputLength: 256 });
+				old_hash_email = CryptoJS.SHA3($scope.old_password + data.email, {outputLength: 256 });
+				hash_username = CryptoJS.SHA3($scope.new_password + data.username, {outputLength: 256 });
+				hash_email = CryptoJS.SHA3($scope.new_password + data.email, {outputLength: 256 });
+				APIservice.users.update({action:'pass', old_password_username: old_hash_username.toString(), old_password_email: old_hash_email.toString(), password_username: hash_username.toString(), password_email: hash_email.toString()}, function (data, stat) {
+					if(stat == 404) {
+						$scope.change_pass_message = $translate('ACCOUNT.CHANGE.INCORRECT');
+						$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
+					}
+					else {
+						$scope.change_pass_message = '';
+						$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGED');
+					}
+				});
+			}
+		});
 		}
 	};
 	//// Google Analytics
