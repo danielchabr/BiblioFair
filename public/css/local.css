@@ -30,6 +30,15 @@ a:active, a:focus, input, .btn:focus {
 .navbar {
 	border: 0px;
 }
+#container_to_fit_social_buttons {
+	padding:0 38px;
+}
+@media (max-width: 567px) {
+	#container_to_fit_social_buttons {
+		padding:0 15px;
+	}
+}
+
 .map {
 	height:400px;
 	-webkit-touch-callout: none;
