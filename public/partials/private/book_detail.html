@@ -41,7 +41,7 @@
 	<h3 class="text-center">{{ 'HOME.MODAL.OWNERS' | translate }}</h3>
 	<table class="table table-striped" style="margin-bottom:0px">
 		<thead>
-			<tr><th>{{ 'WELCOME.USERNAME' | translate }}</th><th class="hidden-xs">{{ 'WELCOME.EMAIL' | translate }}</th><th>{{ 'HOME.MODAL.LABEL' | translate }}</th><th>{{ 'LIBRARY.ADD.NOTE' | translate }}</th><th></th></tr>
+			<tr><th>{{ 'WELCOME.USERNAME' | translate }}</th><th class="hidden-xs">{{ 'WELCOME.EMAIL' | translate }}</th><th></th><th></th><th></th></tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="owner in owners" style="list-style:none">
@@ -52,7 +52,7 @@
 					<span class="label label-primary" ng-if="owner.actions.donate">{{  'HOME.MODAL.DONATE' | translate  }}</span>
 					<span class="label label-primary" ng-if="owner.actions.lend">{{  'HOME.MODAL.LEND' | translate  }}</span>
 				</td>
-				<td>
+				<td class="hidden-xs">
 					<button type="button" class="btn btn-sm btn-warning" ng-if="owner.note" popover-trigger="mouseenter" popover-placement="top" popover="{{ owner.note }}">
 						{{ 'HOME.MODAL.SHOW_NOTE' | translate }}
 					</button>
