@@ -1,3 +1,4 @@
+'use strict';
 var myApp = angular.module('myApp', ['ui.bootstrap', 'pascalprecht.translate']);
 
 myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide', '$translateProvider', function($routeProvider, $locationProvider, $httpProvider, $provide, $translateProvider) {

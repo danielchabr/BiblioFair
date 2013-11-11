@@ -1,3 +1,4 @@
+'use strict';
 function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, $translate, $modal) {
 	//// Animate scrollUp
 	$('a[class=bottom]').click(function(){
@@ -70,8 +71,8 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	$scope.signup = function() {
 		$scope.signup_message = "";
 		if($scope.signup_email && $scope.signup_username && $scope.signup_password.length > 5) {
-			hash_username = CryptoJS.SHA3($scope.signup_password + $scope.signup_username, {outputLength: 256 });
-			hash_email = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
+			var hash_username = CryptoJS.SHA3($scope.signup_password + $scope.signup_username, {outputLength: 256 });
+			var hash_email = CryptoJS.SHA3($scope.signup_password + $scope.signup_email, {outputLength: 256 });
 			$http.post('/signup', {'lang': $rootScope.lang, 'username': $scope.signup_username, 'email': $scope.signup_email, 'password_username': hash_username.toString(), 'password_email': hash_email.toString()})
 				.success( function(data) {
 					if(data == 'registered') {
@@ -102,7 +103,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	$scope.login = function() {
 		$scope.signup_message = "";
 		if($scope.login_id && $scope.login_password.length > 5) {
-			hash = CryptoJS.SHA3($scope.login_password + $scope.login_id, {outputLength: 256 });
+			var hash = CryptoJS.SHA3($scope.login_password + $scope.login_id, {outputLength: 256 });
 			$http.post('/login', {'id': $scope.login_id, 'password': hash.toString()})
 				.success( function(data) {
 					if(data.message == 'loginSuccess') {

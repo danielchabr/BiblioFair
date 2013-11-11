@@ -1,3 +1,4 @@
+'use strict';
 function accountControl($scope, $http, $location, $translate, APIservice) {
 	var map_width = $("#map_row").width();
 	$("#map").css("width", map_width);
@@ -103,10 +104,10 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGING');
 		APIservice.users.read(function(data) {
 			if(data.username && data.email) {
-				old_hash_username = CryptoJS.SHA3($scope.old_password + data.username, {outputLength: 256 });
-				old_hash_email = CryptoJS.SHA3($scope.old_password + data.email, {outputLength: 256 });
-				hash_username = CryptoJS.SHA3($scope.new_password + data.username, {outputLength: 256 });
-				hash_email = CryptoJS.SHA3($scope.new_password + data.email, {outputLength: 256 });
+				var old_hash_username = CryptoJS.SHA3($scope.old_password + data.username, {outputLength: 256 });
+				var old_hash_email = CryptoJS.SHA3($scope.old_password + data.email, {outputLength: 256 });
+				var hash_username = CryptoJS.SHA3($scope.new_password + data.username, {outputLength: 256 });
+				var hash_email = CryptoJS.SHA3($scope.new_password + data.email, {outputLength: 256 });
 				APIservice.users.update({action:'pass', old_password_username: old_hash_username.toString(), old_password_email: old_hash_email.toString(), password_username: hash_username.toString(), password_email: hash_email.toString()}, function (data, stat) {
 					if(stat == 404) {
 						$scope.change_pass_message = $translate('ACCOUNT.CHANGE.INCORRECT');

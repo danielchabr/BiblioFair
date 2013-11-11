@@ -1,3 +1,4 @@
+'use strict';
 myApp.directive('menu', function() {
 	var directiveObject = {
 		restrict: 'A',

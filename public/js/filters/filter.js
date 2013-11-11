@@ -1,3 +1,4 @@
+'use strict';
 myApp.filter('shorten', function() {
 	return function(input, max) {
 		if( input.length <= max ) return input;

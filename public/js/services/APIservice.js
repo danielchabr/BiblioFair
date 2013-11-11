@@ -1,3 +1,4 @@
+'use strict';
 myApp.factory('APIservice', ['$rootScope', '$http', function ($rootScope, $http) {
 	var f = {};
 	f.users = {

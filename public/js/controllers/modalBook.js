@@ -1,3 +1,4 @@
+'use strict';
 var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservice) {
 	$scope.details_view = book;
 	if(book.published) {

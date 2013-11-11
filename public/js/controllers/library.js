@@ -1,3 +1,4 @@
+'use strict';
 function libraryControl($rootScope, $scope, $http, $modal, $translate, $location, $filter, APIservice) {
 	var loadLibraryBooks = function () {
 		$scope.loading = true;
