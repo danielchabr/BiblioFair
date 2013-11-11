@@ -18,6 +18,9 @@
 	.popover-content {
 		color:black;
 	}
+	.table > .users > tr > td {
+		vertical-align: middle;
+	}
 </style>
 <div class="modal-header text-center">
 	<i class="fa fa-ban fa-lg pull-left" tooltip="{{ 'HOME.MODAL.REPORT' | translate }}" ng-class="{reported: report_sent, not_reported: !report_sent}" ng-click="report()"></i>
@@ -43,7 +46,7 @@
 		<thead>
 			<tr><th>{{ 'WELCOME.USERNAME' | translate }}</th><th class="hidden-xs">{{ 'WELCOME.EMAIL' | translate }}</th><th></th><th></th><th></th></tr>
 		</thead>
-		<tbody>
+		<tbody class="users">
 			<tr ng-repeat="owner in owners" style="list-style:none">
 				<td><i class="fa fa-user"></i> {{owner.username}}</td>
 				<td class="hidden-xs">{{owner.username}}@bibliofair.com</td>

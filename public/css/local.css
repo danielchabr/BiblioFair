@@ -54,6 +54,7 @@ a:active, a:focus, input, .btn:focus {
 .bookview {
 	list-style: none;
 	padding: 0px;
+	margin:0px;
 }
 .bookview li {
 	padding: 0px;
