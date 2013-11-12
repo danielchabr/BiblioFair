@@ -35,7 +35,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide'
 	$translateProvider.translations('cz', translateCZ);
 	$translateProvider.preferredLanguage('en');
 }]);
-myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
+myApp.run(function ($rootScope, $http, $modal, $location, $translate, APIservice) {
 	$rootScope.books = [];
 	$rootScope.mybooks = [];
 	$rootScope.user = {};
@@ -85,5 +85,20 @@ myApp.run(function ($rootScope, $http, $location, $translate, APIservice) {
 				else if( langKey == 'cz' && ($location.path().slice(1, 3) == 'en' || $location.absUrl().slice(-3, -1) == 'en') ) window.location = '../';
 			});
 		}
+	};
+
+	$rootScope.notify = function (message) {
+		var modalInstance = $modal.open({
+			templateUrl: '/partials/notification.html',
+			controller: ModalNotificationCtrl,
+			resolve: {
+				message: function () {
+					return message;
+				}
+			}
+		});
+		modalInstance.result.then(function () {
+		}, function () {
+		});
 	};
 });
