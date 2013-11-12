@@ -88,8 +88,8 @@
 									<input type="text" id="new_publisher" ng-model="newbook.publisher" class="form-control" placeholder="{{ 'LIBRARY.ADD.PUBLISHER' | translate }}">
 								</div>
 							</div>
-							<hr>
-							<div class="form-group" style="padding-bottom:33px">
+							<hr style="margin-bottom:10px">
+							<div class="form-group" style="padding-bottom:28px">
 								<label class="sr-only pull-left col-xs-12" for="new_actions">{{ 'LIBRARY.ADD.ACTIONS.LABEL' | translate }}:<br></label>
 								<span class="col-xs-4" style="padding:3px; padding-left:0px">
 									<button class="btn btn-sm" style="width:100%;padding: 5px 5px" ng-class="{'btn-primary':!newbook.actions.sell, 'btn-success':newbook.actions.sell}" ng-model="newbook.actions.sell" ng-init="newbook.actions.sell=false" ng-click="newbook.actions.sell=!newbook.actions.sell"><i ng-class="{'fa-check-square-o':newbook.actions.sell, 'fa-square-o':!newbook.actions.sell}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
@@ -105,7 +105,7 @@
 								<label class="" for="new_note">{{ 'LIBRARY.ADD.NOTE' | translate }}:</label>
 								<input type="text" id="new_publisher" ng-model="newbook.note" class="form-control" placeholder="{{ 'LIBRARY.ADD.NOTE_TEXT' | translate }}">
 							</div>
-							<button ng-click="addbook(); log()" ng-disabled="disable" class="btn btn-default btn-success pull-center" style="margin-bottom:15px;width:100%"><i class="fa fa-plus fa-lg"></i>&nbsp {{ 'LIBRARY.ADD.BUTTON' | translate }}&nbsp</button>
+							<button ng-click="addbook(); log()" ng-disabled="disable" class="btn btn-default btn-success pull-center" style="margin-bottom:20px;width:100%"><i class="fa fa-plus fa-lg"></i>&nbsp {{ 'LIBRARY.ADD.BUTTON' | translate }}&nbsp</button>
 							{{ warning_text }}
 						</fieldset>
 					</form>
