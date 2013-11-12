@@ -57,9 +57,29 @@
 		<script src="js/filters/filter.js"></script>
 		<link href="css/local.css" rel="stylesheet" media="screen">
 		<!-- Google fonts -->
-		<link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+			@font-face {
+				font-family: 'Sonsie One';
+				font-style: normal;
+				font-weight: 400;
+				src: local('Sonsie One'), local('SonsieOne-Regular'), url(fonts/sonsie_one.woff) format('woff');
+			}
+			@font-face {
+				font-family: 'Alegreya';
+				font-style: normal;
+				font-weight: 700;
+				src: local('Alegreya Bold'), local('Alegreya-Bold'), url(fonts/alegreya.woff) format('woff');
+			}
+			@font-face {
+				font-family: 'Ubuntu Condensed';
+				font-style: normal;
+				font-weight: 400;
+				src: local('Ubuntu Condensed'), local('UbuntuCondensed-Regular'), url(fonts/ubuntu_condensed.woff) format('woff');
+			}
+		</style>
+		<!--<link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Alegreya:700' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->
 		<!-- Google Analytics -->
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -90,54 +110,54 @@
 					'services' : 'facebook,twitter,google_plusone_share,email'
 					}
 					});
-</script>
-<!-- AddThis Smart Layers END -->
+				</script>
+				<!-- AddThis Smart Layers END -->
 
 
-<!-- UserVoice -->
-<script>
-// Include the UserVoice JavaScript SDK (only needed once on a page)
-UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/upakGTJvafWfYiU1mbiIHg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+				<!-- UserVoice -->
+				<script>
+					// Include the UserVoice JavaScript SDK (only needed once on a page)
+					UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/upakGTJvafWfYiU1mbiIHg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
 
-//
-// UserVoice Javascript SDK developer documentation:
-// https://www.uservoice.com/o/javascript-sdk
-//
+					//
+					// UserVoice Javascript SDK developer documentation:
+					// https://www.uservoice.com/o/javascript-sdk
+					//
 
-// Set colors
-UserVoice.push(['set', {
-  accent_color: '#03899c',
-  trigger_color: 'white',
-  trigger_background_color: '#bf222e'
-}]);
+					// Set colors
+					UserVoice.push(['set', {
+						accent_color: '#03899c',
+						trigger_color: 'white',
+						trigger_background_color: '#bf222e'
+					}]);
 
-// Identify the user and pass traits
-// To enable, replace sample data with actual user traits and uncomment the line
-UserVoice.push(['identify', {
-  //email:      'john.doe@example.com', // User’s email address
-  //name:       'John Doe', // User’s real name
-  //created_at: 1364406966, // Unix timestamp for the date the user signed up
-  //id:         123, // Optional: Unique id of the user (if set, this should not change)
-  //type:       'Owner', // Optional: segment your users by type
-  //account: {
-  //  id:           123, // Optional: associate multiple users with a single account
-  //  name:         'Acme, Co.', // Account name
-  //  created_at:   1364406966, // Unix timestamp for the date the account was created
-  //  monthly_rate: 9.99, // Decimal; monthly rate of the account
-  //  ltv:          1495.00, // Decimal; lifetime value of the account
-  //  plan:         'Enhanced' // Plan name for the account
-  //}
-}]);
+					// Identify the user and pass traits
+					// To enable, replace sample data with actual user traits and uncomment the line
+					UserVoice.push(['identify', {
+						//email:      'john.doe@example.com', // User’s email address
+						//name:       'John Doe', // User’s real name
+						//created_at: 1364406966, // Unix timestamp for the date the user signed up
+						//id:         123, // Optional: Unique id of the user (if set, this should not change)
+						//type:       'Owner', // Optional: segment your users by type
+						//account: {
+							//  id:           123, // Optional: associate multiple users with a single account
+							//  name:         'Acme, Co.', // Account name
+							//  created_at:   1364406966, // Unix timestamp for the date the account was created
+							//  monthly_rate: 9.99, // Decimal; monthly rate of the account
+							//  ltv:          1495.00, // Decimal; lifetime value of the account
+							//  plan:         'Enhanced' // Plan name for the account
+							//}
+					}]);
 
-// Add default trigger to the bottom-right corner of the window:
-UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
+					// Add default trigger to the bottom-right corner of the window:
+					UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
 
-// Or, use your own custom trigger:
-//UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+					// Or, use your own custom trigger:
+					//UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
 
-// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
-UserVoice.push(['autoprompt', {}]);
-</script>
+					// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+					UserVoice.push(['autoprompt', {}]);
+				</script>
 
-	</body>
-</html>
+			</body>
+		</html>
