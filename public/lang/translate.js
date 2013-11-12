@@ -24,6 +24,7 @@ var translateEN = {
 		'TEXT1': 'We will enable you to turn your home bookshelf into a private library or bookshop. You will get requests from your friends or others, asking you to sell, rent or lend them books from your home library. Only you decide which books you send out into the world.',
 		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get in a library? Do you want to save money and the environment by getting a second hand book? Just sign up and search our databases easily.',
 		'PROCESS': {
+			'HEADING': 'How it works',
 			'READER': 'For readers',
 			'OWNER': 'For book owners',
 			'CHOOSE': 'Choose a book',
@@ -177,6 +178,7 @@ var translateCZ = {
 		'TEXT1': 'Umožníme Vám přeměnit Vaše poličky s knihami v soukromou knihovnu nebo knihkupectví. Budete dostávat žádosti o koupi, pronájem nebo půjčení Vašich knih. Jen Vy rozhodujete o tom, které knihy a jak pošlete dále do světa.',
 		'TEXT2': 'Rádi byste si přečetli knihu, která je ke koupi příliš drahá a v knihovnách neustále rozebraná? Chcete ušetřit a koupit raději knihu z druhé ruky? Během chvilky si u nás můžete zdarma vytvořit účet a zjistit, jestli Vaše požadovaná kniha není v domácí knihovně někoho v okolí.',
 		'PROCESS': {
+			'HEADING': 'Jak to funguje',
 			'READER': 'Pro čtenáře',
 			'OWNER': 'Pro majitele knihy',
 			'CHOOSE': 'Zvolíte knihu',

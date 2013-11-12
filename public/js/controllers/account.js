@@ -1,10 +1,16 @@
 'use strict';
 function accountControl($scope, $http, $location, $translate, APIservice) {
+
+	//// Sets width of the map, is needed in IE
 	var map_width = $("#map_row").width();
 	$("#map").css("width", map_width);
 	$("#cross").css("left", map_width/2 -18);
+
+	//// set default coordinates
 	$scope.centerLat = 30;
 	$scope.centerLng = -30;
+
+	//// Save location
 	$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
 	$scope.saveLoc = function() {
 		$scope.save_loc_text = $translate('ACCOUNT.SAVING');
@@ -17,38 +23,32 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 			$scope.map.addShape(point);
 		});
 	};
-	$scope.searchLoc = function () {
+
+	//// Search location via addresss - geocoding
+	$scope.searchLoc = function ( address ) {
+		var addr = address || $scope.searchAddress;
 		MQA.withModule('nominatim', function() {
 			MQA.Nominatim.processResults = function(results, map) {
 				if(results.length == 0) {
-					console.log('not_found');
-					$scope.$apply(function() {
-					$scope.not_found_message = $translate('ACCOUNT.NOT_FOUND');
-					});
+					//// if address was not found, I try searching without number at the end e.g. Praha instead of Praha 5
+					if(/[ ][0-9]+$/.test(addr)) {
+						addr = addr.replace(/[ ][0-9]$/, "");
+						$scope.searchLoc(addr);
+					} else {
+						$scope.$apply(function() {
+							$scope.not_found_message = $translate('ACCOUNT.NOT_FOUND');
+						});
+					}
 				} else {
 					$scope.not_found_message = undefined;
 					map.setCenter(new MQA.LatLng(results[0].lat, results[0].lon), 11,{totalMs:100,steps:1});
 				}
 			};
-			$scope.map.nominatimSearchAndAddLocation($scope.searchAddress, null);
+			$scope.map.nominatimSearchAndAddLocation(addr, null);
 		});
 	};
-	var loadLoc = function (callback) {
-		$scope.$apply(function() {
-			APIservice.users.read(function(data) {
-				if(data.loc.coordinates.length == 2) {
-					$scope.centerLat = data.loc.coordinates[1];
-					$scope.centerLng = data.loc.coordinates[0];
-					$scope.map.setCenter(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
-					$scope.map.setZoomLevel(11);
-					var point = new MQA.Poi( {lat: $scope.centerLat, lng: $scope.centerLng} );
-					var icon = new MQA.Icon("img/poi_small.gif", 21, 32);
-					point.setIcon(icon);
-					$scope.map.addShape(point);
-				}
-			});
-		});
-	};
+
+	//// Download MQA script and draw map
 	$scope.draw_map = function()
 	{
 		$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4", function() {
@@ -77,6 +77,26 @@ function accountControl($scope, $http, $location, $translate, APIservice) {
 		loadLoc();
 		});
 	};
+
+	//// load location if it is set and redraw map to that location
+	var loadLoc = function (callback) {
+		$scope.$apply(function() {
+			APIservice.users.read(function(data) {
+				if(data.loc.coordinates.length == 2) {
+					$scope.centerLat = data.loc.coordinates[1];
+					$scope.centerLng = data.loc.coordinates[0];
+					$scope.map.setCenter(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11,{totalMs:100,steps:1});
+					$scope.map.setZoomLevel(11);
+					var point = new MQA.Poi( {lat: $scope.centerLat, lng: $scope.centerLng} );
+					var icon = new MQA.Icon("img/poi_small.gif", 21, 32);
+					point.setIcon(icon);
+					$scope.map.addShape(point);
+				}
+			});
+		});
+	};
+	
+	//// Binding of $scope.center... with map coordinates, called upon any change, might be superfluous now, I can call $scope.map.getCenter only when saving coordinates
 	var update_loc = function (){
 		if(!$scope.$$phase) {
 			$scope.$apply(function() {
