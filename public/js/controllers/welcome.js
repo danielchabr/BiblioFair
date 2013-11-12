@@ -4,6 +4,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	$('a[class=bottom]').click(function(){
 		$('html, body').animate({scrollTop:$(document).height()}, 'slow');
 	});
+	//// Scroll down arrow
 	$('#arrow').mouseover(function() {
 		$('html, body').animate({scrollTop:$('#arrow').offset().top - 50}, 'slow');
 	});
