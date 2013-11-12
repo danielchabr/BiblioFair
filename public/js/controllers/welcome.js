@@ -13,7 +13,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	var windowEl = angular.element(document);
 	windowEl.on('scroll', function() {
 		$scope.$apply(function() {
-			if($('.info').offset().top < $(window).scrollTop() + $(window).height() ) {
+			if($('.info').offset().top + 32 < $(window).scrollTop() + $(window).height() ) {
 				$scope.bottom = true;
 			} else {
 				$scope.bottom = false;

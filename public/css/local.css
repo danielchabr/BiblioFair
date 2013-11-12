@@ -95,7 +95,7 @@ html, body {
 	filter:alpha(opacity=70);
 	position:absolute;
 	margin:0px;
-	min-height:34px;
+	min-height:55px;
 	width:100%;
 	bottom:-2px;
 	right:0px;
@@ -103,7 +103,7 @@ html, body {
 	color:black;
 }
 .info_text {
-	padding-top:8px;
+	padding-top:12px;
 	margin: 0px;
 	font-size:14px;
 }
@@ -113,6 +113,10 @@ html, body {
 .info_text > ul > li > a {
 	color: black;
 	text-decoration: underline
+}
+.info_text > ul > li > .social {
+	position:relative;
+	top:4px;
 }
 @media screen and (min-width: 768px) {
 	.modal-dialog {
