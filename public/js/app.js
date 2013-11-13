@@ -35,7 +35,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$httpProvider', '$provide'
 	$translateProvider.translations('cz', translateCZ);
 	$translateProvider.preferredLanguage('en');
 }]);
-myApp.run(function ($rootScope, $http, $modal, $location, $translate, APIservice) {
+myApp.run(function ($rootScope, $timeout, $http, $modal, $location, $translate, APIservice) {
 	$rootScope.books = [];
 	$rootScope.mybooks = [];
 	$rootScope.user = {};
@@ -87,6 +87,7 @@ myApp.run(function ($rootScope, $http, $modal, $location, $translate, APIservice
 		}
 	};
 
+	//// Notification modal window can be called from any controller
 	$rootScope.notify = function (message) {
 		var modalInstance = $modal.open({
 			templateUrl: '/partials/notification.html',
@@ -101,4 +102,17 @@ myApp.run(function ($rootScope, $http, $modal, $location, $translate, APIservice
 		}, function () {
 		});
 	};
+
+	//// Send GA code each 10 secs
+	var GANotifier = function(elapsed) {
+		$timeout(function() {
+			elapsed += 10;
+			ga('send', 'time_elapsed', 'time_spent', elapsed);
+			GANotifier(elapsed);
+		}, 10000);
+	};
+	GANotifier(0);
+
 });
+
+

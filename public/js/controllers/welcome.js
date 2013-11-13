@@ -1,9 +1,11 @@
 'use strict';
 function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, $translate, $modal) {
+
 	//// Animate scrollUp
 	$('a[class=bottom]').click(function(){
 		$('html, body').animate({scrollTop:$(document).height()}, 'slow');
 	});
+
 	//// Scroll down arrow
 	$('#arrow').mouseover(function() {
 		$('html, body').animate({scrollTop:$('#arrow').offset().top - 50}, 'slow');
@@ -12,15 +14,35 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		$('html, body').animate({scrollTop:$('#arrow').offset().top - 50}, 'slow');
 	});
 	var windowEl = angular.element(document);
+	var button_shown = false;
 	windowEl.on('scroll', function() {
 		$scope.$apply(function() {
+			//// checks if scrolled to bottom and hides arrow if yes
 			if($('.info').offset().top + 32 < $(window).scrollTop() + $(window).height() ) {
 				$scope.bottom = true;
 			} else {
 				$scope.bottom = false;
 			}
+
+			//// is register button visible?
+			if(!button_shown && isScrolledIntoView($("#signup_button"))) {
+				ga('send', 'scrolled', 'register_button');
+				button_shown = true;
+			}
 		});
 	});
+
+	function isScrolledIntoView(elem)
+	{
+		var docViewTop = $(window).scrollTop();
+		var docViewBottom = docViewTop + $(window).height();
+
+		var elemTop = $(elem).offset().top;
+		var elemBottom = elemTop + $(elem).height();
+
+		return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+	}
+
 	//// Log in dropdown hack
 	var switcher = function() {
 		var x = {};
