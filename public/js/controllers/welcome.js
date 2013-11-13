@@ -26,7 +26,7 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 
 			//// is register button visible?
 			if(!button_shown && isScrolledIntoView($("#signup_button"))) {
-				ga('send', 'scrolled', 'register_button');
+				ga('send', 'event', 'scrolling', 'scrolled_to_register_button');
 				button_shown = true;
 			}
 		});
@@ -163,6 +163,6 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		});
 	};
 	//// Google analytics
-	ga('send', 'pageview', '/login');
+	ga('send', 'pageview', '/');
 }
 

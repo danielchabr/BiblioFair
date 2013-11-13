@@ -107,7 +107,7 @@ myApp.run(function ($rootScope, $timeout, $http, $modal, $location, $translate, 
 	var GANotifier = function(elapsed) {
 		$timeout(function() {
 			elapsed += 10;
-			ga('send', 'time_elapsed', 'time_spent', elapsed);
+			ga('send', 'event', 'time_elapsed', 'time_spent', 'Time elapsed' , elapsed);
 			GANotifier(elapsed);
 		}, 10000);
 	};
