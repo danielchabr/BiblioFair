@@ -31,6 +31,7 @@ var ModalBookCtrl = function ($scope, $modalInstance, $translate, book, APIservi
 			APIservice.messages.send(owner.username, data.email, data.username, book, data.language, function(data) {
 				owner.style = true;
 				owner.message = $translate('HOME.MODAL.REQUEST_SENT');
+				ga('send', 'event', 'Request', 'Sent request');
 			});
 		});
 	};
