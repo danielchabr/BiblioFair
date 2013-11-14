@@ -10,10 +10,12 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 			if(data.loc.coordinates.length == 2) {
 				$scope.lat = data.loc.coordinates[1];
 				$scope.lng = data.loc.coordinates[0];
+				$scope.locationSet = true;
 			}
 			APIservice.books.read('', '', 60, 0, $scope.lat, $scope.lng, 10000 , function(data) {
 				if(data){
 					$scope.loading = false;
+					if($scope.lat) $scope.bookOrder = "distance";
 					for(var i = 0; i < data.length; i++) {
 						data[i].distance = i;
 						data[i].actions = {};
@@ -32,7 +34,6 @@ function homeControl($rootScope, $scope, $http, $modal, $translate, $location, A
 						$rootScope.books.push(data[i]);
 					}
 					$rootScope.books = uniqBooks($rootScope.books, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
-					$scope.bookOrder = "distance";
 				}
 			});
 		});
