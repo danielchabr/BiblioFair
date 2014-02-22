@@ -2,7 +2,7 @@
 function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, $translate, $modal) {
 
 	//// Animate scrollUp
-	$('a[class=bottom]').click(function(){
+	$('a[class=go_to_bottom]').click(function(){
 		$('html, body').animate({scrollTop:$(document).height()}, 'slow');
 	});
 
@@ -19,9 +19,9 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		$scope.$apply(function() {
 			//// checks if scrolled to bottom and hides arrow if yes
 			if($('.info').offset().top + 32 < $(window).scrollTop() + $(window).height() ) {
-				$scope.bottom = true;
+				$scope.isAtBottom = true;
 			} else {
-				$scope.bottom = false;
+				$scope.isAtBottom = false;
 			}
 
 			//// is register button visible?
