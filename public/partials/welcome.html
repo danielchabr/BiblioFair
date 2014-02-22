@@ -48,7 +48,7 @@
 		}
 	}
 	@media (max-width: 767px) {
-		#heading-main {
+		.heading-main {
 			padding-top:50px;
 		}
 	}
@@ -174,7 +174,7 @@
 	<div class="row" ng-init="bubble=true">
 		<!-- Contents -->
 		<div class="bubble" ng-animate=" 'bubble' " ng-if="books_available"><h5>{{ books_available + " " + ('WELCOME.BOOKS_AVAILABLE' | translate) }}</h5></div>
-		<div class="col-xs-12 text-center" id="heading-main">
+		<div class="col-xs-12 text-center heading-main">
 			<h1 style="color:black; margin-bottom:30px" class="">{{ 'WELCOME.HEADING' | translate }}</h1>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
@@ -229,7 +229,7 @@
 </div>
 <div class="content_row_white">
 	<div class="container" style="">
-		<div class="col-xs-12 text-center" id="heading-main">
+		<div class="col-xs-12 text-center heading-main">
 			<h2 style="color:black; margin-bottom:10px" class="">{{ 'WELCOME.PROCESS.HEADING' | translate }}</h2>
 		</div>
 		<div class="row" style="margin-bottom:20px;color:black">
@@ -247,6 +247,7 @@
 				<div class="well well-alt">
 					<h4>1. {{ 'WELCOME.PROCESS.CHOOSE' | translate }}</h4>
 				</div>
+                <i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
 			</div>
 			<div class="col-sm-1">
 			</div>
@@ -256,6 +257,7 @@
 				<div class="well well-alt">
 					<h4>1. {{ 'WELCOME.PROCESS.ADD_BOOKS' | translate }}</h4>
 				</div>
+                <i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
 			</div>
 		</div>
 		<div class="row">
@@ -265,6 +267,7 @@
 				<div class="well well-alt">
 					<h4>2. {{ 'WELCOME.PROCESS.SEND' | translate }}</h4>
 				</div>
+                <i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
 			</div>
 			<div class="col-sm-1">
 			</div>
@@ -274,12 +277,13 @@
 				<div class="well well-alt">
 					<h4>2. {{ 'WELCOME.PROCESS.RECIEVE' | translate }}</h4>
 				</div>
+                <i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3 col-sm-4">
+			<div class="col-sm-2 col-xs-1" style="">
 			</div>
-			<div class="col-xs-6 col-sm-4 text-center">
+			<div class="col-xs-10 col-sm-8 text-center">
 				<div class="well well-alt">
 					<h4>3. {{ 'WELCOME.PROCESS.MEET' | translate }}</h4>
 				</div>
@@ -287,6 +291,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="content_row" style="padding-top:40px;padding-bottom:100px">
 	<div class="container">
 		<div class="row">
