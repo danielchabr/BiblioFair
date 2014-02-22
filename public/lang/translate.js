@@ -152,6 +152,7 @@ var translateEN = {
 		}
 	}
 };
+
 var translateCZ = {
 	'TITLE': 'BiblioFair | Prodávejte, půjčujte a směňujte knihy snadněji',
 	'DESCRIPTION': 'Přidejte své knihy do virtuální knihovny a dostávejte žádosti o prodej, půjčení nebo darování. Jen Vy volíte, jak vyšlete knihy dále do světa',
@@ -175,8 +176,8 @@ var translateCZ = {
 		'HEADING': 'Ponořte se do světa domácích knihoven',
 //		'HEADING': 'Objevte ten nejlehčí způsob obchodování s knihami',
 		'HEADING2': 'Pojďme vyslat knihy do světa',
-		'TEXT1': 'Umožníme Vám přeměnit Vaše poličky s knihami v soukromou knihovnu nebo knihkupectví. Budete dostávat žádosti o koupi, pronájem nebo půjčení Vašich knih. Jen Vy rozhodujete o tom, které knihy a jak pošlete dále do světa.',
-		'TEXT2': 'Rádi byste si přečetli knihu, která je ke koupi příliš drahá a v knihovnách neustále rozebraná? Chcete ušetřit a koupit raději knihu z druhé ruky? Během chvilky si u nás můžete zdarma vytvořit účet a zjistit, jestli Vaše požadovaná kniha není v domácí knihovně někoho v okolí.',
+		'TEXT1': 'Sháníte knihu, ale je příliš drahá a v knihovně stále nedostupná?  Chcete ušetřit peníze i přírodu a koupit raději knihu z druhé ruky?',
+		'TEXT2': 'Díky BiblioFair snadno naleznete dostupné tituly z domácích knihoven a to ve vašem okolí - k zapůjčení, darování nebo k prodeji!',
 		'PROCESS': {
 			'HEADING': 'Jak to funguje',
 			'READER': 'Pro čtenáře',
