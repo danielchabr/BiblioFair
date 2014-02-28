@@ -43,38 +43,29 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 		return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
 	}
 
-	//// Log in dropdown hack
-	var switcher = function() {
-		var x = {};
-		x.value = false;
-		x.change = function(){ x.value = !x.value;};
-		return x;
-	};
-	var switchoff = switcher();
-	$('body').click(function() {
-		if(!switchoff.value) {
-			$('#login').css('display', 'none');
+	// login dropdown    
+	$("#login_opener").on("click", function(e) {
+		var $login = $("#login");
+		if ($login.is(":hidden")) {
+			$login.show();
+			//bind to mousedown as bootstrap dropdown-toggles block the click event (they use an internal function clearMenus(); talk about good pracice, huh...)
+			$(document).on("mousedown.login", function(e) {
+				var $login = $("#login"),
+					$target = $(e.target),
+					outofDropdown = $target.parents("#login").size() === 0 && $target.attr("id") !== "login",
+					outofModal = $target.parents(".modal").size() === 0 && !$target.hasClass("modal") && !$target.hasClass("modal-backdrop");
+
+				//hide only if login is visible and not clicked in the dropdown, a modal or on the opener 
+				if ($login.is(":visible") && outofDropdown && outofModal && $target.attr("id") !== "login_opener") {
+					$login.hide();
+					$(document).off("mousedown.login");
+				}
+			});
 		}
-		if(switchoff.value == true) {
-			switchoff.change();
-			$('#login_all').addClass('open');
-		} else {
-			$('#login_all').removeClass('open');
+		else {
+			$login.hide();
+			$(document).off("mousedown.login");
 		}
-	});
-	$('#login_opener').click(function() {
-		if($('#login').css('display') == 'none') {
-			$('#login').css('display', 'block');
-			$('#login_all').addClass('open');
-			switchoff.value = false;
-		} else {
-			$('#login').css('display', 'none');
-		}
-	});
-	$('#login').click(function() {
-		switchoff.change();
-		switchoff.value = true;
-		$('#login_all').addClass('open');
 	});
 	/////////////////////
 	$scope.bookOrder = 'title';
