@@ -1,5 +1,5 @@
 'use strict';
-function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, $translate, $modal) {
+function welcomeControl($rootScope, $scope, $http, $location, $position, APIservice, Books, $translate, $modal) {
 
 	//// Animate scrollUp
 	$('a[class=go_to_bottom]').click(function(){
@@ -69,18 +69,25 @@ function welcomeControl($rootScope, $scope, $http, $location, $position, APIserv
 	});
 	/////////////////////
 	$scope.bookOrder = 'title';
-	APIservice.books.count(function(data) {
-		if(data) $scope.books_available = data;
-	});
-	APIservice.books.read('','', 6, 0, function(data) {
-		$rootScope.books = data;
-	});
+    
+    //book count
+    Books.count().success(function(data){
+        $scope.books_available = data;
+    });
+    
+    //initial books to show
+    Books.get({limit: 6}).success(function(data){
+        $rootScope.books = data;
+    });
+    
+    //retrieve books
 	$scope.retrieveBooks = function () {
-		APIservice.books.read('', $scope.search_query, 6, 0, function(data) {
-			var arr = $rootScope.books.concat(data);
+        Books.get({query: $scope.search_query,limit: 6}).success(function(data){
+            var arr = $rootScope.books.concat(data);
 			$rootScope.books = uniqBooks(arr, function(a, b) { if(a._id < b._id) return -1; else if (a._id > b._id) return 1; else return 0; });
-		});
-	}
+        });
+	};
+    
 	//// Sign up action
 	$scope.signup = function() {
 		$scope.signup_message = "";
