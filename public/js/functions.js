@@ -1,20 +1,20 @@
 'use strict';
 // for IE compatibility
 if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-	var msViewportStyle = document.createElement("style")
+	var msViewportStyle = document.createElement("style");
 		msViewportStyle.appendChild(
 				document.createTextNode(
 					"@-ms-viewport{width:auto!important}"
 					)
-				)
-		document.getElementsByTagName("head")[0].appendChild(msViewportStyle)
+				);
+		document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
 }
 /*
  * Converts a isbn10 number into a isbn13.
  * The isbn10 is a string of length 10 and must be a legal isbn10. No dashes.
  */
 function ISBN10toISBN13(isbn10) {
-	if(typeof isbn10 != 'string' || isbn10.length != 10) return false;
+	if(typeof isbn10 !== 'string' || isbn10.length !== 10) return false;
 
 	var sum = 38 + 3 * (parseInt(isbn10[0]) + parseInt(isbn10[2]) + parseInt(isbn10[4]) + parseInt(isbn10[6]) 
 			+ parseInt(isbn10[8])) + parseInt(isbn10[1]) + parseInt(isbn10[3]) + parseInt(isbn10[5]) + parseInt(isbn10[7]);
@@ -29,7 +29,7 @@ function ISBN10toISBN13(isbn10) {
  * The isbn13 is a string of length 13 and must be a legal isbn13. No dashes.
  */
 function ISBN13toISBN10(isbn13) {
-	if(typeof isbn13 != 'string' || isbn13.length != 13) return false;
+	if(typeof isbn13 !== 'string' || isbn13.length !== 13) return false;
 
 	var start = isbn13.substring(3, 12);
 	var sum = 0;
@@ -42,9 +42,9 @@ function ISBN13toISBN10(isbn13) {
 	}
 
 	var checkDig = 11 - (sum % 11);
-	if (checkDig == 10) {
+	if (checkDig === 10) {
 		checkDig = "X";
-	} else if (checkDig == 11) {
+	} else if (checkDig === 11) {
 		checkDig = "0";
 	}
 
@@ -54,7 +54,7 @@ var uniqBooks = function (arr, comparator) {
 	var arr = arr.sort(comparator);
 	var res = [];
 	for(var i = 0; i < arr.length; i++) {
-		if(arr[i+1] == undefined || comparator(arr[i], arr[i+1]) != 0) {
+		if(arr[i+1] === undefined || comparator(arr[i], arr[i+1]) !== 0) {
 			res.push(arr[i]);
 		}
 	}

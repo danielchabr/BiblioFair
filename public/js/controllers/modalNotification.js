@@ -1,5 +1,5 @@
 'use strict';
-var ModalNotificationCtrl = function ($scope, $modalInstance, $translate, message) {
+var ModalNotificationCtrl = function ($scope, $modalInstance, message) {
 
 	$scope.message = message;
 
