@@ -1,9 +1,17 @@
 'use strict';
-var express = require('express');
-var fs = require('fs');
-var router = require('./lib/router');
+var express = require('express'),
+        fs = require('fs'),
+        passport = require('passport'),
+        mongoose = require('mongoose');
 
-// bootstrap models (walk through the models (all the *.js and *.coffee files) in the /lib/models directory)
+// Set the node enviornment variable if not set before
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+console.log("environment:" + process.env.NODE_ENV);
+
+// Initialize system variables 
+var config = require('./config/config');
+
+// Bootstrap models (walk and require all the models (all the *.js and *.coffee files) in the /lib/models directory)
 var modelsPath = __dirname + '/lib/models';
 var walk = function(path) {
     fs.readdirSync(path).forEach(function(file) {
@@ -20,23 +28,39 @@ var walk = function(path) {
 };
 walk(modelsPath);
 
-var db = require('./lib/db');
+// Connect to the database
+mongoose.connection.on('connected', function() {
+    if (process.env.NODE_ENV === "production") {
+        console.log('DB connected;\nHost: ' + process.env.OPENSHIFT_MONGODB_DB_HOST + '\nPort: ' + process.env.OPENSHIFT_MONGODB_DB_PORT);
+    }
+});
+mongoose.connection.on('disconnected', function() {
+    console.log('MongoDB disconnected!');
+    mongoose.connect(config.db);
+});
+mongoose.connection.on('error', function(error) {
+    console.error('Error in MongoDb connection: ' + error);
+    mongoose.disconnect();
+});
+mongoose.connect(config.db);
 
+// passport config
+require('./config/passport')(passport);
+
+// Express app init and configuration
 var app = express();
-//to be moved into some "express config" file
-app.use(express.bodyParser());
-db.connect();
+require('./config/express')(app, passport);
 
 try {
-    // bootstrap routes (walk through the APIs (all the *.js and *.coffee files) in the /lib/api directory)
-    var routesPath = __dirname + '/lib/api';
+    // Bootstrap API routes (walk and require all the APIs (all the *.js and *.coffee files) in the /lib/api directory)
+    var apisPath = __dirname + '/lib/routes';
     var walk = function(path) {
         fs.readdirSync(path).forEach(function(file) {
             var newPath = path + '/' + file;
             var stat = fs.statSync(newPath);
             if (stat.isFile()) {
                 if (/(.*)\.(js$|coffee$)/.test(file)) {
-                    require(newPath)(app);
+                    require(newPath)(app, passport);
                 }
                 //skip the middlewares directory
             } else if (stat.isDirectory() && file !== 'middlewares') {
@@ -44,19 +68,21 @@ try {
             }
         });
     };
-    walk(routesPath);
-    
-    router(app, db);
+    walk(apisPath);
+
+    require('./lib/router')(app);
 } catch (e) {
     console.log("Router error: ");
     console.log(e);
     console.log(e.stack);
 }
 
-var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.OPENSHIFT_INTERNAL_PORT || 8080;
+var port = (process.env.OPENSHIFT_NODEJS_PORT || process.env.OPENSHIFT_INTERNAL_PORT || config.port);
 var ipaddr = process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost';
 
+exports = module.exports = app;
 try {
+    
     app.listen(port, ipaddr);
 } catch (e) {
     console.log("App.listen error: ");
