@@ -1,33 +1,55 @@
 module.exports = function(grunt) {
-	grunt.loadNpmTasks('grunt-html-snapshot');
+    // Project configuration.
+    grunt.initConfig({
+        pkg:grunt.file.readJSON('package.json'),
+        uglify:{
+            options:{
+                banner:''//'/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            build:{
+                src:'public/js/app.js',
+                dest:'public/js/app.min.js'
+            }
+        },
+        htmlSnapshot:{
+            all:{
+                options:{
+                    snapshotPath:'public/',
+                    sitePath:'http://www.bibliofair.com/',
+                    urls:['en', 'cz']
+                }
+            }
+        },
+        //tests
+        mochaTest:{
+            options:{
+                reporter:'spec',
+                require:'server.js'
+            },
+            src:['test/mocha/**/**/*.js']
+        },
+        env:{
+            test:{
+                NODE_ENV:'test'
+            }
+        }
+    });
 
-	  // Project configuration.
-	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
-	    uglify: {
-			options: {
-				banner: ''//'/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-			},
-	        build: {
-				src: 'public/js/app.js',
-				dest: 'public/js/app.min.js'
-			}
-		},
-		htmlSnapshot: {
-			all: {
-				options: {
-				  snapshotPath: 'public/',
-				  sitePath: 'http://www.bibliofair.com/', 
-				  urls: ['en', 'cz']
-				}
-			}
-		}
-	});
+    // Load all the neccessary plugins.
+    grunt.loadNpmTasks('grunt-html-snapshot')
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-env');
 
-	    // Load the plugin that provides the "uglify" task.
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+    //Making grunt default to force in order not to break the project.
+    grunt.option('force', true);
 
-		  // Default task(s).
-	grunt.registerTask('default', ['htmlSnapshot']);
+    //Create a snapshot.
+    grunt.registerTask('snapshot', ['htmlSnapshot']);
+    
+    //Uglify.
+    grunt.registerTask('uglify', ['uglify']);
 
+    //Test task.
+    grunt.registerTask('test', ['env:test', 'mochaTest']);
 };
