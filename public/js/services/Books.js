@@ -1,4 +1,4 @@
-angular.module('myApp').factory('Books', ['$http', function($http) {
+angular.module('bibliofair').factory('Books', ['$http', function($http) {
         return {
             count: function() {
                 return $http.get('/api/books/count');

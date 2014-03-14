@@ -1,5 +1,5 @@
 'use strict';
-myApp.directive('menu', function() {
+/*angular.module('bibliofair').directive('menu', function() {
 	var directiveObject = {
 		restrict: 'A',
 		templateUrl: '/partials/menu.html',
@@ -12,8 +12,8 @@ myApp.directive('menu', function() {
 		}
 	};
 	return directiveObject;
-});
-myApp.directive('info', function() {
+});*/
+angular.module('bibliofair').directive('info', function() {
 	var directiveObject = {
 		restrict: 'A',
 		templateUrl: '/partials/info.html',

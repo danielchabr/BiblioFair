@@ -142,7 +142,8 @@ UserSchema.virtual('password').set(function(password) {
  * Pre-save hook
  */
 UserSchema.pre('save', function(next) {
-    if(!this.isNew){
+	//validate only if new and NOT via provider (facebook, google, etc.)
+    if(!this.isNew || this.provider){
         return next();
     }
 

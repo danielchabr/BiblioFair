@@ -11,8 +11,8 @@ console.log("environment:" + process.env.NODE_ENV);
 // Initialize system variables 
 var config = require('./config/config');
 
-// Bootstrap models (walk and require all the models (all the *.js and *.coffee files) in the /lib/models directory)
-var modelsPath = __dirname + '/lib/models';
+// Bootstrap models (walk and require all the models (all the *.js and *.coffee files) in the /app/models directory)
+var modelsPath = __dirname + '/app/models';
 var walk = function(path) {
     fs.readdirSync(path).forEach(function(file) {
         var newPath = path + '/' + file;
@@ -52,8 +52,8 @@ var app = express();
 require('./config/express')(app, passport);
 
 try {
-    // Bootstrap API routes (walk and require all the APIs (all the *.js and *.coffee files) in the /lib/api directory)
-    var apisPath = __dirname + '/lib/routes';
+    // Bootstrap API routes (walk and require all the APIs (all the *.js and *.coffee files) in the /app/api directory)
+    var apisPath = __dirname + '/app/routes';
     var walk = function(path) {
         fs.readdirSync(path).forEach(function(file) {
             var newPath = path + '/' + file;
@@ -70,7 +70,7 @@ try {
     };
     walk(apisPath);
 
-    require('./lib/router')(app);
+    require('./app/router')(app);
 } catch (e) {
     console.log("Router error: ");
     console.log(e);

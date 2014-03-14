@@ -1,4 +1,4 @@
-angular.module('myApp').factory('Library', ['$http', function($http) {
+angular.module('bibliofair').factory('Library', ['$http', function($http) {
         return {
             read: function() {
                 return $http.get("/api/library");

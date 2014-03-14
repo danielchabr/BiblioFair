@@ -105,78 +105,6 @@
 
 <i id="arrow" class="fa fa-chevron-down fa-4x" ng-show="!isAtBottom"></i>
 
-<!--    MENU    -->
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-<div class="container">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" ng-init="collapse()" ng-click="isCollapsed = !isCollapsed">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand logo" ng-href="/" style="padding:12px 15px">
-			<svg width="34" height="24" style="margin-top:2px; margin-bottom:-2px">
-			<image xlink:href="img/logo.svg" src="img/logo.png" width="34" height="24" style="margin-top:2px; margin-bottom:-2px; vertical-align:baseline;" />
-			</svg>
-			<span style="margin-left:-7px">
-				BiblioFair 
-			</span>
-		</a>
-	</div>
-
-	<div class="navbar-collapse navbar-responsive-collapse navbar-right" ng-show="isCollapsed">
-		<ul class="nav navbar-nav">
-			<li class="dropdown" style="cursor:pointer" id="login_all">
-			<a class="dropdown-toggle" id="login_opener">
-				<i class="fa fa-sign-in fa-lg"></i> 
-				{{ 'WELCOME.SIGNIN_TEXT' | translate }}
-			</a>
-			<ul class="dropdown-menu" style="color: black" ng-click="login_open();" id="login">
-				<li style="padding:10px 15px;">
-				<form style="width:170px">
-					<fieldset>
-						<div class="form-group" id="div_login_id">
-							<label class="sr-only ie-show" for="login_id">{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}</label>
-							<input type="text" id="login_id" ng-model="login_id"  class="form-control input-sm" placeholder="{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}" required autofocus>
-						</div>
-						<div class="form-group" id="div_login_password">
-							<label class="sr-only" for="login_password">{{ 'WELCOME.PASSWORD' | translate }}</label>
-							<input type="password" id="login_password" ng-model="login_password" class="form-control input-sm" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
-							<div class="col-xs-12 text-right" style="color:#888888">	
-								<i class="fa fa-question-circle fa-lg" ng-click="open()" style="position:absolute;top:-21px; right:12px; cursor:pointer"></i> 
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12">
-								<button ng-click="login()" class="btn btn-success btn-sm" style="margin-bottom:0px; min-width:100px"><b>{{ 'WELCOME.SIGNIN' | translate }}</b></button>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12">
-								<p class="help-block text-danger" style="color:black">{{login_message}}</p>
-							</div>
-						</div>
-					</fieldset>
-				</form>
-				</li>
-			</ul>
-			</li>
-			<li class="dropdown" style="cursor:pointer" >
-			<a class="dropdown-toggle">
-				<i class="fa fa-globe fa-lg"></i> 
-				{{ 'NAV.LANGUAGE' | translate }}
-				<span class="caret"></span>
-			</a>
-			<ul class="dropdown-menu" style="color: black">
-				<li><a role="menuitem" tabindex="-1" ng-init="lang='en'" ng-click="changeLanguage('en')">{{ 'NAV.ENGLISH' | translate }}</a></li>
-				<li><a role="menuitem" tabindex="-1" ng-click="changeLanguage('cz')">{{ 'NAV.CZECH' | translate }}</a></li>
-			</ul>
-			</li>
-		</ul>
-	</div>
-</div>
-</nav>
-
 <!--    WELCOME TEXT    -->
 <div class="container" style="padding-top:90px;padding-bottom:30px;" id="top">
 	<div class="row" ng-init="bubble=true">
@@ -203,6 +131,9 @@
 		</div>
 	</div>
 </div>
+
+
+<a href="/auth/facebook" target="_self">Facebook</a>
 
 <!--    BOOK SEARCH    -->
 <div class="content_row">

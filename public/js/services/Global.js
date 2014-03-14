@@ -1,7 +1,7 @@
 'use strict';
 
 //Global service for global variables
-angular.module('myApp').factory('Global', [function() {
+angular.module('bibliofair').factory('Global', [function() {
         return{
             user: function() {
                 return window.user;

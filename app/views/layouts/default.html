@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ng="http://angularjs.org" id="ng-app" lang="en" ng-app="myApp">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ng="http://angularjs.org" id="ng-app" lang="en">
     {% include '../includes/head.html' %}
     <body>
+		<!-- include menu in all the sites -->
+		<nav class="navbar navbar-default navbar-fixed-top" ng-include="'partials/menu.html'" role="navigation"></nav>
+		
         <!-- Content -->
         {% block content %}{% endblock %}
         <!-- Content End -->
