@@ -54,4 +54,26 @@ module.exports = function(app) {
             }
         });
     });
+	
+	app.post("/api/books/request", authorization.login, function(req, res) {
+        books.request(req.body.from, req.body.to, req.body.book, req.body.language, function(err, data) {
+            if(err){
+                res.status(404).send(err);
+            }
+            else{
+                res.send(data);
+            }
+        });
+    });
+	
+	app.get("/api/books/report/:book", authorization.login, function(req, res) {
+        books.report(req.user._id, req.params.book, function(err, data) {
+            if(err){
+                res.status(404).send(err);
+            }
+            else{
+                res.send(data);
+            }
+        });
+    });
 };

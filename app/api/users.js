@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require("mongoose"),
+		config = require('../../config/config'),
         User = mongoose.model("UserModel"),
         //cryptography
         crypto = require('crypto-js'),
@@ -9,7 +10,7 @@ var mongoose = require("mongoose"),
         errors = require("../helpers/errors"),
         //emails
         Mailgun = require('mailgun').Mailgun,
-        mg = new Mailgun('key-9q6wmvaf8-8-uyu7n-hd5cwvjqc76jn5'),
+        mg = new Mailgun(config.messages.mailgun.key),
         messages = require('../helpers/messages');
 
 /**
@@ -127,8 +128,8 @@ exports.updateLocation = function(id, coordinates, done) {
                 }
             }
             user.loc = {coordinates: coordinates, type: "Point"};
-            user.save(function(err) {
-                done(err, 'ok');
+            user.save(function(err, user) {
+                done(err, user);
             });
         }
     });
@@ -189,7 +190,7 @@ exports.updateLanguage = function(id, language, done) {
  */
 
 exports.verify = function(token, done) {
-    Users.findOne({'token.hash': token}, function(err, user) {
+    User.findOne({'token.hash': token}, function(err, user) {
         if(err || !user){
             done(err);
         }

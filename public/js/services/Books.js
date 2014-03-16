@@ -17,18 +17,17 @@ angular.module('bibliofair').factory('Books', ['$http', function($http) {
             search: function(isbn) {
                 return $http.get('/api/books/search/' + isbn);
             },
-            request:function(from, to, book) {
+            request:function(from, to, book, language) {
+				console.log(from, to ,book ,language);
                 return $http.post('/api/books/request', {
                     from: from,
                     to: to,
-                    book: book
+                    book: book,
+					language: language
                 });
             },
-            report:function(user, book) {
-                return $http.post('/api/books/report',{
-                    user: user,
-                    book: book
-                });
+            report:function(book) {
+                return $http.get('/api/books/report/' + book);
             }
         };
     }]);

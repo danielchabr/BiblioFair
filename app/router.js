@@ -2,6 +2,7 @@
 
 var path = require('path'),
 		fs = require('fs'),
+		config = require('../config/config'),
 		publicPath = path.resolve(__dirname + '/../public');
 
 module.exports = function(app) {

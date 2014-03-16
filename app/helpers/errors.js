@@ -7,7 +7,6 @@ exports.normalize = function(err, language) {
         //loop through the individual errors
         Object.keys(err.errors).forEach(function(key) {
             var error = err.errors[key];
-            console.log(error);
             if(error.type === "user defined"){
                 errors.push({
                     path: error.path,
@@ -25,7 +24,6 @@ exports.normalize = function(err, language) {
     else{
         if(err.message){
             var error = err.message.split(".");
-            console.log(error);
             errors.push({
                 path: error[0],
                 type: error[1]

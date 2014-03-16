@@ -51,7 +51,7 @@ module.exports = function(app, passport) {
 				res.status(404).send(err);
 			}
 			else{
-				res.send(data);
+				res.redirect('/');
 			}
 		});
 	});
@@ -157,16 +157,38 @@ module.exports = function(app, passport) {
 	 * 3rd party authentication.
 	 */
 
-	// Setting the facebook oauth routes
-	app.get('/auth/facebook', function(req, res, next) {
+	// Facebook
+	app.get('/signin/facebook', function(req, res, next) {
 		passport.authenticate('facebook', {
 			scope: ['email']
 		})(req, res, next);
 	});
 
 
-	app.get('/auth/facebook/callback', function(req, res, next) {
+	app.get('/signin/facebook/callback', function(req, res, next) {
 		passport.authenticate('facebook', function(err, user) {
+			req.logIn(user, function(err) {
+				if(err){
+					return next(err);
+				}
+				res.redirect('/');
+			});
+		})(req, res, next);
+	});
+
+	// Google
+	app.get('/signin/google', function(req, res, next) {
+		passport.authenticate('google', {
+			scope: [
+				'https://www.googleapis.com/auth/userinfo.profile',
+				'https://www.googleapis.com/auth/userinfo.email'
+			]
+		})(req, res, next);
+	});
+
+
+	app.get('/signin/google/callback', function(req, res, next) {
+		passport.authenticate('google', function(err, user) {
 			req.logIn(user, function(err) {
 				if(err){
 					return next(err);
