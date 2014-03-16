@@ -116,36 +116,8 @@ function welcomeControl($rootScope, $scope, $http, $location, Books, Users, Glob
                 console.error(data);
             }
         });
+    };
 
-        //$scope.signup_message = $translate('WELCOME.SHORT_PASSWORD');
-        //$scope.signup_message = $translate('WELCOME.EMAIL_EXISTS');
-        //$scope.signup_message = $translate('WELCOME.USERNAME_EXISTS');
-        //$scope.signup_message = $translate('WELCOME.EMAIL_INVALID');
-        //$scope.signup_message = $translate('WELCOME.USERNAME_INVALID');
-    }
-
-    //// Log in action
-    $scope.login = function() {
-        Users.signIn({
-            email: $scope.login_id,
-            password: Global.encrypt($scope.login_password),
-            language: $rootScope.lang
-        }).success(function(data) {
-            //TODO could be done in a better way
-            if(data === "ok"){
-                $rootScope.authenticated = true;
-                Users.me().success(function(data) {
-                    $rootScope.user = data;
-                    $location.path("/home");
-                    //TODO put somewhere general $scope.changeLanguage(data.lang);
-                });
-            }
-        }).error(function(error) {
-            if(error.normalized === true){
-                $scope.login_message = error.errors[0].message;
-            }
-        });
-    }
     //// Password recovery modal window
     $scope.open = function() {
         var modalInstance = $modal.open({

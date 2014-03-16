@@ -138,3 +138,17 @@ html, body {
 .animate-leave.animate-leave-active {
 	display:none;
 }
+
+/** welcome */
+
+#registrationSocialButtons{
+	margin-top:1em;
+	padding-top:1em;
+	border-top:1px dotted #aaa;
+}
+
+#loginSocialButtons{
+	margin-top:.2em;
+	padding-top:1em;
+	border-top:1px dotted #444;
+}

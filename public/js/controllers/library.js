@@ -1,9 +1,5 @@
 'use strict';
 function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library, Books) {
-    if($rootScope.user.loc.coordinates.length !== 2){
-        $scope.disable;
-    }
-
     var loadLibraryBooks = function() {
         $scope.loading = true;
         Library.read().success(function(data) {

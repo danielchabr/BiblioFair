@@ -18,6 +18,29 @@ angular.module('bibliofair').run(function($rootScope, $timeout, $modal, $locatio
 	$rootScope.books = [];
 	$rootScope.mybooks = [];
 
+	//// Sign in action
+    $rootScope.signIn = function(login, password) {
+        Users.signIn({
+            email: login,
+            password: Global.encrypt(password),
+            language: $rootScope.lang
+        }).success(function(data) {
+            //TODO could be done in a better way
+            if(data === "ok"){
+                $rootScope.authenticated = true;
+                Users.me().success(function(data) {
+                    $rootScope.user = data;
+                    $location.path("/home");
+                    //TODO put somewhere general $scope.changeLanguage(data.lang);
+                });
+            }
+        }).error(function(error) {
+            if(error.normalized === true){
+                $rootScope.login_message = error.errors[0].message;
+            }
+        });
+    };
+
 	$rootScope.signOut = function() {
 		Users.signOut().success(function() {
 			$rootScope.user = null;
