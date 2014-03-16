@@ -5,6 +5,11 @@ module.exports = {
 	facebook: {
 		clientID: '1481175278763417',
 		clientSecret: '63aa01bfcfbbe032d0ba21ba2db8fc2b',
-		callbackURL: 'http://localhost:8080/auth/facebook/callback'
+		callbackURL: 'http://localhost:8080/signin/facebook/callback'
+	},
+	google: {
+		clientID: '19373345252.apps.googleusercontent.com',
+		clientSecret: 'nY8AZuGMlZLe8JdDQM2CXTUf',
+		callbackURL: 'http://localhost:8080/signin/google/callback'
 	}
 };
