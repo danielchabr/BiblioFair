@@ -18,8 +18,14 @@ var UserSchema = new Schema({
         set: toLowerCase
     },
     name: String,
-    hashedPassword: String,
-    salt: String,
+    hashedPassword: {
+		type: String,
+		select: false
+	},
+    salt: {
+		type: String,
+		select: false
+	},
     token: {
         hash: String,
         last: Date
@@ -58,6 +64,14 @@ var UserSchema = new Schema({
         email: String
     }
 });
+
+/**
+ * Static methods.
+ */
+
+UserSchema.statics.findByUsername = function(username, done) {
+    this.findOne({username: username}, done);
+};
 
 /**
  * Validations.

@@ -51,7 +51,7 @@
 								</div>
 								<div class="row">
 									<div class="col-xs-12">
-										<button ng-click="login()" class="btn btn-success btn-sm" style="margin-bottom:0px; min-width:100px"><b>{{ 'WELCOME.SIGNIN' | translate }}</b></button>
+										<button ng-click="signIn(login_id, login_password)" class="btn btn-success btn-sm" style="margin-bottom:0px; min-width:100px"><b>{{ 'WELCOME.SIGNIN' | translate }}</b></button>
 									</div>
 								</div>
 								<div class="row">
@@ -61,6 +61,17 @@
 								</div>
 							</fieldset>
 						</form>
+						
+						<div id="loginSocialButtons">
+							<a class="btn btn-block btn-social btn-facebook btn-sm" href="/signin/facebook" target="_self">
+								<i class="fa fa-facebook"></i> Sign in with Facebook
+							</a>
+
+							<a class="btn btn-block btn-social btn-google-plus btn-sm" href="/signin/google" target="_self">
+								<i class="fa fa-google-plus"></i> Sign in with Google+
+							</a>
+						</div>
+						
 					</li>
 				</ul>
 			</li>
