@@ -6,7 +6,6 @@ var express = require('express'),
 
 // Set the node enviornment variable if not set before
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-console.log("environment:" + process.env.NODE_ENV);
 
 // Initialize system variables 
 var config = require('./config/config');
@@ -82,8 +81,8 @@ var ipaddr = process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_I
 
 exports = module.exports = app;
 try {
-    
     app.listen(port, ipaddr);
+		console.log("App listening on port " + port + ". Environment: " + process.env.NODE_ENV + ".");
 } catch (e) {
     console.log("App.listen error: ");
     console.log(e);

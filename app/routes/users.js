@@ -1,8 +1,7 @@
 'use strict';
 
 var users = require("../api/users"),
-		authorization = require('./middlewares/authorization.js'),
-		errors = require("../helpers/errors");
+				authorization = require('./middlewares/authorization.js');
 
 module.exports = function(app, passport) {
 
@@ -13,7 +12,8 @@ module.exports = function(app, passport) {
 	app.post("/signup", function(req, res) {
 		users.signup(req.body, function(err, data) {
 			if(err){
-				res.status(400).send(errors.normalize(err, req.body.language));
+				res.status(400);
+				next(err);
 			}
 			else{
 				res.send(data);
@@ -27,7 +27,8 @@ module.exports = function(app, passport) {
 				return next(err);
 			}
 			else if(!user){
-				return res.status(401).send(errors.normalize(new Error(info), req.body.language))
+				res.status(401);
+				next(info);
 			}
 			else{
 				req.logIn(user, function(err) {
@@ -48,7 +49,8 @@ module.exports = function(app, passport) {
 	app.get("/verify/:token", function(req, res) {
 		users.verify(req.params.token, function(err, data) {
 			if(err){
-				res.status(404).send(err);
+				res.status(404);
+				next(err);
 			}
 			else{
 				res.redirect('/');
@@ -59,7 +61,8 @@ module.exports = function(app, passport) {
 	app.get("/recover/:email", function(req, res) {
 		users.recover(req.params.email, function(err, data) {
 			if(err){
-				res.status(404).send(err);
+				res.status(404);
+				next(err);
 			}
 			else{
 				res.send(data);
@@ -78,7 +81,7 @@ module.exports = function(app, passport) {
 	app.put("/api/users/location", authorization.login, function(req, res) {
 		users.updateLocation(req.user._id, req.body.coordinates, function(err, data) {
 			if(err){
-				res.status(500).send(err);
+				next(err);
 			}
 			else{
 				res.send(data);
@@ -89,7 +92,7 @@ module.exports = function(app, passport) {
 	app.put("/api/users/password", authorization.login, function(req, res) {
 		users.updatePassword(req.user._id, req.body.password, function(err, data) {
 			if(err){
-				res.status(500).send(err);
+				next(err);
 			}
 			else{
 				res.send(data);
@@ -100,7 +103,7 @@ module.exports = function(app, passport) {
 	app.put("/api/users/language", authorization.login, function(req, res) {
 		users.updateLanguage(req.user._id, req.body.language, function(err, data) {
 			if(err){
-				res.status(500).send(err);
+				next(err);
 			}
 			else{
 				res.send(data);
@@ -112,7 +115,7 @@ module.exports = function(app, passport) {
 	app.get("/api/users/count", function(req, res) {
 		users.count(function(err, data) {
 			if(err){
-				res.status(500).send(err);
+				next(err);
 			}
 			else{
 				res.send(data.toString());
@@ -123,7 +126,8 @@ module.exports = function(app, passport) {
 	app.get("/api/users/:id", function(req, res) {
 		users.getById(req.params.id, function(err, data) {
 			if(err){
-				res.status(404).send(err);
+				res.status(404);
+				next(err);
 			}
 			else{
 				res.send(data);
@@ -134,7 +138,8 @@ module.exports = function(app, passport) {
 	app.get("/api/users/username/:username", function(req, res) {
 		users.getByUsername(req.params.username, function(err, data) {
 			if(err){
-				res.status(404).send(err);
+				res.status(404);
+				next(err);
 			}
 			else{
 				res.send(data);
@@ -145,7 +150,8 @@ module.exports = function(app, passport) {
 	app.get("/api/users/email/:email", function(req, res) {
 		users.getById(req.params.email, function(err, data) {
 			if(err){
-				res.status(404).send(err);
+				res.status(404);
+				next(err);
 			}
 			else{
 				res.send(data);
@@ -167,6 +173,10 @@ module.exports = function(app, passport) {
 
 	app.get('/signin/facebook/callback', function(req, res, next) {
 		passport.authenticate('facebook', function(err, user) {
+			if(err){
+				return next(err);
+			}
+
 			req.logIn(user, function(err) {
 				if(err){
 					return next(err);
@@ -189,6 +199,10 @@ module.exports = function(app, passport) {
 
 	app.get('/signin/google/callback', function(req, res, next) {
 		passport.authenticate('google', function(err, user) {
+			if(err){
+				return next(err);
+			}
+			
 			req.logIn(user, function(err) {
 				if(err){
 					return next(err);

@@ -5,9 +5,11 @@
  */
 
 var express = require('express'),
-		consolidate = require('consolidate'),
-		fs = require('fs'),
-		config = require('./config');
+				fs = require('fs'),
+				config = require('./config'),
+				consolidate = require('consolidate'),
+				errors = require("../app/helpers/errors"),
+				localization = require("../app/helpers/localization");
 
 module.exports = function(app, passport) {
 	// place before express.static to make sure all assets and data are compressed
@@ -48,11 +50,26 @@ module.exports = function(app, passport) {
 				app.use('/' + file, express.static(filePath));
 			}
 		});
-		
+
 		//favicon
 		app.use(express.favicon(publicPath + '/img/facicon.ico'));
 
+		//get && set language methods
+		app.use(function(req, res, next) {
+			req.getLanguage = localization.getLanguage;
+			res.setLanguage = localization.setLanguage;
+			next();
+		});
+
 		// routes should be at the last
 		app.use(app.router);
+
+		//error handling
+		app.use(function(err, req, res, next) {
+			if(res.statusCode < 300){
+				res.status(500);
+			}
+			res.send(errors.normalize(err, 'en'));
+		});
 	});
 };

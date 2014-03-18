@@ -1,132 +1,129 @@
 'use strict';
 
-/**
- * Angular module dependencies.
- */
+angular.module('bibliofair', ['ui.bootstrap', 'pascalprecht.translate', 'ngCookies']);
+angular.module('bibliofair').run(['$rootScope', '$translate', '$timeout', '$modal', '$location', 'Global', 'Users',
+	function($rootScope, $translate, $timeout, $modal, $location, Global, Users) {
+		//user
+		$rootScope.user = Global.user();
+		$rootScope.authenticated = Global.authenticated();
+		//books
+		$rootScope.books = [];
+		$rootScope.mybooks = [];
+		//language
+		$rootScope.lang = Global.language();
+		$translate.uses($rootScope.lang);
 
-angular.module('bibliofair', ['ui.bootstrap', 'pascalprecht.translate']);
+		/**
+		 * Sign the user in (locally).
+		 * 
+		 * @param {string} login
+		 * @param {string} password
+		 * @returns {undefined}
+		 */
 
-/**
- * Run.
- */
-
-angular.module('bibliofair').run(function($rootScope, $timeout, $modal, $location, $translate, Global, Users) {
-	//user
-	$rootScope.user = Global.user();
-	$rootScope.authenticated = Global.authenticated();
-	//books
-	$rootScope.books = [];
-	$rootScope.mybooks = [];
-
-	//// Sign in action
-    $rootScope.signIn = function(login, password) {
-        Users.signIn({
-            email: login,
-            password: Global.encrypt(password),
-            language: $rootScope.lang
-        }).success(function(data) {
-            //TODO could be done in a better way
-            if(data === "ok"){
-                $rootScope.authenticated = true;
-                Users.me().success(function(data) {
-                    $rootScope.user = data;
-                    $location.path("/home");
-                    //TODO put somewhere general $scope.changeLanguage(data.lang);
-                });
-            }
-        }).error(function(error) {
-            if(error.normalized === true){
-                $rootScope.login_message = error.errors[0].message;
-            }
-        });
-    };
-
-	$rootScope.signOut = function() {
-		Users.signOut().success(function() {
-			$rootScope.user = null;
-			$rootScope.authenticated = false;
-			$location.path('/');
-		});
-	};
-	$rootScope.collapse = function() {
-		$rootScope.isCollapsed = $('.navbar-toggle').css("display") === 'none';
-	};
-	window.onresize = function() {
-		$rootScope.collapse();
-		$rootScope.$apply();
-	};
-	$rootScope.changeLanguage = function(langKey) {
-		if(langKey === 'en' || langKey === 'cz'){
-			$translate.uses(langKey);
-			$rootScope.lang = langKey;
-			if($rootScope.authenticated){
-				Users.updateLanguage(langKey).success(function(data) {
-					if(langKey === 'en' && ($location.path().slice(1, 3) === 'cz' || $location.absUrl().slice(-3, -1) === 'cz'))
-						window.location = '../';
-					else if(langKey === 'cz' && ($location.path().slice(1, 3) === 'en' || $location.absUrl().slice(-3, -1) === 'en'))
-						window.location = '../';
-				});
-			}
-		}
-	};
-
-	//// Notification modal window can be called from any controller
-	$rootScope.notify = function(message) {
-		var modalInstance = $modal.open({
-			templateUrl: '/partials/notification.html',
-			controller: ModalNotificationCtrl,
-			resolve: {
-				message: function() {
-					return message;
+		$rootScope.signIn = function(login, password) {
+			Users.signIn({
+				email: login,
+				password: Global.encrypt(password)
+			}).success(function(user) {
+				$rootScope.authenticated = true;
+				$rootScope.user = user;
+				//language
+				$rootScope.lang = Global.language($rootScope.user.lang);
+				//redirect
+				$location.path('/home');
+			}).error(function(error) {
+				if(error.normalized === true){
+					$rootScope.login_message = error.errors[0].message;
 				}
+			});
+		};
+
+		/**
+		 * Sign the user out.
+		 * 
+		 * @returns {undefined}
+		 */
+
+		$rootScope.signOut = function() {
+			Users.signOut().success(function() {
+				$rootScope.user = null;
+				$rootScope.authenticated = false;
+				$location.path('/');
+			});
+		};
+
+		/**
+		 * Return "active" if given path is currently active (used for links classes in menu).
+		 * 
+		 * @param {string} path
+		 * @returns {String}
+		 */
+
+		$rootScope.isActive = function(path) {
+			return $location.path().substr(0, path.length) === path ? "active" : "";
+		};
+
+		/**
+		 * Change language.
+		 * 
+		 * @param {string} lang
+		 * @returns {undefined}
+		 */
+
+		$rootScope.changeLanguage = function(lang) {
+			$rootScope.lang = Global.language(lang);
+			if($rootScope.authenticated){
+				Users.updateLanguage($rootScope.lang);
 			}
-		});
-		modalInstance.result.then(function() {
-		}, function() {
-		});
-	};
+		};
 
-	//Is menu active?
-	$rootScope.isActive = function(path) {
-		return $location.path().substr(0, path.length) === path ? "active" : "";
-	};
+		/**
+		 * Open notification window.
+		 * 
+		 * @param {type} message
+		 * @returns {undefined}
+		 */
 
-	//// Send GA code each 10 secs
-	var GANotifier = function(elapsed) {
-		$timeout(function() {
-			elapsed += 10;
-			ga('send', 'event', 'time_elapsed', 'time_spent', 'Time elapsed', elapsed);
-			GANotifier(elapsed);
-		}, 10000);
-	};
-	GANotifier(0);
+		$rootScope.notify = function(message) {
+			var modalInstance = $modal.open({
+				templateUrl: '/partials/notification.html',
+				controller: ModalNotificationCtrl,
+				resolve: {
+					message: function() {
+						return message;
+					}
+				}
+			});
+			modalInstance.result.then(function() {
+			}, function() {
+			});
+		};
 
+		/**
+		 * Send GA code every 10 seconds.
+		 * 
+		 * @param {time elapsed} elapsed
+		 * @returns {undefined}
+		 */
 
-	if($rootScope.authenticated){
-		if($location.path() !== '/library' && $location.path() !== '/account' && $location.path() !== '/home'){
-			$location.path('/home');
-		}
-		$rootScope.changeLanguage($rootScope.user.language);
-	}
-	else{
-		if($location.path().slice(1, 3) === 'en' || $location.absUrl().slice(-3, -1) === 'en'){
-			$rootScope.changeLanguage('en');
-		} else if($location.path().slice(1, 3) === 'cz' || $location.absUrl().slice(-3, -1) === 'cz'){
-			$rootScope.changeLanguage('cz');
-		}
+		var GANotifier = function(elapsed) {
+			$timeout(function() {
+				elapsed += 10;
+				ga('send', 'event', 'time_elapsed', 'time_spent', 'Time elapsed', elapsed);
+				GANotifier(elapsed);
+			}, 10000);
+		};
+		GANotifier(0);
 
-		/*TODO
-		 * else if(data.lang){
-		 $rootScope.changeLanguage(data.lang);
-		 }*/
+		/** TODO sort out */
 
-		if($location.path() !== '/en' && $location.path() !== '/cz'){
-			//TODO remove
-			$rootScope.lang = 'cz';
-			$location.path('/');
-			$location.replace();
-		}
-	}
-});
+		$rootScope.collapse = function() {
+			$rootScope.isCollapsed = $('.navbar-toggle').css("display") === 'none';
+		};
+		window.onresize = function() {
+			$rootScope.collapse();
+			$rootScope.$apply();
+		};
 
-
+	}]);

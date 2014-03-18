@@ -1,5 +1,5 @@
 module.exports = {
-	cz: {
+	cs: {
 		verification: {
 			subject: 'Vítejte na BiblioFair',
 			body: 'Dobrý den {username}!\n\n' +
@@ -44,7 +44,7 @@ module.exports = {
 			email: {
 				invalid: "Neplatná e-mailová adresa.",
 				required: "E-mail je povinný.",
-				exists: "Tato e-mailová adresa je již regostravaná."
+				exists: "Tato e-mailová adresa je již registrovaná."
 			},
 			password: {
 				required: "Zvolte si prosím heslo.",
@@ -52,7 +52,9 @@ module.exports = {
 				incorrect: "Špatné heslo."
 			},
 			user: {
-				notFound: "Uživatel nenalezen."
+				notFound: "Uživatel nenalezen.",
+				notVerified: "Vaš e-mail nebyl potvrzen.",
+				notLocated: "Nastavte prosím svou polohu."
 			},
 			book: {
 				notFound: 'Kniha nenalezena.'
@@ -119,7 +121,9 @@ module.exports = {
 				incorrect: "Incorrect password."
 			},
 			user: {
-				notFound: "User not found."
+				notFound: "User not found.",
+				notVerified: "Your e-mail address has not been verified.",
+				notLocated: "You have not set your location yet."
 			},
 			book: {
 				notFound: 'Book not found.'

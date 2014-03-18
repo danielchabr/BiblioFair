@@ -13,5 +13,6 @@ module.exports = {
 			server: 'bibliofair.com'
 		},
 		reportBookEmail: 'Tadeas Petak <tadeaspetak@gmail.com>'
-	}
+	},
+	languages: ['en', 'cs']
 };

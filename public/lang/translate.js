@@ -155,7 +155,7 @@ var translateEN = {
 	}
 };
 
-var translateCZ = {
+var translateCS = {
 	'TITLE': 'BiblioFair | Prodávejte, půjčujte a směňujte knihy snadněji',
 	'DESCRIPTION': 'Přidejte své knihy do virtuální knihovny a dostávejte žádosti o prodej, půjčení nebo darování. Jen Vy volíte, jak vyšlete knihy dále do světa',
 	'NAV': { 

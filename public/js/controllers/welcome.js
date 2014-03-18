@@ -74,8 +74,11 @@ function welcomeControl($rootScope, $scope, $http, $location, Books, Users, Glob
 
     //book count
     Books.count().success(function(data) {
+			console.log(data);
         $scope.books_available = data;
-    });
+    }).error(function(error){
+			console.log(error);
+		});
 
     //initial books to show
     Books.get({limit: 6}).success(function(data) {

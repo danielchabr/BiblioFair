@@ -1,14 +1,14 @@
 var config = require('../../config/config'),
-		mongoose = require("mongoose"),
-		//
-		Book = mongoose.model("BookModel"),
-		User = mongoose.model("UserModel"),
-		http = require('http'),
-		//emails
-		Mailgun = require('mailgun').Mailgun,
-		mg = new Mailgun(config.messages.mailgun.key),
-		messages = require('../helpers/messages'),
-		_ = require('lodash');
+				mongoose = require("mongoose"),
+				//
+				Book = mongoose.model("BookModel"),
+				User = mongoose.model("UserModel"),
+				http = require('http'),
+				//emails
+				Mailgun = require('mailgun').Mailgun,
+				mg = new Mailgun(config.messages.mailgun.key),
+				messages = require('../helpers/messages'),
+				_ = require('lodash');
 
 var regex = function(s) {
 	return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
@@ -94,6 +94,7 @@ exports.search = function(isbn, done) {
 			done(null, JSON.parse(data));
 		});
 		response.on('error', function(e) {
+			done(e, 'error');
 			console.log(e);
 		});
 	});
@@ -106,30 +107,24 @@ exports.search = function(isbn, done) {
 exports.report = function(user, book, done) {
 	User.findById(user, function(err, user) {
 		if(err || !user){
-			return done(err || ("user.notFound"));
+			return done(err || "user.notFound");
 		}
 		else{
 			Book.findById(book, function(err, book) {
 				if(err || !book){
-					return done(err || ("book.notFound"));
+					return done(err || "book.notFound");
 				}
 				else{
 					mg.sendText('Book report <report@bibliofair.com>',
-							config.messages.reportBookEmail,
-							messages['en'].report.subject,
-							messages['en'].report.body.replace(/\{username\}/g, user.username)
-							.replace(/\{book.title\}/, book.title)
-							.replace(/\{book.author\}/, book.author),
-							config.messages.mailgun.server,
-							function(err) {
-								if(err){
-									console.log('Oh noes: ' + err);
-								}
-								else{
-									console.log('Message sent to: ' + user.email);
-								}
-								done(err, 'ok');
-							});
+									config.messages.reportBookEmail,
+									messages['en'].report.subject,
+									messages['en'].report.body.replace(/\{username\}/g, user.username)
+									.replace(/\{book.title\}/, book.title)
+									.replace(/\{book.author\}/, book.author),
+									config.messages.mailgun.server,
+									function(err) {
+										done(err, 'ok');
+									});
 				}
 			});
 		}
@@ -143,33 +138,30 @@ exports.report = function(user, book, done) {
 exports.request = function(from, to, book, language, done) {
 	User.findByUsername(from, function(err, from) {
 		if(err || !from){
-			return done(err || ("user.notFound"));
+			return done(err || "user.notFound");
 		}
 		User.findByUsername(to, function(err, to) {
 			if(err || !to){
-				return done(err || ("user.notFound"));
+				return done(err || "user.notFound");
 			}
 			Book.findById(book, function(err, book) {
 				if(err || !book){
-					return done(err || ("book.notFound"));
+					return done(err || "book.notFound");
 				}
 
 				mg.sendText(from.username + ' <' + from.username + '@bibliofair.com>',
-						to.username + ' <' + to.email + '>',
-						messages[language].request.subject,
-						(messages[language].request.body + messages[language].emailExplanation).replace(/\{from\}/g, from.username)
-							.replace(/\{to\}/g, to.username)
-							.replace(/\{book.title\}/g, book.title)
-							.replace(/\{book.author\}/g, book.author)
-							.replace(/\{book.author\}/g, book.author)
-							.replace(/\{recipient\}/g, to.username + "@bibliofair.com"),
-						config.messages.mailgun.server, {},
-						function(err) {
-							if(err)
-								console.log('!!!!!!!!!!!!!!!!!!!Oh noes: ' + err);
-							else
-								console.log('Message sent to ' + to.email);
-						});
+								to.username + ' <' + to.email + '>',
+								messages[language].request.subject,
+								(messages[language].request.body + messages[language].emailExplanation).replace(/\{from\}/g, from.username)
+								.replace(/\{to\}/g, to.username)
+								.replace(/\{book.title\}/g, book.title)
+								.replace(/\{book.author\}/g, book.author)
+								.replace(/\{book.author\}/g, book.author)
+								.replace(/\{recipient\}/g, to.username + "@bibliofair.com"),
+								config.messages.mailgun.server,
+								function(err) {
+									done(err, 'ok');
+								});
 			});
 		});
 	});
