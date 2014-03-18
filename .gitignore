@@ -1,4 +1,5 @@
 node_modules
+public/lib
 Makefile
 archive
 todo
