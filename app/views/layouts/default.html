@@ -2,9 +2,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ng="http://angularjs.org" id="ng-app" lang="en">
     {% include '../includes/head.html' %}
     <body>
+		<!-- errors -->
+		{% if errors.length || infos.length %}
+		<div id="flashes">
+			{% for error in errors %}
+			<div class="alert alert-danger alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{% if error.normalized %}
+					{{error.message}}
+				{% else %}
+					{{error}}
+				{% endif %}
+			</div>
+			{% endfor %}
+			
+			{% for info in infos %}
+			<div class="alert alert-info alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				{{info.message}}
+			</div>
+			{% endfor %}
+			
+		</div>
+		{% endif %}
+
 		<!-- include menu in all the sites -->
 		<nav class="navbar navbar-default navbar-fixed-top" ng-include="'partials/menu.html'" role="navigation"></nav>
-		
+
         <!-- Content -->
         {% block content %}{% endblock %}
         <!-- Content End -->
@@ -13,7 +37,9 @@
         {% include '../includes/addThis.html' %}
         <!-- UserVoice -->
         {% include '../includes/userVoice.html' %}
-
+		
+		<!-- include info in all the sites -->
+		<div class="info" ng-include="'partials/info.html'"></div>
 
         {% include '../includes/foot.html' %}
     </body>

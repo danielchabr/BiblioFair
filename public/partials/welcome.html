@@ -107,27 +107,27 @@
 
 <!--    WELCOME TEXT    -->
 <div class="container" style="padding-top:90px;padding-bottom:30px;" id="top">
-	<div class="row" ng-init="bubble=true">
+	<div class="row" ng-init="bubble = true">
 		<!-- Contents -->
-		<div class="bubble" ng-animate=" 'bubble' " ng-if="books_available"><h5>{{ books_available + " " + ('WELCOME.BOOKS_AVAILABLE' | translate) }}</h5></div>
+		<div class="bubble" ng-animate=" 'bubble' " ng-if="books_available"><h5>{{ books_available + " " + ('WELCOME.BOOKS_AVAILABLE' | translate)}}</h5></div>
 		<div class="col-xs-12 text-center heading-main">
-			<h1 style="color:black; margin-bottom:30px" class="">{{ 'WELCOME.HEADING' | translate }}</h1>
+			<h1 style="color:black; margin-bottom:30px" class="">{{'WELCOME.HEADING'|translate}}</h1>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 			<div class="well" id="welcome_text" style="">
 				<p style="font-size:18px;padding-top:5px;">
-				{{ 'WELCOME.TEXT1' | translate }}
+					{{'WELCOME.TEXT1'|translate}}
 				</p>
 				<br>
 				<p style="font-size:18px;margin-bottom:0px;">
-				{{ 'WELCOME.TEXT2' | translate }}
+					{{'WELCOME.TEXT2'|translate}}
 				</p>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12 text-center">
-			<a ng-href="" class="go_to_bottom"><button type="button text-center col-sm-8" class="btn btn-lg btn-success"><span class="hidden-xs">{{  'WELCOME.REGISTER_ACTION' | translate  }}</span><span class="visible-xs">{{  'WELCOME.REGISTER_ACTION_SMALL' | translate  }}</span></button></a>
+			<a ng-href="" class="go_to_bottom"><button type="button" class="btn btn-lg btn-success text-center"><span class="hidden-xs">{{'WELCOME.REGISTER_ACTION'|translate}}</span><span class="visible-xs">{{'WELCOME.REGISTER_ACTION_SMALL'| translate}}</span></button></a>
 		</div>
 	</div>
 </div>
@@ -137,22 +137,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-xs-12">
-				<h2 class="text-center" style="margin-bottom:30px;">{{  'NAV.SEARCH.HEADING' | translate  }}</h2>
+				<h2 class="text-center" style="margin-bottom:30px;">{{'NAV.SEARCH.HEADING'|translate}}</h2>
 				<form class="row" action="" role="search">
 					<div class="form-group col-xs-12 col-sm-8 col-sm-offset-2">
 						<label class="sr-only" for="search-box">Search box</label>
-						<input type="text" ng-model="search_query" ng-change="retrieveBooks()" class="form-control" placeholder="{{ 'NAV.SEARCH.PLACEHOLDER' | translate }}">
+						<input type="text" ng-model="search_query" ng-change="retrieveBooks()" class="form-control" placeholder="{{'NAV.SEARCH.PLACEHOLDER'|translate}}">
 					</div>
 				</form>
 				<ul class="bookview row">
-					<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in filteredBooks = (books | filter:search_query | orderBy:bookOrder | limitTo:6)" ng-animate=" 'animate' " ng-class="{book: ($index==4 || $index==5)}">
-					<div class="well" style="cursor:default" popover-placement="top" popover="{{ 'WELCOME.REGISTRATION_REQUIRED' | translate }}">
-							<h4>{{book.title | shorten:41}}</h4>
-							<i style="position:absolute;bottom:20px">{{book.author | shorten:25}}</i>
+					<li class="col-lg-4 col-sm-6 col-xs-12" ng-repeat="book in filteredBooks = (books| filter:search_query | orderBy:bookOrder | limitTo:6)" ng-animate=" 'animate' " ng-class="{book: ($index == 4 || $index == 5)}">
+						<div class="well" style="cursor:default" popover-placement="top" popover="{{'WELCOME.REGISTRATION_REQUIRED'|translate}}">
+							<h4>{{book.title| shorten:41}}</h4>
+							<i style="position:absolute;bottom:20px">{{book.author| shorten:25}}</i>
 						</div>
 					</li>
-					<div ng-if="filteredBooks.length==0" class="text-center" style="padding:15px">
-						<p>{{ 'NAV.SEARCH.NOT_FOUND' | translate }}</p>
+					<div ng-if="filteredBooks.length == 0" class="text-center" style="padding:15px">
+						<p>{{'NAV.SEARCH.NOT_FOUND'|translate}}</p>
 					</div>
 				</ul>
 			</div>
@@ -160,7 +160,7 @@
 		<br>
 		<div class="row">
 			<div class="col-xs-12 text-center">
-				<a ng-href="" class="go_to_bottom"><button type="button text-center col-sm-8" class="btn btn-lg btn-success"><span class="hidden-xs">{{  'WELCOME.REGISTER_ACTION' | translate  }}</span><span class="visible-xs">{{  'WELCOME.REGISTER_ACTION_SMALL' | translate  }}</span></button></a>
+				<a ng-href="" class="go_to_bottom"><button type="button text-center col-sm-8" class="btn btn-lg btn-success"><span class="hidden-xs">{{'WELCOME.REGISTER_ACTION'|translate}}</span><span class="visible-xs">{{'WELCOME.REGISTER_ACTION_SMALL'|translate }}</span></button></a>
 			</div>
 		</div>
 	</div>
@@ -170,14 +170,14 @@
 <div class="content_row_white">
 	<div class="container" style="">
 		<div class="col-xs-12 text-center heading-main">
-			<h2 style="color:black; margin-bottom:10px" class="">{{ 'WELCOME.PROCESS.HEADING' | translate }}</h2>
+			<h2 style="color:black; margin-bottom:10px" class="">{{'WELCOME.PROCESS.HEADING'|translate}}</h2>
 		</div>
 		<div class="row" style="margin-bottom:20px;color:black">
 			<div class="col-xs-6 text-center">
-				<h3 class="text-center">{{ 'WELCOME.PROCESS.READER' | translate }}</h3>
+				<h3 class="text-center">{{'WELCOME.PROCESS.READER'|translate}}</h3>
 			</div>
 			<div class="col-xs-6 text-center">
-				<h3 class="text-center">{{ 'WELCOME.PROCESS.OWNER' | translate }}</h3>
+				<h3 class="text-center">{{'WELCOME.PROCESS.OWNER'|translate}}</h3>
 			</div>
 		</div>
 		<div class="row">
@@ -185,9 +185,9 @@
 			</div>
 			<div class="col-xs-6 col-sm-4 text-center">
 				<div class="well well-alt">
-					<h4>1. {{ 'WELCOME.PROCESS.CHOOSE' | translate }}</h4>
+					<h4>1. {{'WELCOME.PROCESS.CHOOSE'|translate}}</h4>
 				</div>
-                <i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
+				<i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
 			</div>
 			<div class="col-sm-1">
 			</div>
@@ -195,9 +195,9 @@
 			</div>
 			<div class="col-xs-6 col-sm-4 text-center">
 				<div class="well well-alt">
-					<h4>1. {{ 'WELCOME.PROCESS.ADD_BOOKS' | translate }}</h4>
+					<h4>1. {{'WELCOME.PROCESS.ADD_BOOKS'|translate}}</h4>
 				</div>
-                <i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
+				<i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
 			</div>
 		</div>
 		<div class="row">
@@ -205,9 +205,9 @@
 			</div>
 			<div class="col-xs-6 col-sm-4 text-center">
 				<div class="well well-alt">
-					<h4>2. {{ 'WELCOME.PROCESS.SEND' | translate }}</h4>
+					<h4>2. {{'WELCOME.PROCESS.SEND'|translate}}</h4>
 				</div>
-                <i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
+				<i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
 			</div>
 			<div class="col-sm-1">
 			</div>
@@ -215,9 +215,9 @@
 			</div>
 			<div class="col-xs-6 col-sm-4 text-center">
 				<div class="well well-alt">
-					<h4>2. {{ 'WELCOME.PROCESS.RECIEVE' | translate }}</h4>
+					<h4>2. {{'WELCOME.PROCESS.RECIEVE'|translate}}</h4>
 				</div>
-                <i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
+				<i class="fa fa-4x fa-arrow-circle-down" style="margin-bottom:20px"></i>
 			</div>
 		</div>
 		<div class="row">
@@ -225,61 +225,77 @@
 			</div>
 			<div class="col-xs-10 col-sm-8 text-center">
 				<div class="well well-alt">
-					<h4>3. {{ 'WELCOME.PROCESS.MEET' | translate }}</h4>
+					<h4>3. {{'WELCOME.PROCESS.MEET'|translate}}</h4>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!--   REGISTRATION FORM    -->
-<div class="content_row" style="padding-top:40px;padding-bottom:100px">
+<!-- sign up form -->
+<div class="row" id="signup">
 	<div class="container">
 		<div class="row">
-			<h2 class="text-center">{{  'WELCOME.HEADING2' | translate  }}</h2>
+			<h2 class="text-center">{{'WELCOME.HEADING2'|translate}}</h2>
 			<div class="col-md-4 col-md-offset-4 col-xs-12 col-sm-6 col-sm-offset-3">
-				<div class="" id="signup" style="padding-top:18px">
-					<form>
-						<fieldset>
-							<legend style="border:0px;margin-bottom:10px;">{{ 'WELCOME.REGISTER_TEXT' | translate }}</legend> 
-							<div class="form-group input-prepend" id="div_signup_username">
-								<label class="sr-only" for="signup_username">{{ 'WELCOME.USERNAME' | translate }}</label>
-								<input type="text" id="username" ng-model="signup_username" class="form-control" placeholder="{{ 'WELCOME.USERNAME' | translate }}" required>
-							</div>
-							<div class="form-group" id="div_signup_email">
-								<label class="sr-only" for="signup_email">{{ 'WELCOME.EMAIL' | translate }}</label>
-								<input type="email" id="email" ng-model="signup_email" class="form-control" placeholder="{{ 'WELCOME.EMAIL' | translate }}" required>
-							</div>
-							<div class="form-group" id="div_signup_password">
-								<label class="sr-only" for="signup_password">{{ 'WELCOME.PASSWORD' | translate }}</label>
-								<input type="password" ng-model="signup_password" class="form-control" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
-							</div>
-							<div class="row">
-								<div class="col-xs-5">
-									<button ng-click="signup()" id="signup_button" class="btn btn-success" style="margin-bottom:0px; min-width:100px"><b>{{ 'WELCOME.JOIN' | translate }}</b></button>
-								</div>
-								<div class="col-xs-7">
-									<p class="help-block text-danger">{{signup_message}}</p>
-								</div>
-							</div>
-						</fieldset>
-					</form>
-					
-					<!-- social buttons -->
-					<div id="registrationSocialButtons">
-						<a class="btn btn-block btn-social btn-facebook" href="/signin/facebook" target="_self">
-							<i class="fa fa-facebook"></i> Sign in with Facebook
-						</a>
+				<form id="signupForm" name="signupForm" novalidate>
+					<fieldset>
+						<legend>{{'WELCOME.REGISTER_TEXT'|translate}}</legend>
 
-						<a class="btn btn-block btn-social btn-google-plus" href="/signin/google" target="_self">
-							<i class="fa fa-google-plus"></i> Sign in with Google+
-						</a>
-					</div>
-					
+						<!-- inputs -->
+						<div class="form-group" ng-class="{'has-error': signupForm.email.$invalid, 'has-success': !signupForm.email.$invalid}">
+							<label class="sr-only" for="signupEmail">{{'WELCOME.EMAIL'|translate}}</label>
+							<input type="email" name="email" id="signupEmail" ng-model="signup.email" class="form-control" placeholder="{{'WELCOME.EMAIL'|translate}}" ng-change="signupForm.username.$pristine || !signup.username.length ? usernameFromEmail() : ''" required unique-email />
+							<div ng-show="signupForm.email.$dirty && signupForm.email.$error">
+								<span ng-show="signupForm.email.$error.required" class="help-block">{{'errors.email.required'|translate}}</span>
+								<span ng-show="signupForm.email.$error.email" class="help-block">{{'errors.email.invalid'|translate}}</span>
+								<span ng-show="signupForm.email.$error.exists" class="help-block">{{'errors.email.exists'|translate}}</span>
+							</div>
+						</div>
+						<div class="form-group" ng-class="{'has-error': signupForm.username.$invalid, 'has-success': !signupForm.username.$invalid}">
+							<label class="sr-only" for="signupUsername">{{'WELCOME.USERNAME'|translate }}</label>
+							<input id="signupUsername" name="username" type="text" ng-model="signup.username" class="form-control" placeholder="{{'WELCOME.USERNAME'|translate}}" required unique-username />
+
+							<span ng-show="signupForm.username.$pristine && signup.username.length && !signupForm.username.$invalid" class="help-block">{{'WELCOME.USERNAME_SUGGESTED'|translate}}</span>
+							<span ng-show="signupForm.username.$dirty && signupForm.username.$error.required" class="help-block">{{'errors.username.required'|translate}}</span>
+							<span ng-show="signupForm.username.$error.exists" class="help-block">{{'errors.username.exists'|translate}}</span>
+						</div>
+						<div class="form-group">
+							<label class="sr-only" for="signupPassword">{{'WELCOME.PASSWORD'|translate}}</label>
+							<input id="signupPassword" name="password" type="password" ng-model="signup.password" class="form-control" placeholder="{{'WELCOME.PASSWORD'|translate}}" required ng-minlength="6">
+							<div ng-show="signupForm.password.$dirty && signupForm.password.$error">
+								<span ng-show="signupForm.password.$error.required" class="help-block">{{'errors.password.required'|translate}}</span>
+								<span ng-show="signupForm.password.$error.minlength" class="help-block">{{'errors.password.short'|translate}}</span>
+							</div>
+						</div>
+
+						<!-- button -->
+						<button ng-click="signUp()" ng-disabled="signupForm.$invalid" id="signupButton" class="btn btn-success btn-block"><b>{{'WELCOME.JOIN'|translate}}</b></button>
+
+						<!-- errros -->
+						<p class="help-block text-danger" ng-if="signupMessage">{{signupMessage}}</p>
+
+						<div class="row">
+							<div class="col-xs-5">
+							</div>
+							<div class="col-xs-7">
+							</div>
+						</div>
+					</fieldset>
+				</form>
+
+				<!-- social buttons -->
+				<div id="signupSocial">
+					<a class="btn btn-block btn-social btn-facebook" href="/signin/facebook" target="_self">
+						<i class="fa fa-facebook"></i> Sign in with Facebook
+					</a>
+
+					<a class="btn btn-block btn-social btn-google-plus" href="/signin/google" target="_self">
+						<i class="fa fa-google-plus"></i> Sign in with Google+
+					</a>
 				</div>
+
 			</div>
 		</div>
 	</div>
-</div>
-<div class="row info" info="welcome">
 </div>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="HeaderController">
 	<div class="navbar-header">
 		<!-- show menu (responsive button) -->
 		<button type="button" class="navbar-toggle" ng-init="collapse()" ng-click="isCollapsed = !isCollapsed">
@@ -8,11 +8,11 @@
 		</button>
 
 		<!-- logo -->
-		<a class="navbar-brand logo" ng-href="/" style="padding:12px 15px">
-			<svg width="34" height="24" style="margin-top:2px; margin-bottom:-2px">
-			<image xlink:href="img/logo.svg" src="img/logo.png" width="34" height="24" style="margin-top:2px; margin-bottom:-2px; vertical-align:baseline;" />
+		<a class="navbar-brand" id="logo" ng-href="/">
+			<svg width="34" height="24">
+				<image xlink:href="img/logo.svg" src="img/logo.png" width="34" height="24" />
 			</svg>
-			<span style="margin-left:-7px">BiblioFair</span>
+			<span>BiblioFair</span>
 		</a>
 	</div>
 
@@ -29,39 +29,33 @@
 	<!-- user NOT authenticated -->
 	<div class="navbar-collapse navbar-responsive-collapse navbar-right" ng-show="isCollapsed && !authenticated">
 		<ul class="nav navbar-nav">
-			<li class="dropdown" style="cursor:pointer" id="login_all">
-				<a class="dropdown-toggle" id="login_opener">
-					<i class="fa fa-sign-in fa-lg"></i> 
-					{{ 'WELCOME.SIGNIN_TEXT' | translate }}
+			<li>
+				<a id="signinTrigger" ng-click="toggleSignin()">
+					<span class="glyphicon glyphicon-log-in"></span>
+					{{ 'WELCOME.SIGNIN_TEXT'|translate }}
 				</a>
-				<ul class="dropdown-menu" style="color: black" id="login">
-					<li style="padding:10px 15px;">
-						<form style="width:170px">
-							<fieldset>
-								<div class="form-group" id="div_login_id">
-									<label class="sr-only ie-show" for="login_id">{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}</label>
-									<input type="text" id="login_id" ng-model="login_id"  class="form-control input-sm" placeholder="{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}" required autofocus>
+				<ul id="signin" class="dropdown-menu"><li>
+						<form name="signinForm" novalidate>
+							<div class="form-group">
+								<label class="sr-only" for="signinLogin">{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}</label>
+								<input type="text" id="signinLogin" ng-model="signin.login"  class="form-control input-sm" placeholder="{{ 'WELCOME.EMAIL_OR_USERNAME' | translate }}" required>
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="signinPassword">{{ 'WELCOME.PASSWORD' | translate }}</label>
+								<input type="password" id="signinPassword" ng-model="signin.password" class="form-control input-sm" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
+								<div class="col-xs-12 text-right" style="color:#888888">	
+									<i class="fa fa-question-circle fa-lg" ng-click="recoverPassword()" style="position:absolute;top:-21px; right:12px; cursor:pointer"></i> 
 								</div>
-								<div class="form-group" id="div_login_password">
-									<label class="sr-only" for="login_password">{{ 'WELCOME.PASSWORD' | translate }}</label>
-									<input type="password" id="login_password" ng-model="login_password" class="form-control input-sm" placeholder="{{ 'WELCOME.PASSWORD' | translate }}" required>
-									<div class="col-xs-12 text-right" style="color:#888888">	
-										<i class="fa fa-question-circle fa-lg" ng-click="open()" style="position:absolute;top:-21px; right:12px; cursor:pointer"></i> 
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<button ng-click="signIn(login_id, login_password)" class="btn btn-success btn-sm" style="margin-bottom:0px; min-width:100px"><b>{{ 'WELCOME.SIGNIN' | translate }}</b></button>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<p class="help-block text-danger" style="color:black">{{login_message}}</p>
-									</div>
-								</div>
-							</fieldset>
+							</div>
+
+							<label class="checkbox">
+								<input type="checkbox" value="remember-me" ng-model="signin.remember"> <span class="remember-me">Remember me</span>
+							</label>
+
+							<button ng-click="signIn()" ng-disabled="signinForm.$invalid" class="btn btn-success btn-sm btn-block"><b>{{ 'WELCOME.SIGNIN' | translate }}</b></button>
+							<span class="help-block text-danger">{{login_message}}</span>
 						</form>
-						
+
 						<div id="loginSocialButtons">
 							<a class="btn btn-block btn-social btn-facebook btn-sm" href="/signin/facebook" target="_self">
 								<i class="fa fa-facebook"></i> Sign in with Facebook
@@ -71,19 +65,16 @@
 								<i class="fa fa-google-plus"></i> Sign in with Google+
 							</a>
 						</div>
-						
-					</li>
-				</ul>
-			</li>
-			
-			<!-- languages -->
-			<li class="dropdown" style="cursor:pointer" >
+					</li></ul>
+
+				<!-- languages -->
+			<li class="dropdown">
 				<a class="dropdown-toggle">
-					<i class="fa fa-globe fa-lg"></i> 
+					<span class="glyphicon glyphicon-globe"></span>
 					{{ 'NAV.LANGUAGE' | translate }}
 					<span class="caret"></span>
 				</a>
-				<ul class="dropdown-menu" style="color: black">
+				<ul class="dropdown-menu">
 					<li><a role="menuitem" tabindex="-1" ng-init="lang = 'en'" ng-click="changeLanguage('en')">{{ 'NAV.ENGLISH' | translate }}</a></li>
 					<li><a role="menuitem" tabindex="-1" ng-click="changeLanguage('cs')">{{ 'NAV.CZECH' | translate }}</a></li>
 				</ul>

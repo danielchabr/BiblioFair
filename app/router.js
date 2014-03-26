@@ -3,7 +3,8 @@
 var path = require('path'),
 		fs = require('fs'),
 		config = require('../config/config'),
-		publicPath = path.resolve(__dirname + '/../public');
+		publicPath = path.resolve(__dirname + '/../public'),
+		messaging = require('./helpers/messaging');
 
 module.exports = function(app) {
 
@@ -39,9 +40,22 @@ module.exports = function(app) {
 	 */
 
 	app.all("*", function(req, res) {
+		//language
 		res.setLanguage(req.getLanguage());
+		
+		//add translations
+		var translations = {};
+		for(var lang in messaging.messages){
+			translations[lang] = {};
+			translations[lang]['errors'] = messaging.messages[lang].errors;
+		}
+		
+		//render
 		res.render('index', {
-			user: req.user ? JSON.stringify(req.user) : 'null'
+			user: req.user ? JSON.stringify(req.user) : 'null',
+			errors: messaging.normalizeError(req.flash('error'), req.getLanguage()),
+			infos: messaging.normalizeInfo(req.flash('info'), req.getLanguage()),
+			translations: JSON.stringify(translations)
 		});
 	});
 

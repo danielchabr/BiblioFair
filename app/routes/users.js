@@ -1,7 +1,8 @@
 'use strict';
 
 var users = require("../api/users"),
-				authorization = require('./middlewares/authorization.js');
+	User = require('../models/user'),
+	authorization = require('./middlewares/authorization.js');
 
 module.exports = function(app, passport) {
 
@@ -9,7 +10,8 @@ module.exports = function(app, passport) {
 	 * Expose public API.
 	 */
 
-	app.post("/signup", function(req, res) {
+	app.post("/signup", function(req, res, next) {
+		req.body.language = req.body.language || req.getLanguage();
 		users.signup(req.body, function(err, data) {
 			if(err){
 				res.status(400);
@@ -21,44 +23,19 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.post('/signin', function(req, res, next) {
-		passport.authenticate('local', function(err, user, info) {
-			if(err){
-				return next(err);
-			}
-			else if(!user){
-				res.status(401);
-				next(info);
-			}
-			else{
-				req.logIn(user, function(err) {
-					if(err){
-						return next(err);
-					}
-					res.status(200).send('ok');
-				});
-			}
-		})(req, res, next);
-	});
-
-	app.get('/signout', function(req, res) {
-		req.logout();
-		res.redirect('/');
-	});
-
 	app.get("/verify/:token", function(req, res) {
 		users.verify(req.params.token, function(err, data) {
 			if(err){
-				res.status(404);
-				next(err);
+				req.flash('error', err);
 			}
 			else{
-				res.redirect('/');
+				req.flash('info', 'user.verified');
 			}
+			res.redirect('/');
 		});
 	});
 
-	app.get("/recover/:email", function(req, res) {
+	app.get("/recover/:email", function(req, res, next) {
 		users.recover(req.params.email, function(err, data) {
 			if(err){
 				res.status(404);
@@ -74,11 +51,33 @@ module.exports = function(app, passport) {
 		res.send(req.user || null);
 	});
 
+	app.get("/api/users/exists/:user", function(req, res, next) {
+		var user = req.params.user;
+		//username
+		if(user.indexOf("@") === -1){
+			users.usernameExists(user, function(err, data) {
+				if(err){
+					return next(err);
+				}
+				res.send(data);
+			});
+		}
+		//email
+		else{
+			users.emailExists(user, function(err, data){
+				if(err){
+					return next(err);
+				}
+				res.send(data);
+			});
+		}
+	});
+
 	/**
 	 * Expose private API (user logged in).
 	 */
 
-	app.put("/api/users/location", authorization.login, function(req, res) {
+	app.put("/api/users/location", authorization.login, function(req, res, next) {
 		users.updateLocation(req.user._id, req.body.coordinates, function(err, data) {
 			if(err){
 				next(err);
@@ -89,7 +88,7 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.put("/api/users/password", authorization.login, function(req, res) {
+	app.put("/api/users/password", authorization.login, function(req, res, next) {
 		users.updatePassword(req.user._id, req.body.password, function(err, data) {
 			if(err){
 				next(err);
@@ -100,7 +99,7 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.put("/api/users/language", authorization.login, function(req, res) {
+	app.put("/api/users/language", authorization.login, function(req, res, next) {
 		users.updateLanguage(req.user._id, req.body.language, function(err, data) {
 			if(err){
 				next(err);
@@ -109,106 +108,5 @@ module.exports = function(app, passport) {
 				res.send(data);
 			}
 		});
-	});
-
-
-	app.get("/api/users/count", function(req, res) {
-		users.count(function(err, data) {
-			if(err){
-				next(err);
-			}
-			else{
-				res.send(data.toString());
-			}
-		});
-	});
-
-	app.get("/api/users/:id", function(req, res) {
-		users.getById(req.params.id, function(err, data) {
-			if(err){
-				res.status(404);
-				next(err);
-			}
-			else{
-				res.send(data);
-			}
-		});
-	});
-
-	app.get("/api/users/username/:username", function(req, res) {
-		users.getByUsername(req.params.username, function(err, data) {
-			if(err){
-				res.status(404);
-				next(err);
-			}
-			else{
-				res.send(data);
-			}
-		});
-	});
-
-	app.get("/api/users/email/:email", function(req, res) {
-		users.getById(req.params.email, function(err, data) {
-			if(err){
-				res.status(404);
-				next(err);
-			}
-			else{
-				res.send(data);
-			}
-		});
-	});
-
-	/**
-	 * 3rd party authentication.
-	 */
-
-	// Facebook
-	app.get('/signin/facebook', function(req, res, next) {
-		passport.authenticate('facebook', {
-			scope: ['email']
-		})(req, res, next);
-	});
-
-
-	app.get('/signin/facebook/callback', function(req, res, next) {
-		passport.authenticate('facebook', function(err, user) {
-			if(err){
-				return next(err);
-			}
-
-			req.logIn(user, function(err) {
-				if(err){
-					return next(err);
-				}
-				res.redirect('/');
-			});
-		})(req, res, next);
-	});
-
-	// Google
-	app.get('/signin/google', function(req, res, next) {
-		passport.authenticate('google', {
-			scope: [
-				'https://www.googleapis.com/auth/userinfo.profile',
-				'https://www.googleapis.com/auth/userinfo.email'
-			]
-		})(req, res, next);
-	});
-
-
-	app.get('/signin/google/callback', function(req, res, next) {
-		passport.authenticate('google', function(err, user) {
-			if(err){
-				return next(err);
-			}
-			
-			req.logIn(user, function(err) {
-				if(err){
-					return next(err);
-				}
-				res.redirect('/');
-			});
-		})(req, res, next);
 	});
 };

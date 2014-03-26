@@ -14,7 +14,7 @@ angular.module('bibliofair').factory('Users', ['$http', function($http, $rootSco
 			},
 			me: function() {
 				return $http.get("/me");
-			},
+			},			
 			updateLanguage: function(language) {
 				return $http.put("/api/users/language", {
 					language: language
@@ -29,6 +29,16 @@ angular.module('bibliofair').factory('Users', ['$http', function($http, $rootSco
 				return $http.put("/api/users/location", {
 					coordinates: coordinates
 				});
+			},
+			/** check if exists */
+			exists: function(user){
+				return $http.get('/api/users/exists/' + user);
+			},
+			emailExists: function(email){
+				return $http.get('/api/users/exists/' + email);
+			},
+			usernameExists: function(username){
+				return $http.get('/api/users/exists/' + username);
 			}
 		};
 	}]);

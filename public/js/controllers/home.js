@@ -1,7 +1,13 @@
 'use strict';
 function homeControl($rootScope, $scope, $modal, Users, Books) {
+	//maps
     $.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4");
+	
+	//sorting & pagination
     $scope.bookOrder = 'title';
+    $scope.currentPage = 1;
+    $scope.pageSize = 12;
+	
     //// Load some books at the beginning
     var loadLibraryBooks = function() {
         $rootScope.books = [];
@@ -93,6 +99,14 @@ function homeControl($rootScope, $scope, $modal, Users, Books) {
         });
 
     };
+	
+	/**
+	 * Show book detail (in a modal).
+	 * 
+	 * @param {type} book
+	 * @returns {undefined}
+	 */
+	
     $scope.open = function(book) {
         var modalInstance = $modal.open({
             templateUrl: '/partials/private/book_detail.html',
@@ -107,10 +121,11 @@ function homeControl($rootScope, $scope, $modal, Users, Books) {
         }, function() {
         });
     };
-    ///// pagination
-    $scope.currentPage = 1;
-    $scope.pageSize = 12;
-    //// Google Analytics
+    
+	/**
+	 * GA.
+	 */
+	
     ga('send', 'pageview', '/');
 }
 

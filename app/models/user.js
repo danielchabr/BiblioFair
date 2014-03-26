@@ -1,9 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-				crypto = require('crypto-js'),
-				validate = require('../helpers/validation'),
-				Schema = mongoose.Schema;
+	crypto = require('crypto-js'),
+	validate = require('../helpers/validation'),
+	Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
 	username: {
@@ -34,6 +34,7 @@ var UserSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	remember: String,
 	language: String,
 	loc: {
 		type: {type: String},
@@ -57,21 +58,55 @@ var UserSchema = new Schema({
 	twitter: {},
 	github: {},
 	google: {},
-	linkedin: {},
-	//TODO remove
-	oldPassword: {
-		username: String,
-		email: String
-	}
+	linkedin: {}
 });
 
 /**
  * Static methods.
  */
 
+UserSchema.statics.findByRememberMeToken = function(token, done) {
+	this.findOne({remember: token}, done);
+};
+
 UserSchema.statics.findByUsername = function(username, done) {
 	this.findOne({username: username}, done);
 };
+
+UserSchema.statics.findBooks = function(userId, done) {
+	this.findById(userId, 'library').populate('library.id').exec(function(err, data) {
+		if(!data){
+			return done("user.notFound");
+		}
+		
+		var books = [];
+		data.library.forEach(function(item) {
+			books.push(getBook(item));
+		});
+		done(err, books);
+	});
+};
+
+UserSchema.statics.findBook = function(userId, bookId, done) {
+	this.findOne({_id: userId, 'library.id': bookId}, 'library').populate('library.id').exec(function(err, data) {
+		if(!data){
+			return done("user.notFound");
+		}
+		if(!data.library[0]){
+			return done("book.notFound");
+		}
+		done(err, getBook(data.library[0]));
+	});
+};
+
+function getBook(item) {
+	var book = item.id.toObject();
+	book.actions = item.actions;
+	book.note = item.note;
+	book.last_updated = item.last_updated;
+	return book;
+}
+
 
 /**
  * Validations.
@@ -156,8 +191,8 @@ UserSchema.virtual('password').set(function(password) {
  * Pre-save hook
  */
 UserSchema.pre('save', function(next) {
-	//validate only if new and NOT via provider (facebook, google, etc.)
-	if(!this.isNew || this.provider){
+	//validate only if new and NOT via oauth (facebook, google, etc.)
+	if(!this.isNew || this.provider !== 'local'){
 		return next();
 	}
 
@@ -165,7 +200,7 @@ UserSchema.pre('save', function(next) {
 		next(new Error('password.required'));
 	}
 	else if(this.password.length < 6){
-		next(new Error('password.invalid'));
+		next(new Error('password.short'));
 	}
 	else{
 		next();
@@ -219,7 +254,7 @@ UserSchema.methods = {
 		return crypto.SHA3(Array(10).join(this.salt) + password, {outputLength: 256}).toString();
 	},
 	isLocated: function() {
-		return this.loc.coordinates.lenght === 2;
+		return this.loc.coordinates.length === 2;
 	}
 };
 

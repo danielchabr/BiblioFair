@@ -1,8 +1,34 @@
+/** fonts **/
+
+@font-face {
+	font-family: 'Sonsie One';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Sonsie One'), local('SonsieOne-Regular'), url(fonts/sonsie_one.woff) format('woff');
+}
+@font-face {
+	font-family: 'Alegreya';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Alegreya Bold'), local('Alegreya-Bold'), url(fonts/alegreya.woff) format('woff');
+}
+@font-face {
+	font-family: 'Ubuntu Condensed';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Ubuntu Condensed'), local('UbuntuCondensed-Regular'), url(fonts/ubuntu_condensed.woff) format('woff');
+}
+
+/** IE mobile compatibility **/
+
 @-webkit-viewport   { width: device-width; }
 @-moz-viewport      { width: device-width; }
 @-ms-viewport       { width: device-width; }
 @-o-viewport        { width: device-width; }
 @viewport           { width: device-width; }
+
+/** general definitions **/
+
 .nav, .pagination, .carousel a { 
 	cursor: pointer; 
 }
@@ -14,11 +40,7 @@ a:active, a:focus, input, .btn:focus {
     outline-style:none;
     outline-width:0;
 }
-.logo {
-	font-family: 'Sonsie One', cursive;
-	font-size: 22px;
-	color:		#FFFFFF;
-}
+
 .modal-dialog {
 	padding-bottom: 55px;
 }
@@ -80,7 +102,6 @@ html, body {
 	/* Standard */
 	height: calc(100% - 1px);
 	margin:0px;
-	padding:0px;
 }
 .ng-view, .super-container {
 	position:relative; /* needed for footer positioning*/
@@ -93,17 +114,21 @@ html, body {
 .info {
 	opacity:0.7;
 	filter:alpha(opacity=70);
-	position:absolute;
-	margin:0px;
-	min-height:55px;
-	width:100%;
-	bottom:-2px;
-	right:0px;
+	margin-top:0px;
+	height:66px;
+	clear:both;
 	background-color:white;
 	color:black;
-}
-.info_text {
 	padding-top:12px;
+}
+
+body{
+	color:white;
+	background-color:#03899c;
+	padding:0 0 64px 0;
+}
+
+.info_text {
 	margin: 0px;
 	font-size:14px;
 }
@@ -139,16 +164,88 @@ html, body {
 	display:none;
 }
 
-/** welcome */
+/**
+ * Header.
+ */
 
-#registrationSocialButtons{
-	margin-top:1em;
-	padding-top:1em;
-	border-top:1px dotted #aaa;
+/** logo **/
+
+#logo {
+	font-family: 'Sonsie One', cursive;
+	font-size: 22px;
+	color:		#FFFFFF;
+	padding:12px 15px;
 }
 
-#loginSocialButtons{
+#logo svg{
+	margin-top:2px;
+	margin-bottom:-2px
+}
+
+#logo svg image{
+	margin-top:2px;
+	margin-bottom:-2px;
+	vertical-align:baseline;
+}
+
+#logo span{
+	margin-left:-7px
+}
+
+/** general definitions */
+
+#signin{
+	padding:10px 15px;
+	width:200px;
+	cursor:default;
+}
+
+#signin .remember-me{
+	color:black;
+	font-weight: normal;
+	
+}
+
+#signinSocial{
 	margin-top:.2em;
 	padding-top:1em;
 	border-top:1px dotted #444;
+}
+
+#flashes{
+	position:fixed;
+	top:100px;
+	left:50%;
+	margin-left:-40%;
+	width:80%;
+	z-index:1000;
+}
+
+/** welcome */
+
+#signup.row{
+	padding-top:40px;
+	padding-bottom: 40px;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+#signupForm{
+	padding-top:18px
+}
+
+#signupForm legend{
+	border:0px;
+	margin-bottom:10px;
+	color:white;
+}
+
+#signupButton{
+	margin-bottom:0px;
+	min-width:100px
+}
+
+#signupSocial{
+	margin-top:1em;
+	padding-top:1em;
+	border-top:1px dotted #aaa;
 }

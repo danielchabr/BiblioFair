@@ -19,7 +19,6 @@ var translateEN = {
 	},
 	'WELCOME': { 
 		'HEADING': 'Dive into the world of home libraries',
-//		'HEADING': 'Discover the easiest way of trading books',
 		'HEADING2': 'Let\'s get the books flowing',
 		'TEXT1': 'We will enable you to turn your home bookshelf into a private library or bookshop. You will get requests from your friends or others, asking you to sell, rent or lend them books from your home library. Only you decide which books you send out into the world.',
 		'TEXT2': 'Would you like to read a book that is otherwise too expensive or hard to get in a library? Do you want to save money and the environment by getting a second hand book? Just sign up and search our databases easily.',
@@ -35,6 +34,7 @@ var translateEN = {
 		},
 		'EMAIL': 'Email',
 		'USERNAME': 'Username',
+		USERNAME_SUGGESTED: 'Just a suggestion. Feel free to change it to whatever suits you.',
 		'EMAIL_OR_USERNAME': 'Username or email',
 		'PASSWORD': 'Password',
 		'JOIN': 'Join',
@@ -192,6 +192,7 @@ var translateCS = {
 		},
 		'EMAIL': 'Email',
 		'USERNAME': 'Uživatelské jméno',
+		USERNAME_SUGGESTED: 'Jenom návrh, můžete si přirozeně zvolit uživatelské jméno dle chuti.',
 		'EMAIL_OR_USERNAME': 'Email nebo uživatelské jméno',
 		'PASSWORD': 'Heslo',
 		'JOIN': 'Založit účet',

@@ -7,7 +7,7 @@ var config = require('../../config/config'),
 	//emails
 	Mailgun = require('mailgun').Mailgun,
 	mg = new Mailgun(config.messages.mailgun.key),
-	messages = require('../helpers/messages'),
+	messages = require('../helpers/messaging').messages,
 	_ = require('lodash');
 
 var regex = function(s) {
@@ -117,8 +117,8 @@ exports.report = function(user, book, done) {
 				else{
 					mg.sendText('Book report <report@bibliofair.com>',
 						config.messages.reportBookEmail,
-						messages['en'].report.subject,
-						messages['en'].report.body.replace(/\{username\}/g, user.username)
+						messages['en'].emails.report.subject,
+						messages['en'].emails.report.body.replace(/\{username\}/g, user.username)
 						.replace(/\{book.title\}/, book.title)
 						.replace(/\{book.author\}/, book.author),
 						config.messages.mailgun.server,
@@ -151,8 +151,8 @@ exports.request = function(from, to, book, language, done) {
 
 				mg.sendText(from.username + ' <' + from.username + '@bibliofair.com>',
 					to.username + ' <' + to.email + '>',
-					messages[language].request.subject,
-					(messages[language].request.body + messages[language].emailExplanation).replace(/\{from\}/g, from.username)
+					messages[language].emails.request.subject,
+					(messages[language].emsilas.request.body + messages[language].emails._explanation).replace(/\{from\}/g, from.username)
 					.replace(/\{to\}/g, to.username)
 					.replace(/\{book.title\}/g, book.title)
 					.replace(/\{book.author\}/g, book.author)

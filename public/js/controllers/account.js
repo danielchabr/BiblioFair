@@ -11,9 +11,9 @@ function accountControl($rootScope, $scope, $translate, Users, Global) {
 	$scope.centerLng = -30;
 
 	//// Save location
-	$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
+	$scope.save_loc_text = $translate.instant('ACCOUNT.SAVE_LOC');
 	$scope.saveLoc = function() {
-		$scope.save_loc_text = $translate('ACCOUNT.SAVING');
+		$scope.save_loc_text = $translate.instant('ACCOUNT.SAVING');
 		Users.updateLocation([$scope.centerLng, $scope.centerLat]).success(function(user) {
 				$rootScope.user = user;
 				//marker to the map
@@ -23,8 +23,8 @@ function accountControl($rootScope, $scope, $translate, Users, Global) {
 				$scope.map.addShape(point);
 		}).error(function(error){
 			console.log(error);
-		}).always(function(){
-			$scope.save_loc_text = $translate('ACCOUNT.SAVED_LOC');
+		})['finally'](function(){
+			$scope.save_loc_text = $translate.instant('ACCOUNT.SAVED_LOC');
 		});
 	};
 
@@ -40,7 +40,7 @@ function accountControl($rootScope, $scope, $translate, Users, Global) {
 						$scope.searchLoc(addr);
 					} else{
 						$scope.$apply(function() {
-							$scope.not_found_message = $translate('ACCOUNT.NOT_FOUND');
+							$scope.not_found_message = $translate.instant('ACCOUNT.NOT_FOUND');
 						});
 					}
 				} else{
@@ -105,33 +105,33 @@ function accountControl($rootScope, $scope, $translate, Users, Global) {
 			$scope.$apply(function() {
 				$scope.centerLat = $scope.map.getCenter().lat;
 				$scope.centerLng = $scope.map.getCenter().lng;
-				$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
+				$scope.save_loc_text = $translate.instant('ACCOUNT.SAVE_LOC');
 			});
 		} else{
 			$scope.centerLat = $scope.map.getCenter().lat;
 			$scope.centerLng = $scope.map.getCenter().lng;
-			$scope.save_loc_text = $translate('ACCOUNT.SAVE_LOC');
+			$scope.save_loc_text = $translate.instant('ACCOUNT.SAVE_LOC');
 		}
 	};
 
 	//// Password changing 
-	$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
+	$scope.save_pass_text = $translate.instant('ACCOUNT.CHANGE.CHANGE');
 	$scope.savePass = function() {
 		if($scope.new_password !== $scope.new_password_again){
-			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.NOTEQUAL');
+			$scope.change_pass_message = $translate.instant('ACCOUNT.CHANGE.NOTEQUAL');
 		}
 		else if($scope.new_password && $scope.new_password.length < 6){
-			$scope.change_pass_message = $translate('ACCOUNT.CHANGE.SHORT');
+			$scope.change_pass_message = $translate.instant('ACCOUNT.CHANGE.SHORT');
 		}
 		else{
-			$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGING');
+			$scope.save_pass_text = $translate.instant('ACCOUNT.CHANGE.CHANGING');
 
 			Users.updatePassword(Global.encrypt($scope.new_password)).success(function() {
 				$scope.change_pass_message = '';
-				$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGED');
+				$scope.save_pass_text = $translate.instant('ACCOUNT.CHANGE.CHANGED');
 			}).error(function() {
-				$scope.change_pass_message = $translate('ACCOUNT.CHANGE.INCORRECT');
-				$scope.save_pass_text = $translate('ACCOUNT.CHANGE.CHANGE');
+				$scope.change_pass_message = $translate.instant('ACCOUNT.CHANGE.INCORRECT');
+				$scope.save_pass_text = $translate.instant('ACCOUNT.CHANGE.CHANGE');
 			});
 		}
 	};

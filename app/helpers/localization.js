@@ -2,10 +2,15 @@ var config = require("../../config/config");
 
 exports.getLanguage = function() {
 	var request = this,
+			param = this.param('language'),
 			language;
-
+	
+	//param from request (params, body, query)
+	if(param){
+		language = param;
+	}
 	//user logged in -> use stored information
-	if(request.user){
+	else if(request.user){
 		language = request.user.lang;
 	}
 	//not logged in and no cookie -> create one
@@ -28,5 +33,5 @@ exports.getLanguage = function() {
 };
 
 exports.setLanguage = function(language){
-	this.cookie('lang', language, {maxAge: 18000000000});
+	return this.cookie('lang', language, {maxAge: 18000000000});
 };

@@ -10,13 +10,10 @@ angular.module('bibliofair').factory('Global', ['$translate', '$cookies',
 			authenticated: function() {
 				return !!window.user;
 			},
-			encrypt: function(password) {
-				return CryptoJS.SHA3(password, {outputLength: 256}).toString();
-			},
 			language: function(language) {
 				if(language){
 					$cookies.lang = language;
-					$translate.uses(language);
+					$translate.use(language);
 					return language;
 				}
 				return $cookies.lang;

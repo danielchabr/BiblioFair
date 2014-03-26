@@ -1,7 +1,14 @@
 {
-    "name": "Bibliofair",
-    "version": "0.0.2",
-    "dependencies": {
-        "angular-cookies": "latest"
-    }
+	"name": "Bibliofair",
+	"version": "0.0.2",
+	"dependencies": {
+		"angular": "latest",
+		"angular-cookies": "latest",
+		"angular-bootstrap": "latest",
+		"angular-route": "latest",
+		"angular-translate": "latest",
+		"bootstrap": "latest",
+		"bootstrap-social": "latest",
+		"cryptojslib": "latest"
+	}
 }

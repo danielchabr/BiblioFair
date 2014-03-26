@@ -18,7 +18,6 @@ angular.module('bibliofair').factory('Books', ['$http', function($http) {
                 return $http.get('/api/books/search/' + isbn);
             },
             request:function(from, to, book, language) {
-				console.log(from, to ,book ,language);
                 return $http.post('/api/books/request', {
                     from: from,
                     to: to,

@@ -5,11 +5,12 @@
  */
 
 var express = require('express'),
-				fs = require('fs'),
-				config = require('./config'),
-				consolidate = require('consolidate'),
-				errors = require("../app/helpers/errors"),
-				localization = require("../app/helpers/localization");
+	fs = require('fs'),
+	config = require('./config'),
+	flash = require('connect-flash'),
+	consolidate = require('consolidate'),
+	messaging = require("../app/helpers/messaging"),
+	localization = require("../app/helpers/localization");
 
 module.exports = function(app, passport) {
 	// place before express.static to make sure all assets and data are compressed
@@ -37,9 +38,20 @@ module.exports = function(app, passport) {
 
 		app.use(express.session({secret: 'keyboard cathrine'}));
 
+		//get && set language methods
+		app.use(function(req, res, next) {
+			req.getLanguage = localization.getLanguage;
+			res.setLanguage = localization.setLanguage;
+			next();
+		});
+
 		// use passport session
 		app.use(passport.initialize());
 		app.use(passport.session());
+		app.use(passport.authenticate('remember-me'));
+
+		// flash messages
+		app.use(flash());
 
 		//all the directories in the '/public' directory should serve the files
 		//everything else will be handled in the router
@@ -54,13 +66,6 @@ module.exports = function(app, passport) {
 		//favicon
 		app.use(express.favicon(publicPath + '/img/facicon.ico'));
 
-		//get && set language methods
-		app.use(function(req, res, next) {
-			req.getLanguage = localization.getLanguage;
-			res.setLanguage = localization.setLanguage;
-			next();
-		});
-
 		// routes should be at the last
 		app.use(app.router);
 
@@ -69,7 +74,8 @@ module.exports = function(app, passport) {
 			if(res.statusCode < 300){
 				res.status(500);
 			}
-			res.send(errors.normalize(err, 'en'));
+			console.log(messaging.normalizeError(err, req.getLanguage()));
+			res.send(messaging.normalizeError(err, req.getLanguage()));
 		});
 	});
 };

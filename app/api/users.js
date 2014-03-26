@@ -1,17 +1,16 @@
 'use strict';
 
 var mongoose = require("mongoose"),
-				config = require('../../config/config'),
-				User = mongoose.model("UserModel"),
-				//cryptography
-				crypto = require('crypto-js'),
-				//validation & errors
-				validate = require("../helpers/validation"),
-				errors = require("../helpers/errors"),
-				//emails
-				Mailgun = require('mailgun').Mailgun,
-				mg = new Mailgun(config.messages.mailgun.key),
-				messages = require('../helpers/messages');
+	config = require('../../config/config'),
+	User = mongoose.model("UserModel"),
+	//cryptography
+	crypto = require('crypto-js'),
+	//validation
+	validate = require("../helpers/validation"),
+	//emails
+	Mailgun = require('mailgun').Mailgun,
+	mg = new Mailgun(config.messages.mailgun.key),
+	messages = require('../helpers/messaging').messages;
 
 /**
  * Count users in the database.
@@ -37,6 +36,7 @@ exports.count = function(done) {
 
 exports.signup = function(data, done) {
 	var user = new User(data);
+	user.provider = 'local';
 	user.token.hash = crypto.SHA3(Date.parse(new Date()).toString() + user.email, {outputLength: 256}).toString();
 	user.token.last = new Date();
 	user.save(function(err) {
@@ -45,17 +45,17 @@ exports.signup = function(data, done) {
 		}
 
 		mg.sendText('BiblioFair <support@bibliofair.com>',
-						user.email,
-						messages[user.language].verification.subject,
-						messages[user.language].verification.body.replace(/\{username\}/g, user.username).replace(/\{link\}/, user.token.hash),
-						function(er) {
-							if(er)
-								console.log('Oh noes: ' + er);
-							else
-								console.log('New user registered');
+			user.email,
+			messages[user.language].emails.verification.subject,
+			messages[user.language].emails.verification.body.replace(/\{username\}/g, user.username).replace(/\{link\}/, user.token.hash),
+			function(er) {
+				if(er)
+					console.log('Oh noes: ' + er);
+				else
+					console.log('New user registered');
 
-							done(err, user);
-						});
+				done(err, user);
+			});
 	});
 };
 
@@ -161,7 +161,7 @@ exports.verify = function(token, done) {
 
 
 exports.recover = function(email, done) {
-	User.findOne({email: email}, 'username email language password', function(err, user) {
+	User.findOne({email: email}, function(err, user) {
 		if(err || !user){
 			done(err || "user.notFound");
 		}
@@ -173,47 +173,71 @@ exports.recover = function(email, done) {
 					return done(err);
 				}
 				mg.sendText('recovery@bibliofair.com',
-								user.email,
-								messages[user.language].recovery.subject,
-								messages[user.language].recovery.body.replace(/\{username\}/g, user.username).replace(/\{password\}/, pass),
-								config.messages.mailgun.server,
-								function(err) {
-									if(err){
-										console.log('Oh noes: ' + err);
-									}
-									else{
-										console.log('Message sent to: ' + email);
-									}
-									done(err, 'ok');
-								});
+					user.email,
+					messages[user.language].emails.recovery.subject,
+					messages[user.language].emails.recovery.body.replace(/\{username\}/g, user.username).replace(/\{password\}/, pass),
+					config.messages.mailgun.server,
+					function(err) {
+						if(err){
+							console.log('Oh noes: ' + err);
+						}
+						else{
+							console.log('Message sent to: ' + email);
+						}
+						done(err, 'ok');
+					});
 			});
 		}
 	});
 };
 
 /**
- * Check if the user (username or email) already exists.
+ * Check if the email is already registered.
  * 
- * @param {string} username
  * @param {string} email
  * @param {function} done
  * @returns {undefined}
  */
 
-exports.exists = function(username, email, done) {
+exports.emailExists = function(email, done) {
+	User.findOne({email: email}, function(err, user) {
+		if(err){
+			return done(err);
+		}
+		else if(user){
+			return done(null, true);
+		}
+		return done(null, false);
+	});
+};
+
+/**
+ * Check if the username exists.
+ * 
+ * @param {string} username
+ * @param {function}
+ * @returns {boolean}
+ */
+
+exports.usernameExists = function(username, done) {
 	User.findOne({username: username}, function(err, user) {
-		if(err || user){
-			done(err || "username.exists");
+		if(err){
+			return done(err);
 		}
-		else{
-			User.findOne({email: email}, function(err, user) {
-				if(err || user){
-					done(err || "email.exists");
-				}
-				else{
-					done(null, false);
-				}
-			});
+		else if(user){
+			return done(null, true);
 		}
+		return done(null, false);
+	});
+};
+
+/**
+ * Issue token.
+ */
+
+exports.issueRememberMeToken = function(user, done) {
+	user.remember = crypto.SHA3(new Date() + user.username, {outputLength: 256}).toString();
+	user.save(function(err, user) {
+		return done(err, user.remember);
 	});
 };

@@ -3,6 +3,7 @@ public/lib
 Makefile
 archive
 todo
+.bower-*/
 updateDb.txt
 .DS_Store
 log
