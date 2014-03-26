@@ -13,7 +13,7 @@
 		"openshift"
 	],
 	"scripts": {
-		"postinstall": "node node_modules/bower/bin/bower install"
+		"postinstall": "export HOME=/var/lib/openshift/533354865973ca0543000106/app-root/runtime/repo;node node_modules/bower/bin/bower install"
 	},
 	"dependencies": {
 		"express": "3.4.4",
