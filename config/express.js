@@ -10,7 +10,9 @@ var express = require('express'),
 	flash = require('connect-flash'),
 	consolidate = require('consolidate'),
 	messaging = require("../app/helpers/messaging"),
-	localization = require("../app/helpers/localization");
+	localization = require("../app/helpers/localization"),
+	//loggin
+	logger = require('../app/helpers/logger');
 
 module.exports = function(app, passport) {
 	// place before express.static to make sure all assets and data are compressed
@@ -64,7 +66,7 @@ module.exports = function(app, passport) {
 		});
 
 		//favicon
-		app.use(express.favicon(publicPath + '/img/facicon.ico'));
+		app.use(express.favicon(publicPath + '/img/favicon.ico'));
 
 		// routes should be at the last
 		app.use(app.router);
@@ -75,6 +77,7 @@ module.exports = function(app, passport) {
 				res.status(500);
 			}
 			console.log(messaging.normalizeError(err, req.getLanguage()));
+			logger.error(err.toString());
 			res.send(messaging.normalizeError(err, req.getLanguage()));
 		});
 	});
