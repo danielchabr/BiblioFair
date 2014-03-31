@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require('path'),
+var path = require('path'), 
 	fs = require('fs'),
 	config = require('../config/config'),
 	publicPath = path.resolve(__dirname + '/../public'),
