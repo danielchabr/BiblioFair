@@ -78,10 +78,11 @@ try {
 }
 
 var port = (process.env.OPENSHIFT_NODEJS_PORT || process.env.OPENSHIFT_INTERNAL_PORT || config.port);
+var ipaddr = (process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost');
 
 exports = module.exports = app;
 try {
-    app.listen(config.port);
+    app.listen(port, ipaddr);
 		console.log("App listening on port " + port + ". Environment: " + process.env.NODE_ENV + ".");
 } catch (e) {
     console.log("App.listen error: ");
