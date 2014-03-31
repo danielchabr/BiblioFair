@@ -162,3 +162,23 @@ exports.remove = function(userId, bookId, done) {
 		});
 	});
 };
+
+exports.transfer = function(fromId, toId, bookId, done){
+	User.findById(fromId, function(err, from){
+		if(err || !from){
+			return done(err || "user.notFound");
+		}
+		User.findById(toId, function(err, to){
+			if(err || !to){
+				return done(err || "user.notFound");
+			}
+			Book.findById(bookId, function(err, book){
+				if(err || !book){
+					return done(err || "book.notFound");
+				}
+				
+				
+			});
+		});
+	});
+};
