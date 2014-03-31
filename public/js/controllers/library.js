@@ -182,7 +182,7 @@ function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library
 	$scope.open = function(book) {
 		var modalInstance = $modal.open({
 			templateUrl: '/partials/private/library_detail.html',
-			controller: ModalBookCtrl,
+			controller: ModalLibraryCtrl,
 			resolve: {
 				book: function() {
 					return book;

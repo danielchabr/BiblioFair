@@ -1,0 +1,79 @@
+<style type="text/css">
+	div.modal {
+		display:block;
+	}
+	.reported {
+		color: white;
+		cursor: default;
+	}
+	.not_reported {
+		color: #a11d27;
+		cursor: pointer;
+	}
+	@media (max-width: 380px) {
+		.request_button {
+			display:none;
+		}
+	}
+	.popover-content {
+		color:black;
+	}
+	.table > .users > tr > td {
+		vertical-align: middle;
+	}
+</style>
+<div class="modal-header text-center">
+	<i class="fa fa-ban fa-lg pull-left" tooltip="{{ 'HOME.MODAL.REPORT' | translate }}" ng-class="{reported: report_sent, not_reported: !report_sent}" ng-click="report()"></i>
+	<button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+	<h2 style="padding-right:7px">{{details_view.title}}</h2>
+	<p>
+	<i>{{ 'DETAIL.BY' | translate }} {{details_view.author}}</i>
+	</p>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<span class="col-xs-6" ng-if="details_view.subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}: {{details_view.subtitle}}</span>
+		<span class="col-xs-6" ng-if="details_view.isbn">{{ 'LIBRARY.ADD.ISBN' | translate }}: {{details_view.isbn}}</span>
+		<span class="col-xs-6" ng-if="details_view.volume">{{ 'LIBRARY.ADD.VOLUME' | translate }}: {{details_view.volume}}</span>
+		<span class="col-xs-6" ng-if="details_view.edition">{{ 'LIBRARY.ADD.EDITION' | translate }}: {{details_view.edition}}</span>
+		<span class="col-xs-6" ng-if="details_view.language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}: {{details_view.language}}</span>
+		<span class="col-xs-6" ng-if="details_view.publisher">{{ 'LIBRARY.ADD.PUBLISHER' | translate }}: {{details_view.publisher}}</span>
+		<span class="col-xs-6" ng-if="details_view.published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</span>
+	</div>
+	<hr>
+	<h3 class="text-center">{{ 'HOME.MODAL.OWNERS' | translate }}</h3>
+	<table class="table table-striped" style="margin-bottom:0px">
+		<thead>
+			<tr><th>{{ 'WELCOME.USERNAME' | translate }}</th><th class="hidden-xs">{{ 'WELCOME.EMAIL' | translate }}</th><th></th><th></th><th></th></tr>
+		</thead>
+		<tbody class="users">
+			<tr ng-repeat="owner in owners" style="list-style:none">
+				<td><i class="fa fa-user"></i> {{owner.username}}</td>
+				<td class="hidden-xs">{{owner.username}}@bibliofair.com</td>
+				<td>
+					<span class="label label-primary" ng-if="owner.actions.sell">{{ 'HOME.MODAL.SELL' | translate }}</span>
+					<span class="label label-primary" ng-if="owner.actions.donate">{{  'HOME.MODAL.DONATE' | translate  }}</span>
+					<span class="label label-primary" ng-if="owner.actions.lend">{{  'HOME.MODAL.LEND' | translate  }}</span>
+				</td>
+				<td class="hidden-xs">
+					<button type="button" class="btn btn-sm btn-warning" ng-if="owner.note" popover-trigger="mouseenter" popover-placement="top" popover="{{ owner.note }}">
+						{{ 'HOME.MODAL.SHOW_NOTE' | translate }}
+					</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-sm pull-right" style="margin-right:10px" ng-class="{'btn-success':!owner.style, 'btn-default':owner.style}" ng-disabled="owner.style" ng-click="sendRequest(owner)" title="{{ owner.message}}">
+						<i class="fa fa-envelope"></i> 
+						<span class="request_button"> {{ owner.message }}</span>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	<div id="map_row" class="row" style="margin:0px">
+		<div id="map" ng-model="map" class="col-xs-12 map" style="height:300px;padding:0px" ng-init="draw_map()"></div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" ng-click="cancel()">{{ 'DETAIL.CLOSE' | translate }}</button>
+</div>

@@ -49,6 +49,19 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-primary pull-left" ng-click="remove()"><i class="fa fa-trash-o"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
-		<button class="btn btn-warning" ng-click="save();cancel()">{{ 'DETAIL.SAVE_AND_CLOSE' | translate }}</button>
+		<div class="row">
+			<button class="btn btn-success pull-left" ng-click="transferEnable=!transferEnable" ng-disable="transferEnable"><i class="fa fa-share"></i>{{ 'LIBRARY.TRANSFER.BUTTON' | translate }}</button>
+			<button class="btn btn-primary" ng-click="remove()"><i class="fa fa-trash-o"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
+			<button class="btn btn-warning" ng-click="save();cancel()">{{ 'DETAIL.SAVE_AND_CLOSE' | translate }}</button>
+		</div>
+		<div class="row" ng-show="transferEnable">
+			<span>{{ 'LIBRARY.TRANSFER.TEXT' | translate }} </span>
+			<select class="form-control" ng-model="transfer.type">
+				<option value="permanent">{{ 'LIBRARY.TRANSFER.SELL' | translate }}</option>
+				<option value="permanent">{{ 'LIBRARY.TRANSFER.DONATE' | translate }}</option>
+				<option value="temporary">{{ 'LIBRARY.TRANSFER.LEND' | translate }}</option>
+			</select>
+			<input type="text" class="form-control" id="" ng-model="transfer.user" placeholder="{{ 'LIBRARY.TRANSFER.DEFAULT' | translate }}">
+			<button class="btn btn-success" class="fa fa-share"></i>{{ 'LIBRARY.TRANSFER.ACTION' | translate }}</button>
+		</div>
 	</div>

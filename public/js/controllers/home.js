@@ -109,8 +109,8 @@ function homeControl($rootScope, $scope, $modal, Users, Books) {
 	
     $scope.open = function(book) {
         var modalInstance = $modal.open({
-            templateUrl: '/partials/private/book_detail.html',
-            controller: ModalBookCtrl,
+            templateUrl: '/partials/private/browse_detail.html',
+            controller: ModalBrowseCtrl,
             resolve: {
                 book: function() {
                     return book;

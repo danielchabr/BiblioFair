@@ -34,7 +34,7 @@ var translateEN = {
 		},
 		'EMAIL': 'Email',
 		'USERNAME': 'Username',
-		USERNAME_SUGGESTED: 'Just a suggestion. Feel free to change it to whatever suits you.',
+		'USERNAME_SUGGESTED': 'Just a suggestion. Feel free to change it to whatever suits you.',
 		'EMAIL_OR_USERNAME': 'Username or email',
 		'PASSWORD': 'Password',
 		'JOIN': 'Join',
@@ -84,6 +84,7 @@ var translateEN = {
 		'WISHLIST': 'Wish list',
 		'BROWSE': 'Available books'
 	},
+
 	'LIBRARY': { 
 		'ADD': { 
 			'HEADING': 'Add book',
@@ -112,10 +113,21 @@ var translateEN = {
 			'NOT_FILLED': 'Title or author is missing',
 			'INVALID_PUBLISHED': 'Invalid year of publishment'
 		},
+		'TRANSFER' : {
+			'BUTTON' : 'Převést na uživatele ...',
+			'TEXT' : 'I want to',
+			'LEND' : 'borrow',
+			'DONATE' : 'donate',
+			'SELL' : 'sell',
+			'TO_USER' : 'this book to user',
+			'DEFAULT' : 'username',
+			'ACTION' : 'Initiate transfer'
+		},
 		'ALERT_1': 'To add books, please set your location in your ',
 		'ALERT_2': ' account settings',
 		'ALERT_3': 'To add books, please verify your account. Just click the link in the e-mail you received right after the registration.'
 	},
+
 	'ACCOUNT': { 
 		'SETLOCATION': 'Set your location by centering the map',
 		'LONGITUDE': 'Longitude',
@@ -192,7 +204,7 @@ var translateCS = {
 		},
 		'EMAIL': 'Email',
 		'USERNAME': 'Uživatelské jméno',
-		USERNAME_SUGGESTED: 'Jenom návrh, můžete si přirozeně zvolit uživatelské jméno dle chuti.',
+		'USERNAME_SUGGESTED': 'Jenom návrh, můžete si přirozeně zvolit uživatelské jméno dle chuti.',
 		'EMAIL_OR_USERNAME': 'Email nebo uživatelské jméno',
 		'PASSWORD': 'Heslo',
 		'JOIN': 'Založit účet',
@@ -271,10 +283,21 @@ var translateCS = {
 			'NOT_FILLED': 'Titul nebo autor není vyplněn',
 			'INVALID_PUBLISHED': 'Neplatný rok vydání'
 		},
+		'TRANSFER' : {
+			'BUTTON' : 'Převést na uživatele ...',
+			'TEXT' : 'Chci knihu',
+			'LEND' : 'půjčit',
+			'DONATE' : 'darovat',
+			'SELL' : 'prodat',
+			'TO_USER' : 'uživateli',
+			'DEFAULT' : 'uživatelské jméno',
+			'ACTION' : 'Zahájit převod'
+		},
 		'ALERT_1': 'Pro přidávání knih nejdříve nastavte svou polohu v ',
 		'ALERT_2': ' nastavení účtu',
 		'ALERT_3': 'Pro přidávání knih prosím potvrďte svůj e-mail. Stačí kliknout na odkaz v e-mailu, který jste obdrželi po registraci.'
 	},
+
 	'ACCOUNT': { 
 		'SETLOCATION': 'Nastavte svoji polohu vycentrováním mapy',
 		'LONGITUDE': 'Zeměpisná délka',
