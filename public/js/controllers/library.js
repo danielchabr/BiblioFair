@@ -33,10 +33,10 @@ function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library
 				//ga('send', 'event', 'book', 'add');
 			}).error(function(error) {
 				console.log(error);
-				$scope.warning_text = $translate('LIBRARY.ADD.INVALID_PUBLISHED');
+				$scope.warning_text = $translate.instant('LIBRARY.ADD.INVALID_PUBLISHED');
 			});
 		} else{
-			$scope.warning_text = $translate('LIBRARY.ADD.NOT_FILLED');
+			$scope.warning_text = $translate.instant('LIBRARY.ADD.NOT_FILLED');
 		}
 	};
 	// on selection of one of typeaheads checks if it matches only one result and if so, fills the rest of form
@@ -51,7 +51,7 @@ function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library
 		delete template.language;
 		delete template.note;
 		var arr = $filter('filter')($scope.selected_books, template);
-		template.isbn = ISBN13toISBN10(template.isbn);
+		template.isbn = Utils.ISBN13toISBN10(template.isbn);
 		if(template.isbn){
 			var arr2 = $filter('filter')($scope.selected_books, template);
 			arr = arr.concat(arr2);
@@ -102,7 +102,7 @@ function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library
 						addbook.edition = 1;
 						addbook.volume = 1;
 						if(query.length == 10)
-							addbook.isbn = ISBN10toISBN13(query);
+							addbook.isbn = Utils.ISBN10toISBN13(query);
 						else
 							addbook.isbn = query;
 						$scope.tel.push(addbook);
@@ -118,7 +118,7 @@ function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library
 				delete template.language;
 				delete template.note;
 				if(template.isbn.length === 10)
-					template.isbn = ISBN10toISBN13(template.isbn);
+					template.isbn = Utils.ISBN10toISBN13(template.isbn);
 				$scope.tel = $filter('filter')($scope.tel, template, true);
 				$scope.selected_books = $scope.selected_books.concat($scope.tel);
 				if($scope.tel.length === 1){
@@ -131,7 +131,7 @@ function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library
 					Books.search(query).success(function(data) {
 						processData(data);
 					});
-					Books.search(ISBN13toISBN10(query)).success(function(data) {
+					Books.search(Utils.ISBN13toISBN10(query)).success(function(data) {
 						processData(data);
 					});
 				}
@@ -140,7 +140,7 @@ function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library
 				Books.search(query).success(function(data) {
 					processData(data);
 				});
-				Books.search(ISBN10toISBN13(query)).success(function(data) {
+				Books.search(Utils.ISBN10toISBN13(query)).success(function(data) {
 					processData(data);
 				});
 			}
@@ -159,7 +159,7 @@ function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library
 		delete template.language;
 		delete template.note;
 		if(template.isbn && template.isbn.length == 10)
-			template.isbn = ISBN10toISBN13(template.isbn);
+			template.isbn = Utils.ISBN10toISBN13(template.isbn);
 		var arr = $filter('filter')($scope.selected_books, template);
 		arr = uniqBooks(arr, function(a, b) {
 			if(a.title + a.author < b.title + b.author)
