@@ -1,5 +1,5 @@
 'use strict';
-function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library, Books, Utils) {
+function libraryControl($rootScope, $scope, $location, $modal, $translate, $filter, Library, Books, Utils) {
 	//redirect to '/' if not signed in
 	if(!$rootScope.authenticated){
 		$location.path("/");

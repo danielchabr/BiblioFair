@@ -1,5 +1,5 @@
 'use strict';
-function homeControl($rootScope, $scope, $modal, Users, Books) {
+function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 	//redirect to '/' if not signed in
 	if(!$rootScope.authenticated){
 		$location.path("/");
