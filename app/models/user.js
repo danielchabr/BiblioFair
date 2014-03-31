@@ -3,8 +3,10 @@
 var mongoose = require('mongoose'),
 	crypto = require('crypto-js'),
 	validate = require('../helpers/validation'),
+	Book = mongoose.model("BookModel"),
 	Schema = mongoose.Schema;
 
+var User;
 var UserSchema = new Schema({
 	username: {
 		type: String,
@@ -78,7 +80,7 @@ UserSchema.statics.findBooks = function(userId, done) {
 		if(!data){
 			return done("user.notFound");
 		}
-		
+
 		var books = [];
 		data.library.forEach(function(item) {
 			books.push(getBook(item));
@@ -88,14 +90,23 @@ UserSchema.statics.findBooks = function(userId, done) {
 };
 
 UserSchema.statics.findBook = function(userId, bookId, done) {
-	this.findOne({_id: userId, 'library.id': bookId}, 'library').populate('library.id').exec(function(err, data) {
-		if(!data){
+	this.findById(userId, "library").populate("library.id").exec(function(err, user){
+		if(!user){
 			return done("user.notFound");
 		}
-		if(!data.library[0]){
+		
+		var book;
+		user.library.forEach(function(item) {
+			if(item.id.toObject()._id.toString() == bookId){
+				book = getBook(item);
+				return;
+			}
+		});
+		if(book){
+			return done(null, book);
+		}else{
 			return done("book.notFound");
 		}
-		done(err, getBook(data.library[0]));
 	});
 };
 
@@ -212,27 +223,6 @@ UserSchema.pre('save', function(next) {
  */
 UserSchema.methods = {
 	/**
-	 * Authenticate the user.
-	 * 
-	 * @param {String} plainText
-	 * @returns {Boolean}
-	 */
-	authenticate: function(password) {
-		return this.hashedPassword === this.encryptPassword(password);
-		/*
-		 //new authentication
-		 if(this.encryptPassword(plainText) === this.hashedPassword){
-		 return true;
-		 }
-		 //old authentication
-		 else if(crypto.SHA3(this.email + plainText).toString() === this.oldPassword.email){            
-		 this.password = plainText;
-		 this.oldPassword = {};
-		 return true;
-		 }
-		 return false;*/
-	},
-	/**
 	 * Make salt.
 	 *
 	 * @return {String}
@@ -242,7 +232,16 @@ UserSchema.methods = {
 		return crypto.lib.WordArray.random(16).toString();
 	},
 	/**
-	 * Encrypt the password using existing (!!) salt.
+	 * Authenticate the user.
+	 * 
+	 * @param {String} plainText
+	 * @returns {Boolean}
+	 */
+	authenticate: function(password) {
+		return this.hashedPassword === this.encryptPassword(password);
+	},
+	/**
+	 * Encrypt the password using the existing (!!) salt.
 	 * 
 	 * @param {String} password
 	 * @returns {String} 
@@ -255,7 +254,128 @@ UserSchema.methods = {
 	},
 	isLocated: function() {
 		return this.loc.coordinates.length === 2;
+	},
+	isVerified: function() {
+		return this.verified;
+	},
+	/**
+	 * Library API.
+	 */
+
+	addBook: function(newbook, done) {
+		var user = this;
+
+		//check if user can add books 			
+		var canAddBooks = user.canAddBooks();
+		if(canAddBooks !== true){
+			return done(canAddBooks);
+		}
+
+		//delete certain properties
+		['users', 'loc', 'num_users', '_id', '_v'].forEach(function(prop) {
+			delete newbook[prop];
+		});
+		newbook.published = new Date(newbook.published);
+
+		//search only by ceratin properties
+		var book = {};
+		['title', 'author', 'subtitle', 'publisher', 'published', 'language', 'edition', 'volume', 'isbn'].forEach(function(prop) {
+			if(newbook[prop]){
+				book[prop] = newbook[prop];
+			}
+		});
+		Book.findOne(book).exec(function(err, book) {
+			if(err){
+				return done(err);
+			}
+
+			if(!book){
+				book = new Book(newbook);
+				book.num_users = 0;
+			}
+
+			book.users.push(user._id);
+			book.num_users++;
+			book.loc.push({coordinates: user.loc.coordinates});
+			book.save(function(err, book) {
+				if(err){
+					return done(err);
+				}
+				user.library.push({
+					id: book._id,
+					last_updated: new Date(),
+					actions: newbook.actions,
+					note: newbook.note
+				});
+				user.save(function(err, user) {
+					if(err){
+						return done(err);
+					}
+					
+					User.findBook(user._id, book._id, function(err, book) {
+						done(err, book);
+					});
+				});
+			});
+		});
+	},
+	canAddBooks: function() {
+		//located?
+		if(!this.isLocated()){
+			return new Error("user.notLocated");
+		}
+		//verified?
+		if(!this.isVerified()){
+			return new Error("user.notVerified")
+		}
+		return true;
+	},
+	removeBook: function(bookId, done) {
+		var user = this;
+		Book.findById(bookId, function(err, book) {
+			if(err || !book.users){
+				return done(err || "book.notFound");
+			}
+			user.update({$pull: {'library': {id: bookId}}}, function(err) {
+				if(err){
+					return done(err);
+				}
+
+				book.users.splice(book.users.indexOf(user._id), 1);
+				book.loc.splice(book.loc.indexOf({coordinates: user.loc.coordinates}), 1);
+				book.num_users--;
+				user.save(function(err, user) {
+					if(err){
+						return done(err);
+					}
+					book.save(function(err, book) {
+						done(err, book);
+					});
+				});
+			});
+		});
+	},
+	transferBook: function(to, book, done) {
+		var from = this;
+
+		//check if user 'to' can add books
+		var toCanAddBooks = to.canAddBooks();
+		if(toCanAddBooks !== true){
+			return done(toCanAddBooks);
+		}
+
+		//add book to user 'to'
+		to.addBook(book, function(err, data) {
+			if(err){
+				return done(err);
+			}
+			//remove book from user 'from'
+			from.removeBook(book._id, function(err) {
+				return done(err, book);
+			});
+		});
 	}
 };
 
-mongoose.model('UserModel', UserSchema);
+
+User = mongoose.model('UserModel', UserSchema);

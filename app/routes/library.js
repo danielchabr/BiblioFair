@@ -44,5 +44,14 @@ module.exports = function(app) {
 			res.send(data);
 		});
 	});
+	
+	app.put("api/library/transfer", authorization.login, function(req, res, next){
+		library.transfer(req.user._id, req.body.to, req.body.book, function(err, data) {
+			if(err){
+				return next(err);
+			}
+			res.send(data);
+		});
+	});
 
 };

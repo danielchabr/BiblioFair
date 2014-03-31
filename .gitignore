@@ -6,3 +6,4 @@ updateDb.txt
 .DS_Store
 .bower-*/
 env_config.js
+.openshift

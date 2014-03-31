@@ -1,5 +1,10 @@
 'use strict';
-function accountControl($rootScope, $scope, $translate, Users, Global) {
+function accountControl($rootScope, $location, $scope, $translate, Users, Global) {
+
+	//redirect to '/' if not signed in
+	if(!$rootScope.authenticated){
+		$location.path("/");
+	}
 
 	//// Sets width of the map, is needed in IE
 	var map_width = $("#map_row").width();

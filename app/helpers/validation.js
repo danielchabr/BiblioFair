@@ -2,7 +2,7 @@
 
 var https = require('https');
 
-exports.email = function(email, done) {
+exports.emaila = function(email, done) {
 	var options = require('url').parse('https://api.mailgun.net/v2/address/validate?address=' + email);
 	options.auth = 'api:pubkey-9heydu31nykpybbupnrza9dmib09nd-7';
 	https.get(options, function(response) {
@@ -24,7 +24,7 @@ exports.presenceOf = function(value) {
 };
 
 
-/*var regex = exports.regex = {
+var regex = exports.regex = {
 	email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 	//email: /^[^@\s]+@[^@\s]+\.[a-z]{2,10}$/i,
 	//username: /^[^@\s]+$/
@@ -35,4 +35,4 @@ exports.presenceOf = function(value) {
 
 exports.email = function(email, done) {
 	return done(null, regex.email.test(email));
-};*/
+};

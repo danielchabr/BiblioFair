@@ -1,5 +1,10 @@
 'use strict';
 function homeControl($rootScope, $scope, $modal, Users, Books) {
+	//redirect to '/' if not signed in
+	if(!$rootScope.authenticated){
+		$location.path("/");
+	}
+	
 	//maps
     $.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4");
 	

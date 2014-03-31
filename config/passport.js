@@ -109,18 +109,24 @@ module.exports = function(passport) {
 		}, function(err, user) {
 			if(err){
 				return done(err);
-			}
+			}			
 			if(!user){
-				user = new User({
-					name: profile.displayName,
-					email: profile.emails[0].value,
-					username: profile.username,
-					provider: 'facebook',
-					verified: true,
-					facebook: profile._json
-				});
-				user.save(function(err) {
-					return done(err, user);
+				users.usernameFromEmail(profile.emails[0].value, function(err, username){
+					if(err){
+						return done(err);
+					}
+					
+					user = new User({
+						name: profile.displayName,
+						email: profile.emails[0].value,
+						username: username,
+						provider: 'facebook',
+						verified: true,
+						facebook: profile._json
+					});
+					user.save(function(err) {
+						return done(err, user);
+					});
 				});
 			} else{
 				return done(err, user);
@@ -143,16 +149,22 @@ module.exports = function(passport) {
 			'google.id': profile.id
 		}, function(err, user) {
 			if(!user){
-				user = new User({
+				users.usernameFromEmail(profile.emails[0].value, function(err, username){
+					if(err){
+						return done(err);
+					}
+					
+					user = new User({
 					name: profile.displayName,
 					email: profile.emails[0].value,
-					username: profile.emails[0].value.split("@")[0],
+					username: username,
 					provider: 'google',
 					verified: true,
 					google: profile._json
 				});
 				user.save(function(err, user) {
 					return done(err, user);
+				});
 				});
 			} else{
 				return done(err, user);

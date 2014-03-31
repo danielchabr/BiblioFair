@@ -51,6 +51,16 @@ a:hover, a:focus{
 	border-color: #debb27;
 }
 
+.btn-success{
+	background-color:#48ca3b;
+	border-color:#48ca3b;
+}
+
+.btn-success:hover{
+	background-color:#3aad2f;
+	border-color:#359d2b;
+}
+
 .pagination li a{
 	background-color:#039fb5;
 	border:1px solid transparent;
@@ -77,4 +87,8 @@ a:hover, a:focus{
 
 .modal-content{
 	background-color:#039fb5;
+}
+
+hr{
+	background-color:#037383;
 }

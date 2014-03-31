@@ -250,21 +250,20 @@ exports.issueRememberMeToken = function(user, done) {
  * @returns {unresolved}
  */
 
-exports.getUsernameFromEmail = function(email, done){
+exports.usernameFromEmail = function(email, done){
 	var username = email.split("@")[0];
-	
-	
-	
-	
-	if(usernameExists())
-	
-	return done(email.split("@")[0]);
+	createUniqueUsername(username, done);
 };
 
-function createUsername(){
+function createUniqueUsername(username, done){
 	usernameExists(username, function(exists){
 		if(exists){
-			
+			username += "a";
+			return createUniqueUsername(username, done);
+		}
+		else{
+			return done(username);
 		}
 	});
 }
+

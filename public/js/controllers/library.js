@@ -1,5 +1,10 @@
 'use strict';
 function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library, Books, Utils) {
+	//redirect to '/' if not signed in
+	if(!$rootScope.authenticated){
+		$location.path("/");
+	}
+	
 	$scope.selected_books = [];
 	
 	//load books from user's library
@@ -27,6 +32,8 @@ function libraryControl($rootScope, $scope, $modal, $translate, $filter, Library
 					$scope.newbook.isbn = Utils.ISBN10toISBN13($scope.newbook.isbn);
 			}
 			Library.add($scope.newbook).success(function(book) {
+				console.log(book);
+				
 				$scope.newbook = {};
 				$scope.mybooks.push(book);
 				$scope.warning_text = "";
