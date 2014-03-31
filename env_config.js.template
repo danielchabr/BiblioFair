@@ -1,0 +1,19 @@
+module.exports = {
+	ip : "",
+	port : "",
+	mail : {
+		key : "",
+		server : ""
+	},
+	database : "",
+	facebook : {
+		clientID : "",
+		clientSecret: "",
+		callbackURL : ""
+	}, 
+	google : {
+		clientID : "",
+		clientSecret : "",
+		callbackURL : ""
+	}
+};

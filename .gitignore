@@ -6,3 +6,4 @@ todo
 updateDb.txt
 .DS_Store
 log
+env_config.js
