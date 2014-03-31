@@ -78,7 +78,7 @@ try {
 }
 
 var port = (process.env.OPENSHIFT_NODEJS_PORT || process.env.OPENSHIFT_INTERNAL_PORT || config.port);
-var ipaddr = (process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost');
+var ipaddr = (process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || config.ip || 'localhost');
 
 exports = module.exports = app;
 try {

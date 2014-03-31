@@ -21,4 +21,8 @@ var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, $translate, 
 	$scope.remove = function() {
 		$modalInstance.close('remove');
 	};
+	$scope.transfer = {
+		send: function () {
+		}
+	};
 };
