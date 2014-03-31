@@ -1,8 +1,11 @@
-'use strict';
-
 module.exports = {
-	//Bl5vcDrcTPEJ
-	db: 'mongodb://admin:yfePWAvtyZPr@' + process.env.OPENSHIFT_MONGODB_DB_HOST + ':' + process.env.OPENSHIFT_MONGODB_DB_PORT + '/bibliofair',
+	port: process.env.PORT || 8080,
+	mail : {
+		key : "key-9q6wmvaf8-8-uyu7n-hd5cwvjqc76jn5",
+		server : "bibliofair.com",
+		report: "Tadeas Petak <tadeaspetak@gmail.com>"
+	},
+	database : "mongodb://localhost/bibliofair",
 	facebook: {
 		clientID: '1481175278763417',
 		clientSecret: '63aa01bfcfbbe032d0ba21ba2db8fc2b',

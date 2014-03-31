@@ -1,10 +1,10 @@
 'use strict';
 
 var path = require('path'),
-		fs = require('fs'),
-		config = require('../config/config'),
-		publicPath = path.resolve(__dirname + '/../public'),
-		messaging = require('./helpers/messaging');
+	fs = require('fs'),
+	config = require('../config/config'),
+	publicPath = path.resolve(__dirname + '/../public'),
+	messaging = require('./helpers/messaging');
 
 module.exports = function(app) {
 
@@ -22,14 +22,33 @@ module.exports = function(app) {
 	});
 	
 	/**
+	 * Crawlers.
+	 */
+
+	app.get('*', function(req, res, next) {
+		if(req.url.indexOf('?_escaped_fragment_=') !== -1){
+			console.log("google bot" + new Date());
+			//cs + cz (compatibility)
+			if(req.url.indexOf('cs') > -1 || req.url.indexOf('cz') > -1){
+				res.sendfile(config.root + "/public/snapshot_cz.html");
+			} else{
+				res.sendfile(config.root + "/public/snapshot_en.html");
+			}
+		}
+		else{
+			next();
+		}
+	});
+
+	/**
 	 * Language routes.
 	 * 
 	 * Take routes such as '/en', '/en/home', '/cs/library' etc., save the language
 	 * and redirect to the appropriate url ('/', '/home', '/library').
 	 */
-	
-	config.languages.forEach(function(language){
-		app.all("/" + language + "/?*?",function(req, res){
+
+	config.languages.forEach(function(language) {
+		app.all("/" + language + "/?*?", function(req, res) {
 			res.setLanguage(language);
 			res.redirect(req.path.slice(language.length + 1));
 		});
@@ -42,14 +61,14 @@ module.exports = function(app) {
 	app.all("*", function(req, res) {
 		//language
 		res.setLanguage(req.getLanguage());
-		
+
 		//add translations
 		var translations = {};
-		for(var lang in messaging.messages){
+		for (var lang in messaging.messages){
 			translations[lang] = {};
 			translations[lang]['errors'] = messaging.messages[lang].errors;
 		}
-		
+
 		//render
 		res.render('index', {
 			user: req.user ? JSON.stringify(req.user) : 'null',
@@ -60,18 +79,7 @@ module.exports = function(app) {
 	});
 
 /////////////  PUBLIC PART
-	/*app.get('*', function(req, res, next) {
-	 if(req.url.indexOf('?_escaped_fragment_=') != -1){
-	 console.log("google bot" + new Date());
-	 if(req.url.indexOf('cz') > -1){
-	 res.sendfile(public_path + "/snapshot_cz.html");
-	 } else{
-	 res.sendfile(public_path + "/snapshot_en.html");
-	 }
-	 }
-	 else
-	 next();
-	 });
+	/*
 	 app.get('*', function(req, res, next) {
 	 if(/^blog./.test(req.headers.host)){  //if it's a sub-domain
 	 console.log("blog" + new Date());

@@ -6,7 +6,7 @@ var config = require('../../config/config'),
 	http = require('http'),
 	//emails
 	Mailgun = require('mailgun').Mailgun,
-	mg = new Mailgun(config.messages.mailgun.key),
+	mg = new Mailgun(config.mail.key),
 	messages = require('../helpers/messaging').messages,
 	_ = require('lodash');
 
@@ -116,12 +116,12 @@ exports.report = function(user, book, done) {
 				}
 				else{
 					mg.sendText('Book report <report@bibliofair.com>',
-						config.messages.reportBookEmail,
+						config.mail.report,
 						messages['en'].emails.report.subject,
 						messages['en'].emails.report.body.replace(/\{username\}/g, user.username)
 						.replace(/\{book.title\}/, book.title)
 						.replace(/\{book.author\}/, book.author),
-						config.messages.mailgun.server,
+						config.mail.server,
 						function(err) {
 							done(err, 'ok');
 						});
@@ -158,7 +158,7 @@ exports.request = function(from, to, book, language, done) {
 					.replace(/\{book.author\}/g, book.author)
 					.replace(/\{book.author\}/g, book.author)
 					.replace(/\{recipient\}/g, to.username + "@bibliofair.com"),
-					config.messages.mailgun.server,
+					config.mail.server,
 					function(err) {
 						done(err, 'ok');
 					});

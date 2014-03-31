@@ -79,7 +79,7 @@ module.exports = function(app, passport) {
 	app.get('/signin/facebook/callback', function(req, res, next) {
 		passport.authenticate('facebook', function(err, user) {
 			if(err){
-				resolveOauthError(err, req, res);
+				return resolveOauthError(err, req, res);
 			}
 
 			else if(!user){
@@ -92,9 +92,8 @@ module.exports = function(app, passport) {
 					default:
 						message = "facebook.error";
 				}
-				resolveOauthError(message, req, res);
+				return resolveOauthError(message, req, res);
 			}
-
 
 			req.logIn(user, function(err) {
 				if(err){

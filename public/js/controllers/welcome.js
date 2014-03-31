@@ -58,7 +58,7 @@ function welcomeControl($rootScope, $location, $scope, Books, Users, Utils, $tra
 			email: user.email,
 			password: Utils.encrypt(user.password)
 		}).success(function(data) {
-			$scope.signupMessage = $translate('WELCOME.VERIFICATION_SENT') + user.email;
+			$scope.signupMessage = $translate.instant('WELCOME.VERIFICATION_SENT') + user.email;
 			//GA register goal
 			ga('send', 'event', 'Register', 'register');
 		}).error(function(errors) {

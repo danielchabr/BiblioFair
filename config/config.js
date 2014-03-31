@@ -1,9 +1,15 @@
 'use strict';
 
-var _ = require('lodash');
+var _ = require('lodash'),
+	path = require('path'),
+	root = path.normalize(__dirname + '/..');
 
-//extend the defaults (all.js) with specific configuration based on environment (NODE_ENV)
+//extend the defaults with specific configuration from '/env_config.js'
 module.exports = _.extend(
-        require(__dirname + '/../config/env/all.js'),
-        require(__dirname + '/../config/env/' + process.env.NODE_ENV + '.js') || {}
+	{
+		root: root,
+		templateEngine: 'swig',
+		languages: ['en', 'cs']
+	},
+	require(root + '/env_config.js') || {}
 );
