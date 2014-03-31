@@ -1,40 +1,42 @@
 var messages = exports.messages = {
 	cs: {
-		verification: {
-			subject: 'Vítejte na BiblioFair',
-			body: 'Dobrý den {username}!\n\n' +
-				'Pro ověření Vašeho účtu prosím klikněte na následující odkaz:\n' +
-				'http://www.bibliofair.com/verify/{link}\n' +
-				'Doufáme, že se Vám zalíbí naše služby.\n\n' +
-				'S pozdravem, \n' +
-				'Tým BiblioFair'
+		emails: {
+			verification: {
+				subject: 'Vítejte na BiblioFair',
+				body: 'Dobrý den {username}!\n\n' +
+					'Pro ověření Vašeho účtu prosím klikněte na následující odkaz:\n' +
+					'http://www.bibliofair.com/verify/{link}\n' +
+					'Doufáme, že se Vám zalíbí naše služby.\n\n' +
+					'S pozdravem, \n' +
+					'Tým BiblioFair'
+			},
+			recovery: {
+				subject: 'Obnova hesla',
+				body: 'Dobrý den {username}!\n\n' +
+					'Bylo požádáno o obnovu hesla k Vašemu účtu.\n' +
+					'Z důvodu bezpečnosti jsme pro Vás vygenerovali nové heslo.\n' +
+					'Doporučujeme změnu vygenerovaného hesla při Vašem příštím přihlášení.\n' +
+					'Nové heslo: {password}\n' +
+					'www.bibliofair.com \n\n' +
+					'S pozdravem,\n' +
+					'Tým BiblioFair'
+			},
+			request: {
+				subject: 'Žádost o knihu',
+				body: 'Dobrý den {to}!\n' +
+					'Uživatel {from} by od Vás rád koupil, půjčil nebo jinak získal knihu. Pokud máte zájem, stačí odpovědět na tuto zprávu a domluvit detaily předání přímo s ním.\n' +
+					'Informace o požadované knize:\n' +
+					'Titul: {book.title}\n' +
+					'Autor: {book.author}\n\n' +
+					'S pozdravem a přáním hezkého dne,\n' +
+					'Tým BiblioFair'
+			},
+			_explanation: '\n--------------------------------------\n' +
+				'Tento email byl odeslán přes službu BiblioFair.\n' +
+				'Vaše emailová adresa zůstává ostatním uživatelům skryta.\n' +
+				'Zprávy jsou odesílány na adresu {recipient}, odkud jsou přesměrovány na Vaši soukromou emailovou adresu.\n' +
+				'Pro úspěšné doručení odpovědi a nahrazení Vaší soukromé emailové adresy za veřejnou je nutné, abyste odpověď odeslali z Vámi registrované emailové adresy.\n',
 		},
-		recovery: {
-			subject: 'Obnova hesla',
-			body: 'Dobrý den {username}!\n\n' +
-				'Bylo požádáno o obnovu hesla k Vašemu účtu.\n' +
-				'Z důvodu bezpečnosti jsme pro Vás vygenerovali nové heslo.\n' +
-				'Doporučujeme změnu vygenerovaného hesla při Vašem příštím přihlášení.\n' +
-				'Nové heslo: {password}\n' +
-				'www.bibliofair.com \n\n' +
-				'S pozdravem,\n' +
-				'Tým BiblioFair'
-		},
-		request: {
-			subject: 'Žádost o knihu',
-			body: 'Dobrý den {to}!\n' +
-				'Uživatel {from} by od Vás rád koupil, půjčil nebo jinak získal knihu. Pokud máte zájem, stačí odpovědět na tuto zprávu a domluvit detaily předání přímo s ním.\n' +
-				'Informace o požadované knize:\n' +
-				'Titul: {book.title}\n' +
-				'Autor: {book.author}\n\n' +
-				'S pozdravem a přáním hezkého dne,\n' +
-				'Tým BiblioFair'
-		},
-		emailExplanation: '\n--------------------------------------\n' +
-			'Tento email byl odeslán přes službu BiblioFair.\n' +
-			'Vaše emailová adresa zůstává ostatním uživatelům skryta.\n' +
-			'Zprávy jsou odesílány na adresu {recipient}, odkud jsou přesměrovány na Vaši soukromou emailovou adresu.\n' +
-			'Pro úspěšné doručení odpovědi a nahrazení Vaší soukromé emailové adresy za veřejnou je nutné, abyste odpověď odeslali z Vámi registrované emailové adresy.\n',
 		errors: {
 			username: {
 				invalid: "Neplatné uživatelské jméno.",
@@ -73,8 +75,7 @@ var messages = exports.messages = {
 				vefified: "E-mail byl úspěšně ověřen."
 			}
 		},
-		texts:{
-			
+		texts: {
 		}
 	},
 	en: {
