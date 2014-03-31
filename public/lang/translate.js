@@ -114,7 +114,7 @@ var translateEN = {
 			'INVALID_PUBLISHED': 'Invalid year of publishment'
 		},
 		'TRANSFER' : {
-			'BUTTON' : 'Převést na uživatele ...',
+			'BUTTON' : 'Transfer to user ...',
 			'TEXT' : 'I want to',
 			'LEND' : 'borrow',
 			'DONATE' : 'donate',

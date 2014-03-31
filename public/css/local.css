@@ -221,6 +221,10 @@ body{
 	z-index:1000;
 }
 
+.modal-footer > .row {
+	margin: 0;
+}
+
 /** welcome */
 
 #signup.row{
@@ -249,3 +253,19 @@ body{
 	padding-top:1em;
 	border-top:1px dotted #aaa;
 }
+
+/** library */
+
+#transfer {
+	padding-top: 15px;
+	text-align: left;
+}
+
+#transfer > .form-control {
+	width: auto;
+}
+
+#transfer > * {
+	display: inline-block;
+}
+

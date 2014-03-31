@@ -1,4 +1,5 @@
 module.exports = {
+	ip : "",
 	port : "",
 	mail : {
 		key : "",
