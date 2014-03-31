@@ -9,7 +9,7 @@ var mongoose = require("mongoose"),
 	validate = require("../helpers/validation"),
 	//emails
 	Mailgun = require('mailgun').Mailgun,
-	mg = new Mailgun(config.messages.mailgun.key),
+	mg = new Mailgun(config.mail.key),
 	messages = require('../helpers/messaging').messages;
 
 /**
@@ -176,7 +176,7 @@ exports.recover = function(email, done) {
 					user.email,
 					messages[user.language].emails.recovery.subject,
 					messages[user.language].emails.recovery.body.replace(/\{username\}/g, user.username).replace(/\{password\}/, pass),
-					config.messages.mailgun.server,
+					config.mail.server,
 					function(err) {
 						if(err){
 							console.log('Oh noes: ' + err);
@@ -219,7 +219,7 @@ exports.emailExists = function(email, done) {
  * @returns {boolean}
  */
 
-exports.usernameExists = function(username, done) {
+var usernameExists = exports.usernameExists = function(username, done) {
 	User.findOne({username: username}, function(err, user) {
 		if(err){
 			return done(err);
@@ -241,3 +241,30 @@ exports.issueRememberMeToken = function(user, done) {
 		return done(err, user.remember);
 	});
 };
+
+/**
+ * Create username from email.
+ * 
+ * @param {string} email
+ * @param {function} done
+ * @returns {unresolved}
+ */
+
+exports.getUsernameFromEmail = function(email, done){
+	var username = email.split("@")[0];
+	
+	
+	
+	
+	if(usernameExists())
+	
+	return done(email.split("@")[0]);
+};
+
+function createUsername(){
+	usernameExists(username, function(exists){
+		if(exists){
+			
+		}
+	});
+}

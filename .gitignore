@@ -2,8 +2,7 @@ node_modules
 Makefile
 archive
 todo
-.bower-*/
 updateDb.txt
 .DS_Store
-log
+.bower-*/
 env_config.js

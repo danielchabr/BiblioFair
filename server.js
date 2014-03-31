@@ -1,4 +1,5 @@
 'use strict';
+
 var express = require('express'),
         fs = require('fs'),
         passport = require('passport'),
@@ -35,13 +36,13 @@ mongoose.connection.on('connected', function() {
 });
 mongoose.connection.on('disconnected', function() {
     console.log('MongoDB disconnected!');
-    mongoose.connect(config.db);
+    mongoose.connect(config.database);
 });
 mongoose.connection.on('error', function(error) {
     console.error('Error in MongoDb connection: ' + error);
     mongoose.disconnect();
 });
-mongoose.connect(config.db);
+mongoose.connect(config.database);
 
 // passport config
 require('./config/passport')(passport);
@@ -77,7 +78,7 @@ try {
 }
 
 var port = (process.env.OPENSHIFT_NODEJS_PORT || process.env.OPENSHIFT_INTERNAL_PORT || config.port);
-var ipaddr = process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost';
+var ipaddr = (process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost');
 
 exports = module.exports = app;
 try {

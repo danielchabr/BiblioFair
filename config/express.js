@@ -10,9 +10,7 @@ var express = require('express'),
 	flash = require('connect-flash'),
 	consolidate = require('consolidate'),
 	messaging = require("../app/helpers/messaging"),
-	localization = require("../app/helpers/localization"),
-	//loggin
-	logger = require('../app/helpers/logger');
+	localization = require("../app/helpers/localization");
 
 module.exports = function(app, passport) {
 	// place before express.static to make sure all assets and data are compressed
@@ -77,7 +75,6 @@ module.exports = function(app, passport) {
 				res.status(500);
 			}
 			console.log(messaging.normalizeError(err, req.getLanguage()));
-			logger.error(err.toString());
 			res.send(messaging.normalizeError(err, req.getLanguage()));
 		});
 	});
