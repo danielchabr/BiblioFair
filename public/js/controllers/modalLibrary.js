@@ -27,4 +27,7 @@ var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, $translate, 
 			Library.transfer(transfer.user, book._id);
 		}
 	};
+	$scope.cancel = function() {
+		$modalInstance.dismiss('cancel');
+	};
 };
