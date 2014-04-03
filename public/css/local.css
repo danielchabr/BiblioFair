@@ -40,14 +40,17 @@ a:active, a:focus, input, .btn:focus {
     outline-style:none;
     outline-width:0;
 }
-
-.modal-dialog {
-	padding-bottom: 55px;
+hr {
+	border-top: 1px solid #037383;
 }
+
 .well, .btn, .form-control, .modal-content, .pagination > li:first-child > a, .pagination > li:last-child > a {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
+}
+.form-inline .form-control {
+	width: 100%;
 }
 .navbar {
 	border: 0px;
@@ -143,11 +146,6 @@ body{
 	position:relative;
 	top:4px;
 }
-@media screen and (min-width: 768px) {
-	.modal-dialog {
-		width:748px;
-	}
-}
 
 .animate-enter {
 	-webkit-transition: 0.5s linear all; /* Chrome */
@@ -162,6 +160,19 @@ body{
 }
 .animate-leave.animate-leave-active {
 	display:none;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+	background-color: #037e8f;
+}
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+	border-top: 1px solid #037383;
+}
+
+/** labels */ 
+
+.label-primary {
+	background-color: #bf222e;
 }
 
 /**
@@ -221,9 +232,6 @@ body{
 	z-index:1000;
 }
 
-.modal-footer > .row {
-	margin: 0;
-}
 
 /** welcome */
 
@@ -269,3 +277,26 @@ body{
 	display: inline-block;
 }
 
+/** Modals */
+
+.modal-dialog {
+	padding-bottom: 55px;
+}
+
+.modal-header {
+	border-bottom: 1px solid #037383;
+}
+
+.modal-footer {
+	border-top: 1px solid #037383;
+}
+
+.modal-footer > .row {
+	margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+	.modal-dialog {
+		width:748px;
+	}
+}

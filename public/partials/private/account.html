@@ -31,18 +31,8 @@
 			<h3 class="text-center">{{ 'ACCOUNT.SETLOCATION' | translate }}</h3>
 			<form class="form-inline">
 				<fieldset>
-					<!--
 					<div class="form-group">
-						<label for="latitude">{{ 'ACCOUNT.LATITUDE' | translate }}</label>
-						<input type="text" class="form-control input-sm" ng-model="centerLat" disabled> 
-					</div>
-					<div class="form-group">
-						<label for="longitude">{{ 'ACCOUNT.LONGITUDE' | translate }}</label>
-						<input type="text" class="form-control input-sm" ng-model="centerLng" disabled>
-					</div>
-					-->
-					<div class="form-group">
-						<label for="search_loc">{{ 'ACCOUNT.SEARCH_LOC' | translate }}</label>
+						<label for="search_loc" style="display:block">{{ 'ACCOUNT.SEARCH_LOC' | translate }} </label>
 						<input type="text" class="form-control input-sm" ng-model="searchAddress" placeholder="{{ 'ACCOUNT.SEARCH_LOC_TEXT' | translate }}">
 					</div>
 					<div class="form-group" style="vertical-align:bottom">
