@@ -13,6 +13,11 @@ var express = require('express'),
 	localization = require("../app/helpers/localization");
 
 module.exports = function(app, passport) {
+	app.set('showStackError', true);
+	app.locals.pretty = true;
+	// cache needs to be in the 'memory mode' otherwise swig dies in NODE_ENV=production
+	app.locals.cache = 'memory';
+	
 	// place before express.static to make sure all assets and data are compressed
 	app.use(express.compress({
 		filter: function(req, res) {
