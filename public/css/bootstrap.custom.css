@@ -92,3 +92,13 @@ a:hover, a:focus{
 hr{
 	background-color:#037383;
 }
+
+/** signup form */
+
+#signup .has-error .help-block{
+	color: #f33;
+}
+
+#signup .has-success .help-block{
+	color:#33bb33;
+}
