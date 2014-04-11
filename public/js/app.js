@@ -3,6 +3,7 @@
 // create bibliofair module
 angular.module('bibliofair', [
 	'ngRoute',
+	'ngSanitize',
 	'ngCookies',
 	'ui.bootstrap',
 	'pascalprecht.translate'
@@ -85,13 +86,16 @@ angular.module('bibliofair')
 			 * @returns {undefined}
 			 */
 
-			$rootScope.notify = function(message) {
+			$rootScope.notify = function(message, title) {
 				var modalInstance = $modal.open({
 					templateUrl: '/partials/notification.html',
 					controller: ModalNotificationCtrl,
 					resolve: {
 						message: function() {
 							return message;
+						},
+						title: function() {
+							return title;
 						}
 					}
 				});
