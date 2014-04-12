@@ -300,3 +300,17 @@ body{
 		width:748px;
 	}
 }
+
+.notification {
+	padding: 0 30px;
+}
+
+.notification p {
+	text-align: left;
+	margin: 20px 0;
+}
+
+.notification h3 {
+	margin-top: 20px;
+	margin-top: 10px;
+}

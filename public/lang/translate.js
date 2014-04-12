@@ -79,6 +79,27 @@ var translateEN = {
 		'<p>Uživatel bere na vědomí, že veškeré údaje a materiály umisťuje a zveřejňuje na serveru bibliofair.com zcela dobrovolně. Podmínky ochrany osobních údajů jsou upraveny v samostatném prohlášení.</p>' +
 		'<p>Uživatel souhlasí ve smyslu zákona o některých službách informační společnosti s tím, že provozovatel je oprávněn zasílat uživateli služeb jakékoli e-mailové zprávy, obsahující informace o provozních záležitostech, novinkách, které daná služba nabízí, a o produktech třetích osob (obchodní sdělení). Uživatel souhlasí ve smyslu tohoto zákona s tím, že provozovatel je oprávněn připojovat na závěr odesílaných a/nebo přijímaných zpráv tzv. reklamní patičky, reklamní sdělení (odkaz ve formě URL doprovázené reklamními slogany). Uživatel souhlasí s anonymním užitím registračních a statistických údajů služby provozovatelem služby.</p>'
 	},
+	'PRIVACY': {
+		'TITLE': 'Privacy policy',
+		'BODY': '<p>Záležitost ochrany osobních údajů a jejich důvěrnost bereme velmi vážně a držíme se příslušných státních i evropských nařízení o ochraně osobních údajů. Nejdůležitější aspekty našeho zpracování osobních údajů vysvětlujeme níže.</p>' +
+		'<p>Vaše osobní údaje zpracováváme a využíváme pouze s Vaším výslovným souhlasem a striktně dle zákona č. 101/2000 Sb., o ochraně osobních údajů v platném znění. Povozovatelem serveru bibliofair.com je fyzická osoba Daniel Chabr a je správcem osobních údajů a je registrována u Úřadu pro ochranu osobních údajů.</p>' +
+		'<h3>1. Jaké osobní údaje uchováváme?</h3>' +
+		'<p>Uchováváme ty informace, které jsme od Vás se souhlasem získali, na příklad, když jste se zaregistrovali, zúčastnili soutěží, když jste si objednali zasílání novinek prostřednictvím e-mailových zpráv nebo když nás kontaktujete. Nejčastěji se jedná o Vaše jméno, adresu a e-mailovou adresu.</p>' +
+		'<p>Dále rovněž zaznamenáváme informace o Vašich zájmech prostřednictvím analýzy Vašich kliknutí na webových stránkách a v e-mailových zprávách, které od nás dostanete.</p>' +
+		'<p>V okamžiku, kdy nás poprvé kontaktujete, vytvoříme si v naší databázi Váš profil. Jakékoliv další informace, které nám později předáte, se v něm rovněž ukládají. Čím více informací od Vás získáme, tím individuálněji zaměřené a zajímavější nabídky Vám budeme moci v budoucnu předkládat.</p>' +
+		'<h3>2. K čemu tyto údaje užíváme?</h3>' +
+		'<p>Tyto údaje užíváme pro účely výzkumu trhu i pro marketingové účely, tj. individuální tvorbu a zasílání vybraných informací poštou, e-mailem nebo prostřednictvím textových zpráv, nabízení výrobků a služeb a zasílání obchodních sdělení prostřednictvím elektronických prostředků, dle zákona č. 480/2004 Sb.</p>' +
+		'<h3>3. Jak dlouho se osobní údaje archivují?</h3>' +
+		'<p>V podstatě ukládáme veškeré informace, které nám zašlete po tak dlouhou dobu, co máte zájem o zasílání našich reklamních informací, tj. záleží době uvedené v konkrétním textu souhlasu. Nejčastěji jsou osobní údaje zpracovávány na dobu do odvolání Vašeho souhlasu nebo přímo na konkrétní časový úsek, který je uveden v textu souhlasu. Pokud si již více nepřejete, abychom využívali Vaše údaje, samozřejmě okamžitě a bezplatně splníme tento Váš požadavek (viz. část 5).</p>' +
+		'<h3>4. Můžete zjistit, jaké údaje o Vás vedeme?</h3>' +
+		'<p>Ano. Můžete kdykoliv získat informace o údajích, které si o Vaší osobě evidujeme dle § 12 zákona o ochraně osobních údajů.</p>' +
+		'<h3>5. Můžete zažádat o vymazání údajů evidovaných o Vaší osobě?</h3>' +
+		'<p>Ano. Samozřejmě máte kdykoliv možnost zažádat o částečné nebo úplné vymazání Vašich údajů, sdělením na e-mail: support@bibliofair.com. Vaše přání splníme bez prodlení a okamžitě zrušíme zasílání dalších reklamních materiálů. V určitých případech, kdy tak vyžaduje zákon, budou Vaše osobní údaje uchovány a soubor bude zablokován, nikoli vymazán. Dále můžete kdykoli požádat o blokování, opravu či doplnění Vašich osobních údajů. Stejně tak máte i další práva dle § 21 zákona o ochraně osobních údaj.</p>' +
+		'<h3>6. Předáváme Vaše osobní údaje třetím stranám?</h3>' +
+		'<p>Ne, Vaše osobní údaje bez Vašeho souhlasu či bez Vašeho předchozího informování nepředáváme žádným třetím stranám k dalšímu využití, zejména Vaše osobní údaje nejsou prodávány, pronajímány ani vyměňovány.  Pokud pověříme jiné společnosti – tzv. zpracovatele (zařízení na zpracování dat) dokončením našich úkolů (např. zasíláním informací), pak samozřejmě po těchto společnostech rovněž vyžadujeme ochranu Vašich údajů a takové společnosti mají povolení užívat Vaše údaje pouze a výhradně k zadaným účelům. I u takových společností vyžadujeme, aby zacházely s údaji v souladu s tímto prohlášením o ochraně dat a s příslušnou legislativo.</p>' +
+		'<h3>7. Bezpečnost osobních údajů</h3>' +
+		'<p>Veškeré osobní údaje jsou uloženy na serverech s vysokou úrovní bezpečnosti a jsou chráněny proti zneužití ze strany nepovolaných osob. Stejně tak naše společnost dodržuje i další bezpečnostní opatření sloužící k ochraně osobních údajů.</p>'
+	},
 	'HOME': { 
 		'ORDER': { 
 			'TEXT': 'Order by:',
@@ -266,6 +287,27 @@ var translateCS = {
 		'<p>Provozovatel je oprávněn poskytování služeb serveru bibliofair.com kdykoliv měnit, přerušit či ukončit.</p>' + 
 		'<p>Uživatel bere na vědomí, že veškeré údaje a materiály umisťuje a zveřejňuje na serveru bibliofair.com zcela dobrovolně. Podmínky ochrany osobních údajů jsou upraveny v samostatném prohlášení.</p>' +
 		'<p>Uživatel souhlasí ve smyslu zákona o některých službách informační společnosti s tím, že provozovatel je oprávněn zasílat uživateli služeb jakékoli e-mailové zprávy, obsahující informace o provozních záležitostech, novinkách, které daná služba nabízí, a o produktech třetích osob (obchodní sdělení). Uživatel souhlasí ve smyslu tohoto zákona s tím, že provozovatel je oprávněn připojovat na závěr odesílaných a/nebo přijímaných zpráv tzv. reklamní patičky, reklamní sdělení (odkaz ve formě URL doprovázené reklamními slogany). Uživatel souhlasí s anonymním užitím registračních a statistických údajů služby provozovatelem služby.</p>'
+	},
+	'PRIVACY': {
+		'TITLE': 'Ochrana osobních údajů',
+		'BODY': '<p>Záležitost ochrany osobních údajů a jejich důvěrnost bereme velmi vážně a držíme se příslušných státních i evropských nařízení o ochraně osobních údajů. Nejdůležitější aspekty našeho zpracování osobních údajů vysvětlujeme níže.</p>' +
+		'<p>Vaše osobní údaje zpracováváme a využíváme pouze s Vaším výslovným souhlasem a striktně dle zákona č. 101/2000 Sb., o ochraně osobních údajů v platném znění. Povozovatelem serveru bibliofair.com je fyzická osoba Daniel Chabr a je správcem osobních údajů a je registrována u Úřadu pro ochranu osobních údajů.</p>' +
+		'<h3>1. Jaké osobní údaje uchováváme?</h3>' +
+		'<p>Uchováváme ty informace, které jsme od Vás se souhlasem získali, na příklad, když jste se zaregistrovali, zúčastnili soutěží, když jste si objednali zasílání novinek prostřednictvím e-mailových zpráv nebo když nás kontaktujete. Nejčastěji se jedná o Vaše jméno, adresu a e-mailovou adresu.</p>' +
+		'<p>Dále rovněž zaznamenáváme informace o Vašich zájmech prostřednictvím analýzy Vašich kliknutí na webových stránkách a v e-mailových zprávách, které od nás dostanete.</p>' +
+		'<p>V okamžiku, kdy nás poprvé kontaktujete, vytvoříme si v naší databázi Váš profil. Jakékoliv další informace, které nám později předáte, se v něm rovněž ukládají. Čím více informací od Vás získáme, tím individuálněji zaměřené a zajímavější nabídky Vám budeme moci v budoucnu předkládat.</p>' +
+		'<h3>2. K čemu tyto údaje užíváme?</h3>' +
+		'<p>Tyto údaje užíváme pro účely výzkumu trhu i pro marketingové účely, tj. individuální tvorbu a zasílání vybraných informací poštou, e-mailem nebo prostřednictvím textových zpráv, nabízení výrobků a služeb a zasílání obchodních sdělení prostřednictvím elektronických prostředků, dle zákona č. 480/2004 Sb.</p>' +
+		'<h3>3. Jak dlouho se osobní údaje archivují?</h3>' +
+		'<p>V podstatě ukládáme veškeré informace, které nám zašlete po tak dlouhou dobu, co máte zájem o zasílání našich reklamních informací, tj. záleží době uvedené v konkrétním textu souhlasu. Nejčastěji jsou osobní údaje zpracovávány na dobu do odvolání Vašeho souhlasu nebo přímo na konkrétní časový úsek, který je uveden v textu souhlasu. Pokud si již více nepřejete, abychom využívali Vaše údaje, samozřejmě okamžitě a bezplatně splníme tento Váš požadavek (viz. část 5).</p>' +
+		'<h3>4. Můžete zjistit, jaké údaje o Vás vedeme?</h3>' +
+		'<p>Ano. Můžete kdykoliv získat informace o údajích, které si o Vaší osobě evidujeme dle § 12 zákona o ochraně osobních údajů.</p>' +
+		'<h3>5. Můžete zažádat o vymazání údajů evidovaných o Vaší osobě?</h3>' +
+		'<p>Ano. Samozřejmě máte kdykoliv možnost zažádat o částečné nebo úplné vymazání Vašich údajů, sdělením na e-mail: support@bibliofair.com. Vaše přání splníme bez prodlení a okamžitě zrušíme zasílání dalších reklamních materiálů. V určitých případech, kdy tak vyžaduje zákon, budou Vaše osobní údaje uchovány a soubor bude zablokován, nikoli vymazán. Dále můžete kdykoli požádat o blokování, opravu či doplnění Vašich osobních údajů. Stejně tak máte i další práva dle § 21 zákona o ochraně osobních údaj.</p>' +
+		'<h3>6. Předáváme Vaše osobní údaje třetím stranám?</h3>' +
+		'<p>Ne, Vaše osobní údaje bez Vašeho souhlasu či bez Vašeho předchozího informování nepředáváme žádným třetím stranám k dalšímu využití, zejména Vaše osobní údaje nejsou prodávány, pronajímány ani vyměňovány.  Pokud pověříme jiné společnosti – tzv. zpracovatele (zařízení na zpracování dat) dokončením našich úkolů (např. zasíláním informací), pak samozřejmě po těchto společnostech rovněž vyžadujeme ochranu Vašich údajů a takové společnosti mají povolení užívat Vaše údaje pouze a výhradně k zadaným účelům. I u takových společností vyžadujeme, aby zacházely s údaji v souladu s tímto prohlášením o ochraně dat a s příslušnou legislativo.</p>' +
+		'<h3>7. Bezpečnost osobních údajů</h3>' +
+		'<p>Veškeré osobní údaje jsou uloženy na serverech s vysokou úrovní bezpečnosti a jsou chráněny proti zneužití ze strany nepovolaných osob. Stejně tak naše společnost dodržuje i další bezpečnostní opatření sloužící k ochraně osobních údajů.</p>'
 	},
 	'HOME': { 
 		'ORDER': { 
