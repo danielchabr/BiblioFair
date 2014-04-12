@@ -11,7 +11,6 @@ angular.module('bibliofair').controller('HeaderController', ['$rootScope', '$sco
 
 		$scope.signIn = function() {
 			var user = angular.copy($scope.signin);
-			console.log(user);
 			Users.signIn({
 				email: user.login,
 				password: Utils.encrypt(user.password),

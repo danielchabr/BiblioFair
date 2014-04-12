@@ -32,8 +32,6 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 					$scope.newbook.isbn = Utils.ISBN10toISBN13($scope.newbook.isbn);
 			}
 			Library.add($scope.newbook).success(function(book) {
-				console.log(book);
-				
 				$scope.newbook = {};
 				$scope.mybooks.push(book);
 				$scope.warning_text = "";

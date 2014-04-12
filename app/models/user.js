@@ -275,7 +275,9 @@ UserSchema.methods = {
 		['users', 'loc', 'num_users', '_id', '_v'].forEach(function(prop) {
 			delete newbook[prop];
 		});
-		newbook.published = new Date(newbook.published);
+		if(newbook.published) {
+			newbook.published = new Date(newbook.published).getFullYear();
+		}
 
 		//search only by ceratin properties
 		var book = {};
