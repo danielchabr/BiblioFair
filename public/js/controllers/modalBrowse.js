@@ -12,14 +12,16 @@ var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, b
 		}
 	};
 	$scope.sendRequest = function(owner) {
-		Books.request($rootScope.user.username, owner.username, book._id, $rootScope.user.language).success(function(data) {
-			owner.style = true;
-			owner.message = $translate('HOME.MODAL.REQUEST_SENT');
-			console.log(data);
+		$rootScope.approve(undefined, $translate.instant('HOME.MODAL.REQUEST_APPROVE'), function () {
+			Books.request($rootScope.user.username, owner.username, book._id, $rootScope.user.language).success(function(data) {
+				owner.style = true;
+				owner.message = $translate.instant('HOME.MODAL.REQUEST_SENT');
+				console.log(data);
 
-//ga('send', 'event', 'Request', 'Sent request');
-		}).error(function(error) {
-			console.log(error);
+				//ga('send', 'event', 'Request', 'Sent request');
+			}).error(function(error) {
+				console.log(error);
+			});
 		});
 	};
 	$scope.cancel = function() {
@@ -47,7 +49,7 @@ var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, b
 		});
 		Books.get($scope.details_view._id).success(function(data) {
 			for (var i = 0; i < data.users.length; i++){
-				var new_user = {username: data.users[i].username, style: false, message: $translate('HOME.MODAL.REQUEST')}
+				var new_user = {username: data.users[i].username, style: false, message: $translate.instant('HOME.MODAL.REQUEST')}
 				for (var j = 0; j < data.users[i].library.length; j++){
 					if(data.users[i].library[j].id === $scope.details_view._id){
 						new_user.actions = data.users[i].library[j].actions;

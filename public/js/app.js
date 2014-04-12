@@ -82,14 +82,15 @@ angular.module('bibliofair')
 			/**
 			 * Open notification window.
 			 * 
-			 * @param {type} message
+			 * @param {string} message, {string} title
 			 * @returns {undefined}
 			 */
 
 			$rootScope.notify = function(message, title) {
 				var modalInstance = $modal.open({
 					templateUrl: '/partials/notification.html',
-					controller: ModalNotificationCtrl,
+					controller: ModalBasicCtrl,
+					windowClass: 'notificationModal',
 					resolve: {
 						message: function() {
 							return message;
@@ -100,6 +101,36 @@ angular.module('bibliofair')
 					}
 				});
 				modalInstance.result.then(function() {
+				}, function() {
+				});
+			};
+
+			/**
+			 * Open approve window.
+			 * 
+			 * @param {string} message, {string} title, {function} callback
+			 * @returns {undefined}
+			 */
+
+			$rootScope.approve = function(message, title, callback) {
+				var modalInstance = $modal.open({
+					templateUrl: '/partials/approveDialog.html',
+					controller: ModalBasicCtrl,
+					windowClass: 'approveModal',
+					resolve: {
+						message: function() {
+							return message;
+						},
+						title: function() {
+							return title;
+						}
+					}
+				});
+				modalInstance.result.then(function(approved) {
+					if(approved) {
+						console.log('approved');
+						callback();
+					}
 				}, function() {
 				});
 			};

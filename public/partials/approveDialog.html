@@ -1,0 +1,8 @@
+<div class="modal-body text-center" ng-if="title">
+	<button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+	<h2 style="padding-right:7px">{{title}}</h2>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning pull-left" ng-click="disapprove()">{{ 'APPROVE.NO' | translate }}</button>
+	<button class="btn btn-success" ng-click="approve()">{{ 'APPROVE.YES' | translate }}</button>
+</div>

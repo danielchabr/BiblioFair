@@ -279,8 +279,12 @@ body{
 
 /** Modals */
 
+div.modal {
+	display: block;
+}
+
 .modal-dialog {
-	padding-bottom: 55px;
+	margin-bottom: 55px;
 }
 
 .modal-header {
@@ -299,6 +303,9 @@ body{
 	.modal-dialog {
 		width:748px;
 	}
+	.approveModal > .modal-dialog {
+		width:600px;
+	}
 }
 
 .notification {
@@ -313,4 +320,10 @@ body{
 .notification h3 {
 	margin-top: 20px;
 	margin-top: 10px;
+}
+
+.approveModal .modal-content {
+	margin-top: 200px;
+	background-color: #037383;
+
 }

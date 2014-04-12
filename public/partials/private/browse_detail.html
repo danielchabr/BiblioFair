@@ -1,7 +1,4 @@
 <style type="text/css">
-	div.modal {
-		display:block;
-	}
 	.reported {
 		color: white;
 		cursor: default;
@@ -63,7 +60,7 @@
 				<td>
 					<button type="button" class="btn btn-sm pull-right" style="margin-right:10px" ng-class="{'btn-success':!owner.style, 'btn-default':owner.style}" ng-disabled="owner.style" ng-click="sendRequest(owner)" title="{{ owner.message}}">
 						<i class="fa fa-envelope"></i> 
-						<span class="request_button">{{ 'HOME.MODAL.REQUEST' | translate }}</span>
+						<span class="request_button">{{ owner.message }}</span>
 					</button>
 				</td>
 			</tr>

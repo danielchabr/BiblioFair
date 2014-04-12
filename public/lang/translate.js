@@ -113,6 +113,7 @@ var translateEN = {
 		'MODAL': {
 			'REQUEST': 'Send request',
 			'REQUEST_SENT': 'Request was sent',
+			'REQUEST_APPROVE': 'Please confirm that you want to send request',
 			'REPORT': 'Report this book',
 			'OWNERS': 'Owners',
 			'LABEL':'Actions',
@@ -202,6 +203,10 @@ var translateEN = {
 			'NEXT': 'Next',
 			'PREVIOUS': 'Previous'
 		}
+	},
+	'APPROVE': {
+		'YES' : 'Pokračovat',
+		'NO' : 'Zrušit'
 	}
 };
 
@@ -322,6 +327,7 @@ var translateCS = {
 		'MODAL': {
 			'REQUEST': 'Požádat o knihu',
 			'REQUEST_SENT': 'Žádost odeslána',
+			'REQUEST_APPROVE': 'Prosím potvrďte, že chcete odeslat žádost',
 			'REPORT': 'Nahlásit knihu',
 			'OWNERS': 'Vlastníci',
 			'LABEL':'Akce',
@@ -411,5 +417,9 @@ var translateCS = {
 			'NEXT': 'Další',
 			'PREVIOUS': 'Předchozí'
 		}
+	},
+	'APPROVE': {
+		'YES' : 'Pokračovat',
+		'NO' : 'Zrušit'
 	}
 };
