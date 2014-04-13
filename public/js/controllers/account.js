@@ -131,9 +131,7 @@ function accountControl($rootScope, $location, $scope, $translate, Users, Utils)
 		else{
 			$scope.save_pass_text = $translate.instant('ACCOUNT.CHANGE.CHANGING');
 
-			Users.updatePassword(
-				Utils.encrypt($scope.new_password))
-				.success(function() {
+			Users.updatePassword(Utils.encrypt($scope.new_password)).success(function() {
 				$scope.change_pass_message = '';
 				$scope.save_pass_text = $translate.instant('ACCOUNT.CHANGE.CHANGED');
 			}).error(function() {

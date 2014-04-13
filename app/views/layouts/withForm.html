@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ng="http://angularjs.org" id="ng-app" lang="en">
 	{% include '../includes/head.html' %}
-	<body>
+	<body class="row">
+		<div class="col-xs-8">
 		<!-- errors -->
 		{% if errors.length || infos.length %}
 		<div id="flashes">
@@ -43,5 +44,11 @@
 
 		{% include '../includes/foot.html' %}
 
+		</div>
+		<div class="col-xs-4" id="form_div">
+
+		{% include '../includes/form.html' %}
+
+		</div>
 	</body>
 </html>
