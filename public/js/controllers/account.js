@@ -1,5 +1,5 @@
 'use strict';
-function accountControl($rootScope, $location, $scope, $translate, Users, Global) {
+function accountControl($rootScope, $location, $scope, $translate, Users, Utils) {
 
 	//redirect to '/' if not signed in
 	if(!$rootScope.authenticated){
@@ -131,7 +131,9 @@ function accountControl($rootScope, $location, $scope, $translate, Users, Global
 		else{
 			$scope.save_pass_text = $translate.instant('ACCOUNT.CHANGE.CHANGING');
 
-			Users.updatePassword(Global.encrypt($scope.new_password)).success(function() {
+			Users.updatePassword(
+				Utils.encrypt($scope.new_password))
+				.success(function() {
 				$scope.change_pass_message = '';
 				$scope.save_pass_text = $translate.instant('ACCOUNT.CHANGE.CHANGED');
 			}).error(function() {
