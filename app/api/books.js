@@ -46,14 +46,12 @@ exports.get = function(options, done) {
 
 	if(options.lat && options.lng && options.radius){
 		var re = new RegExp(regex(options.query), 'i');
-		//, num_users: {$gt: 0}
-		Book.find({$or: [{title: re}, {author: re}]}).where('loc.coordinates').near({center: [options.lng, options.lat], maxDistance: (options.radius / 111.12), spheriacal: true}).select(options.fields).skip(options.offset).limit(options.limit).populate('users', {"library": 1, _id: 0}, 'UserModel').exec(function(err, data) {
+		Book.find({$or: [{title: re}, {author: re}], num_users: {$gt: 0}}).where('loc.coordinates').near({center: [options.lng, options.lat], maxDistance: (options.radius / 111.12), spheriacal: true}).select(options.fields).skip(options.offset).limit(options.limit).populate('users', {"library": 1, _id: 0}, 'UserModel').exec(function(err, data) {
 			done(err, data);
 		});
 	} else{
 		var re = new RegExp(regex(options.query), 'i');
-		//, num_users: {$gt: 0}
-		Book.find({$or: [{title: re}, {author: re}]}).select(options.fields).skip(options.offset).limit(options.limit).populate('users', {"library": 1, _id: 0}, 'UserModel').exec(function(err, data) {
+		Book.find({$or: [{title: re}, {author: re}], num_users: {$gt: 0}}).select(options.fields).skip(options.offset).limit(options.limit).populate('users', {"library": 1, _id: 0}, 'UserModel').exec(function(err, data) {
 			done(err, data);
 		});
 	}
