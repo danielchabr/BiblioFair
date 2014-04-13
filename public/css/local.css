@@ -228,10 +228,10 @@ body{
 
 #flashes{
 	position:fixed;
-	top:100px;
+	top:200px;
 	left:50%;
-	margin-left:-40%;
-	width:80%;
+	margin-left:-30%;
+	width:60%;
 	z-index:1000;
 }
 
@@ -323,6 +323,10 @@ div.modal {
 .notification h3 {
 	margin-top: 20px;
 	margin-top: 10px;
+}
+
+.approveModal {
+	background: rgba(0, 0, 0, 0.6);
 }
 
 .approveModal .modal-content {

@@ -23,6 +23,9 @@ angular.module('bibliofair')
 			//language
 			$rootScope.lang = Global.language();
 			$translate.use($rootScope.lang);
+			//alerts and infos
+			$rootScope.alerts = window.alerts;
+			console.log($rootScope.alerts);
 
 			/**
 			 * Send GA code every 10 seconds.
@@ -133,6 +136,17 @@ angular.module('bibliofair')
 					}
 				}, function() {
 				});
+			};
+
+			/**
+			 * Dismiss alert
+			 * 
+			 * @param {int} index
+			 * @returns {undefined}
+			 */
+
+			$rootScope.closeAlert = function(index) {
+			    $rootScope.alerts.splice(index, 1);
 			};
 		}])
 	//welcome controller DOM stuff

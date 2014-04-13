@@ -5,24 +5,22 @@
 		<!-- errors -->
 		{% if errors.length || infos.length %}
 		<div id="flashes">
-			{% for error in errors %}
-			<div class="alert alert-danger alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				{% if error.normalized %}
-					{{error.message}}
-				{% else %}
-					{{error}}
-				{% endif %}
-			</div>
-			{% endfor %}
+			<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"><span ng-bind="alert.msg"></span></alert>
+			<script type="text/javascript">
+				window.alerts = [];
+				window.infos = [];
+				{% for error in errors %}
+					{% if error.normalized %}
+						window.alerts.push({msg:'{{error.message}}', type: 'danger'});
+					{% else %}
+						window.alerts.push({msg:'{{error}}', type: 'danger'});
+					{% endif %}
+				{% endfor %}
 
-			{% for info in infos %}
-			<div class="alert alert-info alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				{{info.message}}
-			</div>
-			{% endfor %}
-
+				{% for info in infos %}
+					window.alerts.push({msg:'{{info.message}}', type: 'info'});
+				{% endfor %}
+			</script>
 		</div>
 		{% endif %}
 
