@@ -57,6 +57,7 @@ var translateEN = {
 	'RECOVERY': {
 		'EMAIL': 'Account email address',
 		'SEND': 'Send',
+		'SENDING': 'Sending',
 		'HEADING' : 'Password recovery',
 		'SENT': 'Newly generated password has benn sent to your email address'
 	},

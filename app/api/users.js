@@ -167,7 +167,9 @@ exports.recover = function(email, done) {
 		}
 		else{
 			var pass = crypto.SHA3(Date.parse(new Date()).toString() + user.email, {outputLength: 256}).toString().slice(0, 8);
-			user.password = crypto.SHA3(pass, {outputLength: 256}).toString();
+			var salt = "riafoilbib";
+			var saltedPass = crypto.SHA3(pass + salt, {outputLength:256}).toString().substring(0, pass.length);
+			user.password = saltedPass;
 			user.save(function(err, user) {
 				if(err){
 					return done(err);
