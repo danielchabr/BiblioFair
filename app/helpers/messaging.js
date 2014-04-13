@@ -72,7 +72,7 @@ var messages = exports.messages = {
 		},
 		info: {
 			user: {
-				vefified: "E-mail byl úspěšně ověřen."
+				verified: "E-mail byl úspěšně ověřen."
 			}
 		},
 		texts: {
