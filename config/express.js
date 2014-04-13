@@ -74,7 +74,8 @@ module.exports = function(app, passport) {
 			if(res.statusCode < 300){
 				res.status(500);
 			}
-			console.log(messaging.normalizeError(err, req.getLanguage()));
+			//console.log(messaging.normalizeError(err, req.getLanguage()));
+			console.log(err);
 			res.send(messaging.normalizeError(err, req.getLanguage()));
 		});
 	});

@@ -147,6 +147,10 @@ body{
 	top:4px;
 }
 
+.help-block {
+	color: white;
+}
+
 .animate-enter {
 	-webkit-transition: 0.5s linear all; /* Chrome */
 	transition: 0.5s linear all;

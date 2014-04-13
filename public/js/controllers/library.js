@@ -82,9 +82,6 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 			if(flag)
 				$scope.newbook[prop] = $scope.selected_books[0][prop];
 		}
-		if($scope.newbook.published){
-			$scope.newbook.published = new Date($scope.newbook.published).getFullYear();
-		}
 	};
 	///// EUROPEAN LIBRARY API ////////////
 	// is called on each change of ISBN but gives call after 10th char only
