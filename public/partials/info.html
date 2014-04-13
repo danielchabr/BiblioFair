@@ -1,13 +1,19 @@
 <div class="col-xs-12 text-center info_text">
 	<ul class="list-inline">
 		<li ng-if="loc != 'welcome'">
-			<a ng-href="" ng-click="changeLanguage('en')" style="cursor:pointer">{{ 'NAV.ENGLISH' | translate }}</a>
+			<a href="" ng-click="changeLanguage('en')" style="cursor:pointer">{{ 'NAV.ENGLISH' | translate }}</a>
 		</li>
 		<li ng-if="loc != 'welcome'">
-			<a ng-href="" ng-click="changeLanguage('cz')" style="cursor:pointer">{{ 'NAV.CZECH' | translate }}</a> &nbsp;&nbsp; |
+			<a href="" ng-click="changeLanguage('cz')" style="cursor:pointer">{{ 'NAV.CZECH' | translate }}</a> &nbsp;&nbsp; |
 		</li>
 		<li>
 			<a href="http://blog.bibliofair.com" target="_blank">Blog</a> &nbsp;&nbsp; |
+		</li>
+		<li>
+			<a href="" ng-click="notify(('TERMS.BODY' | translate ), ('TERMS.TITLE' | translate))" style="cursor:pointer">{{ 'TERMS.TITLE' | translate }}</a> &nbsp;&nbsp; |
+		</li>
+		<li>
+			<a href="" ng-click="notify(('PRIVACY.BODY' | translate ), ('PRIVACY.TITLE' | translate))" style="cursor:pointer">{{ 'PRIVACY.TITLE' | translate }}</a> &nbsp;&nbsp; |
 		</li>
 		<li >
 			<a href="http://www.facebook.com/bibliofair" target="_blank" onclick="ga('send', 'event', 'facebook', 'click');

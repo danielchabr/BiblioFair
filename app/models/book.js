@@ -14,10 +14,7 @@ var BookSchema = new Schema({
     },
     subtitle:String,
     publisher:String,
-    published:{
-		type: Date,
-		set: setPublished
-	},
+    published:String,
     language:String,
     edition:String,
     volume:String,
@@ -33,15 +30,6 @@ var BookSchema = new Schema({
         }],
     num_users:Number
 });
-
-function setPublished(published){
-	if(published instanceof Date){
-		return published;
-	}
-	else{
-		return new Date(published, 1, 1);
-	}
-}
 
 /**
  * Static methods

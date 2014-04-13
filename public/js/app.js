@@ -3,6 +3,7 @@
 // create bibliofair module
 angular.module('bibliofair', [
 	'ngRoute',
+	'ngSanitize',
 	'ngCookies',
 	'ui.bootstrap',
 	'pascalprecht.translate'
@@ -22,6 +23,9 @@ angular.module('bibliofair')
 			//language
 			$rootScope.lang = Global.language();
 			$translate.use($rootScope.lang);
+			//alerts and infos
+			$rootScope.alerts = window.alerts;
+			console.log($rootScope.alerts);
 
 			/**
 			 * Send GA code every 10 seconds.
@@ -81,23 +85,68 @@ angular.module('bibliofair')
 			/**
 			 * Open notification window.
 			 * 
-			 * @param {type} message
+			 * @param {string} message, {string} title
 			 * @returns {undefined}
 			 */
 
-			$rootScope.notify = function(message) {
+			$rootScope.notify = function(message, title) {
 				var modalInstance = $modal.open({
 					templateUrl: '/partials/notification.html',
-					controller: ModalNotificationCtrl,
+					controller: ModalBasicCtrl,
+					windowClass: 'notificationModal',
 					resolve: {
 						message: function() {
 							return message;
+						},
+						title: function() {
+							return title;
 						}
 					}
 				});
 				modalInstance.result.then(function() {
 				}, function() {
 				});
+			};
+
+			/**
+			 * Open approve window.
+			 * 
+			 * @param {string} message, {string} title, {function} callback
+			 * @returns {undefined}
+			 */
+
+			$rootScope.approve = function(message, title, callback) {
+				var modalInstance = $modal.open({
+					templateUrl: '/partials/approveDialog.html',
+					controller: ModalBasicCtrl,
+					windowClass: 'approveModal',
+					resolve: {
+						message: function() {
+							return message;
+						},
+						title: function() {
+							return title;
+						}
+					}
+				});
+				modalInstance.result.then(function(approved) {
+					if(approved) {
+						console.log('approved');
+						callback();
+					}
+				}, function() {
+				});
+			};
+
+			/**
+			 * Dismiss alert
+			 * 
+			 * @param {int} index
+			 * @returns {undefined}
+			 */
+
+			$rootScope.closeAlert = function(index) {
+			    $rootScope.alerts.splice(index, 1);
 			};
 		}])
 	//welcome controller DOM stuff

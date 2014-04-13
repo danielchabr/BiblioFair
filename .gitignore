@@ -7,3 +7,5 @@ updateDb.txt
 .bower-*/
 env_config.js
 .openshift
+*.swp
+WEB_REG_OZNAMENI2.pdf

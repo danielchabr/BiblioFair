@@ -54,7 +54,8 @@ angular.module('bibliofair')
 			$translateProvider.translations('en', translateEN);
 			$translateProvider.translations('cs', translateCS);
 			$translateProvider.preferredLanguage('en');
-		}])
+		}
+	])
 	//HTML5 location mode
 	.config(['$locationProvider', function($locationProvider) {
 			$locationProvider.html5Mode(true).hashPrefix('!');

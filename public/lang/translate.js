@@ -57,8 +57,49 @@ var translateEN = {
 	'RECOVERY': {
 		'EMAIL': 'Account email address',
 		'SEND': 'Send',
+		'SENDING': 'Sending',
 		'HEADING' : 'Password recovery',
 		'SENT': 'Newly generated password has benn sent to your email address'
+	},
+	'TERMS': {
+		'TITLE': 'Terms of service',
+		'BODY': "<p><b>Podmínkou pro užívání jakýchkoliv služeb nabízených na serveru bibliofair.com, jehož provozovatelem je fyzická osoba Daniel Chabr. (dále jen provozovatel), je dodržování následujících podmínek užívání služeb serveru bibliofair.com (dále také jen podmínky), což uživatel bere na vědomí a zavazuje se tyto podmínky dodržovat:</b></p> "+
+		'<p>Návštěvou webu bibliofair.com potvrzujete, že jste si vědomi všech níže uvedených informací. Podmínky nabývají platnosti a účinnosti jejich zveřejněním.</p>' + 
+		'<p>Podmínky užívání služeb na serveru bibliofair.com se řídí právními předpisy České republiky. Uživatel se zavazuje užívat služby na serveru bibliofair.com pouze takovým způsobem, aby nedocházelo k porušování nebo obcházení právních předpisů České republiky.</p>' +
+		'<p>Provozovatel je oprávněn kdykoliv podmínky změnit, a to i bez předchozího výslovného informování uživatele, přičemž změny podmínek jsou účinné a závazné od okamžiku jejich zveřejnění. Uživatel se zavazuje pravidelně se seznamovat se zněním a případnými změnami těchto podmínek.</p>' +
+		'<p>Uživatel bere na vědomí, že služby nabízené na serveru bibliofair.com jsou poskytované bezplatně. Provozovatel nenese jakoukoliv odpovědnost za případné škody způsobené používáním serveru bibliofair.com, či jeho nedostupností.</p>' +
+		'<p>Uživatel bere na vědomí, že mu provozovatel serveru bibliofair.com pouze umožňuje nabídnout inzerát k prodeji své knihy nebo kontaktovat jiného uživatele, za účelem nákupu. Provozovatel v žádném případě nezodpovídá za samotný průběh prodeje knihy či jakékoliv následky z něho vyplývající. Dohoda na konkrétním prodeji knihy je vždy vztahem pouze mezi dvěma uživateli a provozovatel se na ní nijak nepodílí.</p>' +
+		'<p>Uživatel bere na vědomí, že pouze některé ze služeb nabízených na serveru bibliofair.com je možné užívat bez registrace, ostatní služby je uživatel oprávněn užívat pouze po provedené registraci.</p>' +
+		'<p>Uživatel bere na vědomí, že provozovatel je oprávněn kdykoliv, a to i bez udání důvodů, odmítnout nebo zrušit registraci (účet) uživatele, a to bez jakékoliv náhrady.</p>' +
+		'<p>Uživatel se zavazuje užívat služby nabízené na serveru bibliofair.com zejména pro své soukromé účely. Uživatel může tyto služby užívat pro účely podnikání či jiné obchodní činnosti, ať již ve prospěch svůj nebo prospěch jiného subjektu, až po písemném souhlasu Provozovatele. V takovém případě nás prosím kontaktuje.</p>' +
+		'<p>Uživatel bere na vědomí, že pro účely poskytování služeb nabízených na serveru bibliofair.com, mohou být využívány služby propojených serverů.</p>' +
+		'<p>V případech, kdy je uživatel oprávněn vkládat na server bibliofair.com data, bere uživatel na vědomí, že plně odpovídá za jejich obsah. Provozovatel neodpovídá za jakákoliv porušení práv, které může být způsobeno umístěním dat ze strany uživatele. Provozovatel nenese odpovědnost za případné zneužití či neoprávněné nakládání s údaji či daty, které uživatel dobrovolně poskytl a zveřejnil prostřednictvím serveru bibliofair.com a ke kterému došlo ze strany třetích osob.</p>' +
+		'<p>Uživatel bere na vědomí a souhlasí s tím, že provozovatel je oprávněn bez náhrady kdykoliv, a to bez uvedení důvodu, jakož i bez předchozího souhlasu či oznámení uživateli, odstranit jakákoliv data umístěná na server bibliofair.com uživatelem.</p>' +
+		'<p>Uživatel bere na vědomí, že server bibliofair.com neslouží k zálohování jakýchkoliv dat či informací a provozovatel nenese žádnou odpovědnost za ztrátu jakýkoliv dat umístěných zde uživatelem. Provozovatel nenese odpovědnost za jakékoliv důsledky (škody) způsobené případnou nefunkčností nebo nesprávným fungováním služeb serveru bibliofair.com.</p>' +
+		'<p>Provozovatel je oprávněn poskytování služeb serveru bibliofair.com kdykoliv měnit, přerušit či ukončit.</p>' + 
+		'<p>Uživatel bere na vědomí, že veškeré údaje a materiály umisťuje a zveřejňuje na serveru bibliofair.com zcela dobrovolně. Podmínky ochrany osobních údajů jsou upraveny v samostatném prohlášení.</p>' +
+		'<p>Uživatel souhlasí ve smyslu zákona o některých službách informační společnosti s tím, že provozovatel je oprávněn zasílat uživateli služeb jakékoli e-mailové zprávy, obsahující informace o provozních záležitostech, novinkách, které daná služba nabízí, a o produktech třetích osob (obchodní sdělení). Uživatel souhlasí ve smyslu tohoto zákona s tím, že provozovatel je oprávněn připojovat na závěr odesílaných a/nebo přijímaných zpráv tzv. reklamní patičky, reklamní sdělení (odkaz ve formě URL doprovázené reklamními slogany). Uživatel souhlasí s anonymním užitím registračních a statistických údajů služby provozovatelem služby.</p>'
+	},
+	'PRIVACY': {
+		'TITLE': 'Privacy policy',
+		'BODY': '<p>Záležitost ochrany osobních údajů a jejich důvěrnost bereme velmi vážně a držíme se příslušných státních i evropských nařízení o ochraně osobních údajů. Nejdůležitější aspekty našeho zpracování osobních údajů vysvětlujeme níže.</p>' +
+		'<p>Vaše osobní údaje zpracováváme a využíváme pouze s Vaším výslovným souhlasem a striktně dle zákona č. 101/2000 Sb., o ochraně osobních údajů v platném znění. Povozovatelem serveru bibliofair.com je fyzická osoba Daniel Chabr a je správcem osobních údajů a je registrována u Úřadu pro ochranu osobních údajů.</p>' +
+		'<h3>1. Jaké osobní údaje uchováváme?</h3>' +
+		'<p>Uchováváme ty informace, které jsme od Vás se souhlasem získali, na příklad, když jste se zaregistrovali, zúčastnili soutěží, když jste si objednali zasílání novinek prostřednictvím e-mailových zpráv nebo když nás kontaktujete. Nejčastěji se jedná o Vaše jméno, adresu a e-mailovou adresu.</p>' +
+		'<p>Dále rovněž zaznamenáváme informace o Vašich zájmech prostřednictvím analýzy Vašich kliknutí na webových stránkách a v e-mailových zprávách, které od nás dostanete.</p>' +
+		'<p>V okamžiku, kdy nás poprvé kontaktujete, vytvoříme si v naší databázi Váš profil. Jakékoliv další informace, které nám později předáte, se v něm rovněž ukládají. Čím více informací od Vás získáme, tím individuálněji zaměřené a zajímavější nabídky Vám budeme moci v budoucnu předkládat.</p>' +
+		'<h3>2. K čemu tyto údaje užíváme?</h3>' +
+		'<p>Tyto údaje užíváme pro účely výzkumu trhu i pro marketingové účely, tj. individuální tvorbu a zasílání vybraných informací poštou, e-mailem nebo prostřednictvím textových zpráv, nabízení výrobků a služeb a zasílání obchodních sdělení prostřednictvím elektronických prostředků, dle zákona č. 480/2004 Sb.</p>' +
+		'<h3>3. Jak dlouho se osobní údaje archivují?</h3>' +
+		'<p>V podstatě ukládáme veškeré informace, které nám zašlete po tak dlouhou dobu, co máte zájem o zasílání našich reklamních informací, tj. záleží době uvedené v konkrétním textu souhlasu. Nejčastěji jsou osobní údaje zpracovávány na dobu do odvolání Vašeho souhlasu nebo přímo na konkrétní časový úsek, který je uveden v textu souhlasu. Pokud si již více nepřejete, abychom využívali Vaše údaje, samozřejmě okamžitě a bezplatně splníme tento Váš požadavek (viz. část 5).</p>' +
+		'<h3>4. Můžete zjistit, jaké údaje o Vás vedeme?</h3>' +
+		'<p>Ano. Můžete kdykoliv získat informace o údajích, které si o Vaší osobě evidujeme dle § 12 zákona o ochraně osobních údajů.</p>' +
+		'<h3>5. Můžete zažádat o vymazání údajů evidovaných o Vaší osobě?</h3>' +
+		'<p>Ano. Samozřejmě máte kdykoliv možnost zažádat o částečné nebo úplné vymazání Vašich údajů, sdělením na e-mail: support@bibliofair.com. Vaše přání splníme bez prodlení a okamžitě zrušíme zasílání dalších reklamních materiálů. V určitých případech, kdy tak vyžaduje zákon, budou Vaše osobní údaje uchovány a soubor bude zablokován, nikoli vymazán. Dále můžete kdykoli požádat o blokování, opravu či doplnění Vašich osobních údajů. Stejně tak máte i další práva dle § 21 zákona o ochraně osobních údaj.</p>' +
+		'<h3>6. Předáváme Vaše osobní údaje třetím stranám?</h3>' +
+		'<p>Ne, Vaše osobní údaje bez Vašeho souhlasu či bez Vašeho předchozího informování nepředáváme žádným třetím stranám k dalšímu využití, zejména Vaše osobní údaje nejsou prodávány, pronajímány ani vyměňovány.  Pokud pověříme jiné společnosti – tzv. zpracovatele (zařízení na zpracování dat) dokončením našich úkolů (např. zasíláním informací), pak samozřejmě po těchto společnostech rovněž vyžadujeme ochranu Vašich údajů a takové společnosti mají povolení užívat Vaše údaje pouze a výhradně k zadaným účelům. I u takových společností vyžadujeme, aby zacházely s údaji v souladu s tímto prohlášením o ochraně dat a s příslušnou legislativo.</p>' +
+		'<h3>7. Bezpečnost osobních údajů</h3>' +
+		'<p>Veškeré osobní údaje jsou uloženy na serverech s vysokou úrovní bezpečnosti a jsou chráněny proti zneužití ze strany nepovolaných osob. Stejně tak naše společnost dodržuje i další bezpečnostní opatření sloužící k ochraně osobních údajů.</p>'
 	},
 	'HOME': { 
 		'ORDER': { 
@@ -73,6 +114,7 @@ var translateEN = {
 		'MODAL': {
 			'REQUEST': 'Send request',
 			'REQUEST_SENT': 'Request was sent',
+			'REQUEST_APPROVE': 'Please confirm that you want to send request',
 			'REPORT': 'Report this book',
 			'OWNERS': 'Owners',
 			'LABEL':'Actions',
@@ -84,7 +126,6 @@ var translateEN = {
 		'WISHLIST': 'Wish list',
 		'BROWSE': 'Available books'
 	},
-
 	'LIBRARY': { 
 		'ADD': { 
 			'HEADING': 'Add book',
@@ -127,7 +168,6 @@ var translateEN = {
 		'ALERT_2': ' account settings',
 		'ALERT_3': 'To add books, please verify your account. Just click the link in the e-mail you received right after the registration.'
 	},
-
 	'ACCOUNT': { 
 		'SETLOCATION': 'Set your location by centering the map',
 		'LONGITUDE': 'Longitude',
@@ -164,6 +204,10 @@ var translateEN = {
 			'NEXT': 'Next',
 			'PREVIOUS': 'Previous'
 		}
+	},
+	'APPROVE': {
+		'YES' : 'Pokračovat',
+		'NO' : 'Zrušit'
 	}
 };
 
@@ -231,6 +275,46 @@ var translateCS = {
 		'HEADING' : 'Obnova hesla',
 		'SENT': 'Nově vygenerované heslo bylo zasláno na Váš email'
 	},
+	'TERMS': {
+		'TITLE': 'Podmínky použití',
+		'BODY': "<p><b>Podmínkou pro užívání jakýchkoliv služeb nabízených na serveru bibliofair.com, jehož provozovatelem je fyzická osoba Daniel Chabr. (dále jen provozovatel), je dodržování následujících podmínek užívání služeb serveru bibliofair.com (dále také jen podmínky), což uživatel bere na vědomí a zavazuje se tyto podmínky dodržovat:</b></p> "+
+		'<p>Návštěvou webu bibliofair.com potvrzujete, že jste si vědomi všech níže uvedených informací. Podmínky nabývají platnosti a účinnosti jejich zveřejněním.</p>' + 
+		'<p>Podmínky užívání služeb na serveru bibliofair.com se řídí právními předpisy České republiky. Uživatel se zavazuje užívat služby na serveru bibliofair.com pouze takovým způsobem, aby nedocházelo k porušování nebo obcházení právních předpisů České republiky.</p>' +
+		'<p>Provozovatel je oprávněn kdykoliv podmínky změnit, a to i bez předchozího výslovného informování uživatele, přičemž změny podmínek jsou účinné a závazné od okamžiku jejich zveřejnění. Uživatel se zavazuje pravidelně se seznamovat se zněním a případnými změnami těchto podmínek.</p>' +
+		'<p>Uživatel bere na vědomí, že služby nabízené na serveru bibliofair.com jsou poskytované bezplatně. Provozovatel nenese jakoukoliv odpovědnost za případné škody způsobené používáním serveru bibliofair.com, či jeho nedostupností.</p>' +
+		'<p>Uživatel bere na vědomí, že mu provozovatel serveru bibliofair.com pouze umožňuje nabídnout inzerát k prodeji své knihy nebo kontaktovat jiného uživatele, za účelem nákupu. Provozovatel v žádném případě nezodpovídá za samotný průběh prodeje knihy či jakékoliv následky z něho vyplývající. Dohoda na konkrétním prodeji knihy je vždy vztahem pouze mezi dvěma uživateli a provozovatel se na ní nijak nepodílí.</p>' +
+		'<p>Uživatel bere na vědomí, že pouze některé ze služeb nabízených na serveru bibliofair.com je možné užívat bez registrace, ostatní služby je uživatel oprávněn užívat pouze po provedené registraci.</p>' +
+		'<p>Uživatel bere na vědomí, že provozovatel je oprávněn kdykoliv, a to i bez udání důvodů, odmítnout nebo zrušit registraci (účet) uživatele, a to bez jakékoliv náhrady.</p>' +
+		'<p>Uživatel se zavazuje užívat služby nabízené na serveru bibliofair.com zejména pro své soukromé účely. Uživatel může tyto služby užívat pro účely podnikání či jiné obchodní činnosti, ať již ve prospěch svůj nebo prospěch jiného subjektu, až po písemném souhlasu Provozovatele. V takovém případě nás prosím kontaktuje.</p>' +
+		'<p>Uživatel bere na vědomí, že pro účely poskytování služeb nabízených na serveru bibliofair.com, mohou být využívány služby propojených serverů.</p>' +
+		'<p>V případech, kdy je uživatel oprávněn vkládat na server bibliofair.com data, bere uživatel na vědomí, že plně odpovídá za jejich obsah. Provozovatel neodpovídá za jakákoliv porušení práv, které může být způsobeno umístěním dat ze strany uživatele. Provozovatel nenese odpovědnost za případné zneužití či neoprávněné nakládání s údaji či daty, které uživatel dobrovolně poskytl a zveřejnil prostřednictvím serveru bibliofair.com a ke kterému došlo ze strany třetích osob.</p>' +
+		'<p>Uživatel bere na vědomí a souhlasí s tím, že provozovatel je oprávněn bez náhrady kdykoliv, a to bez uvedení důvodu, jakož i bez předchozího souhlasu či oznámení uživateli, odstranit jakákoliv data umístěná na server bibliofair.com uživatelem.</p>' +
+		'<p>Uživatel bere na vědomí, že server bibliofair.com neslouží k zálohování jakýchkoliv dat či informací a provozovatel nenese žádnou odpovědnost za ztrátu jakýkoliv dat umístěných zde uživatelem. Provozovatel nenese odpovědnost za jakékoliv důsledky (škody) způsobené případnou nefunkčností nebo nesprávným fungováním služeb serveru bibliofair.com.</p>' +
+		'<p>Provozovatel je oprávněn poskytování služeb serveru bibliofair.com kdykoliv měnit, přerušit či ukončit.</p>' + 
+		'<p>Uživatel bere na vědomí, že veškeré údaje a materiály umisťuje a zveřejňuje na serveru bibliofair.com zcela dobrovolně. Podmínky ochrany osobních údajů jsou upraveny v samostatném prohlášení.</p>' +
+		'<p>Uživatel souhlasí ve smyslu zákona o některých službách informační společnosti s tím, že provozovatel je oprávněn zasílat uživateli služeb jakékoli e-mailové zprávy, obsahující informace o provozních záležitostech, novinkách, které daná služba nabízí, a o produktech třetích osob (obchodní sdělení). Uživatel souhlasí ve smyslu tohoto zákona s tím, že provozovatel je oprávněn připojovat na závěr odesílaných a/nebo přijímaných zpráv tzv. reklamní patičky, reklamní sdělení (odkaz ve formě URL doprovázené reklamními slogany). Uživatel souhlasí s anonymním užitím registračních a statistických údajů služby provozovatelem služby.</p>'
+	},
+	'PRIVACY': {
+		'TITLE': 'Ochrana osobních údajů',
+		'BODY': '<p>Záležitost ochrany osobních údajů a jejich důvěrnost bereme velmi vážně a držíme se příslušných státních i evropských nařízení o ochraně osobních údajů. Nejdůležitější aspekty našeho zpracování osobních údajů vysvětlujeme níže.</p>' +
+		'<p>Vaše osobní údaje zpracováváme a využíváme pouze s Vaším výslovným souhlasem a striktně dle zákona č. 101/2000 Sb., o ochraně osobních údajů v platném znění. Povozovatelem serveru bibliofair.com je fyzická osoba Daniel Chabr a je správcem osobních údajů a je registrována u Úřadu pro ochranu osobních údajů.</p>' +
+		'<h3>1. Jaké osobní údaje uchováváme?</h3>' +
+		'<p>Uchováváme ty informace, které jsme od Vás se souhlasem získali, na příklad, když jste se zaregistrovali, zúčastnili soutěží, když jste si objednali zasílání novinek prostřednictvím e-mailových zpráv nebo když nás kontaktujete. Nejčastěji se jedná o Vaše jméno, adresu a e-mailovou adresu.</p>' +
+		'<p>Dále rovněž zaznamenáváme informace o Vašich zájmech prostřednictvím analýzy Vašich kliknutí na webových stránkách a v e-mailových zprávách, které od nás dostanete.</p>' +
+		'<p>V okamžiku, kdy nás poprvé kontaktujete, vytvoříme si v naší databázi Váš profil. Jakékoliv další informace, které nám později předáte, se v něm rovněž ukládají. Čím více informací od Vás získáme, tím individuálněji zaměřené a zajímavější nabídky Vám budeme moci v budoucnu předkládat.</p>' +
+		'<h3>2. K čemu tyto údaje užíváme?</h3>' +
+		'<p>Tyto údaje užíváme pro účely výzkumu trhu i pro marketingové účely, tj. individuální tvorbu a zasílání vybraných informací poštou, e-mailem nebo prostřednictvím textových zpráv, nabízení výrobků a služeb a zasílání obchodních sdělení prostřednictvím elektronických prostředků, dle zákona č. 480/2004 Sb.</p>' +
+		'<h3>3. Jak dlouho se osobní údaje archivují?</h3>' +
+		'<p>V podstatě ukládáme veškeré informace, které nám zašlete po tak dlouhou dobu, co máte zájem o zasílání našich reklamních informací, tj. záleží době uvedené v konkrétním textu souhlasu. Nejčastěji jsou osobní údaje zpracovávány na dobu do odvolání Vašeho souhlasu nebo přímo na konkrétní časový úsek, který je uveden v textu souhlasu. Pokud si již více nepřejete, abychom využívali Vaše údaje, samozřejmě okamžitě a bezplatně splníme tento Váš požadavek (viz. část 5).</p>' +
+		'<h3>4. Můžete zjistit, jaké údaje o Vás vedeme?</h3>' +
+		'<p>Ano. Můžete kdykoliv získat informace o údajích, které si o Vaší osobě evidujeme dle § 12 zákona o ochraně osobních údajů.</p>' +
+		'<h3>5. Můžete zažádat o vymazání údajů evidovaných o Vaší osobě?</h3>' +
+		'<p>Ano. Samozřejmě máte kdykoliv možnost zažádat o částečné nebo úplné vymazání Vašich údajů, sdělením na e-mail: support@bibliofair.com. Vaše přání splníme bez prodlení a okamžitě zrušíme zasílání dalších reklamních materiálů. V určitých případech, kdy tak vyžaduje zákon, budou Vaše osobní údaje uchovány a soubor bude zablokován, nikoli vymazán. Dále můžete kdykoli požádat o blokování, opravu či doplnění Vašich osobních údajů. Stejně tak máte i další práva dle § 21 zákona o ochraně osobních údaj.</p>' +
+		'<h3>6. Předáváme Vaše osobní údaje třetím stranám?</h3>' +
+		'<p>Ne, Vaše osobní údaje bez Vašeho souhlasu či bez Vašeho předchozího informování nepředáváme žádným třetím stranám k dalšímu využití, zejména Vaše osobní údaje nejsou prodávány, pronajímány ani vyměňovány.  Pokud pověříme jiné společnosti – tzv. zpracovatele (zařízení na zpracování dat) dokončením našich úkolů (např. zasíláním informací), pak samozřejmě po těchto společnostech rovněž vyžadujeme ochranu Vašich údajů a takové společnosti mají povolení užívat Vaše údaje pouze a výhradně k zadaným účelům. I u takových společností vyžadujeme, aby zacházely s údaji v souladu s tímto prohlášením o ochraně dat a s příslušnou legislativo.</p>' +
+		'<h3>7. Bezpečnost osobních údajů</h3>' +
+		'<p>Veškeré osobní údaje jsou uloženy na serverech s vysokou úrovní bezpečnosti a jsou chráněny proti zneužití ze strany nepovolaných osob. Stejně tak naše společnost dodržuje i další bezpečnostní opatření sloužící k ochraně osobních údajů.</p>'
+	},
 	'HOME': { 
 		'ORDER': { 
 			'TEXT': 'Seřadit podle:',
@@ -244,6 +328,7 @@ var translateCS = {
 		'MODAL': {
 			'REQUEST': 'Požádat o knihu',
 			'REQUEST_SENT': 'Žádost odeslána',
+			'REQUEST_APPROVE': 'Prosím potvrďte, že chcete odeslat žádost',
 			'REPORT': 'Nahlásit knihu',
 			'OWNERS': 'Vlastníci',
 			'LABEL':'Akce',
@@ -297,7 +382,6 @@ var translateCS = {
 		'ALERT_2': ' nastavení účtu',
 		'ALERT_3': 'Pro přidávání knih prosím potvrďte svůj e-mail. Stačí kliknout na odkaz v e-mailu, který jste obdrželi po registraci.'
 	},
-
 	'ACCOUNT': { 
 		'SETLOCATION': 'Nastavte svoji polohu vycentrováním mapy',
 		'LONGITUDE': 'Zeměpisná délka',
@@ -334,5 +418,9 @@ var translateCS = {
 			'NEXT': 'Další',
 			'PREVIOUS': 'Předchozí'
 		}
+	},
+	'APPROVE': {
+		'YES' : 'Pokračovat',
+		'NO' : 'Zrušit'
 	}
 };

@@ -1,0 +1,8 @@
+mongoimport --db bibliofair --collection bookmodels --type csv --file utils/scraper/bookmodels.csv --headerline
+
+
+// mongo command to convert isbn from NumberLong to String
+
+db.bookmodels.find().forEach(function(doc){ if(typeof doc.isbn === typeof new NumberLong) {doc.isbn = doc.isbn.toNumber().toString(); db.bookmodels.save(doc);} })
+
+db.bookmodels.find().forEach(function(doc){ if(typeof doc.published === "number") {doc.published = doc.published.toString(); db.bookmodels.save(doc);} })

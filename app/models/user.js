@@ -275,10 +275,10 @@ UserSchema.methods = {
 		['users', 'loc', 'num_users', '_id', '_v'].forEach(function(prop) {
 			delete newbook[prop];
 		});
-		newbook.published = new Date(newbook.published);
 
-		//search only by ceratin properties
+		//search only by certain properties
 		var book = {};
+
 		['title', 'author', 'subtitle', 'publisher', 'published', 'language', 'edition', 'volume', 'isbn'].forEach(function(prop) {
 			if(newbook[prop]){
 				book[prop] = newbook[prop];
@@ -295,6 +295,7 @@ UserSchema.methods = {
 			}
 
 			book.users.push(user._id);
+			book.num_users = 0 | book.num_users;
 			book.num_users++;
 			book.loc.push({coordinates: user.loc.coordinates});
 			book.save(function(err, book) {
@@ -333,7 +334,7 @@ UserSchema.methods = {
 	removeBook: function(bookId, done) {
 		var user = this;
 		Book.findById(bookId, function(err, book) {
-			if(err || !book.users){
+			if(err || !book || !book.users){
 				return done(err || "book.notFound");
 			}
 			user.update({$pull: {'library': {id: bookId}}}, function(err) {

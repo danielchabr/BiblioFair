@@ -24,7 +24,10 @@ var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, $translate, 
 	$scope.transfer = {
 		send: function () {
 			console.log(book);
-			Library.transfer(transfer.user, book.id);
+			Library.transfer(transfer.user, book._id);
 		}
+	};
+	$scope.cancel = function() {
+		$modalInstance.dismiss('cancel');
 	};
 };

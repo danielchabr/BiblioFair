@@ -152,7 +152,7 @@ exports.request = function(from, to, book, language, done) {
 				mg.sendText(from.username + ' <' + from.username + '@bibliofair.com>',
 					to.username + ' <' + to.email + '>',
 					messages[language].emails.request.subject,
-					(messages[language].emsilas.request.body + messages[language].emails._explanation).replace(/\{from\}/g, from.username)
+					(messages[language].emails.request.body + messages[language].emails._explanation).replace(/\{from\}/g, from.username)
 					.replace(/\{to\}/g, to.username)
 					.replace(/\{book.title\}/g, book.title)
 					.replace(/\{book.author\}/g, book.author)

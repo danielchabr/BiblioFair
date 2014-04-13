@@ -32,8 +32,6 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 					$scope.newbook.isbn = Utils.ISBN10toISBN13($scope.newbook.isbn);
 			}
 			Library.add($scope.newbook).success(function(book) {
-				console.log(book);
-				
 				$scope.newbook = {};
 				$scope.mybooks.push(book);
 				$scope.warning_text = "";
@@ -83,9 +81,6 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 			});
 			if(flag)
 				$scope.newbook[prop] = $scope.selected_books[0][prop];
-		}
-		if($scope.newbook.published){
-			$scope.newbook.published = new Date($scope.newbook.published).getFullYear();
 		}
 	};
 	///// EUROPEAN LIBRARY API ////////////

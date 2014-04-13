@@ -4,4 +4,7 @@ var ModalBookCtrl = function($rootScope, $scope, $modalInstance, $translate, boo
 	if(book.published){
 		$scope.details_view.published = new Date(book.published).getFullYear();
 	}
+	$scope.cancel = function() {
+		$modalInstance.dismiss('cancel');
+	};
 };
