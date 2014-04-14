@@ -81,6 +81,7 @@ angular.module('bibliofair').controller('HeaderController', ['$rootScope', '$sco
 			var modalInstance = $modal.open({
 				templateUrl: '/partials/recovery.html',
 				controller: ModalRecoveryCtrl,
+				windowClass: 'recovery',
 				resolve: {
 					//
 				}

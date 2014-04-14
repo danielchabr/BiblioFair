@@ -40,6 +40,9 @@ a:active, a:focus, input, .btn:focus {
     outline-style:none;
     outline-width:0;
 }
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+	color: white;
+}
 hr {
 	border-top: 1px solid #037383;
 }
@@ -114,16 +117,6 @@ html, body {
 	height:100%; /* IE6: treaded as min-height*/
 	min-height:100%; /* real browsers */
 }
-.info {
-	opacity:0.7;
-	filter:alpha(opacity=70);
-	margin-top:0px;
-	height:66px;
-	clear:both;
-	background-color:white;
-	color:black;
-	padding-top:17px;
-}
 
 body{
 	color:white;
@@ -131,12 +124,28 @@ body{
 	padding:0 0 64px 0;
 }
 
+/*
+ *  Info panel
+ */
+
+.info {
+	margin-top:0px;
+	clear:both;
+	color:black;
+	padding-top:17px;
+}
+
 .info_text {
+	opacity:0.7;
+	filter:alpha(opacity=70);
+	background-color:white;
 	margin: 0px;
+	padding: 15px;
 	font-size:14px;
 }
 .info_text > ul {
 	margin: 0px;
+	line-height: 2;
 }
 .info_text > ul > li > a {
 	color: black;
@@ -145,6 +154,11 @@ body{
 .info_text > ul > li > .social {
 	position:relative;
 	top:4px;
+}
+
+/* Hide AddThis mobile version */
+#at4m-mobile-container {
+	display: none !important;
 }
 
 .help-block {
@@ -216,6 +230,12 @@ body{
 	padding:10px 15px;
 	width:200px;
 	cursor:default;
+}
+
+@media screen and (max-width: 768px) {
+	#signin {
+		width: 100%;
+	}
 }
 
 #signin .remember-me{
@@ -337,4 +357,8 @@ div.modal {
 	margin-top: 200px;
 	background-color: #037383;
 
+}
+
+.recovery .form-group {
+	margin-bottom: 0px;
 }

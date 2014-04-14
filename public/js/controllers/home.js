@@ -11,7 +11,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 	//sorting & pagination
     $scope.bookOrder = 'title';
     $scope.currentPage = 1;
-    $scope.pageSize = 8;
+    $scope.pageSize = 12;
 	
     //// Load some books at the beginning
     var loadLibraryBooks = function() {
