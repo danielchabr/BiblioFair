@@ -49,7 +49,12 @@ exports.get = function(options, done) {
 		Book.find({$or: [{title: re}, {author: re}], num_users: {$gt: 0}}).where('loc.coordinates').near({center: [options.lng, options.lat], maxDistance: (options.radius / 111.12), spheriacal: true}).select(options.fields).skip(options.offset).limit(options.limit).populate('users', {"library": 1, _id: 0}, 'UserModel').exec(function(err, data) {
 			done(err, data);
 		});
-	} else{
+	} else if (options.noUsers) {
+		var re = new RegExp(regex(options.query), 'i');
+		Book.find({$or: [{title: re}, {author: re}, {isbn: re}]}).select(options.fields).skip(options.offset).limit(options.limit).exec(function(err, data) {
+			done(err, data);
+		});
+	} else {
 		var re = new RegExp(regex(options.query), 'i');
 		Book.find({$or: [{title: re}, {author: re}], num_users: {$gt: 0}}).select(options.fields).skip(options.offset).limit(options.limit).populate('users', {"library": 1, _id: 0}, 'UserModel').exec(function(err, data) {
 			done(err, data);

@@ -63,7 +63,7 @@ function accountControl($rootScope, $location, $scope, $translate, Users, Utils)
 		$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4", function() {
 			var options = {
 				elt: document.getElementById('map'), /*ID of element on the page where you want the map added*/
-				zoom: 2, /*initial zoom level of the map*/
+				zoom: 3, /*initial zoom level of the map*/
 				latLng: {lat: 30, lng: -30}, /*center of map in latitude/longitude */
 				mtype: 'map', /*map type (osm)*/
 				bestFitMargin: 0, /*margin offset from the map viewport when applying a bestfit on shapes*/

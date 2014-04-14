@@ -14,12 +14,26 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 		$scope.loading = false;
 	});
 
-	/** TODO why??? */
+	// Load some books in the beginning
 	Books.get({
-		limit: 60
+		limit: 60,
+		noUsers: true
 	}).success(function(data) {
 		$scope.books = data;
 	});
+
+	/**
+	 * Load books in real-time for typeahead
+	 */
+	$scope.retrieveBooks = function (query) {
+		Books.get({
+			query: query,
+			limit: 12,
+			noUsers: true
+		}).success(function(data) {
+			$scope.books = $scope.books.concat(data);
+		});
+	};
 
 	/**
 	 *	Add a book to user's library. 
@@ -45,11 +59,13 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 		}
 	};
 	// on selection of one of typeaheads checks if it matches only one result and if so, fills the rest of form
-	$scope.selectBook = function() {
+	$scope.selectBook = function(item) {
 		var template = {};
 		for (var prop in $scope.newbook){
 			template[prop] = $scope.newbook[prop];
 		}
+		template.title = item.title;
+		template.author = item.author;
 		delete template.edition;
 		delete template.volume;
 		delete template.actions;
@@ -149,8 +165,8 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 		}
 	};
 	$scope.check = function(data, prop, val) {
-		if($scope.selected_books.length === 0)
-			$scope.selected_books = $scope.books;
+		//if($scope.selected_books.length === 0)
+		$scope.selected_books = $scope.books;
 		var template = {};
 		for (var prop in $scope.newbook){
 			template[prop] = $scope.newbook[prop];

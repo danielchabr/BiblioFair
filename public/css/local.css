@@ -32,6 +32,9 @@
 .nav, .pagination, .carousel a { 
 	cursor: pointer; 
 }
+.pagination {
+	margin:9px 7px 15px;
+}
 h1, h2, h3, h4, h5 {
 	margin-top: 10px;
 }
@@ -121,7 +124,7 @@ html, body {
 body{
 	color:white;
 	background-color:#03899c;
-	padding:0 0 64px 0;
+	padding:0 0 60px 0;
 }
 
 /*
@@ -132,7 +135,6 @@ body{
 	margin-top:0px;
 	clear:both;
 	color:black;
-	padding-top:17px;
 }
 
 .info_text {
