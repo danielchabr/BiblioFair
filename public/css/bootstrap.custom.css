@@ -1,6 +1,14 @@
 /**
- * Customizations of Twitter Bootstrap.s
+ * Customizations of Twitter Bootstrap.
  */
+
+/**
+ * General elements.
+ */
+
+a{
+	color: #e8d069;
+}
 
 a:hover, a:focus{
 	color:#debb27;
@@ -10,6 +18,18 @@ a:hover, a:focus{
 	background-color:#037383;
 	border:1px solid #025460;
 }
+
+hr{
+	background-color:#037383;
+}
+
+.help-block.text-danger{
+	color: #a30303;
+}
+
+/**
+ * Navbar.
+ */
 
 .navbar-default{
 	background-color:#bf222e;
@@ -35,7 +55,14 @@ a:hover, a:focus{
 	color: #ffffff;
 }
 
-.btn-primary{
+/**
+ * Buttons.
+ * 
+ * The pseudo-class :focus serves as a marker of the last clicked button.
+ * Make sure to include it appropriately.
+ */
+
+.btn-primary,.btn-primary:focus{
 	background-color:#bf222e;
 	border-color: #bf222e;
 }
@@ -45,13 +72,18 @@ a:hover, a:focus{
 	border-color:#8B1921;
 }
 
-.btn-warning {
+.btn-warning, .btn-warning:focus{
 	color: #ffffff;
 	background-color: #debb27;
 	border-color: #debb27;
 }
 
-.btn-success{
+/** todo */
+.btn-warning:hover{
+	
+}
+
+.btn-success, .btn-success:focus{
 	background-color:#48ca3b;
 	border-color:#48ca3b;
 }
@@ -61,9 +93,14 @@ a:hover, a:focus{
 	border-color:#359d2b;
 }
 
+/**
+ * Pagination.
+ */
+
 .pagination li a{
 	background-color:#039fb5;
 	border:1px solid transparent;
+	color: #e8d069;
 }
 
 .pagination .active a{
@@ -78,19 +115,21 @@ a:hover, a:focus{
 	border:1px solid transparent;
 }
 
-
+/**
+ * Dropdowns.
+ */
 
 .dropdown-menu > li > a:hover{
 	color:white;
 	background-color:#04B5CE;
 }
 
+/**
+ * Modals.
+ */
+
 .modal-content{
 	background-color:#039fb5;
-}
-
-hr{
-	background-color:#037383;
 }
 
 /** signup form */
