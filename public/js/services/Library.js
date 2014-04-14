@@ -12,10 +12,17 @@ angular.module('bibliofair').factory('Library', ['$http', function($http) {
             remove: function(book) {
                 return $http.delete("/api/library/" + book);
             },
-			transfer: function(to, book){
-				return $http.put("/api/library/transfer",{
+			transfer: function(book, to, type){
+				return $http.post("/api/library/transfer", {
+					book: book,
 					to: to,
-					book: book
+					type: type
+				});
+			},
+			returned: function(book, to){
+				return $http.post('/api/library/returned',{
+					book: book,
+					to: to
 				});
 			}
         };

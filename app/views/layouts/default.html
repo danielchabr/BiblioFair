@@ -2,27 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ng="http://angularjs.org" id="ng-app" lang="en">
 	{% include '../includes/head.html' %}
 	<body>
-		<!-- errors -->
-		{% if errors.length || infos.length %}
+		
 		<div id="flashes">
 			<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"><span ng-bind="alert.msg"></span></alert>
 			<script type="text/javascript">
 				window.alerts = [];
 				window.infos = [];
-				{% for error in errors %}
-					{% if error.normalized %}
-						window.alerts.push({msg:'{{error.message}}', type: 'danger'});
-					{% else %}
-						window.alerts.push({msg:'{{error}}', type: 'danger'});
-					{% endif %}
-				{% endfor %}
+				<!-- errors -->
+				{% if errors.length || infos.length %}
+					{% for error in errors %}
+						{% if error.normalized %}
+							window.alerts.push({msg:'{{error.message}}', type: 'danger'});
+						{% else %}
+							window.alerts.push({msg:'{{error}}', type: 'danger'});
+						{% endif %}
+					{% endfor %}
 
-				{% for info in infos %}
-					window.alerts.push({msg:'{{info.message}}', type: 'info'});
-				{% endfor %}
+					{% for info in infos %}
+						window.alerts.push({msg:'{{info.message}}', type: 'info'});
+					{% endfor %}
+				{% endif %}
 			</script>
 		</div>
-		{% endif %}
 
 		<!-- include menu in all the sites -->
 		<nav class="navbar navbar-default navbar-fixed-top" ng-include="'partials/menu.html'" role="navigation"></nav>

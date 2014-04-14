@@ -13,6 +13,7 @@
 	<i>{{ 'DETAIL.BY' | translate }} {{details_view.author}}</i>
 	</p>
 </div>
+
 <div class="modal-body">
 	<div class="row" style="padding-right:15px">
 		<div class="col-xs-8 col-sm-10">
@@ -25,7 +26,7 @@
 			<span ng-if="details_view.published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}: {{details_view.published}}</br></span>
 			<br>
 		</div>
-		<div class="col-xs-4 col-sm-2">
+		<div class="col-xs-4 col-sm-2" ng-show="!details_view.borrowed">
 			<div class="row">
 				<button class="col-xs-12 btn btn-sm" ng-class="{'btn-primary':!details_view.actions.sell, 'btn-success':details_view.actions.sell}" ng-model="details_view.actions.sell" ng-click="details_view.actions.sell=!details_view.actions.sell;updateActions()"><i ng-class="{'fa-check-square-o':details_view.actions.sell, 'fa-square-o':!details_view.actions.sell}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
 			</div>
@@ -37,19 +38,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" style="">
+	<div class="row" style="" ng-show="!details_view.borrowed">
 		<form role="form" class="col-xs-12">
 			<div class="form-group">
-				<label for="">{{ 'LIBRARY.ADD.NOTE' | translate }}</label>
-				<input type="text" class="form-control" id="" ng-model="details_view.note" placeholder="{{ 'LIBRARY.ADD.NOTE_TEXT' | translate }}">
+				<label for="book-note">{{ 'LIBRARY.ADD.NOTE' | translate }}</label>
+				<input type="text" id="book-note" class="form-control" id="" ng-model="details_view.note" placeholder="{{ 'LIBRARY.ADD.NOTE_TEXT' | translate }}">
 			</div>
 		</div>
 	</div>
-</div>
-<div class="modal-footer">
+<div class="modal-footer" ng-show="!details_view.borrowed">
 	<div class="row">
-		<button class="btn btn-success pull-left" ng-click="transferEnable=!transferEnable" ng-disabled="transferEnable"><i class="fa fa-share"></i> {{ 'LIBRARY.TRANSFER.BUTTON' | translate }}</button>
-		<button class="btn btn-primary" ng-click="remove()"><i class="fa fa-trash-o"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
+		<button ng-show="details_view.lent" class="btn btn-primary" ng-click="transfer.returned(details_view.lent)"><i class="fa fa-arrow-left"></i> {{ 'DETAIL.RETURNED' | translate }}</button>
+		
+		<button ng-show="!details_view.lent" class="btn btn-success pull-left" ng-click="transferEnable=!transferEnable" ng-disabled="transferEnable"><i class="fa fa-share"></i> {{ 'LIBRARY.TRANSFER.BUTTON' | translate }}</button>
+		<button ng-show="!details_view.lent" class="btn btn-primary" ng-click="remove()"><i class="fa fa-trash-o"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
 		<button class="btn btn-warning" ng-click="save();cancel()">{{ 'DETAIL.SAVE_AND_CLOSE' | translate }}</button>
 	</div>
 	<div id="transfer" class="row" ng-show="transferEnable">
@@ -62,5 +64,13 @@
 		<span>{{ 'LIBRARY.TRANSFER.TO_USER' | translate }} </span>
 		<input type="text" class="form-control" id="" ng-model="transfer.user" placeholder="{{ 'LIBRARY.TRANSFER.DEFAULT' | translate }}">
 		<button class="btn btn-success" ng-click="transfer.send()"><i class="fa fa-share"></i> {{ 'LIBRARY.TRANSFER.ACTION' | translate }}</button>
+		<span class="help-block text-danger" ng-show="transfer.error">{{transfer.error}}</span>
+		<span class="help-block" ng-show="transfer.success">{{transfer.success}}</span>
+	</div>
+</div>
+
+<div class="modal-footer" ng-show="details_view.borrowed">
+	<div class="row">
+		<button class="btn btn-warning" ng-click="save();cancel()">{{ 'DETAIL.CLOSE' | translate }}</button>
 	</div>
 </div>

@@ -58,6 +58,11 @@ var messages = exports.messages = {
 				notVerified: "Vaš e-mail nebyl potvrzen.",
 				notLocated: "Nastavte prosím svou polohu."
 			},
+			//for the recipients when transferring books etc.
+			toUser: {
+				notFound: "Příjemce knihy nenalezen.",
+				notLocated: "Příjemce nemá nastevnou polohu, tudíž knihu nelze převést."
+			},	
 			book: {
 				notFound: 'Kniha nenalezena.'
 			},
@@ -151,6 +156,10 @@ var messages = exports.messages = {
 				notVerified: "Your e-mail address has not been verified.",
 				notLocated: "You have not set your location yet."
 			},
+			toUser: {
+				notFound: "The recipient was not found.",
+				notLocated: "The recipient does not have his/her location set."
+			},	
 			book: {
 				notFound: 'Book not found.'
 			},

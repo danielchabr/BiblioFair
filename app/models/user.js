@@ -47,6 +47,11 @@ var UserSchema = new Schema({
 				type: Schema.Types.ObjectId,
 				ref: 'BookModel'
 			},
+			borrowed: {
+				type: Boolean,
+				default: false
+			},
+			lent: String,
 			last_updated: Date,
 			actions: {
 				sell: Boolean,
@@ -90,11 +95,11 @@ UserSchema.statics.findBooks = function(userId, done) {
 };
 
 UserSchema.statics.findBook = function(userId, bookId, done) {
-	this.findById(userId, "library").populate("library.id").exec(function(err, user){
+	this.findById(userId, "library").populate("library.id").exec(function(err, user) {
 		if(!user){
 			return done("user.notFound");
 		}
-		
+
 		var book;
 		user.library.forEach(function(item) {
 			if(item.id.toObject()._id.toString() == bookId){
@@ -104,7 +109,7 @@ UserSchema.statics.findBook = function(userId, bookId, done) {
 		});
 		if(book){
 			return done(null, book);
-		}else{
+		} else{
 			return done("book.notFound");
 		}
 	});
@@ -115,6 +120,8 @@ function getBook(item) {
 	book.actions = item.actions;
 	book.note = item.note;
 	book.last_updated = item.last_updated;
+	book.borrowed = item.borrowed;
+	book.lent = item.lent;
 	return book;
 }
 
@@ -259,9 +266,16 @@ UserSchema.methods = {
 		return this.verified;
 	},
 	/**
-	 * Library API.
+	 * ************************ Library API. ********************************
 	 */
 
+	/**
+	 * Add a book to user's library.
+	 * 
+	 * @param {object} newbook
+	 * @param {function} done
+	 * @returns {undefined}
+	 */
 	addBook: function(newbook, done) {
 		var user = this;
 
@@ -306,13 +320,14 @@ UserSchema.methods = {
 					id: book._id,
 					last_updated: new Date(),
 					actions: newbook.actions,
-					note: newbook.note
+					note: newbook.note,
+					borrowed: newbook.borrowed
 				});
 				user.save(function(err, user) {
 					if(err){
 						return done(err);
 					}
-					
+
 					User.findBook(user._id, book._id, function(err, book) {
 						done(err, book);
 					});
@@ -320,47 +335,98 @@ UserSchema.methods = {
 			});
 		});
 	},
-	canAddBooks: function() {
+	canAddBooks: function(to) {
+		var user = "user";
+		if(to === true){
+			user = "toUser";
+		}
+
 		//located?
 		if(!this.isLocated()){
-			return new Error("user.notLocated");
+			return new Error(user + ".notLocated");
 		}
 		//verified?
 		if(!this.isVerified()){
-			return new Error("user.notVerified")
+			return new Error(user + ".notVerified")
 		}
 		return true;
 	},
+	/**
+	 * Remove a book from user's library.
+	 * 
+	 * @param {ObjectId} bookId
+	 * @param {function} done
+	 * @returns {undefined}
+	 */
 	removeBook: function(bookId, done) {
 		var user = this;
 		Book.findById(bookId, function(err, book) {
 			if(err || !book || !book.users){
 				return done(err || "book.notFound");
 			}
-			user.update({$pull: {'library': {id: bookId}}}, function(err) {
+
+			user.update({$pull: {'library': {id: bookId}}}, function(err, affected) {
 				if(err){
 					return done(err);
 				}
 
-				book.users.splice(book.users.indexOf(user._id), 1);
-				book.loc.splice(book.loc.indexOf({coordinates: user.loc.coordinates}), 1);
-				book.num_users--;
-				user.save(function(err, user) {
-					if(err){
-						return done(err);
-					}
-					book.save(function(err, book) {
-						done(err, book);
+				//otherwise other users' books might be removed!
+				var index = book.users.indexOf(user._id);
+				if(index !== -1){
+					book.users.splice(book.users.indexOf(user._id), 1);
+					book.loc.splice(book.loc.indexOf({coordinates: user.loc.coordinates}), 1);
+					book.num_users--;
+					user.save(function(err, user) {
+						if(err){
+							return done(err);
+						}
+						book.save(function(err, book) {
+							done(err, book);
+						});
 					});
-				});
+				}
+				else{
+					return done(null, 'notModified');
+				}
 			});
 		});
 	},
-	transferBook: function(to, book, done) {
+	/**
+	 * Update a book in user's library.
+	 * 
+	 * @param {ObjectId} bookId
+	 * @param {object} data
+	 * @param {function} done
+	 * @returns {undefined}
+	 */
+	updateBook: function(bookId, data, done) {
+		var user = this;
+		for (var i = 0; i < user.library.length; i++){
+			//different types -> == instead of ===
+			if(user.library[i].id == (typeof bookId === "string" ? bookId : bookId.toString())){
+				if(data.actions !== undefined){
+					user.library[i].actions = data.actions;
+				}
+				if(data.note !== undefined){
+					user.library[i].note = data.note;
+				}
+				if(data.borrowed !== undefined){
+					user.library[i].borrowed = data.borrowed;
+				}
+				if(data.lent !== undefined){
+					user.library[i].lent = data.lent;
+				}
+			}
+		}
+		user.save(function(err, user) {
+			done(err, user);
+		});
+	},
+	transferBookPermanently: function(to, book, done) {
 		var from = this;
 
 		//check if user 'to' can add books
-		var toCanAddBooks = to.canAddBooks();
+		var toCanAddBooks = to.canAddBooks(true);
 		if(toCanAddBooks !== true){
 			return done(toCanAddBooks);
 		}
@@ -373,6 +439,47 @@ UserSchema.methods = {
 			//remove book from user 'from'
 			from.removeBook(book._id, function(err) {
 				return done(err, book);
+			});
+		});
+	},
+	transferBookTemporarily: function(to, book, done) {
+		var from = this;
+
+		//check if user 'to' can add books
+		var toCanAddBooks = to.canAddBooks(true);
+		if(toCanAddBooks !== true){
+			return done(toCanAddBooks);
+		}
+
+		book.borrowed = true;
+		to.addBook(book, function(err, data) {
+			if(err){
+				return done(err);
+			}
+			var lent = to._id;
+			from.updateBook(book._id, {
+				lent: lent
+			}, function(err, user) {
+				return done(err, {
+					lent: lent
+				});
+			});
+		});
+	},
+	returnedBook: function(to, book, done) {
+		var from = this;
+
+		to.removeBook(book._id, function(err) {
+			if(err){
+				return done(err);
+			}
+			var lent = '';
+			from.updateBook(book._id, {
+				lent: lent
+			}, function(err, user) {
+				return done(err, {
+					lent: lent
+				});
 			});
 		});
 	}

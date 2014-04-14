@@ -25,7 +25,6 @@ angular.module('bibliofair')
 			$translate.use($rootScope.lang);
 			//alerts and infos
 			$rootScope.alerts = window.alerts;
-			console.log($rootScope.alerts);
 
 			/**
 			 * Send GA code every 10 seconds.

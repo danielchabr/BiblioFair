@@ -1,5 +1,5 @@
 'use strict';
-var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, $translate, book, Library, Books) {
+var ModalLibraryCtrl = function($scope, $modalInstance, book, Library, $translate) {
 	$scope.details_view = book;
 	if(book.published){
 		$scope.details_view.published = new Date(book.published).getFullYear();
@@ -19,12 +19,39 @@ var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, $translate, 
 		});
 	};
 	$scope.remove = function() {
-		$modalInstance.close('remove');
+		$modalInstance.close('remove');		
 	};
 	$scope.transfer = {
 		send: function () {
-			console.log(book);
-			Library.transfer(transfer.user, book._id);
+			var transfer = angular.copy($scope.transfer);
+			Library.transfer(book._id, transfer.user, transfer.type).success(function(data){
+				$scope.details_view.lent = data.lent;
+				if(transfer.type === "permanent"){
+					window.alerts.push({msg:$translate.instant('LIBRARY.TRANSFER.SUCCESS_PERMANENT') + transfer.user + ".", type: 'info'});
+					$scope.remove();
+				}
+				else if(transfer.type === 'temporary'){
+					window.alerts.push({msg:$translate.instant('LIBRARY.TRANSFER.SUCCESS_TEMPORARY') + transfer.user + ".", type: 'info'});
+					$scope.cancel();
+				}
+				
+			}).error(function(errors){
+				if(errors[0].normalized){
+					$scope.transfer.error = errors[0].message;
+				}
+				else{
+					console.log(errors);
+				}
+			});
+		},
+		returned: function(to){
+			Library.returned(book._id, to).success(function(data){
+				$scope.details_view.lent = data.lent;
+				window.alerts.push({msg:$translate.instant('LIBRARY.TRANSFER.SUCCESS_RETURNED'), type: 'info'});
+				$scope.cancel();
+			}).error(function(errors){
+				console.log(errors);
+			})
 		}
 	};
 	$scope.cancel = function() {

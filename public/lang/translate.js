@@ -162,7 +162,10 @@ var translateEN = {
 			'SELL' : 'sell',
 			'TO_USER' : 'this book to user',
 			'DEFAULT' : 'username',
-			'ACTION' : 'Initiate transfer'
+			'ACTION' : 'Initiate transfer',
+			'SUCCESS_PERMANENT': 'You have just transfered the book to ',
+			'SUCCESS_TEMPORARY': 'You have just lent the book to ',
+			'SUCCESS_RETURNED': 'This book is back in your library!'
 		},
 		'ALERT_1': 'To add books, please set your location in your ',
 		'ALERT_2': ' account settings',
@@ -197,7 +200,9 @@ var translateEN = {
 		'BY': 'By',
 		'CLOSE': 'Close',
 		'SAVE_AND_CLOSE': 'Save and Close',
-		'REMOVE': 'Remove'
+		'SAVE': 'Save',
+		'REMOVE': 'Remove',
+		'RETURNED': 'Book was returned'
 	},
 	'OTHER': {
 		'PAGINATION': {
@@ -376,7 +381,10 @@ var translateCS = {
 			'SELL' : 'prodat',
 			'TO_USER' : 'uživateli',
 			'DEFAULT' : 'uživatelské jméno',
-			'ACTION' : 'Zahájit převod'
+			'ACTION' : 'Zahájit převod',
+			'SUCCESS_PERMANENT': 'Právě jste tuto knihu převedli na uživatele ',
+			'SUCCESS_TEMPORARY': 'Právě jste tuto knihu půjčili uživateli ',
+			'SUCCESS_RETURN': 'Tato kniha je zpátky ve Vaší knihovničce.'
 		},
 		'ALERT_1': 'Pro přidávání knih nejdříve nastavte svou polohu v ',
 		'ALERT_2': ' nastavení účtu',
@@ -411,7 +419,9 @@ var translateCS = {
 		'BY': 'od',
 		'CLOSE': 'Zavřít',
 		'SAVE_AND_CLOSE': 'Uložit a zavřít',
-		'REMOVE': 'Smazat'
+		'SAVE': 'Zavřít',
+		'REMOVE': 'Smazat',
+		'RETURNED': 'Kniha byla vrácena'
 	},
 	'OTHER': {
 		'PAGINATION': {
