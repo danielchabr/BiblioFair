@@ -260,12 +260,16 @@ exports.usernameFromEmail = function(email, done){
 function createUniqueUsername(username, done){
 	usernameExists(username, function(exists){
 		if(exists){
-			username += "a";
+			username = makeUsernameUnique(username);
 			return createUniqueUsername(username, done);
 		}
 		else{
 			return done(username);
 		}
 	});
+}
+
+function makeUsernameUnique(username){
+	return username + "1";
 }
 

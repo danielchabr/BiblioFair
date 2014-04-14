@@ -40,7 +40,6 @@ module.exports = function(passport) {
 
 	passport.use(new RememberMeStrategy(
 		function(token, done) {
-			console.log('strategy' + token);
 			consumeRememberMeToken(token, function(err, user) {
 				if(err){
 					return done(err);
@@ -111,10 +110,10 @@ module.exports = function(passport) {
 				return done(err);
 			}			
 			if(!user){
-				users.usernameFromEmail(profile.emails[0].value, function(err, username){
-					if(err){
+				users.usernameFromEmail(profile.emails[0].value, function(username){
+					/*if(err){
 						return done(err);
-					}
+					}*/
 					
 					user = new User({
 						name: profile.displayName,
@@ -149,19 +148,19 @@ module.exports = function(passport) {
 			'google.id': profile.id
 		}, function(err, user) {
 			if(!user){
-				users.usernameFromEmail(profile.emails[0].value, function(err, username){
-					if(err){
+				users.usernameFromEmail(profile.emails[0].value, function(username){
+					/*if(err){
 						return done(err);
-					}
+					}*/
 					
 					user = new User({
-					name: profile.displayName,
-					email: profile.emails[0].value,
-					username: username,
-					provider: 'google',
-					verified: true,
-					google: profile._json
-				});
+						name: profile.displayName,
+						email: profile.emails[0].value,
+						username: username,
+						provider: 'google',
+						verified: true,
+						google: profile._json
+					});
 				user.save(function(err, user) {
 					return done(err, user);
 				});
