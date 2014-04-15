@@ -169,7 +169,8 @@ var translateEN = {
 		},
 		'ALERT_1': 'To add books, please set your location in your ',
 		'ALERT_2': ' account settings',
-		'ALERT_3': 'To add books, please verify your account. Just click the link in the e-mail you received right after the registration.'
+		'ALERT_3': 'To add books, please verify your account. Just click the link in the e-mail you received right after the registration.',
+		'EDIT': 'Edit'
 	},
 	'ACCOUNT': { 
 		'SETLOCATION': 'Set your location by centering the map',
@@ -202,7 +203,8 @@ var translateEN = {
 		'SAVE_AND_CLOSE': 'Save and Close',
 		'SAVE': 'Save',
 		'REMOVE': 'Remove',
-		'RETURNED': 'Book was returned'
+		'RETURNED': 'Book was returned',
+		'EDIT_TITLE': 'Book editing'
 	},
 	'OTHER': {
 		'PAGINATION': {
@@ -388,7 +390,8 @@ var translateCS = {
 		},
 		'ALERT_1': 'Pro přidávání knih nejdříve nastavte svou polohu v ',
 		'ALERT_2': ' nastavení účtu',
-		'ALERT_3': 'Pro přidávání knih prosím potvrďte svůj e-mail. Stačí kliknout na odkaz v e-mailu, který jste obdrželi po registraci.'
+		'ALERT_3': 'Pro přidávání knih prosím potvrďte svůj e-mail. Stačí kliknout na odkaz v e-mailu, který jste obdrželi po registraci.',
+		'EDIT': 'Upravit'
 	},
 	'ACCOUNT': { 
 		'SETLOCATION': 'Nastavte svoji polohu vycentrováním mapy',
@@ -421,7 +424,8 @@ var translateCS = {
 		'SAVE_AND_CLOSE': 'Uložit a zavřít',
 		'SAVE': 'Zavřít',
 		'REMOVE': 'Smazat',
-		'RETURNED': 'Kniha byla vrácena'
+		'RETURNED': 'Kniha byla vrácena',
+		'EDIT_TITLE': 'Úprava knihy'
 	},
 	'OTHER': {
 		'PAGINATION': {

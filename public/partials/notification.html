@@ -5,9 +5,13 @@
 <div class="modal-body notification">
 	<div class="row">
 		<div class="col-xs-12 text-center">
-			<button type="button" class="close" ng-click="cancel()" aria-hidden="true" ng-if="!title">&times;</button>
 			<br>
 			<div ng-bind-html="message"></div>
+			<div ng-include="template" class="col-sm-8 col-sm-offset-2"></div>
 		</div>
 	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-success" ng-show="save" ng-click="save()"><i class="fa fa-save"></i> {{ 'DETAIL.SAVE' | translate }}</button>
+	<button class="btn btn-warning" ng-click="cancel()">{{ 'DETAIL.CLOSE' | translate }}</button>
 </div>

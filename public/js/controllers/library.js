@@ -39,16 +39,18 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 	 *	Add a book to user's library. 
 	 */
 
-	$scope.addbook = function() {
-		if($scope.newbook.title && $scope.newbook.author){
-			if($scope.newbook.isbn){
-				if($scope.newbook.isbn.length === 10)
-					$scope.newbook.isbn = Utils.ISBN10toISBN13($scope.newbook.isbn);
+	$scope.addBook = function(bookArg, done) {
+		var book = bookArg || $scope.newbook;
+		if(book.title && book.author){
+			if(book.isbn){
+				if(book.isbn.length === 10)
+					book.isbn = Utils.ISBN10toISBN13(book.isbn);
 			}
-			Library.add($scope.newbook).success(function(book) {
+			Library.add(book).success(function(book) {
 				$scope.newbook = {};
 				$scope.mybooks.push(book);
 				$scope.warning_text = "";
+				if(done) done();
 				//ga('send', 'event', 'book', 'add');
 			}).error(function(error) {
 				console.log(error);
@@ -59,7 +61,8 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 		}
 	};
 	// on selection of one of typeaheads checks if it matches only one result and if so, fills the rest of form
-	$scope.selectBook = function(item) {
+	$scope.selectBook = function(item, scope) {
+		if(scope) $scope = scope;
 		var template = {};
 		for (var prop in $scope.newbook){
 			template[prop] = $scope.newbook[prop];
@@ -196,6 +199,35 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 	 * @param {object} book
 	 * @returns {undefined}
 	 */
+	var openEditModal = function(book) {
+		var modalInstance = $modal.open({
+			templateUrl: '/partials/notification.html',
+			controller: ModalBasicCtrl,
+			resolve: {
+				data: function () {
+					return {
+						book: book,
+						template: '/partials/private/add_book.html'
+					};
+				},
+				message: function () { return ''; },
+				title: function () { return $translate.instant('DETAIL.EDIT_TITLE'); }
+			}
+		});
+
+		modalInstance.result.then(function(editedBook) {
+			if(typeof book === 'object'){
+				Library.remove(editedBook._id).success(function(data) {
+					var index = -1;
+					index = $scope.mybooks.indexOf(editedBook);
+					if(index >= 0) $scope.mybooks.splice(index, 1);
+					$scope.addBook(editedBook, function(){ $scope.open(editedBook); } );
+				}).error(function(error){
+					console.log(error);
+				});
+			}
+		});
+	}
 	
 	$scope.open = function(book) {
 		var modalInstance = $modal.open({
@@ -218,6 +250,8 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 				}).error(function(error){
 					console.log(error);
 				});
+			} else if(action === 'edit') {
+				openEditModal(book);
 			}
 		});
 	};

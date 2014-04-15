@@ -52,6 +52,7 @@
 		
 		<button ng-show="!details_view.lent" class="btn btn-success pull-left" ng-click="transferEnable=!transferEnable" ng-disabled="transferEnable"><i class="fa fa-share"></i> {{ 'LIBRARY.TRANSFER.BUTTON' | translate }}</button>
 		<button ng-show="!details_view.lent" class="btn btn-primary" ng-click="remove()"><i class="fa fa-trash-o"></i> {{ 'DETAIL.REMOVE' | translate }}</button>
+		<button class="btn btn-warning" ng-click="edit();"><i class="fa fa-edit"></i> {{ 'LIBRARY.EDIT' | translate }}</button>
 		<button class="btn btn-warning" ng-click="save();cancel()">{{ 'DETAIL.SAVE_AND_CLOSE' | translate }}</button>
 	</div>
 	<div id="transfer" class="row" ng-show="transferEnable">

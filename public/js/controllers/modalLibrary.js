@@ -21,6 +21,9 @@ var ModalLibraryCtrl = function($scope, $modalInstance, book, Library, $translat
 	$scope.remove = function() {
 		$modalInstance.close('remove');		
 	};
+	$scope.edit = function() {
+		$modalInstance.close('edit');		
+	};
 	$scope.transfer = {
 		send: function () {
 			var transfer = angular.copy($scope.transfer);

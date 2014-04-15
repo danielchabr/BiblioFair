@@ -1,0 +1,88 @@
+<div class="col-lg-12">
+	<h3 class="text-center" ng-hide="editing">{{ 'LIBRARY.ADD.HEADING' | translate }}</h3>
+	<form class="form-group">
+		<fieldset>
+			<!-- <legend>Legend</legend> -->
+			<!--<p ng-hide="editing">{{ 'LIBRARY.ADD.TEXT' | translate }}</p>-->
+			<div class="form-group">
+				<label class="" for="new_title">{{ 'LIBRARY.ADD.TITLE' | translate }}:</label>
+				<input type="text" id="new_title" ng-model="$parent.newbook.title" class="form-control" placeholder="{{ 'LIBRARY.ADD.TITLE' | translate }}" typeahead="book.title as book.title + ' || ' + book.author for book in check(books, 'title') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook($item)" ng-change="retrieveBooks($parent.newbook.title)">
+			</div>
+			<div class="form-group">
+				<label class="" for="new_author">{{ 'LIBRARY.ADD.AUTHOR' | translate }}:</label>
+				<input type="text" id="new_author" ng-model="$parent.newbook.author" class="form-control" placeholder="{{ 'LIBRARY.ADD.AUTHOR' | translate }}" typeahead="book.author as book.author + ' || ' + book.title for book in check(books, 'author') | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook($item)" ng-change="retrieveBooks($parent.newbook.author)">
+			</div>
+			<div class="form-group">
+				<label class="" for="new_isbn"><abbr title="{{'LIBRARY.ADD.ISBN_ABBR' | translate}}">{{ 'LIBRARY.ADD.ISBN' | translate }}:</abbr></label>
+				<input type="text" id="new_isbn" ng-model="$parent.newbook.isbn" class="form-control" placeholder="{{ 'LIBRARY.ADD.ISBN' | translate }}" typeahead="book.isbn as book.title + ' || ' + book.author for book in check(books, 'isbn', $viewValue) | filter:$viewValue | limitTo:8" typeahead-on-select="selectBook($item); searchTel(newbook.isbn)" ng-change="searchTel($parent.newbook.isbn);retrieveBooks($parent.newbook.isbn)">
+			</div>
+			<hr>
+
+			<p ng-click="optional=!optional" style="cursor:pointer">{{ 'LIBRARY.ADD.OPTIONAL' | translate }}: &nbsp; <i ng-class="{'fa-chevron-circle-up':optional, 'fa-chevron-circle-down':!optional}" class="fa fa-lg" ng-init="optional=false" style="cursor:pointer"></i></p>
+			<div ng-show="optional">
+				<div class="form-group">
+					<label class="" for="new_subtitle">{{ 'LIBRARY.ADD.SUBTITLE' | translate }}:</label>
+					<input type="text" id="new_subtitle" ng-model="$parent.newbook.subtitle" class="form-control" placeholder="{{ 'LIBRARY.ADD.SUBTITLE' | translate }}">
+				</div>
+				<div class="form-inline row form-group">
+					<div class="form-group col-xs-6">
+						<label class="" for="new_edition">{{ 'LIBRARY.ADD.EDITION' | translate }}:</label>
+						<!--<input type="text" id="new_edition" ng-model="newbook.edition" class="form-control" placeholder="Edition">-->
+						<select class="form-control" id="new_edition" ng-model="$parent.newbook.edition" ng-init="newbook.edition=1">
+							<option value="1" selected="selected">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-6">
+						<label class="" for="new_volume">{{ 'LIBRARY.ADD.VOLUME' | translate }}:</label>
+						<select class="form-control" id="new_volume" ng-model="$parent.newbook.volume" ng-init="newbook.volume=1">
+							<option value="1" selected="selected">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-inline row form-group">
+					<div class="form-group col-xs-6">
+						<label class="" for="new_published">{{ 'LIBRARY.ADD.PUBLISHED' | translate }}:</label>
+						<input type="text" id="new_published" ng-model="$parent.newbook.published" class="form-control" placeholder="{{ 'LIBRARY.ADD.PUBLISHED' | translate }}">
+					</div>
+					<div class="form-group col-xs-6">
+						<label class="" for="new_language">{{ 'LIBRARY.ADD.LANGUAGE' | translate }}:</label>
+						<select class="form-control" id="new_language" ng-init="newbook.language='cze'" ng-options="lang[0] as lang[1] for lang in languages" ng-model="$parent.newbook.language">
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="" for="new_publisher">{{ 'LIBRARY.ADD.PUBLISHER' | translate }}:</label>
+					<input type="text" id="new_publisher" ng-model="$parent.newbook.publisher" class="form-control" placeholder="{{ 'LIBRARY.ADD.PUBLISHER' | translate }}">
+				</div>
+			</div>
+			<hr style="margin-bottom:10px">
+			<div class="form-group" style="padding-bottom:28px">
+				<label class="sr-only pull-left col-xs-12" for="new_actions">{{ 'LIBRARY.ADD.ACTIONS.LABEL' | translate }}:<br></label>
+				<span class="col-xs-4" style="padding:3px; padding-left:0px">
+					<button class="btn btn-sm" style="width:100%;padding: 5px 5px" ng-class="{'btn-primary':!newbook.actions.sell, 'btn-success':newbook.actions.sell}" ng-model="newbook.actions.sell" ng-init="newbook.actions.sell=false" ng-click="newbook.actions.sell=!newbook.actions.sell"><i ng-class="{'fa-check-square-o':newbook.actions.sell, 'fa-square-o':!newbook.actions.sell}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.SELL' | translate }}</button>
+				</span>
+				<span class="col-xs-4" style="padding:3px">
+					<button class="btn btn-sm" style="width:100%;padding: 5px 5px" ng-class="{'btn-primary':!newbook.actions.donate, 'btn-success':newbook.actions.donate}" ng-model="newbook.actions.donate" ng-init="newbook.actions.donate=false" ng-click="newbook.actions.donate=!newbook.actions.donate"><i ng-class="{'fa-check-square-o':newbook.actions.donate, 'fa-square-o':!newbook.actions.donate}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.DONATE' | translate }}</button>
+				</span>
+				<span class="col-xs-4" style="padding:3px; padding-right:0px">
+					<button class="btn btn-sm" style="width:100%;padding: 5px 5px" ng-class="{'btn-primary':!newbook.actions.lend, 'btn-success':newbook.actions.lend}" ng-model="newbook.actions.lend" ng-init="newbook.actions.lend=false" ng-click="newbook.actions.lend=!newbook.actions.lend"><i ng-class="{'fa-check-square-o':newbook.actions.lend, 'fa-square-o':!newbook.actions.lend}" class="fa fa-lg"></i> {{ 'LIBRARY.ADD.ACTIONS.LEND' | translate }}</button>
+				</span>
+			</div>
+			<div class="form-group" style="">
+				<label class="" for="new_note">{{ 'LIBRARY.ADD.NOTE' | translate }}:</label>
+				<input type="text" id="new_publisher" ng-model="newbook.note" class="form-control" placeholder="{{ 'LIBRARY.ADD.NOTE_TEXT' | translate }}">
+			</div>
+			<button ng-click="addBook(); log()" ng-hide="editing" ng-disabled="user.loc.coordinates.length !== 2 || !user.verified" class="btn btn-default btn-success pull-center" style="margin-bottom:20px;width:100%"><i class="fa fa-plus fa-lg"></i>&nbsp {{ 'LIBRARY.ADD.BUTTON' | translate }}&nbsp</button>
+			{{ warning_text }}
+		</fieldset>
+	</form>
+</div>
+
