@@ -170,7 +170,8 @@ var translateEN = {
 		'ALERT_1': 'To add books, please set your location in your ',
 		'ALERT_2': ' account settings',
 		'ALERT_3': 'To add books, please verify your account. Just click the link in the e-mail you received right after the registration.',
-		'EDIT': 'Edit'
+		'EDIT': 'Edit',
+		'APPROVE_REMOVE': 'Do you really want to remove this book from your library'
 	},
 	'ACCOUNT': { 
 		'SETLOCATION': 'Set your location by centering the map',
@@ -391,7 +392,8 @@ var translateCS = {
 		'ALERT_1': 'Pro přidávání knih nejdříve nastavte svou polohu v ',
 		'ALERT_2': ' nastavení účtu',
 		'ALERT_3': 'Pro přidávání knih prosím potvrďte svůj e-mail. Stačí kliknout na odkaz v e-mailu, který jste obdrželi po registraci.',
-		'EDIT': 'Upravit'
+		'EDIT': 'Upravit',
+		'APPROVE_REMOVE': 'Opravdu chcete knihu ze své smazat ze své knihovny?'
 	},
 	'ACCOUNT': { 
 		'SETLOCATION': 'Nastavte svoji polohu vycentrováním mapy',

@@ -38,6 +38,14 @@ var UserSchema = new Schema({
 	},
 	remember: String,
 	language: String,
+	rating: Number,
+	comments: [{
+			from: {
+				type: Schema.Types.ObjectId,
+				ref: 'UserModel'
+			},
+			text: String
+		}],
 	loc: {
 		type: {type: String},
 		coordinates: [Number]

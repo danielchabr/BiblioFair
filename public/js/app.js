@@ -128,6 +128,9 @@ angular.module('bibliofair')
 						},
 						title: function() {
 							return title;
+						},
+						data: function() {
+							return undefined;
 						}
 					}
 				});

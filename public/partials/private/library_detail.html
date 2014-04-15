@@ -55,6 +55,7 @@
 		<button class="btn btn-warning" ng-click="edit();"><i class="fa fa-edit"></i> {{ 'LIBRARY.EDIT' | translate }}</button>
 		<button class="btn btn-warning" ng-click="save();cancel()">{{ 'DETAIL.SAVE_AND_CLOSE' | translate }}</button>
 	</div>
+	<hr class="wide" ng-show="transferEnable">
 	<div id="transfer" class="row" ng-show="transferEnable">
 		<span>{{ 'LIBRARY.TRANSFER.TEXT' | translate }} </span>
 		<select class="form-control" ng-model="transfer.type" ng-init="transfer.type='permanent'">

@@ -45,7 +45,7 @@
 		</thead>
 		<tbody class="users">
 			<tr ng-repeat="owner in owners" style="list-style:none">
-				<td><i class="fa fa-user"></i> {{owner.username}}</td>
+				<td><i class="fa fa-user"></i> {{owner.username}}<br><rating class="rating" ng-if="owner.rating" value="3" max="5" readonly="isReadonly" on-hover=""></rating></td>
 				<td class="hidden-xs">{{owner.username}}@bibliofair.com</td>
 				<td>
 					<span class="label label-primary" ng-if="owner.actions.sell">{{ 'HOME.MODAL.SELL' | translate }}</span>

@@ -49,6 +49,9 @@ a:active, a:focus, input, .btn:focus {
 hr {
 	border-top: 1px solid #037383;
 }
+hr.wide {
+	margin: 10px -20px 5px;
+}
 
 .well, .btn, .form-control, .modal-content, .pagination > li:first-child > a, .pagination > li:last-child > a {
 	-webkit-border-radius: 0px;
@@ -68,6 +71,9 @@ hr {
 	#container_to_fit_social_buttons {
 		padding:0 15px;
 	}
+}
+.rating {
+	display: block;
 }
 
 .map {
@@ -326,6 +332,10 @@ div.modal {
 
 .modal-footer > .row {
 	margin: 0;
+}
+
+.modal-footer .btn+.btn {
+	margin-bottom:5px;
 }
 
 @media screen and (min-width: 768px) {

@@ -1,5 +1,5 @@
 'use strict';
-var ModalLibraryCtrl = function($scope, $modalInstance, book, Library, $translate) {
+var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, book, Library, $translate) {
 	$scope.details_view = book;
 	if(book.published){
 		$scope.details_view.published = new Date(book.published).getFullYear();
@@ -19,7 +19,9 @@ var ModalLibraryCtrl = function($scope, $modalInstance, book, Library, $translat
 		});
 	};
 	$scope.remove = function() {
-		$modalInstance.close('remove');		
+		$rootScope.approve(undefined, $translate.instant('LIBRARY.APPROVE_REMOVE'), function () {
+			$modalInstance.close('remove');		
+		});
 	};
 	$scope.edit = function() {
 		$modalInstance.close('edit');		
