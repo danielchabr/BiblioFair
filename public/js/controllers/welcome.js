@@ -1,5 +1,5 @@
 'use strict';
-function welcomeControl($rootScope, $location, $scope, Books, Users, Utils, $translate) {
+function welcomeControl($rootScope, $location, $scope, Global, Books, Users, Utils, $translate) {
 
 	//redirect to '/home' if signed in
 	if($rootScope.authenticated && $location.path() === "/"){
@@ -58,7 +58,19 @@ function welcomeControl($rootScope, $location, $scope, Books, Users, Utils, $tra
 			email: user.email,
 			password: Utils.encrypt(user.password)
 		}).success(function(data) {
-			$scope.signupMessage = $translate.instant('WELCOME.VERIFICATION_SENT') + user.email;
+			//$scope.signupMessage = $translate.instant('WELCOME.VERIFICATION_SENT') + user.email;
+			$rootScope.notify($translate.instant('WELCOME.VERIFICATION_SENT') + user.email);
+			// sign the user in
+			Users.signIn({
+				email: user.email,
+				password: Utils.encrypt(user.password),
+				remember: false
+			}).success(function(user) {
+				$rootScope.authenticated = true;
+				$rootScope.user = user;
+				$rootScope.lang = Global.language($rootScope.user.lang);
+				$location.path('/home');
+			});
 			//GA register goal
 			ga('send', 'event', 'Register', 'register');
 		}).error(function(errors) {

@@ -20,6 +20,7 @@ var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, b
 
 				//ga('send', 'event', 'Request', 'Sent request');
 			}).error(function(error) {
+				$rootScope.notify(error);
 				console.log(error);
 			});
 		});
