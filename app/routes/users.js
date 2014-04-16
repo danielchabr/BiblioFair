@@ -84,7 +84,7 @@ module.exports = function(app, passport) {
 	});
 
 	app.post("/api/v1/messages", function(req, res, next) {
-		users.resendEmail(req.body, function(err, data) {
+		users.resendEmail(req.body, req.param('body-plain'), function(err, data) {
 			if(err) {
 				next(err);
 			} else {
