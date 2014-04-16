@@ -78,6 +78,7 @@ module.exports = function(app, passport) {
 	});
 
 	app.post("/api/v1/messages", function(req, res, next) {
+		console.log('Message to resend \n' + req.body);
 		if(req.body.recipient && req.body.sender) {
 			var to = req.body.recipient.split('@')[0];
 			User.findByUsername(to.toLowerCase(), function(err, to) {
