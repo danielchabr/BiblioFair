@@ -73,6 +73,12 @@ var messages = exports.messages = {
 			google: {
 				accessDenied: "Přihlášení se nezdařilo.",
 				error: "Přihlášení se nezdařilo."
+			},
+			actions: {
+				required: 'Je třeba zvolit alespoň jednu akci'
+			},
+			messaging: {
+				fromEqualsTo: "Odesílatel a adresát emailu jsou stejní"
 			}
 		},
 		info: {
@@ -182,6 +188,9 @@ var messages = exports.messages = {
 			},
 			actions: {
 				required: 'At least one action must be checked'
+			},
+			messaging: {
+				fromEqualsTo: "Odesílatel a adresát emailu jsou stejní"
 			}
 		},
 		/**

@@ -2,7 +2,11 @@
 
 var users = require("../api/users"),
 	User = require('../models/user'),
-	authorization = require('./middlewares/authorization.js');
+	authorization = require('./middlewares/authorization.js'),
+	config = require('../../config/config'),
+	Mailgun = require('mailgun').Mailgun,
+	mg = new Mailgun(config.mail.key),
+	messages = require('../helpers/messaging').messages;
 
 module.exports = function(app, passport) {
 
@@ -69,6 +73,36 @@ module.exports = function(app, passport) {
 					return next(err);
 				}
 				res.send(data);
+			});
+		}
+	});
+
+	app.post("/api/v1/messages", function(req, res, next) {
+		if(req.body.recipient && req.body.sender) {
+			var to = req.body.recipient.split('@')[0];
+			User.findByUsername(to.toLowerCase(), function(err, to) {
+				if(err) {
+					return next(err);
+				}
+				User.findByEmail(req.body.sender.toLowerCase(), function(err, from) {
+					if(err) {
+						return next(err);
+					}
+					if(to.email === req.body.sender.toLowerCase()) {
+						return next(messages['en'].errors.messaging.fromEqualsTo);
+					}
+					var fromEmail = from.username + '@' + config.mail.server;
+					mg.sendText(fromEmail,
+						to.email,
+						req.body.subject,
+						req.param('body-plain') + messages[to.language || 'cs'].emails._explanation.replace(/\{recipient\}/, fromEmail),
+						config.mail.server,
+						function(err) {
+							if (err) {
+								next(err);
+							}
+						});
+				});
 			});
 		}
 	});

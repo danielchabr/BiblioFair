@@ -88,6 +88,10 @@ UserSchema.statics.findByUsername = function(username, done) {
 	this.findOne({username: username}, done);
 };
 
+UserSchema.statics.findByEmail = function(email, done) {
+	this.findOne({email: email}, done);
+};
+
 UserSchema.statics.findBooks = function(userId, done) {
 	this.findById(userId, 'library').populate('library.id').exec(function(err, data) {
 		if(!data){

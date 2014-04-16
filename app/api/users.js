@@ -48,6 +48,7 @@ exports.signup = function(data, done) {
 			user.email,
 			messages[user.language].emails.verification.subject,
 			messages[user.language].emails.verification.body.replace(/\{username\}/g, user.username).replace(/\{link\}/, user.token.hash),
+			config.mail.server,
 			function(er) {
 				if(er)
 					console.log('Oh noes: ' + er);
