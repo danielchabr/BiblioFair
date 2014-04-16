@@ -274,3 +274,40 @@ function makeUsernameUnique(username){
 	return username + "1";
 }
 
+/*
+ * Resend email
+ *
+ * @param {object} email
+ */
+
+exports.resendEmail = function(email, done) {
+	if(req.body.recipient && req.body.sender) {
+		var to = req.body.recipient.split('@')[0];
+		User.findByUsername(to.toLowerCase(), function(err, to) {
+			if(err) {
+				return done(err);
+			}
+			User.findByEmail(req.body.sender.toLowerCase(), function(err, from) {
+				if(err) {
+					return done(err);
+				}
+				if(to.email === req.body.sender.toLowerCase()) {
+					return done(messages['en'].errors.messaging.fromEqualsTo);
+				}
+				var fromEmail = from.username + '@' + config.mail.server;
+				mg.sendText(fromEmail,
+					to.email,
+					req.body.subject,
+					req.param('body-plain') + messages[to.language || 'cs'].emails._explanation.replace(/\{recipient\}/, fromEmail),
+					config.mail.server,
+					function(err) {
+						if (err) {
+							done(err);
+						}
+					}
+				);
+				done(null);
+			});
+		});
+	}
+};

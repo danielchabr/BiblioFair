@@ -1,6 +1,6 @@
 'use strict';
 
-var users = require("../api/users"),
+var users = require('../api/users'),
 	User = require('../models/user'),
 	authorization = require('./middlewares/authorization.js'),
 	config = require('../../config/config'),
@@ -56,6 +56,12 @@ module.exports = function(app, passport) {
 	});
 
 	app.get("/api/users/exists/:user", function(req, res, next) {
+		console.log(User);
+		for (var prop in User) {
+			console.log(User[prop]);
+			console.log(prop);
+		}
+		User.findByEmail('xxx', function(){});
 		var user = req.params.user;
 		//username
 		if(user.indexOf("@") === -1){
@@ -78,34 +84,13 @@ module.exports = function(app, passport) {
 	});
 
 	app.post("/api/v1/messages", function(req, res, next) {
-		console.log('Message to resend \n' + req.body);
-		if(req.body.recipient && req.body.sender) {
-			var to = req.body.recipient.split('@')[0];
-			User.findByUsername(to.toLowerCase(), function(err, to) {
-				if(err) {
-					return next(err);
-				}
-				User.findByEmail(req.body.sender.toLowerCase(), function(err, from) {
-					if(err) {
-						return next(err);
-					}
-					if(to.email === req.body.sender.toLowerCase()) {
-						return next(messages['en'].errors.messaging.fromEqualsTo);
-					}
-					var fromEmail = from.username + '@' + config.mail.server;
-					mg.sendText(fromEmail,
-						to.email,
-						req.body.subject,
-						req.param('body-plain') + messages[to.language || 'cs'].emails._explanation.replace(/\{recipient\}/, fromEmail),
-						config.mail.server,
-						function(err) {
-							if (err) {
-								next(err);
-							}
-						});
-				});
-			});
-		}
+		users.resendEmail(req.body, function(err, data) {
+			if(err) {
+				next(err);
+			} else {
+				res.send(data);
+			}
+		});
 	});
 
 	/**
