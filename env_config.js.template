@@ -1,6 +1,7 @@
 module.exports = {
 	ip : "",
 	port : "",
+	env : "",
 	mail : {
 		key : "",
 		server : ""

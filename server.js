@@ -5,11 +5,11 @@ var express = require('express'),
         passport = require('passport'),
         mongoose = require('mongoose');
 
-// Set the node enviornment variable if not set before
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 // Initialize system variables 
 var config = require('./config/config');
+
+// Set the node enviornment variable if not set before
+process.env.NODE_ENV = process.env.NODE_ENV || config.env || 'development';
 
 // Bootstrap models (walk and require all the models (all the *.js and *.coffee files) in the /app/models directory)
 var modelsPath = __dirname + '/app/models';
