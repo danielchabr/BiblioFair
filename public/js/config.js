@@ -53,7 +53,7 @@ angular.module('bibliofair')
 			$.extend(translateCS, window.translations.cs);
 			$translateProvider.translations('en', translateEN);
 			$translateProvider.translations('cs', translateCS);
-			$translateProvider.preferredLanguage('en');
+			$translateProvider.preferredLanguage('cs');
 		}
 	])
 	//HTML5 location mode
