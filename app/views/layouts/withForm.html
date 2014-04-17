@@ -2,29 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ng="http://angularjs.org" id="ng-app" lang="en">
 	{% include '../includes/head.html' %}
 	<body>
-		<!-- errors -->
-		{% if errors.length || infos.length %}
 		<div id="flashes">
-			{% for error in errors %}
-			<div class="alert alert-danger alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"><span ng-bind="alert.msg"></span></alert>
+			<script type="text/javascript">
+				window.alerts = [];
+				window.infos = [];
+				<!-- errors -->
+				{% if errors.length || infos.length %}
+				{% for error in errors %}
 				{% if error.normalized %}
-					{{error.message}}
+				window.alerts.push({msg:'{{error.message}}', type: 'danger'});
 				{% else %}
-					{{error}}
+				window.alerts.push({msg:'{{error}}', type: 'danger'});
 				{% endif %}
-			</div>
-			{% endfor %}
+				{% endfor %}
 
-			{% for info in infos %}
-			<div class="alert alert-info alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				{{info.message}}
-			</div>
-			{% endfor %}
-
+				{% for info in infos %}
+				window.alerts.push({msg:'{{info.message}}', type: 'info'});
+				{% endfor %}
+				{% endif %}
+			</script>
 		</div>
-		{% endif %}
 
 		<!-- include menu in all the sites -->
 		<nav class="navbar navbar-default navbar-fixed-top" ng-include="'partials/menu.html'" role="navigation"></nav>
@@ -43,10 +41,10 @@
 
 		{% include '../includes/foot.html' %}
 
-		</div>
+
 		<div class="" id="form_div">
 
-		{% include '../includes/form.html' %}
+			{% include '../includes/form.html' %}
 
 		</div>
 	</body>
