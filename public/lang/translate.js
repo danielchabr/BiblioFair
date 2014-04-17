@@ -389,7 +389,7 @@ var translateCS = {
 			'ACTION' : 'Zahájit převod',
 			'SUCCESS_PERMANENT': 'Právě jste tuto knihu převedli na uživatele ',
 			'SUCCESS_TEMPORARY': 'Právě jste tuto knihu půjčili uživateli ',
-			'SUCCESS_RETURN': 'Tato kniha je zpátky ve Vaší knihovničce.'
+			'SUCCESS_RETURNED': 'Tato kniha je zpátky ve Vaší knihovničce.'
 		},
 		'ALERT_1': 'Pro přidávání knih nejdříve nastavte svou polohu v ',
 		'ALERT_2': ' nastavení účtu',

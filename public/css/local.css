@@ -43,9 +43,6 @@ a:active, a:focus, input, .btn:focus {
     outline-style:none;
     outline-width:0;
 }
-.navbar-default .navbar-nav .open .dropdown-menu>li>a {
-	color: white;
-}
 hr {
 	border-top: 1px solid #037383;
 }

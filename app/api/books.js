@@ -151,21 +151,22 @@ exports.request = function(from, to, book, language, done) {
 				if(err || !book){
 					return done(err || "book.notFound");
 				}
+				var text = (messages[language].emails.request.body + messages[language].emails._explanation).replace(/\{from\}/g, from.username)
+					.replace(/\{to\}/g, to.username)
+					.replace(/\{book.title\}/g, book.title)
+					.replace(/\{book.author\}/g, book.author)
+					.replace(/\{book.author\}/g, book.author)
+					.replace(/\{recipient\}/g, to.username + "@bibliofair.com");
 				//save message
-				from.messages.push({to: to._id, text: emailBody});
-				to.messages.push({from: from._id, text: emailBody});
+				from.messages.push({to: to._id, text: text});
+				to.messages.push({from: from._id, text: text});
 				from.save();
 				to.save();
 
 				mg.sendText(from.username + ' <' + from.username + '@bibliofair.com>',
 					to.username + ' <' + to.email + '>',
 					messages[language].emails.request.subject,
-					(messages[language].emails.request.body + messages[language].emails._explanation).replace(/\{from\}/g, from.username)
-					.replace(/\{to\}/g, to.username)
-					.replace(/\{book.title\}/g, book.title)
-					.replace(/\{book.author\}/g, book.author)
-					.replace(/\{book.author\}/g, book.author)
-					.replace(/\{recipient\}/g, to.username + "@bibliofair.com"),
+					text,
 					config.mail.server,
 					function(err) {
 						done(err, 'ok');

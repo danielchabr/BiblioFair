@@ -56,7 +56,8 @@ var messages = exports.messages = {
 			user: {
 				notFound: "Uživatel nenalezen.",
 				notVerified: "Vaš e-mail nebyl potvrzen.",
-				notLocated: "Nastavte prosím svou polohu."
+				notLocated: "Nastavte prosím svou polohu.",
+				notAuthenticated: "Uživatel není přihlášen."
 			},
 			//for the recipients when transferring books etc.
 			toUser: {
@@ -160,7 +161,8 @@ var messages = exports.messages = {
 			user: {
 				notFound: "User not found.",
 				notVerified: "Your e-mail address has not been verified.",
-				notLocated: "You have not set your location yet."
+				notLocated: "You have not set your location yet.",
+				notAuthenticated: "User is not authenticated."
 			},
 			toUser: {
 				notFound: "The recipient was not found.",
