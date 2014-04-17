@@ -6,6 +6,7 @@ updateDb.txt
 .DS_Store
 .bower-*/
 env_config.js
+env_config_prod.js
 .openshift
 *.swp
 WEB_REG_OZNAMENI2.pdf

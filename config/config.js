@@ -9,7 +9,7 @@ module.exports = _.extend(
 	{
 		root: root,
 		templateEngine: 'swig',
-		languages: ['en', 'cs']
+		languages: ['cs', 'en']
 	},
 	require(root + '/env_config.js') || {}
 );
