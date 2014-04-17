@@ -5,6 +5,7 @@ var ModalBasicCtrl = function ($scope, $modalInstance, message, title, data) {
 	 * Edit book modal setting
 	 */
 	if (data) {
+		$scope.languages = languages;
 		$scope.newbook = data.book;
 		$scope.template = data.template;
 		$scope.editing = true;
