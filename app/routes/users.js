@@ -1,12 +1,7 @@
 'use strict';
 
 var users = require('../api/users'),
-	User = require('../models/user'),
-	authorization = require('./middlewares/authorization.js'),
-	config = require('../../config/config'),
-	Mailgun = require('mailgun').Mailgun,
-	mg = new Mailgun(config.mail.key),
-	messages = require('../helpers/messaging').messages;
+	authorization = require('./middlewares/authorization.js');
 
 module.exports = function(app, passport) {
 
@@ -56,12 +51,6 @@ module.exports = function(app, passport) {
 	});
 
 	app.get("/api/users/exists/:user", function(req, res, next) {
-		console.log(User);
-		for (var prop in User) {
-			console.log(User[prop]);
-			console.log(prop);
-		}
-		User.findByEmail('xxx', function(){});
 		var user = req.params.user;
 		//username
 		if(user.indexOf("@") === -1){

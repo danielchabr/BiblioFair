@@ -294,6 +294,13 @@ exports.resendEmail = function(email, emailBody, done) {
 				if(to.email === email.sender.toLowerCase()) {
 					return done(messages['en'].errors.messaging.fromEqualsTo);
 				}
+				//save message
+				from.messages.push({to: to._id, text: emailBody});
+				to.messages.push({from: from._id, text: emailBody});
+				from.save();
+				to.save();
+
+				//send the email
 				var fromEmail = from.username + '@' + config.mail.server;
 				mg.sendText(fromEmail,
 					to.email,

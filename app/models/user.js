@@ -46,6 +46,17 @@ var UserSchema = new Schema({
 			},
 			text: String
 		}],
+	messages: [{
+			from: {
+				type: Schema.Types.ObjectId,
+				ref: 'UserModel'
+			},
+			to: {
+				type: Schema.Types.ObjectId,
+				ref: 'UserModel'
+			},
+			text: String
+		}],
 	loc: {
 		type: {type: String},
 		coordinates: [Number]

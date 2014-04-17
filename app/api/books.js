@@ -151,6 +151,11 @@ exports.request = function(from, to, book, language, done) {
 				if(err || !book){
 					return done(err || "book.notFound");
 				}
+				//save message
+				from.messages.push({to: to._id, text: emailBody});
+				to.messages.push({from: from._id, text: emailBody});
+				from.save();
+				to.save();
 
 				mg.sendText(from.username + ' <' + from.username + '@bibliofair.com>',
 					to.username + ' <' + to.email + '>',
