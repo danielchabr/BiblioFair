@@ -18,7 +18,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
         $rootScope.books = [];
         $scope.loading = true;
 
-        if($rootScope.user.loc.coordinates.length === 2){
+        if($rootScope.user && $rootScope.user.loc.coordinates.length === 2){
             $scope.locationSet = true;
         }
 

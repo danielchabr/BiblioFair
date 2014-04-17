@@ -7,7 +7,6 @@ var messages = require('../../helpers/messaging').messages;
  */
 
 exports.login = function(req, res, next) {
-	console.log(req);
     if (!req.isAuthenticated()) {
         return res.status(401).send(messages[req.cookies.lang || req.user.language || 'cz'].errors.user.notAuthenticated);
     }

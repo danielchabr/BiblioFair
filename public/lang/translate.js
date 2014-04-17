@@ -159,7 +159,7 @@ var translateEN = {
 		'TRANSFER' : {
 			'BUTTON' : 'Transfer to user ...',
 			'TEXT' : 'I want to',
-			'LEND' : 'borrow',
+			'LEND' : 'lend',
 			'DONATE' : 'donate',
 			'SELL' : 'sell',
 			'TO_USER' : 'this book to user',
