@@ -72,8 +72,10 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 		for (var prop in $scope.newbook){
 			template[prop] = $scope.newbook[prop];
 		}
-		template.title = item.title;
-		template.author = item.author;
+		if(item) {
+			template.title = item.title;
+			template.author = item.author;
+		}
 		delete template.edition;
 		delete template.volume;
 		delete template.actions;
