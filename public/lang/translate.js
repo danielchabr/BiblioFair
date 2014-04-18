@@ -154,7 +154,8 @@ var translateEN = {
 			'NOTE_TEXT': 'Price, physical condition, etc.',
 			'BUTTON': 'Add book',
 			'NOT_FILLED': 'Title or author is missing',
-			'INVALID_PUBLISHED': 'Invalid year of publishment'
+			'INVALID_PUBLISHED': 'Invalid year of publishment',
+			'SUCCESS': "Book successfully added."
 		},
 		'TRANSFER' : {
 			'BUTTON' : 'Transfer to user ...',
@@ -376,7 +377,8 @@ var translateCS = {
 			'NOTE_TEXT': 'Cena, stav knihy, atd.',
 			'BUTTON': 'Vlož knihu',
 			'NOT_FILLED': 'Titul nebo autor není vyplněn',
-			'INVALID_PUBLISHED': 'Neplatný rok vydání'
+			'INVALID_PUBLISHED': 'Neplatný rok vydání',
+			'SUCCESS': "Kniha byla přidána."
 		},
 		'TRANSFER' : {
 			'BUTTON' : 'Převést na uživatele ...',

@@ -41,6 +41,10 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 	 */
 
 	$scope.addBook = function(bookArg, done) {
+		done = done || function(){
+			$rootScope.notify($translate.instant('LIBRARY.ADD.SUCCESS'));
+		};
+		
 		var book = bookArg || $scope.newbook;
 		if(book.title && book.author){
 			if(book.isbn){
@@ -51,7 +55,7 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 				$scope.newbook = {};
 				$scope.mybooks.push(book);
 				$scope.warning_text = "";
-				if(done) done();
+				done();
 				//ga('send', 'event', 'book', 'add');
 			}).error(function(error) {
 				console.log(error);
