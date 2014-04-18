@@ -10,7 +10,8 @@ var express = require('express'),
 	flash = require('connect-flash'),
 	consolidate = require('consolidate'),
 	messaging = require("../app/helpers/messaging"),
-	localization = require("../app/helpers/localization");
+	localization = require("../app/helpers/localization"),
+	subdomains = require('express-subdomains');
 
 module.exports = function(app, passport) {
 	app.set('showStackError', true);
@@ -72,6 +73,8 @@ module.exports = function(app, passport) {
 		app.use(express.favicon(publicPath + '/img/favicon.ico'));
 
 		// routes should be at the last
+		subdomains.use('blog');
+		app.use(subdomains.middleware);
 		app.use(app.router);
 
 		//error handling

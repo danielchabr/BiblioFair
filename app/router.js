@@ -57,6 +57,10 @@ module.exports = function(app) {
 	/**
 	 * General routes.
 	 */
+	
+	app.get("/blog", function(req, res){
+		res.render('blog');
+	});
 
 	app.all("*", function(req, res) {
 		//language
