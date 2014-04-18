@@ -62,7 +62,8 @@ var messages = exports.messages = {
 			//for the recipients when transferring books etc.
 			toUser: {
 				notFound: "Příjemce knihy nenalezen.",
-				notLocated: "Příjemce nemá nastevnou polohu, tudíž knihu nelze převést."
+				notLocated: "Příjemce nemá nastevnou polohu, tudíž knihu nelze převést.",
+				cannotTransferToSelf: "Převádět knihu na sebe samého (či sebe samou) nedává smysl! :)"
 			},	
 			book: {
 				notFound: 'Kniha nenalezena.'
@@ -166,7 +167,8 @@ var messages = exports.messages = {
 			},
 			toUser: {
 				notFound: "The recipient was not found.",
-				notLocated: "The recipient does not have his/her location set."
+				notLocated: "The recipient does not have his/her location set.",
+				cannotTransferToSelf: "There is no logic in transferring the book to yourself! :)"
 			},	
 			book: {
 				notFound: 'Book not found.'

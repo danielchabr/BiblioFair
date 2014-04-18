@@ -76,6 +76,11 @@ module.exports = function(app) {
 				if(err || !to){
 					return next(err || "toUser.notFound");
 				}
+				//check if not the same user
+				if(from.username === to.username){
+					return next('toUser.cannotTransferToSelf');
+				}
+				
 				Book.findById(req.body.book, function(err, book) {
 					if(err || !book){
 						return next(err || "book.notFound");
