@@ -11,7 +11,7 @@ exports.getLanguage = function() {
 	}
 	//user logged in -> use stored information
 	else if(request.user){
-		language = request.user.lang;
+		language = request.user.language;
 	}
 	//not logged in and no cookie -> create one
 	else if(!request.cookies.lang){

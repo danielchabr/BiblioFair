@@ -77,7 +77,11 @@ angular.module('bibliofair')
 			$rootScope.changeLanguage = function(lang) {
 				$rootScope.lang = Global.language(lang);
 				if($rootScope.authenticated){
-					Users.updateLanguage($rootScope.lang);
+					Users.updateLanguage($rootScope.lang).success(function(user){
+						$rootScope.user = user;
+					}).error(function(errors){
+						
+					});
 				}
 			};
 
