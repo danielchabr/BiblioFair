@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ng="http://angularjs.org" id="ng-app" lang="en">
 	{% include '../includes/head.html' %}
 	<body>
+		<div id="content_div">
 		<div id="flashes">
 			<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)"><span ng-bind="alert.msg"></span></alert>
 			<script type="text/javascript">
@@ -40,7 +41,7 @@
 		<div class="info" ng-include="'partials/info.html'"></div>
 
 		{% include '../includes/foot.html' %}
-
+		</div>
 
 		<div class="" id="form_div">
 
