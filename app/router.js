@@ -62,6 +62,10 @@ module.exports = function(app) {
 		res.render('blog');
 	});
 
+	app.get("/press", function(req, res){
+		res.render('press');
+	});
+
 	app.all("*", function(req, res) {
 		//language
 		res.setLanguage(req.getLanguage());

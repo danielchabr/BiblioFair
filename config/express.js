@@ -74,6 +74,7 @@ module.exports = function(app, passport) {
 
 		// routes should be at the last
 		subdomains.use('blog');
+		subdomains.use('press');
 		app.use(subdomains.middleware);
 		app.use(app.router);
 
