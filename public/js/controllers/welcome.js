@@ -17,7 +17,9 @@ function welcomeControl($rootScope, $location, $scope, Global, Books, Users, Uti
 
 	//book count
 	Books.count().success(function(data) {
-		$scope.books_available = data;
+		setTimeout(function(){
+			$scope.books_available = data;
+		},100);
 	}).error(function(error) {
 		console.log(error);
 	});
