@@ -22,7 +22,7 @@ var regex = function(s) {
  */
 
 exports.count = function(done) {
-	Book.count(function(err, data) {
+	Book.count({num_users: {$gt: 0}},function(err, data) {
 		done(err, data);
 	});
 };

@@ -5,6 +5,7 @@ angular.module('bibliofair', [
 	'ngRoute',
 	'ngSanitize',
 	'ngCookies',
+	'ngAnimate',
 	'ui.bootstrap',
 	'pascalprecht.translate'
 ]);
@@ -160,7 +161,7 @@ angular.module('bibliofair')
 		}])
 	//welcome controller DOM stuff
 	.run(['$rootScope', '$location',
-		function($rootScope, $location) {
+		function($rootScope, $location) {			
 			$(document)
 				//scroll down
 				.on("click", "a[class=go_to_bottom]", function(e) {
