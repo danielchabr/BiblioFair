@@ -73,8 +73,7 @@ module.exports = function(app, passport) {
 		app.use(express.favicon(publicPath + '/img/favicon.ico'));
 
 		// routes should be at the last
-		subdomains.use('blog');
-		subdomains.use('press');
+		subdomains.use('blog').use('press');
 		app.use(subdomains.middleware);
 		app.use(app.router);
 
