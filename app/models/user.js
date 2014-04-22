@@ -332,7 +332,7 @@ UserSchema.methods = {
 			}
 
 			book.users.push(user._id);
-			book.num_users = 0 | book.num_users;
+			book.num_users = 0 || book.num_users;
 			book.num_users++;
 			book.loc.push({coordinates: user.loc.coordinates});
 			book.save(function(err, book) {
@@ -394,17 +394,18 @@ UserSchema.methods = {
 				}
 
 				//otherwise other users' books might be removed!
-				var index = book.users.indexOf(user._id);
-				if(index !== -1){
-					book.users.splice(book.users.indexOf(user._id), 1);
-					book.loc.splice(book.loc.indexOf({coordinates: user.loc.coordinates}), 1);
-					book.num_users--;
-					user.save(function(err, user) {
-						if(err){
-							return done(err);
-						}
-						book.save(function(err, book) {
-							done(err, book);
+				var userIndex = book.users.indexOf(user._id);
+				if(userIndex !== -1){
+					book.update({$pull: {'loc': {coordinates: user.loc.coordinates}}}, function(err, data){
+						book.users.splice(userIndex, 1);
+						book.num_users--;
+						user.save(function(err, user) {
+							if(err){
+								return done(err);
+							}
+							book.save(function(err, book) {
+								done(err, book);
+							});
 						});
 					});
 				}
