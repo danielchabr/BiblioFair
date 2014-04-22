@@ -124,5 +124,4 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 	 */
 	
     ga('send', 'pageview', '/');
-}
-
+};
