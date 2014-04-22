@@ -11,11 +11,16 @@ module.exports = function(app, passport) {
 
 	app.get('/signout', function(req, res) {
 		var user = req.user;
-		user.remember = undefined;
-		user.save(function(err) {
-			req.logout();
+		if(user){
+			user.remember = undefined;
+			user.save(function(err) {
+				req.logout();
+				res.redirect('/');
+			});
+		}
+		else{
 			res.redirect('/');
-		});
+		}
 	});
 
 
