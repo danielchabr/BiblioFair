@@ -24,8 +24,8 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 
         Books.get({
             limit: 60,
-            lat: $rootScope.user.loc.coordinates[0],
-            lng: $rootScope.user.loc.coordinates[1],
+            lng: $rootScope.user.loc.coordinates[0],
+            lat: $rootScope.user.loc.coordinates[1],
             radius: 10000
         }).success(function(data) {
             if(data){

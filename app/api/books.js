@@ -41,7 +41,8 @@ exports.get = function(options, done) {
 		limit: 0,
 		offset: 0,
 		query: '',
-		fields: ''
+		fields: '',
+		radius: 100000
 	}, options);
 
 	if(options.lat && options.lng && options.radius){
