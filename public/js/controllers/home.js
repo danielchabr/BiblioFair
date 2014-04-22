@@ -74,10 +74,11 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
         });
     }();
     //// Real-time retrieving with writing search query
-    $scope.retrieveBooks = function() {
+    $scope.retrieveBooks = function(offset) {
         Books.get({
             query: $scope.search,
-            limit: 12
+            limit: $scope.pageSize,
+			offset: (offset || 0) * $scope.pageSize
         }).success(function(data) {
             $rootScope.books = $rootScope.books.concat(normalizeBooks(data));
             $rootScope.books = uniqBooks($rootScope.books, function(a, b) {
@@ -91,6 +92,17 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
         });
 
     };
+
+	/*
+	 * Load more books when user gets to the end of paginator
+	 */
+
+	$scope.pageSelected = function (page) {
+		var i = 1;
+		while( (page + 1) * $scope.pageSize >= $scope.filteredBooks.length ) {
+			retrieveBooks(i++);
+		}
+	};
 	
 	/**
 	 * Show book detail (in a modal).
