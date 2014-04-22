@@ -53,6 +53,8 @@ angular.module('bibliofair').controller('HeaderController', ['$rootScope', '$sco
 			var $signin = $("#signin");
 			if($signin.is(":hidden")){
 				$signin.show();
+				//focus login input field
+				$("#signinLogin").focus();
 				//bind to mousedown as bootstrap dropdown-toggles block the click event (they use an internal function clearMenus(); talk about good pracice, huh...)
 				$(document).on("mousedown.signin", function(e) {
 					var $signin = $("#signin"),
