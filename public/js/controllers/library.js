@@ -56,7 +56,7 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 				$scope.mybooks.push(book);
 				$scope.warning_text = "";
 				done();
-				//ga('send', 'event', 'book', 'add');
+				ga('send', 'event', 'book', 'add');
 			}).error(function(error) {
 				console.log(error);
 				$scope.warning_text = $translate.instant('LIBRARY.ADD.INVALID_PUBLISHED');

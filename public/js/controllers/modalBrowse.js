@@ -8,6 +8,7 @@ var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, b
 		if(!$scope.report_sent){
 			Books.report(book._id).success(function(data) {
 				$scope.report_sent = true;
+				ga('send', 'event', 'Report', 'Book reported');
 			});
 		}
 	};
@@ -18,7 +19,7 @@ var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, b
 				owner.message = $translate.instant('HOME.MODAL.REQUEST_SENT');
 				console.log(data);
 
-				//ga('send', 'event', 'Request', 'Sent request');
+				ga('send', 'event', 'Request', 'Sent request');
 			}).error(function(error) {
 				$rootScope.notify(error);
 				console.log(error);
