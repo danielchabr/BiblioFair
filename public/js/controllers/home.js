@@ -12,6 +12,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 	}
 	
 	//sorting & pagination
+	$rootScope.books = $rootScope.books || [];
     $scope.bookOrder = 'title';
     $scope.currentPage = 1;
     $scope.pageSize = 12;
@@ -72,7 +73,11 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
                 });
             }
         });
-    }();
+    };
+	if($rootScope.books.length === 0) {
+		loadLibraryBooks();
+	}
+
     //// Real-time retrieving with writing search query
     $scope.retrieveBooks = function() {
         Books.get({
