@@ -6,13 +6,15 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 	}
 	
 	//maps
-    $.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4");
+	if(!$rootScope.mapIsLoaded) {
+		$rootScope.mapIsLoaded = true;
+		$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4");
+	}
 	
 	//sorting & pagination
     $scope.bookOrder = 'title';
     $scope.currentPage = 1;
     $scope.pageSize = 12;
-
 
 	var normalizeBooks = function (data) {
 		var books = [];

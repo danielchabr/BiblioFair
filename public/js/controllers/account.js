@@ -58,9 +58,9 @@ function accountControl($rootScope, $location, $scope, $translate, Users, Utils)
 	};
 
 	//// Download MQA script and draw map
-	$scope.draw_map = function()
+	$scope.drawMap = function()
 	{
-		$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4", function() {
+		var draw = function () {
 			var options = {
 				elt: document.getElementById('map'), /*ID of element on the page where you want the map added*/
 				zoom: 3, /*initial zoom level of the map*/
@@ -72,9 +72,9 @@ function accountControl($rootScope, $location, $scope, $translate, Users, Utils)
 			$scope.map = new MQA.TileMap(options);
 			MQA.withModule('largezoom', 'viewoptions', 'geolocationcontrol', 'insetmapcontrol', 'mousewheel', function() {
 				$scope.map.addControl(
-						new MQA.LargeZoom(),
-						new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5, 5))
-						);
+					new MQA.LargeZoom(),
+					new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5, 5))
+				);
 				$scope.map.enableMouseWheelZoom();
 			});
 			MQA.EventManager.addListener($scope.map, 'move', update_loc);
@@ -84,7 +84,14 @@ function accountControl($rootScope, $location, $scope, $translate, Users, Utils)
 			MQA.EventManager.addListener($scope.map, 'doubleclick', update_loc);
 			MQA.EventManager.addListener($scope.map, 'zoomend', update_loc);
 			loadLoc();
-		});
+		};
+		if($rootScope.mapIsLoaded) {
+			draw();
+			loadLoc();
+		} else {
+			$rootScope.mapIsLoaded = true;
+			$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4", draw);
+		}
 	};
 
 	//// load location if it is set and redraw map to that location
