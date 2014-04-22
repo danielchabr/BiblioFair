@@ -90,5 +90,4 @@ function welcomeControl($rootScope, $location, $scope, Global, Books, Users, Uti
 	 */
 
 	ga('send', 'pageview', '/');
-}
-
+};

@@ -268,4 +268,4 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 	 */
 	
 	ga('send', 'pageview', '/library');
-}
+};
