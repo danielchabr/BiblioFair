@@ -20,12 +20,14 @@ angular.module('bibliofair').filter('actions', function() {
 		if(actions.sell || actions.donate || actions.lend){
 			var ret = [];
 			for (var i = 0; i < input.length; i++){
-				if(actions.sell && input[i].actions.sell){
-					ret.push(input[i]);
-				} else if(actions.donate && input[i].actions.donate){
-					ret.push(input[i]);
-				} else if(actions.lend && input[i].actions.lend){
-					ret.push(input[i]);
+				if(input[i].actions) {
+					if(actions.sell && input[i].actions.sell){
+						ret.push(input[i]);
+					} else if(actions.donate && input[i].actions.donate){
+						ret.push(input[i]);
+					} else if(actions.lend && input[i].actions.lend){
+						ret.push(input[i]);
+					}
 				}
 			}
 			return ret;
