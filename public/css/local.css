@@ -313,6 +313,18 @@ body{
 	display: inline-block;
 }
 
+/** Bookview */
+
+.bookview .title {
+	overflow:hidden;
+	max-height: 40px;
+}
+
+.bookview .author {
+	position: absolute;
+	bottom: 20px;
+}
+
 /** Modals */
 
 div.modal {
