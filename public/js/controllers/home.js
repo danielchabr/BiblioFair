@@ -16,6 +16,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
     $scope.bookOrder = 'title';
     $scope.currentPage = 1;
     $scope.pageSize = 12;
+	$scope.maxSize = 10;
 
 	var normalizeBooks = function (data) {
 		var books = [];
@@ -53,7 +54,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
         }
 
         Books.get({
-            limit: 60,
+            limit: 120,
             lng: $rootScope.user.loc.coordinates[0],
             lat: $rootScope.user.loc.coordinates[1],
             radius: 10000
@@ -102,10 +103,10 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 	 * Load more books when user gets to the end of paginator
 	 */
 
-	$scope.pageSelected = function (page) {
-		var i = 1;
-		while( (page + 1) * $scope.pageSize >= $scope.filteredBooks.length ) {
-			retrieveBooks(i++);
+	$scope.pageSelected = function () {
+		var i = 0;
+		while( ($scope.currentPage + 1) * $scope.pageSize >= $scope.filteredBooks.length && i <= $scope.currentPage ) {
+			$scope.retrieveBooks(i++);
 		}
 	};
 	
