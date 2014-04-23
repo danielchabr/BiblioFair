@@ -10,7 +10,7 @@ exports.getLanguage = function() {
 		language = param;
 	}
 	//user logged in -> use stored information
-	else if(request.user){
+	else if(request.user && request.user.language){
 		language = request.user.language;
 	}
 	//not logged in and no cookie -> create one
@@ -31,6 +31,10 @@ exports.getLanguage = function() {
 	//if this language is not supported, return the first language from the config file
 	if(config.languages.indexOf(language) === -1 ){
 		language = config.languages[0];
+	}
+	
+	if(request.user){
+		request.user.language = language;
 	}
 
 	return language;

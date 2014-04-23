@@ -29,6 +29,7 @@ var walk = function(path) {
 walk(modelsPath);
 
 // Connect to the database
+var db;
 mongoose.connection.on('connected', function() {
     if (process.env.NODE_ENV === "production") {
         console.log('DB connected;\nHost: ' + process.env.OPENSHIFT_MONGODB_DB_HOST + '\nPort: ' + process.env.OPENSHIFT_MONGODB_DB_PORT);
@@ -36,20 +37,20 @@ mongoose.connection.on('connected', function() {
 });
 mongoose.connection.on('disconnected', function() {
     console.log('MongoDB disconnected!');
-    mongoose.connect(config.database);
+    db = mongoose.connect(config.database);
 });
 mongoose.connection.on('error', function(error) {
     console.error('Error in MongoDb connection: ' + error);
     mongoose.disconnect();
 });
-mongoose.connect(config.database);
+db = mongoose.connect(config.database);
 
 // passport config
 require('./config/passport')(passport);
 
 // Express app init and configuration
 var app = express();
-require('./config/express')(app, passport);
+require('./config/express')(app, passport, db);
 
 try {
     // Bootstrap API routes (walk and require all the APIs (all the *.js and *.coffee files) in the /app/api directory)

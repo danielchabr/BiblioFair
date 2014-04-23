@@ -8,12 +8,13 @@ var express = require('express'),
 	fs = require('fs'),
 	config = require('./config'),
 	flash = require('connect-flash'),
+	mongoStore = require('connect-mongo')(express),
 	consolidate = require('consolidate'),
 	messaging = require("../app/helpers/messaging"),
 	localization = require("../app/helpers/localization"),
 	subdomains = require('express-subdomains');
 
-module.exports = function(app, passport) {
+module.exports = function(app, passport, db) {
 	app.set('showStackError', true);
 	app.locals.pretty = true;
 	// cache needs to be in the 'memory mode' otherwise swig dies in NODE_ENV=production
@@ -41,6 +42,15 @@ module.exports = function(app, passport) {
 		app.use(express.urlencoded());
 		app.use(express.json());
 		app.use(express.methodOverride());
+		
+		// Express/Mongo session storage
+        app.use(express.session({
+            secret: 'keyboard cathrine',
+            store: new mongoStore({
+                db: db.connection.db,
+                collection: 'sessions'
+            })
+        }));
 
 		app.use(express.session({secret: 'keyboard cathrine'}));
 

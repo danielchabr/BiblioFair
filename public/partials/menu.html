@@ -49,7 +49,7 @@
 							</div>
 
 							<label class="checkbox">
-								<input type="checkbox" value="remember-me" ng-model="signin.remember"> <span class="remember-me">Remember me</span>
+								<input type="checkbox" value="remember-me" ng-model="signin.remember"> <span class="remember-me">{{ 'WELCOME.REMEMBER_ME' | translate }}</span>
 							</label>
 
 							<button ng-click="signIn()" ng-disabled="signinForm.$invalid" class="btn btn-success btn-sm btn-block"><b>{{ 'WELCOME.SIGNIN' | translate }}</b></button>
@@ -58,11 +58,11 @@
 
 						<div id="loginSocialButtons">
 							<a class="btn btn-block btn-social btn-facebook btn-sm" href="/signin/facebook" target="_self">
-								<i class="fa fa-facebook"></i> Sign in with Facebook
+								<i class="fa fa-facebook"></i>{{ 'WELCOME.SIGNIN_FACEBOOK' | translate }}
 							</a>
 
 							<a class="btn btn-block btn-social btn-google-plus btn-sm" href="/signin/google" target="_self">
-								<i class="fa fa-google-plus"></i> Sign in with Google+
+								<i class="fa fa-google-plus"></i>{{'WELCOME.SIGNIN_GOOGLE' | translate }}
 							</a>
 						</div>
 					</li></ul>

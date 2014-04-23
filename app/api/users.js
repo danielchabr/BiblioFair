@@ -12,6 +12,10 @@ var mongoose = require("mongoose"),
 	mg = new Mailgun(config.mail.key),
 	messages = require('../helpers/messaging').messages;
 
+var regex = function(s) {
+	return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+};
+
 /**
  * Count users in the database.
  * 
@@ -223,7 +227,8 @@ exports.emailExists = function(email, done) {
  */
 
 var usernameExists = exports.usernameExists = function(username, done) {
-	User.findOne({username: username}, function(err, user) {
+	var re = new RegExp('^' + regex(username) + '$', 'i');
+	User.findOne({username: re}, function(err, user) {
 		if(err){
 			return done(err);
 		}

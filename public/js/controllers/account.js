@@ -87,7 +87,6 @@ function accountControl($rootScope, $location, $scope, $translate, Users, Utils)
 		};
 		if($rootScope.mapIsLoaded) {
 			draw();
-			loadLoc();
 		} else {
 			$rootScope.mapIsLoaded = true;
 			$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4", draw);
@@ -96,19 +95,17 @@ function accountControl($rootScope, $location, $scope, $translate, Users, Utils)
 
 	//// load location if it is set and redraw map to that location
 	var loadLoc = function(callback) {
-		$scope.$apply(function() {
-			if($rootScope.user.loc.coordinates.length === 2){
-				$scope.centerLng = $rootScope.user.loc.coordinates[0];
-				$scope.centerLat = $rootScope.user.loc.coordinates[1];
+		if($rootScope.user.loc.coordinates.length === 2){
+			$scope.centerLng = $rootScope.user.loc.coordinates[0];
+			$scope.centerLat = $rootScope.user.loc.coordinates[1];
 
-				$scope.map.setCenter(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11, {totalMs: 100, steps: 1});
-				$scope.map.setZoomLevel(11);
-				var point = new MQA.Poi({lat: $scope.centerLat, lng: $scope.centerLng});
-				var icon = new MQA.Icon("img/poi_small.gif", 21, 32);
-				point.setIcon(icon);
-				$scope.map.addShape(point);
-			}
-		});
+			$scope.map.setCenter(new MQA.LatLng($scope.centerLat, $scope.centerLng), 11, {totalMs: 100, steps: 1});
+			$scope.map.setZoomLevel(11);
+			var point = new MQA.Poi({lat: $scope.centerLat, lng: $scope.centerLng});
+			var icon = new MQA.Icon("img/poi_small.gif", 21, 32);
+			point.setIcon(icon);
+			$scope.map.addShape(point);
+		}
 	};
 
 	//// Binding of $scope.center... with map coordinates, called upon any change, might be superfluous now, I can call $scope.map.getCenter only when saving coordinates
@@ -149,4 +146,4 @@ function accountControl($rootScope, $location, $scope, $translate, Users, Utils)
 	};
 	//// Google Analytics
 	ga('send', 'pageview', '/account');
-}
+};
