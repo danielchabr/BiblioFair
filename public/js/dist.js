@@ -574,9 +574,9 @@ angular.module('bibliofair').factory('Utils', [function() {
 'use strict';
 var ModalBookCtrl = function($rootScope, $scope, $modalInstance, $translate, book, Library, Books) {
 	$scope.details_view = book;
-	if(book.published){
-		$scope.details_view.published = new Date(book.published).getFullYear();
-	}
+	//if(book.published){
+	//	$scope.details_view.published = new Date(book.published).getFullYear();
+	//}
 	$scope.cancel = function() {
 		$modalInstance.dismiss('cancel');
 	};
@@ -585,9 +585,9 @@ var ModalBookCtrl = function($rootScope, $scope, $modalInstance, $translate, boo
 'use strict';
 var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, book, Library, Books) {
 	$scope.details_view = book;
-	if(book.published){
-		$scope.details_view.published = new Date(book.published).getFullYear();
-	}
+	//if(book.published){
+	//	$scope.details_view.published = new Date(book.published).getFullYear();
+	//}
 	$scope.report = function() {
 		if(!$scope.report_sent){
 			Books.report(book._id).success(function(data) {
@@ -660,9 +660,9 @@ var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, b
 'use strict';
 var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, book, Library, $translate) {
 	$scope.details_view = book;
-	if(book.published){
-		$scope.details_view.published = new Date(book.published).getFullYear();
-	}
+	//if(book.published){
+	//	$scope.details_view.published = new Date(book.published).getFullYear();
+	//}
 	$scope.updateActions = function() {
 		Library.update($scope.details_view._id, {
 			actions: $scope.details_view.actions

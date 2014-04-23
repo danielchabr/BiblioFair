@@ -1,9 +1,9 @@
 'use strict';
 var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, book, Library, Books) {
 	$scope.details_view = book;
-	if(book.published){
-		$scope.details_view.published = new Date(book.published).getFullYear();
-	}
+	//if(book.published){
+	//	$scope.details_view.published = new Date(book.published).getFullYear();
+	//}
 	$scope.report = function() {
 		if(!$scope.report_sent){
 			Books.report(book._id).success(function(data) {

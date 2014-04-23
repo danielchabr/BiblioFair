@@ -1,9 +1,9 @@
 'use strict';
 var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, book, Library, $translate) {
 	$scope.details_view = book;
-	if(book.published){
-		$scope.details_view.published = new Date(book.published).getFullYear();
-	}
+	//if(book.published){
+	//	$scope.details_view.published = new Date(book.published).getFullYear();
+	//}
 	$scope.updateActions = function() {
 		Library.update($scope.details_view._id, {
 			actions: $scope.details_view.actions
