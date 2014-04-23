@@ -25,9 +25,12 @@ function welcomeControl($rootScope, $location, $scope, Global, Books, Users, Uti
 	});
 
 	//initial books to show
-	Books.get({limit: 6}).success(function(data) {
-		$rootScope.books = data;
-	});
+	$rootScope.books = $rootScope.books || [];
+	if($rootScope.books.length < 6) {
+		Books.get({limit: 6}).success(function(data) {
+			$rootScope.books = data;
+		});
+	}
 
 	/**
 	 * Retrieve (at maximum) 6 books based on search query.
