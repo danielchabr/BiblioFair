@@ -73,14 +73,16 @@ hr.wide {
 	display: block;
 }
 
-.map {
-	height:400px;
+.map, .pagination {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+.map {
+	height:400px;
 }
 .map img {
 	max-width: none;

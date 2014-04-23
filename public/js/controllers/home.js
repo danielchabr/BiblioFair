@@ -16,7 +16,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
     $scope.bookOrder = 'title';
     $scope.currentPage = 1;
     $scope.pageSize = 12;
-	$scope.maxSize = 10;
+	$scope.maxSize = 8;
 
 	var normalizeBooks = function (data) {
 		var books = [];
