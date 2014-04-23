@@ -332,7 +332,7 @@ UserSchema.methods = {
 			}
 
 			book.users.push(user._id);
-			book.num_users = 0 || book.num_users;
+			book.num_users = book.num_users || 0;
 			book.num_users++;
 			book.loc.push({coordinates: user.loc.coordinates});
 			book.save(function(err, book) {
