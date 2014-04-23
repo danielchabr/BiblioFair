@@ -74,7 +74,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
             }
         });
     };
-	if($rootScope.books.length === 0) {
+	if($rootScope.books.length < 12) {
 		loadLibraryBooks();
 	}
 
