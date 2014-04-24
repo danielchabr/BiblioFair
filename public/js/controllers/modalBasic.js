@@ -1,6 +1,5 @@
 'use strict';
 var ModalBasicCtrl = function ($scope, $modalInstance, message, title, data) {
-
 	/*
 	 * Edit book modal setting
 	 */

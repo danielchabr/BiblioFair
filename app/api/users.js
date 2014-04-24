@@ -13,7 +13,7 @@ var mongoose = require("mongoose"),
 	messages = require('../helpers/messaging').messages;
 
 var regex = function(s) {
-	return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+	return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 };
 
 /**
@@ -47,6 +47,19 @@ exports.signup = function(data, done) {
 		if(err){
 			return done(err);
 		}
+		return sendVerification(user._id, done);
+	});
+};
+
+/**
+ * Send verification.
+ */
+
+var sendVerification = exports.sendVerification = function(userId, done) {
+	User.findById(userId, function(err, user) {
+		if(err || !user){
+			return done(err || "user.notFound");
+		}
 
 		mg.sendText('BiblioFair <support@bibliofair.com>',
 			user.email,
@@ -57,8 +70,7 @@ exports.signup = function(data, done) {
 				if(er)
 					console.log('Oh noes: ' + er);
 				else
-					console.log('New user registered');
-
+					console.log('Verification sent!');
 				done(err, user);
 			});
 	});
@@ -68,7 +80,7 @@ exports.signup = function(data, done) {
  * Update user's location.
  * 
  * @param {mongoose.Schema.ObjectId} userId
- * @param {object} data
+ * @param {object} coordinates
  * @param {function} done
  * @returns {undefined}
  */
@@ -173,7 +185,7 @@ exports.recover = function(email, done) {
 		else{
 			var pass = crypto.SHA3(Date.parse(new Date()).toString() + user.email, {outputLength: 256}).toString().slice(0, 8);
 			var salt = "riafoilbib";
-			var saltedPass = crypto.SHA3(pass + salt, {outputLength:256}).toString().substring(0, pass.length);
+			var saltedPass = crypto.SHA3(pass + salt, {outputLength: 256}).toString().substring(0, pass.length);
 			user.password = saltedPass;
 			user.save(function(err, user) {
 				if(err){
@@ -258,13 +270,13 @@ exports.issueRememberMeToken = function(user, done) {
  * @returns {unresolved}
  */
 
-exports.usernameFromEmail = function(email, done){
+exports.usernameFromEmail = function(email, done) {
 	var username = email.split("@")[0];
 	createUniqueUsername(username, done);
 };
 
-function createUniqueUsername(username, done){
-	usernameExists(username, function(exists){
+function createUniqueUsername(username, done) {
+	usernameExists(username, function(exists) {
 		if(exists){
 			username = makeUsernameUnique(username);
 			return createUniqueUsername(username, done);
@@ -275,7 +287,7 @@ function createUniqueUsername(username, done){
 	});
 }
 
-function makeUsernameUnique(username){
+function makeUsernameUnique(username) {
 	return username + "1";
 }
 
@@ -286,17 +298,17 @@ function makeUsernameUnique(username){
  */
 
 exports.resendEmail = function(email, emailBody, done) {
-	if(email.recipient && email.sender) {
+	if(email.recipient && email.sender){
 		var to = email.recipient.split('@')[0];
 		User.findByUsername(to.toLowerCase(), function(err, to) {
-			if(err) {
+			if(err){
 				return done(err);
 			}
 			User.findByEmail(email.sender.toLowerCase(), function(err, from) {
-				if(err) {
+				if(err){
 					return done(err);
 				}
-				if(to.email === email.sender.toLowerCase()) {
+				if(to.email === email.sender.toLowerCase()){
 					return done(messages['en'].errors.messaging.fromEqualsTo);
 				}
 				//save message
@@ -313,7 +325,7 @@ exports.resendEmail = function(email, emailBody, done) {
 					emailBody + messages[to.language || 'cs'].emails._explanation.replace(/\{recipient\}/, fromEmail),
 					config.mail.server,
 					function(err) {
-						if (err) {
+						if(err){
 							done(err);
 						}
 					}

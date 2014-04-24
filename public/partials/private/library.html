@@ -9,6 +9,7 @@
 			</div>
 			<div ng-if="!user.verified" class="well text-center" style="background-color:#C2BF04">
 				{{ 'LIBRARY.ALERT_3' | translate }}
+				<button class="btn btn-primary" id='verification-resend' ng-click='sendVerification()'><span class='glyphicon glyphicon-share'></span> {{'LIBRARY.ALERT_4' | translate}}</button>
 			</div>
 			<ul class="bookview">
 				<div class="col-xs-12 text-center" style="top:50px" ng-if="loading">

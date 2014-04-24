@@ -315,6 +315,10 @@ body{
 	display: inline-block;
 }
 
+#verification-resend{
+	margin-top:1em;
+}
+
 /** Bookview */
 
 .bookview .title {

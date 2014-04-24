@@ -12,6 +12,9 @@ angular.module('bibliofair').factory('Users', ['$http', function($http, $rootSco
 			recover: function(email) {
 				return $http.get("/recover/" + email);
 			},
+			sendVerification: function(){
+				return $http.get("/send/verification");
+			},
 			me: function() {
 				return $http.get("/me");
 			},			
