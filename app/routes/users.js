@@ -128,5 +128,22 @@ module.exports = function(app, passport) {
 				res.send(data);
 			}
 		});
-	})
+	});
+	
+	app.get('/fix/usernames',authorization.login, function(req, res, next){
+		users.fixUsernames(function(data){
+			res.send(data);
+		});
+	});
+	
+	app.get('/api/usernames/:value',authorization.login, function(req, res, next){
+		users.getUsernames(req.params.value, function(err, data){
+			if(err){
+				next(err);
+			}
+			else{
+				res.send(data);
+			}
+		});
+	});
 };

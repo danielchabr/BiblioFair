@@ -335,3 +335,44 @@ exports.resendEmail = function(email, emailBody, done) {
 		});
 	}
 };
+
+/**
+ * Fix usernames.
+ */
+
+var validate = require('../helpers/validation'),
+	async = require('async');
+
+exports.fixUsernames = function(done) {
+	User.find(function(err, data) {
+		async.eachSeries(data,
+			//do this for each item in the array
+				function(user, callback) {
+					console.log('validating');
+					var username = user.username;
+					validate.email(username + "@bibliofair.com", function(err, valid) {
+						if(err){
+							return callback(err);
+						}
+						console.log(username + ": " + valid);
+						callback();
+					});
+				},
+				//once the whole array has been looped trhough
+					function() {
+						console.log('finished');
+						done(data);
+					});
+			});
+	};
+
+var fixUsername = function() {
+
+}
+
+exports.getUsernames = function(value, done){
+	var regex = new RegExp(value, "gi");
+	User.find({username: regex},{username:1},function(err, users){
+		done(err, users);
+	});
+};
