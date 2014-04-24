@@ -55,7 +55,7 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 				$scope.newbook = {};
 				$scope.mybooks.push(book);
 				$scope.warning_text = "";
-				done();
+				done(book);
 				ga('send', 'event', 'book', 'add');
 			}).error(function(error) {
 				console.log(error);
@@ -206,6 +206,7 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 	 * @param {object} book
 	 * @returns {undefined}
 	 */
+	
 	var openEditModal = function(book) {
 		var modalInstance = $modal.open({
 			templateUrl: '/partials/notification.html',
@@ -228,7 +229,7 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 					var index = -1;
 					index = $scope.mybooks.indexOf(editedBook);
 					if(index >= 0) $scope.mybooks.splice(index, 1);
-					$scope.addBook(editedBook, function(){ $scope.open(editedBook); } );
+					$scope.addBook(editedBook, function(book){ $scope.open(book); } );
 				}).error(function(error){
 					console.log(error);
 				});
@@ -258,6 +259,7 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 					console.log(error);
 				});
 			} else if(action === 'edit') {
+				console.log(book.actions);
 				openEditModal(book);
 			}
 		});
