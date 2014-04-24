@@ -64,7 +64,7 @@
 			<option value="temporary">{{ 'LIBRARY.TRANSFER.LEND' | translate }}</option>
 		</select>
 		<span>{{ 'LIBRARY.TRANSFER.TO_USER' | translate }} </span>
-		<input type="text" class="form-control" id="" ng-model="transfer.user" placeholder="{{ 'LIBRARY.TRANSFER.DEFAULT' | translate }}">
+		<input type="text" class="form-control" id="" ng-model="transfer.user" placeholder="{{ 'LIBRARY.TRANSFER.DEFAULT' | translate }}" typeahead="username for username in getUsernames($viewValue) | filter:$viewValue | limitTo: 8 ">
 		<button class="btn btn-success" ng-click="transfer.send()"><i class="fa fa-share"></i> {{ 'LIBRARY.TRANSFER.ACTION' | translate }}</button>
 		<span class="help-block text-danger" ng-show="transfer.error">{{transfer.error}}</span>
 		<span class="help-block" ng-show="transfer.success">{{transfer.success}}</span>

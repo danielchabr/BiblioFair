@@ -501,6 +501,9 @@ angular.module('bibliofair').factory('Users', ['$http', function($http, $rootSco
 			},
 			usernameExists: function(username){
 				return $http.get('/api/users/exists/' + username);
+			},
+			getUsernames: function(value){
+				return $http.get('/api/usernames/' + value);
 			}
 		};
 	}]);
@@ -661,7 +664,7 @@ var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, b
 };
 
 'use strict';
-var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, book, Library, $translate) {
+var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, book, Library, Users, $translate) {
 	$scope.details_view = book;
 	//if(book.published){
 	//	$scope.details_view.published = new Date(book.published).getFullYear();
@@ -673,6 +676,19 @@ var ModalLibraryCtrl = function($rootScope, $scope, $modalInstance, book, Librar
 			console.log(data);
 		});
 	};
+	
+	$scope.getUsernames = function(value){
+		return Users.getUsernames(value).then(function(res){
+			var usernames = [];
+			res.data.forEach(function(user){
+				if(user.username !== $rootScope.user.username){
+					usernames.push(user.username);
+				}
+			});
+			return usernames;
+		});
+	}
+	
 	$scope.save = function() {
 		Library.update($scope.details_view._id, {
 			note: $scope.details_view.note

@@ -42,6 +42,9 @@ angular.module('bibliofair').factory('Users', ['$http', function($http, $rootSco
 			},
 			usernameExists: function(username){
 				return $http.get('/api/users/exists/' + username);
+			},
+			getUsernames: function(value){
+				return $http.get('/api/usernames/' + value);
 			}
 		};
 	}]);
