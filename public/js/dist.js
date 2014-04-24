@@ -1030,7 +1030,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
     $scope.bookOrder = 'title';
     $scope.currentPage = 1;
     $scope.pageSize = 12;
-	$scope.maxSize = 8;
+	$scope.maxSize = 10;
 
 	var normalizeBooks = function (data) {
 		var books = [];
@@ -1150,7 +1150,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 	 * GA.
 	 */
 	
-    ga('send', 'pageview', '/');
+    ga('send', 'pageview', '/home');
 };
 
 'use strict';
