@@ -63,7 +63,7 @@ module.exports = function(app, passport) {
 		}
 		//email
 		else{
-			users.emailExists(user, function(err, data){
+			users.emailExists(user, function(err, data) {
 				if(err){
 					return next(err);
 				}
@@ -74,9 +74,9 @@ module.exports = function(app, passport) {
 
 	app.post("/api/v1/messages", function(req, res, next) {
 		users.resendEmail(req.body, req.param('body-plain'), function(err, data) {
-			if(err) {
+			if(err){
 				next(err);
-			} else {
+			} else{
 				res.send(data);
 			}
 		});
@@ -118,4 +118,15 @@ module.exports = function(app, passport) {
 			}
 		});
 	});
+	
+	app.get('/send/verification', authorization.login, function(req, res, next) {
+		users.sendVerification(req.user._id, function(err, data) {
+			if(err){
+				next(err);
+			}
+			else{
+				res.send(data);
+			}
+		});
+	})
 };

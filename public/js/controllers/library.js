@@ -1,5 +1,5 @@
 'use strict';
-function libraryControl($rootScope, $scope, $location, $modal, $translate, $filter, Library, Books, Utils) {
+function libraryControl($rootScope, $scope, $location, $modal, $translate, $filter, Library, Books, Utils, Users) {
 	//redirect to '/' if not signed in
 	if(!$rootScope.authenticated){
 		$location.path("/");
@@ -7,6 +7,15 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 	
 	$scope.selected_books = [];
 	$scope.languages = languages;
+	
+	//resend verification
+	$scope.sendVerification = function(){
+		Users.sendVerification().success(function(user){
+			$rootScope.notify($translate.instant('WELCOME.VERIFICATION_SENT') + user.email);
+		}).error(function(error){
+			console.error(error);
+		});
+	}
 	
 	//load books from user's library
 	$scope.loading = true;
@@ -259,7 +268,6 @@ function libraryControl($rootScope, $scope, $location, $modal, $translate, $filt
 					console.log(error);
 				});
 			} else if(action === 'edit') {
-				console.log(book.actions);
 				openEditModal(book);
 			}
 		});
