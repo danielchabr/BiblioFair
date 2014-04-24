@@ -457,13 +457,20 @@ angular.module('bibliofair').factory('Library', ['$http', function($http) {
 			}
         };
     }]);
-angular.module('bibliofair').factory('Users', ['$http', function($http, $rootScope) {
+angular.module('bibliofair').factory('Users', ['$http','$rootScope','$location','Global',
+	function($http, $rootScope, $location, Global) {
 		return {
 			signUp: function(user) {
 				return $http.post("/signup", user);
 			},
 			signIn: function(user) {
 				return $http.post("/signin", user);
+			},
+			handleSignIn: function(user){
+				$rootScope.authenticated = true;
+				$rootScope.user = user;
+				$rootScope.lang = Global.language($rootScope.user.language);
+				$location.path('/home');
 			},
 			signOut: function() {
 				return $http.get("/signout");
@@ -891,10 +898,7 @@ function welcomeControl($rootScope, $location, $scope, Global, Books, Users, Uti
 				password: Utils.encrypt(user.password),
 				remember: false
 			}).success(function(user) {
-				$rootScope.authenticated = true;
-				$rootScope.user = user;
-				$rootScope.lang = Global.language($rootScope.user.lang);
-				$location.path('/home');
+				Users.handleSignIn(user);
 			});
 			//GA register goal
 			ga('send', 'event', 'Register', 'register');
@@ -933,12 +937,7 @@ angular.module('bibliofair').controller('HeaderController', ['$rootScope', '$sco
 				password: Utils.encrypt(user.password),
 				remember: user.remember ? true : false
 			}).success(function(user) {
-				$rootScope.authenticated = true;
-				$rootScope.user = user;
-				//language
-				$rootScope.lang = Global.language($rootScope.user.lang);
-				//redirect
-				$location.path('/home');
+				Users.handleSignIn(user);
 			}).error(function(errors) {
 				if(errors[0].normalized){
 					$rootScope.login_message = errors[0].message;

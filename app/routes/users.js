@@ -11,26 +11,40 @@ module.exports = function(app, passport) {
 
 	app.post("/signup", function(req, res, next) {
 		req.body.language = req.body.language || req.getLanguage();
-		users.signup(req.body, function(err, data) {
+		users.signup(req.body, function(err, user) {
 			if(err){
 				res.status(400);
 				next(err);
 			}
 			else{
-				res.send(data);
+				//log the user in
+				req.logIn(user, function(err) {
+					if(err){
+						return next(err);
+					}
+					res.status(200).send(user);
+				});
 			}
 		});
 	});
 
 	app.get("/verify/:token", function(req, res) {
-		users.verify(req.params.token, function(err, data) {
+		users.verify(req.params.token, function(err, user) {
 			if(err){
 				req.flash('error', err);
 			}
 			else{
 				req.flash('info', 'user.verified');
+				
+				//log the user in
+				req.logIn(user, function(err) {
+					if(err){
+						return next(err);
+					}
+					res.redirect('/');
+				});
 			}
-			res.redirect('/');
+			
 		});
 	});
 

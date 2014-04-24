@@ -71,10 +71,7 @@ function welcomeControl($rootScope, $location, $scope, Global, Books, Users, Uti
 				password: Utils.encrypt(user.password),
 				remember: false
 			}).success(function(user) {
-				$rootScope.authenticated = true;
-				$rootScope.user = user;
-				$rootScope.lang = Global.language($rootScope.user.lang);
-				$location.path('/home');
+				Users.handleSignIn(user);
 			});
 			//GA register goal
 			ga('send', 'event', 'Register', 'register');

@@ -16,12 +16,7 @@ angular.module('bibliofair').controller('HeaderController', ['$rootScope', '$sco
 				password: Utils.encrypt(user.password),
 				remember: user.remember ? true : false
 			}).success(function(user) {
-				$rootScope.authenticated = true;
-				$rootScope.user = user;
-				//language
-				$rootScope.lang = Global.language($rootScope.user.lang);
-				//redirect
-				$location.path('/home');
+				Users.handleSignIn(user);
 			}).error(function(errors) {
 				if(errors[0].normalized){
 					$rootScope.login_message = errors[0].message;

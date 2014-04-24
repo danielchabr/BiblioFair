@@ -1,10 +1,17 @@
-angular.module('bibliofair').factory('Users', ['$http', function($http, $rootScope) {
+angular.module('bibliofair').factory('Users', ['$http','$rootScope','$location','Global',
+	function($http, $rootScope, $location, Global) {
 		return {
 			signUp: function(user) {
 				return $http.post("/signup", user);
 			},
 			signIn: function(user) {
 				return $http.post("/signin", user);
+			},
+			handleSignIn: function(user){
+				$rootScope.authenticated = true;
+				$rootScope.user = user;
+				$rootScope.lang = Global.language($rootScope.user.language);
+				$location.path('/home');
 			},
 			signOut: function() {
 				return $http.get("/signout");
