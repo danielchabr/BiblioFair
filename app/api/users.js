@@ -343,32 +343,39 @@ exports.resendEmail = function(email, emailBody, done) {
 var validate = require('../helpers/validation'),
 	async = require('async');
 
-exports.fixUsernames = function(done) {
+exports.identifyInvalidUsnernames = function(done) {
 	User.find(function(err, data) {
 		async.eachSeries(data,
 			//do this for each item in the array
 				function(user, callback) {
-					console.log('validating');
 					var username = user.username;
 					validate.email(username + "@bibliofair.com", function(err, valid) {
 						if(err){
 							return callback(err);
 						}
-						console.log(username + ": " + valid);
+						
+						//an invalid username!
+						if(valid === false){
+							user.oldUsername = user.username;
+							//TODO - replace invalid chars
+							//user.username = user.username.removeDiacritics();
+						}
 						callback();
 					});
 				},
 				//once the whole array has been looped trhough
 					function() {
-						console.log('finished');
 						done(data);
 					});
 			});
 	};
-
-var fixUsername = function() {
-
-}
+	
+exports.fixInvalidUsernames = function(){
+	//TODO how to find documents WITH certain field filled
+	User.find({oldUsername:!undefined}, function(){
+		
+	});
+};
 
 exports.getUsernames = function(value, done){
 	var regex = new RegExp(value, "gi");
