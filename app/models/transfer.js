@@ -1,5 +1,3 @@
-
-
 'use strict';
 
 var mongoose = require('mongoose'),
@@ -61,4 +59,4 @@ var TransferSchema = new Schema({
 	data: {}
 });
 
-mongoose.model('TransferModel', TransferModel);
+mongoose.model('TransferModel', TransferSchema);
