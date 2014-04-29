@@ -610,18 +610,23 @@ var ModalBrowseCtrl = function($rootScope, $scope, $modalInstance, $translate, b
 		}
 	};
 	$scope.sendRequest = function(owner) {
-		$rootScope.approve(undefined, $translate.instant('HOME.MODAL.REQUEST_APPROVE'), function () {
-			Books.request($rootScope.user.username, owner.username, book._id, $rootScope.user.language).success(function(data) {
-				owner.style = true;
-				owner.message = $translate.instant('HOME.MODAL.REQUEST_SENT');
-				console.log(data);
+		console.log($rootScope.user.username + " " + owner.username);
+		if ($rootScope.user.username === owner.username) {
+			$rootScope.notify($translate.instant('HOME.MODAL.REQUEST_YOURSELF'));
+		} else {
+			$rootScope.approve(undefined, $translate.instant('HOME.MODAL.REQUEST_APPROVE'), function () {
+				Books.request($rootScope.user.username, owner.username, book._id, $rootScope.user.language).success(function(data) {
+					owner.style = true;
+					owner.message = $translate.instant('HOME.MODAL.REQUEST_SENT');
+					console.log(data);
 
-				ga('send', 'event', 'Request', 'Sent request');
-			}).error(function(error) {
-				$rootScope.notify(error);
-				console.log(error);
+					ga('send', 'event', 'Request', 'Sent request');
+				}).error(function(error) {
+					$rootScope.notify(error);
+					console.log(error);
+				});
 			});
-		});
+		}
 	};
 	$scope.cancel = function() {
 		$modalInstance.dismiss('cancel');

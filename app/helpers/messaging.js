@@ -196,7 +196,7 @@ var messages = exports.messages = {
 				required: 'At least one action must be checked'
 			},
 			messaging: {
-				fromEqualsTo: "Odesílatel a adresát emailu jsou stejní"
+				fromEqualsTo: "Sender and recipient of email are the same"
 			}
 		},
 		/**

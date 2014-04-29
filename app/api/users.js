@@ -301,11 +301,11 @@ exports.resendEmail = function(email, emailBody, done) {
 	if(email.recipient && email.sender){
 		var to = email.recipient.split('@')[0];
 		User.findByUsername(to.toLowerCase(), function(err, to) {
-			if(err){
+			if(err || !to){
 				return done(err);
 			}
 			User.findByEmail(email.sender.toLowerCase(), function(err, from) {
-				if(err){
+				if(err || !from){
 					return done(err);
 				}
 				if(to.email === email.sender.toLowerCase()){
