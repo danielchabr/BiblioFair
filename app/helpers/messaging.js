@@ -82,6 +82,9 @@ var messages = exports.messages = {
 			},
 			messaging: {
 				fromEqualsTo: "Odesílatel a adresát emailu jsou stejní"
+			},
+			request: {
+				yourself: "Nedává smysl žádát o knihu sám sebe"
 			}
 		},
 		info: {
@@ -197,6 +200,9 @@ var messages = exports.messages = {
 			},
 			messaging: {
 				fromEqualsTo: "Sender and recipient of email are the same"
+			},
+			request: {
+				yourself: "There is no logic in requesting book from yourself"
 			}
 		},
 		/**

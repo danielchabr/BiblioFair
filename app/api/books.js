@@ -140,39 +140,44 @@ exports.report = function(user, book, done) {
  */
 
 exports.request = function(from, to, book, language, done) {
-	User.findByUsername(from, function(err, from) {
-		if(err || !from){
-			return done(err || "user.notFound");
-		}
-		User.findByUsername(to, function(err, to) {
-			if(err || !to){
+	if(from === to) {
+		done(messages[language].errors.request.yourself);
+	} 
+	else {
+		User.findByUsername(from, function(err, from) {
+			if(err || !from){
 				return done(err || "user.notFound");
 			}
-			Book.findById(book, function(err, book) {
-				if(err || !book){
-					return done(err || "book.notFound");
+			User.findByUsername(to, function(err, to) {
+				if(err || !to){
+					return done(err || "user.notFound");
 				}
-				var text = (messages[language].emails.request.body + messages[language].emails._explanation).replace(/\{from\}/g, from.username)
+				Book.findById(book, function(err, book) {
+					if(err || !book){
+						return done(err || "book.notFound");
+					}
+					var text = (messages[language].emails.request.body + messages[language].emails._explanation).replace(/\{from\}/g, from.username)
 					.replace(/\{to\}/g, to.username)
 					.replace(/\{book.title\}/g, book.title)
 					.replace(/\{book.author\}/g, book.author)
 					.replace(/\{book.author\}/g, book.author)
 					.replace(/\{recipient\}/g, to.username + "@bibliofair.com");
-				//save message
-				from.messages.push({to: to._id, text: text});
-				to.messages.push({from: from._id, text: text});
-				from.save();
-				to.save();
+					//save message
+					from.messages.push({to: to._id, text: text});
+					to.messages.push({from: from._id, text: text});
+					from.save();
+					to.save();
 
-				mg.sendText(from.username + ' <' + from.username + '@bibliofair.com>',
-					to.username + ' <' + to.email + '>',
-					messages[language].emails.request.subject,
-					text,
-					config.mail.server,
-					function(err) {
-						done(err, 'ok');
-					});
+					mg.sendText(from.username + ' <' + from.username + '@bibliofair.com>',
+						to.username + ' <' + to.email + '>',
+						messages[language].emails.request.subject,
+						text,
+						config.mail.server,
+						function(err) {
+							done(err, 'ok');
+						});
+				});
 			});
 		});
-	});
+	}
 };
