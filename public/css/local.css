@@ -130,6 +130,10 @@ body{
 	color:white;
 	background-color:#03899c;
 	padding:0 0 60px 0;
+	-webkit-font-smoothing: antialiased;
+}
+html, a, input, button {
+	-webkit-font-smoothing: antialiased;
 }
 
 #content_div{
