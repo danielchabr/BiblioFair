@@ -12,7 +12,7 @@ var translateEN = {
 		'ENGLISH': 'English',
 		'CZECH': 'Česky',
 		'SEARCH': { 
-			'HEADING':'Try checking out your favorite book ...',
+			'HEADING':'Try looking up your favorite book ...',
 			'BUTTON':'Search',
 			'PLACEHOLDER': 'Title, author, ISBN, ...',
 			'NOT_FOUND': 'No one has added this book yet. You can be the first one'
@@ -45,7 +45,7 @@ var translateEN = {
 		'SIGNIN': 'Sign in',
 		'SIGNIN_FACEBOOK': 'Sign in with Facebook',
 		'SIGNIN_GOOGLE': 'Sign in with Google+',
-		'REGISTER_TEXT': 'Account is Completely Free',
+		'REGISTER_TEXT': 'It\'s Completely Free',
         'REGISTER': 'Register',
 		'REGISTER_ACTION': 'Join us',
 		'REGISTER_ACTION_SMALL': 'Join us today',
@@ -113,6 +113,7 @@ var translateEN = {
 			'TITLE': 'Title',
 			'AUTHOR': 'Author',
 			'DISTANCE': 'Distance',
+			'NEWEST': 'Newest',
 			'SELLING': 'Selling',
 			'DONATING': 'Donating',
 			'LENDING': 'Lending'
@@ -341,6 +342,7 @@ var translateCS = {
 			'TEXT': 'Seřadit podle:',
 			'TITLE': 'Titul',
 			'AUTHOR': 'Autor',
+			'NEWEST': 'Nejnovější',
 			'DISTANCE': 'Vzdálenost',
 			'SELLING': 'K prodeji',
 			'DONATING': 'K darování',

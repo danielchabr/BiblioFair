@@ -28,7 +28,8 @@ var BookSchema = new Schema({
                 type:[Number],
                 index:'2d'}
         }],
-    num_users:Number
+    num_users:Number,
+	last_added:Date
 });
 
 /**

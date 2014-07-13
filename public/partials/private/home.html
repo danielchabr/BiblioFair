@@ -24,27 +24,21 @@
 				</form>
 				<div class="col-sm-3 hidden-xs">
 					<div class="row">
-						<div class="col-lg-12" style="padding-top:11px">
+						<form class="col-lg-12" style="padding-top:11px">
 							<h4>{{ 'HOME.ORDER.TEXT' | translate }}</h4>
 							<div class="radio">
 								<label>
-									<input type="radio" ng-model="bookOrder" name="order" value="distance" ng-disabled="!locationSet" checked>
+									<input type="radio" ng-model="bookOrder" name="order" value="last_added" checked>
+									{{ 'HOME.ORDER.NEWEST' | translate }}
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" ng-model="bookOrder" name="order" value="distance" ng-disabled="!locationSet">
 									{{ 'HOME.ORDER.DISTANCE' | translate }}
 								</label>
 							</div>
-							<div class="radio">
-								<label>
-									<input type="radio" ng-model="bookOrder" name="order" value="title">
-									{{ 'HOME.ORDER.TITLE' | translate }}
-								</label>
-							</div>
-							<div class="radio">
-								<label>
-									<input type="radio" ng-model="bookOrder" name="order" value="author">
-									{{ 'HOME.ORDER.AUTHOR' | translate }}
-								</label>
-							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>

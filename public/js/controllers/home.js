@@ -10,10 +10,15 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 		$rootScope.mapIsLoaded = true;
 		$.getScript("http://open.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd%7Cluub250r2g%2Caa%3Do5-9u8wl4");
 	}
+
+	// enable sorting by distance if user has location set
+	if($rootScope.user && $rootScope.user.loc.coordinates.length === 2){
+		$scope.locationSet = true;
+	}
 	
 	//sorting & pagination
 	$rootScope.books = $rootScope.books || [];
-    $scope.bookOrder = 'title';
+    $scope.bookOrder = 'last_added';
     $scope.currentPage = 1;
     $scope.pageSize = 12;
 	$scope.maxSize = 10;
@@ -49,10 +54,6 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
 		$rootScope.books = [];
 		$scope.loading = true;
 
-        if($rootScope.user && $rootScope.user.loc.coordinates.length === 2){
-            $scope.locationSet = true;
-        }
-
         Books.get({
             limit: 120,
             lng: $rootScope.user.loc.coordinates[0],
@@ -61,8 +62,7 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
         }).success(function(data) {
             if(data){
                 $scope.loading = false;
-                if($scope.locationSet)
-                    $scope.bookOrder = "distance";
+                //if($scope.locationSet) $scope.bookOrder = "distance";
 				$rootScope.books = normalizeBooks(data);
                 $rootScope.books = uniqBooks($rootScope.books, function(a, b) {
                     if(a._id < b._id)
@@ -96,7 +96,6 @@ function homeControl($rootScope, $scope, $location, $modal, Users, Books) {
                     return 0;
             });
         });
-
     };
 
 	/*
