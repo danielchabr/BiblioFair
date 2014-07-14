@@ -1,4 +1,4 @@
-}var translateEN = {
+var translateEN = {
 	'TITLE': 'BiblioFair | Book trading, exchanging and swapping made easier',
 	'DESCRIPTION': 'Share your books and get requests from your friends or others to sell, lend or borrow them the wished books or textbooks. Enter the world of book trading',
 	'NAV': { 
