@@ -1,4 +1,4 @@
-var translateEN = {
+}var translateEN = {
 	'TITLE': 'BiblioFair | Book trading, exchanging and swapping made easier',
 	'DESCRIPTION': 'Share your books and get requests from your friends or others to sell, lend or borrow them the wished books or textbooks. Enter the world of book trading',
 	'NAV': { 
@@ -58,7 +58,7 @@ var translateEN = {
 		'EMAIL_EXISTS': 'Email already registered',
 		'USERNAME_EXISTS': 'Username already registered',
 		'BOOKS_AVAILABLE': 'books available',
-		'REGISTRATION_REQUIRED': 'Please register for possibility of requesting books'
+		'REGISTRATION_REQUIRED': 'To request a book, please sign up'
 	},
 	'RECOVERY': {
 		'EMAIL': 'Account email address',
